@@ -1,0 +1,66 @@
+.container {
+  width: 100%;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 32px;
+}
+
+.description {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  margin: 24px 0;
+}
+
+.button {
+  border-color: transparent;
+  padding: 8px 30px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+  width: 100%;
+  transition: var(--transition);
+}
+
+.button:hover {
+  box-shadow: var(--box-shadow);
+}
+
+.firstButton {
+  composes: button;
+  margin-bottom: 24px;
+  background-color: var(--secondary-bluish-white);
+  color: var(--primary-sky-blue);
+}
+
+.secondButton {
+  composes: button;
+  background-color: var(--secondary-red);
+  color: var(--primary-white);
+}
+
+@media screen and (min-width: 768px) {
+  .button {
+    width: 160px;
+  }
+
+  .buttonContainer {
+    display: flex;
+  }
+
+  .firstButton {
+    composes: button;
+    margin: 0 24px 0 0;
+  }
+
+  .alignRight {
+    composes: buttonContainer;
+    justify-content: end;
+  }
+}
