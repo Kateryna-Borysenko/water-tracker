@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: var(--primary-charcoal-gray);
+  background-color: var(--primary-white);
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font: inherit;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
