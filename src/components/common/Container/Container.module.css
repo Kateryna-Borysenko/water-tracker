@@ -1,6 +1,8 @@
 .container {
   width: 100%;
+
   /* 60 -> header height  info for Kateryna P */
+
   height: calc(100vh - 60px);
   max-width: 320px;
   padding: 0 20px;

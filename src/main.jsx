@@ -6,6 +6,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 import { store, persistor } from './redux/store';
 import App from './components/App/App';
+import './i18n';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
