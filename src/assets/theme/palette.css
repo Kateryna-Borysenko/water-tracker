@@ -1,19 +1,22 @@
 :root {
-  --toastify-color-success: #407BFF;
+  --toastify-color-success: #407bff;
   --toastify-icon-color-success: var(--toastify-color-success);
 
-  --toastify-color-error: #EF5050;
+  --toastify-color-error: #ef5050;
   --toastify-icon-color-error: var(--toastify-color-error);
 
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   --primary-white: #ffffff;
-  --primary-charcoal-gray:#2F2F2F;
-  --primary-sky-blue:#407BFF;
+  --primary-charcoal-gray: #2f2f2f;
+  --primary-sky-blue: #407bff;
 
-  --secondary-red:#EF5050;
-  --secondary-light-blue:#ECF2FF;
-  --secondary-blue:#9EBBFF;
-  --secondary-bluish-white:#FF9D43;
-  --secondary-orange:#D7E3FF;
+  --secondary-red: #ef5050;
+  --secondary-light-blue: #ecf2ff;
+  --secondary-blue: #9ebbff;
+  --secondary-bluish-white: #d7e3ff;
+  --secondary-orange: #ff9d43;
+
+  --backdrop: rgba(0, 0, 0, 0.8);
+  --box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
 }

@@ -1,0 +1,11 @@
+{
+  "managementCard": {
+    "deleteCardTitle": "Delete entry",
+    "deleteCardDescription": "Are you sure you want to delete the entry?",
+    "logoutCardTitle": "Log out",
+    "logoutCardDescription": "Do you really want to leave?",
+    "cancelButton": "Cancel",
+    "deleteButton": "Delete",
+    "logoutButton": "Log out"
+  }
+}
