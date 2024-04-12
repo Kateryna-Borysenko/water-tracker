@@ -1,8 +1,4 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--accent-secondary);
-  background-color: var(--bgMediumDark);
+  text-align: center;
+  height: 60px;
 }
