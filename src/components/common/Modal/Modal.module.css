@@ -36,6 +36,33 @@
 
 @media screen and (min-width: 768px) {
   .container {
-    width: 529px;
+    width: 592px;
+  }
+}
+
+/*  setting container */
+
+.closeBtn {
+  /* right: 14px; */
+}
+
+.container.setting-card {
+  padding: 32px 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .container.setting-card {
+    width: 704px;
+    padding: 32px 24px;
+    /* height: 860px; */
+    /* background-color: brown; */
+  }
+}
+
+@media screen and (min-width: 1256px) {
+  .container.setting-card {
+    width: 1008px;
+    /* background-color: rebeccapurple; */
+    /* height: 592px; */
   }
 }

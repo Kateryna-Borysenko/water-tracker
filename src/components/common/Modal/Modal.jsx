@@ -6,7 +6,9 @@ import s from './Modal.module.css';
 
 const modalRootRef = document.querySelector('#modal-root');
 
-const Modal = ({ onClose, children }) => {
+const Modal = ({ onClose, children, className }) => {
+  const containerClassNames = `${s.container} ${s[className]}`; //
+
   useLockBodyScroll(true);
 
   useEffect(() => {
@@ -31,7 +33,7 @@ const Modal = ({ onClose, children }) => {
 
   return createPortal(
     <div className={s.backdrop} onClick={handleBackdropClick}>
-      <div className={s.container}>
+      <div className={containerClassNames}>
         <button
           type="button"
           className={s.closeBtn}
@@ -49,3 +51,5 @@ const Modal = ({ onClose, children }) => {
 };
 
 export default Modal;
+
+// prop types? className

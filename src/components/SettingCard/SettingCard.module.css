@@ -1,0 +1,188 @@
+/* color: var(--primary-charcoal-gray); */
+label {
+  display: block;
+}
+.contaner {
+  /* width: 280px; */
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.23;
+  margin-bottom: 24px;
+}
+
+.title,
+.mediumText {
+  font-weight: 500;
+}
+
+.mediumText {
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+.smallText {
+  /* ?? */
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+/* .largeText {
+} */
+
+/* .xsmall{
+
+} */
+
+.item.smallText {
+  /* color: red; */
+}
+
+.itemText {
+  /* display: block; */
+  margin-bottom: 8px;
+}
+
+.smallMb {
+  margin-bottom: 8px;
+}
+
+.mediumMb {
+  margin-bottom: 12px;
+}
+
+/* 8 і 12 smallMb mediumMb  */
+
+.genderBox {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 24px;
+}
+
+.passwordInput {
+  margin-bottom: 12px;
+}
+.rightBox:last-of-type .passwordInput {
+  /* margin-bottom: 24px; */
+}
+.saveBtn {
+  display: flex;
+  width: 100%;
+  padding: 8px 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  background: var(--primary-sky-blue);
+  /* box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34); */
+  box-shadow: var(--box-shadow);
+  outline: none;
+  border: transparent;
+  color: var(--primary-white);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.form {
+}
+
+.leftBox {
+}
+
+.avatar {
+}
+
+.labelContainer {
+  display: block;
+  position: relative;
+  padding-left: 24px;
+  /* margin-bottom: 12px; */
+  /* margin: 10px 0; */
+  cursor: pointer;
+  /* font-size: 22px; */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* .labelContainer span {
+  margin-right: 8px;
+} */
+
+.labelContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--primary-sky-blue);
+  margin-top: 1px;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+/* fill: var(--primary-sky-blue); */
+
+/* Show the indicator (dot/circle) when checked */
+.labelContainer input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.labelContainer .checkmark:after {
+  top: 3px;
+  left: 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--primary-sky-blue);
+}
+
+/* text -> + додати labelContainer  */
+
+/* як 2 класи прописати в jsx ?   s.text + s.label так можна ?*/
+
+/* -----------tablet-----------*/
+
+@media screen and (min-width: 768px) {
+  .container.setting-card {
+    width: 704px;
+    /* height: 860px; */
+    /* background-color: brown; */
+  }
+
+  .saveBtn {
+    width: 160px;
+    margin-left: auto;
+  }
+}
+
+/* -----------desctop-----------*/
+@media screen and (min-width: 1256px) {
+  .container.setting-card {
+    width: 1008px;
+    /* background-color: rebeccapurple; */
+    /* height: 592px; */
+  }
+}
