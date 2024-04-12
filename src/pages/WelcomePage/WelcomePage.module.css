@@ -2,7 +2,7 @@
   .container {
     background-image: url(../../assets/static/image/bg-main-page-S.png);
     background-repeat: no-repeat, no-repeat;
-    background-size: cover;
+    background-size: 100% 800px;
     background-position: center bottom;
   }
 
@@ -17,17 +17,18 @@
 
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .container {
-    background-image: url(../../assets/static/image/bg-main-page-M.png);
+    background-image: url(../../assets/static/image/bottle-home-screen-M.png),
+      url(../../assets/static/image/bg-main-page-wb-M.png);
     background-repeat: no-repeat, no-repeat;
-    background-size: cover;
-    background-position: center bottom;
+    background-size: auto, 100% 800px;
+    background-position: 80%, center bottom;
   }
 
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     .container {
-      background-image: url(../../assets/static/image/bg-main-page-M-2x.png);
+      background-image: url(../../assets/static/image/bg-main-page-wb-M-2x.png);
     }
   }
 }
