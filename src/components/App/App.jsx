@@ -3,6 +3,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/styles/global.module.css';
 import WelcomePage from '../../pages/WelcomePage/WelcomePage';
+import SignupPage from '../../pages/SignupPage/SignupPage';
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<WelcomePage />}></Route>
+        <Route path="/signup" element={<SignupPage />}></Route>
       </Routes>
     </>
   );
