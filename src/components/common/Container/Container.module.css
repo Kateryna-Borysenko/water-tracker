@@ -1,21 +1,24 @@
 .container {
+  outline: 1px solid red;
   width: 100%;
+  /* 60 -> header height  info for Kateryna P */
+  height: calc(100vh - 60px);
   max-width: 320px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 0 20px;
+  box-sizing: border-box;
   margin: 0px auto;
 }
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 768px;
-    padding-left: 32px;
-    padding-right: 32px;
+    padding: 0 32px;
   }
 }
+
 @media screen and (min-width: 1440px) {
   .container {
     max-width: 1256px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 0 20px;
   }
 }
