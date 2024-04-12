@@ -1,5 +1,4 @@
 .container {
-  outline: 1px solid red;
   width: 100%;
   /* 60 -> header height  info for Kateryna P */
   height: calc(100vh - 60px);
