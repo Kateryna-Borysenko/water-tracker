@@ -2,7 +2,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0;
+  padding-top: 8px;
   border-bottom: 1px solid var(--accent-secondary);
   background-color: var(--bgMediumDark);
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    padding-top: 16px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .header {
+    padding-top: 12px;
+  }
 }
