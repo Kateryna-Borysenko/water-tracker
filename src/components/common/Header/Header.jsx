@@ -6,15 +6,17 @@ import s from './Header.module.css';
 
 const Header = () => {
   return (
-    <Container>
-      <header className={s.header}>
-        <Logo />
+    <header>
+      <Container>
+        <div className={s.header}>
+          <Logo />
 
-        <UserAuth />
+          <UserAuth />
 
-        {/* <UserLogo /> */}
-      </header>
-    </Container>
+          {/* <UserLogo /> */}
+        </div>
+      </Container>
+    </header>
   );
 };
 
