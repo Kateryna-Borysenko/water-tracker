@@ -133,6 +133,7 @@ const AuthForm = ({ type }) => {
           <Link to="/signin">Sign In</Link>
         </div>
       )}
+
       {type === 'signin' && (
         <div className={s.link}>
           <Link to="/signup">Sign Up</Link>
