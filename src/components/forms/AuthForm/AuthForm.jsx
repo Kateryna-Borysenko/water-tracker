@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
 import Title from '../../common/Title/Title';
+import Button from '../../../uikit/Button/Button';
 import { authFormValidationSchema } from '../../../schemas/authFormValidationSchema';
 import eye from '../../../assets/static/eye.svg';
 import eyeSlash from '../../../assets/static/eye-slash.svg';
@@ -32,7 +33,7 @@ const AuthForm = ({ type }) => {
   };
 
   return (
-    <>
+    <div className={s.container}>
       <Title
         title={type === 'signup' ? 'Sing Up' : 'Sing In'}
         className="authForm"
@@ -46,11 +47,11 @@ const AuthForm = ({ type }) => {
         {({ isSubmitting, errors, touched }) => (
           <Form className={s.form}>
             <div className={s.field}>
-              <label htmlFor="email">Email</label>
+              <label>Enter your email</label>
               <Field
                 type="email"
                 name="email"
-                placeholder="Enter your email"
+                placeholder="E-mail"
                 className={`${s.input} ${
                   touched.email && errors.email && s.errorInput
                 }`}
@@ -59,11 +60,11 @@ const AuthForm = ({ type }) => {
             </div>
 
             <div className={s.field}>
-              <label htmlFor="password">Password</label>
+              <label>Enter your password</label>
               <Field
                 type={showPassword ? 'text' : 'password'}
                 name="password"
-                placeholder="Enter your password"
+                placeholder="Password"
                 className={`${s.input} ${
                   touched.password && errors.password && s.errorInput
                 }`}
@@ -88,11 +89,11 @@ const AuthForm = ({ type }) => {
 
             {type === 'signup' && (
               <div className={s.field}>
-                <label htmlFor="repeatPassword">Repeat Password</label>
+                <label>Repeat password</label>
                 <Field
                   type={showRepeatPassword ? 'text' : 'password'}
                   name="repeatPassword"
-                  placeholder="Repeat your password"
+                  placeholder="Repeat Password"
                   className={`${s.input} ${
                     touched.repeatPassword &&
                     errors.repeatPassword &&
@@ -117,9 +118,12 @@ const AuthForm = ({ type }) => {
                 </button>
               </div>
             )}
-            <button type="submit" disabled={isSubmitting} className={s.button}>
-              {type === 'signup' ? 'Sing Up' : 'Sing In'}
-            </button>
+            <Button
+              type="submit"
+              title={type === 'signup' ? 'Sign Up' : 'Sign In'}
+              disabled={isSubmitting}
+              className="authButton"
+            />
           </Form>
         )}
       </Formik>
@@ -134,7 +138,7 @@ const AuthForm = ({ type }) => {
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

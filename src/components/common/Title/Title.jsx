@@ -3,7 +3,7 @@ import s from './Title.module.css';
 const Title = ({ title, className }) => {
   const titleClasses = `${s.title} ${s[className]}`;
 
-  return <h1 className={titleClasses}>{title}</h1>;
+  return <h2 className={titleClasses}>{title}</h2>;
 };
 
 export default Title;

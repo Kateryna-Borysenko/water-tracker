@@ -1,14 +1,14 @@
 import Container from '../../components/common/Container/Container';
 import AuthForm from '../../components/forms/AuthForm/AuthForm';
 import bottle from '../../assets/static/bottle-for-signin.svg';
-import s from './SignupPage.module.css';
+import s from './SigninPage.module.css';
 
-const SignupPage = () => {
+const SigninPage = () => {
   return (
     <div className={s.container}>
       <Container>
         <div className={s.contentContainer}>
-          <AuthForm type="signup" />
+          <AuthForm type="signin" />
           <img src={bottle} className={s.bottle} alt="Bottle of Water" />
         </div>
       </Container>
@@ -16,4 +16,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default SigninPage;
