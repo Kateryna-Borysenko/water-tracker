@@ -6,7 +6,8 @@ import s from './Modal.module.css';
 
 const modalRootRef = document.querySelector('#modal-root');
 
-const Modal = ({ onClose, children }) => {
+const Modal = ({ onClose, children, className }) => {
+  const modalClasses = `${s[className]}`;
   useLockBodyScroll(true);
 
   useEffect(() => {
@@ -41,7 +42,7 @@ const Modal = ({ onClose, children }) => {
           <img src={icon} alt="Close Button" />
         </button>
 
-        <div className={s.content}>{children}</div>
+        <div className={modalClasses}>{children}</div>
       </div>
     </div>,
     modalRootRef,

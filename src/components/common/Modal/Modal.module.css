@@ -39,3 +39,8 @@
     width: 529px;
   }
 }
+
+.addWaterModal {
+  width: 100vw;
+  max-width: calc(280px - 24px);
+}
