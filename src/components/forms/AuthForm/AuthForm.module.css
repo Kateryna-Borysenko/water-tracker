@@ -44,11 +44,6 @@
   height: 24px;
 }
 
-.button {
-  width: 100%;
-  margin-bottom: 16px;
-}
-
 .link {
   margin-bottom: 16px;
   color: var(--primary-sky-blue);
@@ -69,4 +64,16 @@
 .errorInput {
   color: var(--secondary-red);
   border-color: var(--secondary-red);
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .container {
+    width: 336px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    width: 364px;
+  }
 }

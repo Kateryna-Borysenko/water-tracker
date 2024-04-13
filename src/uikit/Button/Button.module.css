@@ -1,0 +1,35 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  padding: 8px 30px;
+  border-radius: 10px;
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: var(--primary-sky-blue);
+  color: var(--primary-white);
+  transition: var(--transition);
+  width: auto;
+  margin: 0 auto;
+}
+
+.button:hover {
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .button {
+    font-size: 18px;
+    line-height: 24px;
+    padding: 10px 30px;
+  }
+}
+
+.authButton {
+  width: 100%;
+  margin-bottom: 16px;
+}
