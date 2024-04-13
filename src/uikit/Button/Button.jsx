@@ -3,7 +3,7 @@ import s from './Button.module.css';
 const Button = ({
   type = 'button',
   title,
-  icon,
+  children,
   className,
   onClick,
   ...rest
@@ -12,11 +12,7 @@ const Button = ({
 
   return (
     <button type={type} onClick={onClick} className={buttonClasses} {...rest}>
-      {icon && (
-        <svg>
-          <use href={icon}></use>
-        </svg>
-      )}
+      {children}
       {title}
     </button>
   );
