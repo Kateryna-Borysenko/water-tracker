@@ -37,18 +37,6 @@ export const authSlice = createSlice({
     builder
 
       // *************  REGISTER  ************ //
-      .addCase(registerUser.pending, state => {
-        state.error = null;
-        state.loading = true;
-      })
-      .addCase(registerUser.fulfilled, (state, { payload }) => {
-        state.user.email = payload.email;
-        state.loading = false;
-      })
-      .addCase(registerUser.rejected, (state, { payload }) => {
-        state.error = payload;
-        state.loading = false;
-      })
 
       // **************  LOGIN  ************** //
       .addCase(loginUser.pending, state => {

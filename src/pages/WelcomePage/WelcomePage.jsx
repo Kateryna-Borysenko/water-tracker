@@ -26,13 +26,6 @@ const WelcomePage = () => {
 
       <Container className={s.containerWelcomePage}>
         <div className={s.contentContainer}>
-          {/* temporary code: */}
-          {isOpenSettingModal && (
-            <Modal onClose={handleCloseSettingModal} className="setting-card">
-              <SettingCard></SettingCard>
-            </Modal>
-          )}
-
           <div className={s.itemContainerBenefits}>
             <MainTitle
               title="Water consumption tracker"

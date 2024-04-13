@@ -1,9 +1,41 @@
-/* color: var(--primary-charcoal-gray); */
+/* border: 1px solid red; */
 label {
   display: block;
 }
-.contaner {
-  /* width: 280px; */
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+/* -----text sizes----- */
+.smallText {
+  font-size: 16px;
+  line-height: 1.25;
+}
+.mediumText {
+  font-size: 18px;
+  line-height: 1.1;
+}
+/* -----margin bottom ----- */
+.smallMb {
+  margin-bottom: 8px;
+}
+
+.mediumMb {
+  margin-bottom: 12px;
+}
+
+.largeMb {
+  margin-bottom: 24px;
 }
 
 .title {
@@ -18,43 +50,63 @@ label {
   font-weight: 500;
 }
 
-.mediumText {
-  font-size: 18px;
-  line-height: 1.1;
-}
-
-.smallText {
-  /* ?? */
-  font-size: 16px;
-  line-height: 1.25;
-}
-
-/* .largeText {
-} */
-
-/* .xsmall{
-
-} */
-
-.item.smallText {
-  /* color: red; */
-}
-
 .itemText {
-  /* display: block; */
   margin-bottom: 8px;
 }
 
-.smallMb {
-  margin-bottom: 8px;
+/* ---------AVATAR -----*/
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  background-color: var(--secondary-blue);
+  border-radius: 50%;
 }
 
-.mediumMb {
-  margin-bottom: 12px;
+.avatar p {
+  font-size: 45px;
+  color: var(--primary-white);
 }
 
-/* 8 і 12 smallMb mediumMb  */
+.avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
 
+.avatarWrapper {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+/* -----------uplod a photo----- */
+.fileWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.uploadingWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/*  STROKE? */
+.uploadingIcon path {
+  stroke: #407bff;
+}
+
+.uploadingText {
+  color: var(--primary-sky-blue);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.28;
+}
+
+/* -------------gender----- */
 .genderBox {
   margin-bottom: 24px;
   display: flex;
@@ -64,11 +116,10 @@ label {
 }
 
 .passwordInput {
-  margin-bottom: 12px;
+  /* margin-bottom: 12px; */
+  margin-bottom: 18px;
 }
-.rightBox:last-of-type .passwordInput {
-  /* margin-bottom: 24px; */
-}
+
 .saveBtn {
   display: flex;
   width: 100%;
@@ -78,7 +129,6 @@ label {
   gap: 10px;
   border-radius: 10px;
   background: var(--primary-sky-blue);
-  /* box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34); */
   box-shadow: var(--box-shadow);
   outline: none;
   border: transparent;
@@ -101,19 +151,12 @@ label {
   display: block;
   position: relative;
   padding-left: 24px;
-  /* margin-bottom: 12px; */
-  /* margin: 10px 0; */
   cursor: pointer;
-  /* font-size: 22px; */
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
-
-/* .labelContainer span {
-  margin-right: 8px;
-} */
 
 .labelContainer input {
   position: absolute;
@@ -123,7 +166,6 @@ label {
   width: 0;
 }
 
-/* Create a custom radio button */
 .checkmark {
   position: absolute;
   top: 0;
@@ -135,21 +177,16 @@ label {
   margin-top: 1px;
 }
 
-/* Create the indicator (the dot/circle - hidden when not checked) */
 .checkmark:after {
   content: '';
   position: absolute;
   display: none;
 }
 
-/* fill: var(--primary-sky-blue); */
-
-/* Show the indicator (dot/circle) when checked */
 .labelContainer input:checked ~ .checkmark:after {
   display: block;
 }
 
-/* Style the indicator (dot/circle) */
 .labelContainer .checkmark:after {
   top: 3px;
   left: 3px;
@@ -159,9 +196,29 @@ label {
   background-color: var(--primary-sky-blue);
 }
 
-/* text -> + додати labelContainer  */
+/* -----------inputs-----------*/
 
-/* як 2 класи прописати в jsx ?   s.text + s.label так можна ?*/
+.input {
+  width: 236px;
+  border-radius: 6px;
+  border: 1px solid var(--secondary-bluish-white);
+  padding: 12px 10px;
+  color: var(--primary-sky-blue);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.input:is(:hover, :focus) {
+  outline: none;
+}
+/* -------------Validation error---- */
+.errorValidation {
+  color: var(--toastify-color-error);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.28;
+}
 
 /* -----------tablet-----------*/
 
@@ -169,7 +226,6 @@ label {
   .container.setting-card {
     width: 704px;
     /* height: 860px; */
-    /* background-color: brown; */
   }
 
   .saveBtn {
@@ -182,7 +238,6 @@ label {
 @media screen and (min-width: 1256px) {
   .container.setting-card {
     width: 1008px;
-    /* background-color: rebeccapurple; */
     /* height: 592px; */
   }
 }
