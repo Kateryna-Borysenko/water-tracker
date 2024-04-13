@@ -1,4 +1,18 @@
 .header {
-  text-align: center;
-  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    padding-top: 16px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .header {
+    padding-top: 12px;
+  }
 }

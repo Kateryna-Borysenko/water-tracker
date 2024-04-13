@@ -1,11 +1,16 @@
 import { Link } from 'react-router-dom';
+import logo from '../../../../assets/static/logo.svg';
 import s from './Logo.module.css';
 
 const Logo = () => {
   return (
     <Link to="/" className={s.container}>
-      icon
-      <div className={s.title}>WaterTracker</div>
+      <img
+        className={s.icon}
+        src={logo}
+        alt="Logo of water tracker, a drop of water"
+      />
+      <div className={s.title}>Tracker of water</div>
     </Link>
   );
 };
