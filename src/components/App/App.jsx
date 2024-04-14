@@ -1,9 +1,10 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import WelcomePage from '../../pages/WelcomePage/WelcomePage';
+import SharedLayout from '../common/SharedLayout/SharedLayout';
 import SignupPage from '../../pages/SignupPage/SignupPage';
 import SigninPage from '../../pages/SigninPage/SigninPage';
-import SharedLayout from '../common/SharedLayout/SharedLayout';
+import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/styles/global.module.css';
 
@@ -15,7 +16,7 @@ const App = () => {
           <Route index element={<WelcomePage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/signin" element={<SigninPage />} />
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
 
