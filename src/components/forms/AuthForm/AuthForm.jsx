@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import Title from '../../common/Title/Title';
 import Button from '../../../uikit/Button/Button';
 import { authFormValidationSchema } from '../../../schemas/authFormValidationSchema';
-import eye from '../../../assets/static/eye.svg';
-import eyeSlash from '../../../assets/static/eye-slash.svg';
+// import eye from '../../../assets/static/eye.svg';
+// import eyeSlash from '../../../assets/static/eye-slash.svg';
 import s from './AuthForm.module.css';
 
 const AuthForm = ({ type }) => {
@@ -80,10 +80,10 @@ const AuthForm = ({ type }) => {
                 onClick={togglePasswordVisibility}
                 className={s.eyeButton}
               >
-                <img
+                {/* <img
                   src={showPassword ? eyeSlash : eye}
                   alt={showPassword ? 'Hide' : 'Show'}
-                />
+                /> */}
               </button>
             </div>
 
