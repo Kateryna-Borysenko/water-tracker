@@ -1,4 +1,20 @@
 /* border: 1px solid red; */
+
+.container {
+  /* border: 2px solid green; */
+}
+
+.wrapper {
+  /* border: 1px solid red; */
+}
+.leftBox {
+  /* border: 1px solid violet; */
+}
+
+.rightBox {
+  /* border: 1px solid blue; */
+}
+
 label {
   display: block;
 }
@@ -92,6 +108,7 @@ label {
   display: flex;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
 }
 
 /*  STROKE? */
@@ -199,7 +216,9 @@ label {
 /* -----------inputs-----------*/
 
 .input {
-  width: 236px;
+  /* width: 236px; */
+  width: 256px;
+
   border-radius: 6px;
   border: 1px solid var(--secondary-bluish-white);
   padding: 12px 10px;
@@ -212,6 +231,9 @@ label {
 .input:is(:hover, :focus) {
   outline: none;
 }
+.input::placeholder {
+  color: var(--secondary-blue);
+}
 /* -------------Validation error---- */
 .errorValidation {
   color: var(--toastify-color-error);
@@ -220,24 +242,55 @@ label {
   line-height: 1.28;
 }
 
+/* ---------eye btn (open, close) ---------*/
+.inputWrapper {
+  position: relative;
+}
+
 /* -----------tablet-----------*/
 
 @media screen and (min-width: 768px) {
-  .container.setting-card {
-    width: 704px;
-    /* height: 860px; */
-  }
-
   .saveBtn {
     width: 160px;
     margin-left: auto;
+  }
+  .input {
+    /* width: 326px; */
+    width: 346px;
+  }
+
+  .inputWrapper {
+    width: 366px;
   }
 }
 
 /* -----------desctop-----------*/
 @media screen and (min-width: 1256px) {
-  .container.setting-card {
-    width: 1008px;
-    /* height: 592px; */
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    /* border: 1px solid grey; */
+    gap: 24px;
+  }
+
+  .rightBox {
+    align-self: flex-end;
+  }
+
+  .genderBox {
+    margin-bottom: 52px;
+  }
+
+  .input {
+    width: 372px;
+  }
+
+  .saveBtn {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+  }
+  .inputWrapper {
+    width: 392px;
   }
 }

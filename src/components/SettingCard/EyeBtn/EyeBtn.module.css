@@ -1,0 +1,10 @@
+.eyeBtn {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 15px;
+  right: 12px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
