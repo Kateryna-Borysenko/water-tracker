@@ -1,4 +1,3 @@
-import IconsSprite from '../../components/Icons/Icons';
 import Container from '../../components/common/Container/Container';
 import Meta from '../../components/common/Meta/Meta';
 import s from './WelcomePage.module.css';

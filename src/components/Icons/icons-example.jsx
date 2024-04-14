@@ -1,19 +1,19 @@
-//    <IconsSprite id={'uploading'} />
-//     <IconsSprite id={'arrow-left-long'} fill={'#407bff'} />
-//     <IconsSprite id={'calendar'} />
-//     <IconsSprite id={'chart'} />
-//     <IconsSprite id={'down-arrow'} fill={'#407bff'} />
-//     <IconsSprite id={'edit-pencil'} />
-//     <IconsSprite id={'eye-slash'} />
-//     <IconsSprite id={'eye'} />
-//     <IconsSprite id={'glass'} />
-//     <IconsSprite id={'logout'} />
-//     <IconsSprite id={'minus'} fill={'#407bff'} />
-//     <IconsSprite id={'plus-circle'} />
-//     <IconsSprite id={'plus'} />
-//     <IconsSprite id={'chart'} />
-//     <IconsSprite id={'user'} />
-//     <IconsSprite id={'settings'} />
-//     <IconsSprite id={'tools'} />
-//     <IconsSprite id={'trash'} />
-//     <IconsSprite id={'x-mark'} />
+//    <Icons id={'uploading'} />
+//     <Icons id={'arrow-left-long'} fill={'#407bff'} />
+//     <Icons id={'calendar'} />
+//     <Icons id={'chart'} />
+//     <Icons id={'down-arrow'} fill={'#407bff'} />
+//     <Icons id={'edit-pencil'} />
+//     <Icons id={'eye-slash'} />
+//     <Icons id={'eye'} />
+//     <Icons id={'glass'} />
+//     <Icons id={'logout'} />
+//     <Icons id={'minus'} fill={'#407bff'} />
+//     <Icons id={'plus-circle'} />
+//     <Icons id={'plus'} />
+//     <Icons id={'chart'} />
+//     <Icons id={'user'} />
+//     <Icons id={'settings'} />
+//     <Icons id={'tools'} />
+//     <Icons id={'trash'} />
+//     <Icons id={'x-mark'} />
