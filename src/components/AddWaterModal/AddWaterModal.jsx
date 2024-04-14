@@ -1,17 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { TimePicker } from 'antd';
+import dayjs from 'dayjs';
+import ConfigProvider from 'antd/lib/config-provider';
 
 import Modal from '../common/Modal/Modal';
 import Subtitle from '../common/Subtitle/Subtitle';
-import TimePicker from '../common/TimePicker/TimePicker';
 
 import minusIcon from '../../assets/static/minus.svg';
 import plusIcon from '../../assets/static/plus.svg';
 
 import s from './AddWaterModal.module.css';
-import 'react-datepicker/dist/react-datepicker.css';
 
-const AddWaterModal = ({ handleTimeChange, onClose, selectedTime }) => {
-  const [amountWater, setAmountWater] = useState(25);
+const AddWaterModal = ({ onClose }) => {
+  const [defaultTime, setDefaultTime] = useState(dayjs());
+  const [amountWater, setAmountWater] = useState(0);
 
   const handleAmountChange = evt => {
     const { name } = evt.currentTarget;
@@ -34,7 +36,7 @@ const AddWaterModal = ({ handleTimeChange, onClose, selectedTime }) => {
 
   return (
     <>
-      <Modal className="addWaterModal" onClose={onClose}>
+      <Modal className="addWaterModalBox" onClose={onClose}>
         <h2 className={s.title}>Add water</h2>
         <div className={s.infoContainer}>
           <div>
@@ -63,28 +65,32 @@ const AddWaterModal = ({ handleTimeChange, onClose, selectedTime }) => {
               </button>
             </div>
           </div>
-          <div className={s.selectContainer}>
-            <p className={s.text}>Recording time:</p>
-            <TimePicker
-              className={s.timeSelect}
-              selectedTime={selectedTime}
-              handleTimeChange={handleTimeChange}
-            />
 
-            <Subtitle
-              title=" Enter the value of the water used:"
-              className="addWaterModal"
+          <p className={s.text}>Recording time:</p>
+          <ConfigProvider>
+            <TimePicker
+              className={s.test}
+              defaultValue={defaultTime}
+              format="h:mm"
+              minuteStep="5"
+              use12Hours="true"
+              onChange={value => setDefaultTime(value)}
             />
-            <input
-              className={s.input}
-              name="value"
-              type="number"
-              min="1"
-              max="5000"
-              value={amountWater}
-              onChange={evt => handleAmountChange(evt)}
-            />
-          </div>
+          </ConfigProvider>
+
+          <Subtitle
+            title=" Enter the value of the water used:"
+            className="addWaterModal"
+          />
+          <input
+            className={s.input}
+            name="value"
+            type="number"
+            min="1"
+            max="5000"
+            value={amountWater}
+            onChange={evt => handleAmountChange(evt)}
+          />
         </div>
         <div className={s.sreenContainer}>
           <span className={s.waterAmountSreen}>{amountWater}ml</span>

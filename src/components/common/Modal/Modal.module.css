@@ -40,7 +40,13 @@
   }
 }
 
-.addWaterModal {
-  width: 100vw;
-  max-width: calc(280px - 24px);
+@media screen and (min-width: 768px) {
+  .addWaterModalBox .container {
+    width: 704px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .addWaterModalBox .container {
+    width: 592px;
+  }
 }
