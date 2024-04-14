@@ -1,1 +1,24 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  margin: 0px auto;
+}
 
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 0 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    max-width: 1256px;
+    padding: 0 20px;
+  }
+}

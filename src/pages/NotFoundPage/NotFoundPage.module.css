@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.image {
+  width: 150px;
+  height: auto;
+}
+
+.text {
+  color: var(--primary-sky-blue);
+  font-weight: 700;
+  margin-right: 20px;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.description {
+  padding: 0 40px 0 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.accent {
+  font-weight: 600;
+}

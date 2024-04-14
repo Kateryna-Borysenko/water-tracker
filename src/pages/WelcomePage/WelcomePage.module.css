@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  height: 100%;
+}
+@media screen and (max-width: 767px) {
+  .container {
+    background-image: url(../../assets/static/image/bg-main-page-S.png);
+    background-repeat: no-repeat, no-repeat;
+    background-size: 100% 800px;
+    background-position: center bottom;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .container {
+      background-image: url(../../assets/static/image/bg-main-page-S-2x.png);
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .container {
+    background-image: url(../../assets/static/image/bottle-home-screen-M.png),
+      url(../../assets/static/image/bg-main-page-wb-M.png);
+    background-repeat: no-repeat, no-repeat;
+    background-size: auto, 100% 800px;
+    background-position: 80%, center bottom;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .container {
+      background-image: url(../../assets/static/image/bg-main-page-wb-M-2x.png);
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    background-image: url(../../assets/static/image/bg-main-page-L.png),
+      url(../../assets/static/image/bg-element-main-page-L.png);
+    background-repeat: no-repeat, no-repeat;
+    background-size: contain;
+    background-position: center bottom;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .container {
+      background-image: url(../../assets/static/image/bg-main-page-L-2x.png),
+        url(../../assets/static/image/bg-element-main-page-L-2x.png);
+    }
+  }
+}
