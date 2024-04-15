@@ -16,7 +16,7 @@ import { authSlice } from '../redux/auth/authSlice';
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['user'],
+  whitelist: ['user', 'token'],
 };
 
 export const store = configureStore({
