@@ -1,48 +1,31 @@
-.itemContainerBenefits {
-  border-radius: 10px;
-  padding: 24px 16px;
-  min-width: 280px;
-  height: 100%;
-  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
-  background: var(--secondary-light-blue);
+.listItemBenefits {
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--primary-charcoal-gray);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.listItemBenefits img {
+  width: 32px;
+  height: 32px;
+  margin-right: 6px;
 }
 
 .listItemOptions {
   font-size: 16px;
   line-height: 20px;
   color: var(--primary-charcoal-gray);
-  display: flex;
-  align-items: center;
+  gap: 16px;
 }
 
-.description {
-  margin-bottom: 12px;
-}
-
-.listItemOptions img {
-  width: 32px;
-  height: 32px;
-  margin-right: 6px;
-}
-
-.itemContainerOptions {
-  padding: 24px 16px;
-  min-width: 280px;
-  height: 100%;
-}
-
-.listItemBenefits {
-  font-size: 16px;
-  line-height: 20px;
-  color: var(--primary-charcoal-gray);
-  list-style-type: disc;
-}
-
-.listItemBenefits::marker {
+.listItemOptions .point::before {
+  content: '•';
   color: var(--primary-sky-blue);
-  font-size: 16px;
-  border-radius: 50%;
-  margin-right: 6px;
+  font-size: 36px;
+  margin-right: 8px;
+  vertical-align: middle;
 }
 
 .list {
@@ -50,44 +33,24 @@
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
-  gap: 16px;
 }
 
-@media screen and (min-width: 768px) {
-  .listItemOptions img {
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .listItemBenefits img {
     width: 40px;
     height: 40px;
     margin-right: 8px;
   }
 
-  .list {
+  .listItemBenefits {
     flex-direction: row;
     justify-content: space-between;
   }
 
-  .listBenefits {
-    flex-direction: column;
-    list-style-position: inside;
-  }
-
-  .itemContainerBenefits {
-    padding: 32px 24px;
-    max-width: 494px;
-    max-height: 332px;
-  }
-
-  .listItemBenefits::marker {
-    margin-right: 8px;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .itemContainer {
-    display: flex;
-  }
-
-  .list {
-    flex-direction: column;
-    gap: 12px;
+  @media screen and (min-width: 1440px) {
+    .list {
+      flex-direction: column;
+      gap: 12px;
+    }
   }
 }
