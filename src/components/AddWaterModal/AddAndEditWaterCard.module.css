@@ -11,7 +11,7 @@
   font-weight: 500;
   line-height: 1.23;
   margin-bottom: 24px;
-  word-wrap: break-word;
+  width: 200px;
 }
 
 .text {
@@ -96,13 +96,13 @@
 }
 
 .glassContainer {
-  flex-grow: 1;
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 12px;
-  max-width: 100%;
+  width: 100%;
   padding: 8px 24px;
   margin-bottom: 24px;
   border-radius: 10px;
@@ -134,6 +134,9 @@
 }
 
 @media screen and (min-width: 768px) {
+  .title {
+    width: auto;
+  }
   .sreenContainer {
     justify-content: flex-end;
     flex-direction: row;

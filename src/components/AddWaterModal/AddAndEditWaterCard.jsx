@@ -8,6 +8,7 @@ import s from './AddAndEditWaterCard.module.css';
 
 const AddAndEditWaterCard = ({ isEditable = false }) => {
   const [defaultTime, setDefaultTime] = useState(dayjs());
+  const [isFocus, setIsFocus] = useState(false);
   const [amountWater, setAmountWater] = useState(isEditable ? 250 : 0);
 
   const handleAmountChange = e => {
@@ -28,6 +29,19 @@ const AddAndEditWaterCard = ({ isEditable = false }) => {
       default:
     }
   };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+  };
+
+  const handleBlur = () => {
+    setIsFocus(false);
+  };
+  const handleFocus = () => {
+    setIsFocus(false);
+  };
+
+  const screenValue = isFocus ? `${amountWater}` : 0;
 
   const title = isEditable ? 'Edit the entered amount of water' : 'Add water';
   const subtitle = isEditable ? 'Correct entered data:' : 'Choose a value:';
@@ -82,29 +96,38 @@ const AddAndEditWaterCard = ({ isEditable = false }) => {
             </button>
           </div>
         </div>
-        <label className={s.text}>Recording time:</label>
-        <TimePicker
-          className={s.input}
-          defaultValue={defaultTime}
-          format="h:mm"
-          minuteStep="5"
-          use12Hours="true"
-          onChange={value => setDefaultTime(value)}
-        />
-        <label className={s.label}>Enter the value of the water used:</label>
-        <input
-          className={s.input}
-          name="value"
-          type="number"
-          min="1"
-          max="5000"
-          defaultValue={amountWater}
-          onChange={evt => handleAmountChange(evt)}
-        />
-        <div className={s.sreenContainer}>
-          <span className={s.waterAmountSreen}>{amountWater}ml</span>
-          <Button title="Save" className="addWaterBtn" />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="time" className={s.text}>
+            Recording time:
+          </label>
+          <TimePicker
+            className={s.input}
+            name="time"
+            defaultValue={defaultTime}
+            format="h:mm"
+            minuteStep="5"
+            use12Hours="true"
+            onChange={value => setDefaultTime(value)}
+          />
+          <label htmlFor="value" className={s.label}>
+            Enter the value of the water used:
+          </label>
+          <input
+            className={s.input}
+            name="value"
+            type="number"
+            min="1"
+            max="5000"
+            value={amountWater}
+            onChange={evt => handleAmountChange(evt)}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
+          />
+          <div className={s.sreenContainer}>
+            <span className={s.waterAmountSreen}>{screenValue}ml</span>
+            <Button type="submit" title="Save" className="addWaterBtn" />
+          </div>
+        </form>
       </div>
     </>
   );
