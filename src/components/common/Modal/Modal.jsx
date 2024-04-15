@@ -1,7 +1,7 @@
 import { useLockBodyScroll } from 'react-use';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import icon from '../../../assets/static/x-mark.svg';
+import icon from '../../../assets/static/icons/x-mark.svg';
 import s from './Modal.module.css';
 
 const modalRootRef = document.querySelector('#modal-root');

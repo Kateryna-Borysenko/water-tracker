@@ -1,19 +1,12 @@
 import { useState } from 'react';
 import { TimePicker } from 'antd';
 import dayjs from 'dayjs';
-
 import Subtitle from '../common/Subtitle/Subtitle';
 import Button from '../../uikit/Button/Button';
-
-import minusIcon from '../../assets/static/minus.svg';
-import plusIcon from '../../assets/static/plus.svg';
-import glassIcon from '../../assets/static/bin.svg';
-
+import svgSprite from '../../assets/static/icons/sprite/icons.svg';
 import s from './AddAndEditWaterCard.module.css';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
-const AddAndEditWaterCard = ({ isEditable = true }) => {
+const AddAndEditWaterCard = ({ isEditable = false }) => {
   const [defaultTime, setDefaultTime] = useState(dayjs());
   const [amountWater, setAmountWater] = useState(isEditable ? 250 : 0);
 
@@ -43,10 +36,11 @@ const AddAndEditWaterCard = ({ isEditable = true }) => {
     <>
       <div className={s.infoContainer}>
         <h2 className={s.title}>{title}</h2>
-
         {isEditable && (
           <div className={s.glassContainer}>
-            <img src={glassIcon} alt="Glass" />
+            <svg className={s.glassIcon}>
+              <use href={`${svgSprite}#icon-glass`} />
+            </svg>
             <span className={s.glassVolume}>{amountWater}ml</span>
             <TimePicker
               className={s.inputGlass}
@@ -58,7 +52,6 @@ const AddAndEditWaterCard = ({ isEditable = true }) => {
             />
           </div>
         )}
-
         <div>
           <Subtitle title={subtitle} className="addWaterModal" />
           <h4 className={s.text}>Amount of water:</h4>
@@ -71,7 +64,9 @@ const AddAndEditWaterCard = ({ isEditable = true }) => {
               onClick={handleAmountChange}
               disabled={amountWater === 0}
             >
-              <img src={minusIcon} alt="Minus Button" />
+              <svg className={s.icon}>
+                <use href={`${svgSprite}#icon-minus`} />
+              </svg>
             </button>
             <span className={s.waterAmountValue}>{amountWater}ml</span>
             <button
@@ -81,10 +76,9 @@ const AddAndEditWaterCard = ({ isEditable = true }) => {
               aria-label="incrementWater"
               onClick={handleAmountChange}
             >
-              {/* <svg>
-                <use href={`${svgSprite}#icon-minus`} />
-              </svg> */}
-              <img src={plusIcon} alt="Plus Button" />
+              <svg className={s.icon}>
+                <use href={`${svgSprite}#icon-plus`} />
+              </svg>
             </button>
           </div>
         </div>
@@ -104,7 +98,7 @@ const AddAndEditWaterCard = ({ isEditable = true }) => {
           type="number"
           min="1"
           max="5000"
-          value={amountWater}
+          defaultValue={amountWater}
           onChange={evt => handleAmountChange(evt)}
         />
         <div className={s.sreenContainer}>
