@@ -9,14 +9,22 @@ import {
   REQUIRED_REPEAT_PASSWORD_MESSAGE,
 } from '../helpers/constants';
 
-export const authFormValidationSchema = Yup.object().shape({
+const baseValidationSchema = {
   email: Yup.string()
     .matches(EMAIL_REGEX, EMAIL_ERROR_MESSAGE)
     .required(REQUIRED_EMAIL_MESSAGE),
   password: Yup.string()
     .matches(PASSWORD_REGEX, PASSWORD_ERROR_MESSAGE)
     .required(REQUIRED_PASSWORD_MESSAGE),
+};
+
+export const signupFormSchema = Yup.object().shape({
+  ...baseValidationSchema,
   repeatPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], MATCH_PASSWORD_MESSAGE)
     .required(REQUIRED_REPEAT_PASSWORD_MESSAGE),
+});
+
+export const signinFormSchema = Yup.object().shape({
+  ...baseValidationSchema,
 });
