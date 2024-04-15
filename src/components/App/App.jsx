@@ -8,7 +8,6 @@ import HomePage from '../../pages/HomePage/HomePage';
 import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/styles/global.module.css';
-import HomePage from '../../pages/HomePage/HomePage';
 
 const App = () => {
   return (
