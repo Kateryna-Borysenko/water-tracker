@@ -1,56 +1,52 @@
-.listItemBenefits {
+.listItems {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
+
+.list {
   font-size: 16px;
   line-height: 20px;
   color: var(--primary-charcoal-gray);
+}
+
+.listItemBenefits {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 8px;
 }
 
 .listItemBenefits img {
   width: 32px;
   height: 32px;
-  margin-right: 6px;
 }
 
 .listItemOptions {
-  font-size: 16px;
-  line-height: 20px;
-  color: var(--primary-charcoal-gray);
-  gap: 16px;
+  list-style-type: disc;
+  list-style-position: inside;
 }
 
-.listItemOptions .point::before {
-  content: '•';
+.listItemOptions::marker {
   color: var(--primary-sky-blue);
-  font-size: 36px;
-  margin-right: 8px;
-  vertical-align: middle;
-}
-
-.list {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: column;
+  font-size: 20px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .listItemBenefits img {
     width: 40px;
     height: 40px;
-    margin-right: 8px;
   }
 
-  .listItemBenefits {
-    flex-direction: row;
+  ul:has(li.listItemBenefits) {
+    display: flex;
     justify-content: space-between;
+    flex-direction: row;
   }
 
-  @media screen and (min-width: 1440px) {
-    .list {
-      flex-direction: column;
-      gap: 12px;
-    }
+  ul:has(li.listItemOptions) {
+    display: flex;
+    flex-direction: column;
   }
 }
