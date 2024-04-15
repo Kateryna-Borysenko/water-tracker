@@ -34,19 +34,8 @@
   cursor: pointer;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1440px) {
   .container {
     width: 529px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .addWaterModalBox .container {
-    width: 704px;
-  }
-}
-@media screen and (min-width: 1440px) {
-  .addWaterModalBox .container {
-    width: 592px;
   }
 }
