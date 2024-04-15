@@ -1,0 +1,138 @@
+.calendarContainer {
+  width: auto;
+  height: auto;
+  margin: 24px 8px;
+}
+
+.calendar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.calendarHeaderMonth {
+  color: var(--primary-charcoal-gray);
+  font-family: Roboto;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+}
+
+.calendarHeaderNav {
+  color: var(--primary-sky-blue);
+  text-align: center;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25em;
+  display: flex;
+  gap: 12px;
+}
+
+.arrow {
+  width: 14px;
+  height: 14px;
+}
+
+.tableCalendar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  row-gap: 16px;
+  text-align: center;
+}
+.calendarCell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.calendarDay {
+  color: var(--primary-charcoal-gray);
+  line-height: 1.25em;
+  display: flex;
+  width: 25px;
+  height: 25px;
+  align-items: center;
+  justify-content: center;
+}
+
+.dayLessNorm {
+  border-radius: 50%;
+  border: 1px solid var(--secondary-orange);
+  background: var(--primary-white);
+}
+
+.dateText {
+  color: var(--secondary-blue);
+  text-align: center;
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5em;
+}
+
+.dateModal {
+  color: var(--primary-sky-blue);
+  line-height: 1.25em;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  display: inline-flex;
+  padding: 24px 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  border-radius: 10px;
+  background: var(--primary-white);
+  box-shadow: var(--box-shadow);
+}
+
+.modalMainText {
+  color: var(--primary-charcoal-gray);
+  line-height: 1.25em;
+}
+
+.modalValueText {
+  color: var(--primary-sky-blue);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.33em;
+}
+
+@media screen and (min-width: 768px) {
+  .calendarContainer {
+    width: auto;
+    height: auto;
+    margin: 24px 24px 32px 24px;
+  }
+
+  .tableCalendar {
+    grid-template-columns: repeat(10, 1fr);
+    gap: 20px 22px;
+  }
+
+  .calendarDay {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+}
