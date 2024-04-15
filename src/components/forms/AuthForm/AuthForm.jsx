@@ -101,10 +101,10 @@ const AuthForm = ({ type }) => {
                 onClick={togglePasswordVisibility}
                 className={s.eyeButton}
               >
-                <img
+                {/* <img
                   src={showPassword ? eyeSlash : eye}
                   alt={showPassword ? 'Hide' : 'Show'}
-                />
+                /> */}
               </button>
             </div>
             {type === 'signup' && (
