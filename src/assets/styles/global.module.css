@@ -1,5 +1,5 @@
 :global(.Toastify__toast-container) {
   position: fixed;
-  top: 80px;
+  top: 70px;
   right: 15;
 }

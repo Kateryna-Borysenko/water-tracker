@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import downArrow from '../../../../assets/static/down-arrow.svg';
+// import downArrow from '../../../../assets/static/down-arrow.svg';
 import UserLogoModal from './UserLogoModal/UserLogoModal';
 import s from './UserLogo.module.css';
 
@@ -30,7 +30,7 @@ const UserLogo = () => {
         alt="User avatar"
       /> */}
 
-        <img className={s.icon} src={downArrow} alt="Icon down arrow" />
+        {/* <img className={s.icon} src={downArrow} alt="Icon down arrow" /> */}
       </div>
 
       {isModalOpen && <UserLogoModal />}
