@@ -7,6 +7,7 @@ import SigninPage from '../../pages/SigninPage/SigninPage';
 import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/styles/global.module.css';
+import HomePage from '../../pages/HomePage/HomePage';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route index element={<WelcomePage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/signin" element={<SigninPage />} />
+          <Route path="/home" element={<HomePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
