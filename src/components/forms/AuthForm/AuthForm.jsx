@@ -11,8 +11,9 @@ import {
 } from '../../../schemas/authFormValidationSchema';
 import { registerUser, loginUser } from '../../../redux/auth/authOperations';
 import { getLoading } from '../../../redux/auth/authSelectors';
-import eye from '../../../assets/static/eye.svg';
-import eyeSlash from '../../../assets/static/eye-slash.svg';
+import Icons from '../../Icons/Icons';
+// import eye from '../../../assets/static/icons/eye.svg';
+// import eyeSlash from '../../../assets/static/icons/eye-slash.svg';
 import s from './AuthForm.module.css';
 
 const AuthForm = ({ type }) => {
@@ -101,10 +102,7 @@ const AuthForm = ({ type }) => {
                 onClick={togglePasswordVisibility}
                 className={s.eyeButton}
               >
-                {/* <img
-                  src={showPassword ? eyeSlash : eye}
-                  alt={showPassword ? 'Hide' : 'Show'}
-                /> */}
+                <Icons id={showPassword ? 'eye-slash' : 'eye'} />
               </button>
             </div>
             {type === 'signup' && (
@@ -131,10 +129,7 @@ const AuthForm = ({ type }) => {
                   onClick={toggleRepeatPasswordVisibility}
                   className={s.eyeButton}
                 >
-                  <img
-                    src={showRepeatPassword ? eyeSlash : eye}
-                    alt={showRepeatPassword ? 'Hide' : 'Show'}
-                  />
+                  <Icons id={showRepeatPassword ? 'eye-slash' : 'eye'} />
                 </button>
               </div>
             )}

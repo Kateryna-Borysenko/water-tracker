@@ -4,10 +4,10 @@ import WelcomePage from '../../pages/WelcomePage/WelcomePage';
 import SharedLayout from '../common/SharedLayout/SharedLayout';
 import SignupPage from '../../pages/SignupPage/SignupPage';
 import SigninPage from '../../pages/SigninPage/SigninPage';
+import HomePage from '../../pages/HomePage/HomePage';
 import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/styles/global.module.css';
-import HomePage from '../../pages/HomePage/HomePage';
 
 const App = () => {
   return (
