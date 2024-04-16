@@ -1,6 +1,8 @@
 import Container from '../../components/common/Container/Container';
 import Calendar from '../../components/Calendar/Calendar';
 import Meta from '../../components/common/Meta/Meta';
+import Modal from '../../components/common/Modal/Modal';
+import AddAndEditWaterCard from '../../components/AddWaterModal/AddAndEditWaterCard';
 import bottle from '../../assets/static/image/bottle-home-screen-M-2x.png';
 import s from './HomePage.module.css';
 
@@ -19,6 +21,9 @@ const HomePage = () => {
             </div>
           </div>
         </Container>
+        <Modal>
+          <AddAndEditWaterCard />
+        </Modal>
       </div>
     </>
   );
