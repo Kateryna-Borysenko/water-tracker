@@ -12,6 +12,7 @@ import {
 
 import s from '../WelcomePage/WelcomePage.module.css';
 import { useNavigate } from 'react-router-dom';
+import MyDailyNorma from '../../components/MyDailyNorma/MyDailyNorma';
 
 const WelcomePage = () => {
   const navigate = useNavigate();
@@ -50,6 +51,8 @@ const WelcomePage = () => {
             <Item array={itemArrOptions} className="listItemOptions" />
           </div>
         </div>
+
+        <MyDailyNorma />
       </Container>
     </div>
   );

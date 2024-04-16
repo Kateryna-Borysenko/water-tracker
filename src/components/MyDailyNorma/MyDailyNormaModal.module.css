@@ -1,0 +1,107 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--backdrop);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer {
+  background-color: var(--primary-white);
+  padding: 32px 24px;
+  border-radius: 10px;
+  width: 592px;
+  height: 647px;
+}
+
+.modalNormaTitle {
+  margin-top: 0;
+  width: 180px;
+}
+.closeIcon {
+  color: var(--primary-sky-blue);
+}
+
+.modalParagraphContainer {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+.secondContainer {
+  display: flex;
+}
+.highlight {
+  color: var(--primary-sky-blue);
+  margin-right: 24px;
+  margin-left: 4px;
+}
+
+.modalP {
+  color: #8f8f8f;
+  border: 1px solid var(--secondary-bluish-white);
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+.modalNormaText {
+  margin-bottom: 16px;
+}
+
+.dailyModalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.forManForWoman {
+  display: flex;
+  gap: 24px;
+}
+.aboveInputText {
+  margin-bottom: 8px;
+}
+.modalInput {
+  color: var(--primary-sky-blue);
+  display: flex;
+  width: 96%;
+  height: 100%;
+  border-radius: 6px;
+  border: thin solid var(--secondary-bluish-white);
+  padding: 12px 10px;
+}
+.waterAmount {
+  color: var(--primary-sky-blue);
+  font-weight: bold;
+  margin-left: 8px;
+}
+.ModalButton {
+  background-color: var(--primary-sky-blue);
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+  width: 160px;
+  height: 44px;
+}
+
+.modalInput:focus {
+  outline: none;
+  border-color: var(--secondary-bluish-white);
+}
+.modalInput::placeholder {
+  color: var(--primary-sky-blue);
+}
+.ModalButton:hover {
+  background-color: #0056b3;
+}
+.divButtonModal {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}

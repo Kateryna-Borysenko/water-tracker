@@ -1,0 +1,36 @@
+.dailyNorma {
+    background: var(--primary-white);
+    border-radius: 10px;
+    padding: 8px 20px;
+    box-shadow: var(--box-shadow);
+    width: 164px;
+    height: 76px;
+    margin-top: 80px;
+}
+
+.dailyNormaTitle {
+    font-size: 18px;
+    color: var(--primary-charcoal-gray);
+    margin-bottom: 12px;
+}
+
+.normaValue {
+    display: flex;
+    align-items: center;
+    
+}
+
+.normaValue span {
+    font-size: 24px;
+    color: var(--primary-sky-blue);
+    font-weight: bold;
+}
+
+.editButton {
+    padding: 12px;
+    font-size: 16px;
+    color: var(--secondary-blue);
+    cursor: pointer;
+    border: none;
+    background: none;
+}
