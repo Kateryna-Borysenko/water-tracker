@@ -3,28 +3,38 @@ import { TimePicker } from 'antd';
 import dayjs from 'dayjs';
 import Subtitle from '../common/Subtitle/Subtitle';
 import Button from '../../uikit/Button/Button';
-import svgSprite from '../../assets/static/icons/sprite/icons.svg';
+import Icons from '../Icons/Icons';
 import s from './AddAndEditWaterCard.module.css';
 
-const AddAndEditWaterCard = ({ isEditable = false }) => {
+const AddAndEditWaterCard = ({ isEditable = true }) => {
   const [defaultTime, setDefaultTime] = useState(dayjs());
+  const [counter, setCounter] = useState(0);
+  const [typing] = useState(0);
   const [isFocus, setIsFocus] = useState(false);
-  const [amountWater, setAmountWater] = useState(isEditable ? 250 : 0);
+
+  const handleFocus = () => {
+    setIsFocus(true);
+  };
+  const handleBlur = () => {
+    setIsFocus(false);
+  };
+
+  const screenValue = isFocus ? typing : counter;
 
   const handleAmountChange = e => {
     const { name } = e.currentTarget;
 
     switch (name) {
       case 'decrement':
-        setAmountWater(state => Math.max(state - 50, 0));
+        setCounter(state => Math.max(state - 50, 0));
         break;
       case 'increment':
-        setAmountWater(state => Math.min(state + 50, 5000));
+        setCounter(state => Math.min(state + 50, 5000));
         break;
       case 'value':
         const inputValue = Number(e.target.value);
         const newInputValue = Math.min(Math.max(inputValue, 0), 5000);
-        setAmountWater(newInputValue);
+        setCounter(newInputValue);
         break;
       default:
     }
@@ -33,15 +43,6 @@ const AddAndEditWaterCard = ({ isEditable = false }) => {
   const handleSubmit = e => {
     e.preventDefault();
   };
-
-  const handleBlur = () => {
-    setIsFocus(false);
-  };
-  const handleFocus = () => {
-    setIsFocus(false);
-  };
-
-  const screenValue = isFocus ? `${amountWater}` : 0;
 
   const title = isEditable ? 'Edit the entered amount of water' : 'Add water';
   const subtitle = isEditable ? 'Correct entered data:' : 'Choose a value:';
@@ -52,10 +53,8 @@ const AddAndEditWaterCard = ({ isEditable = false }) => {
         <h2 className={s.title}>{title}</h2>
         {isEditable && (
           <div className={s.glassContainer}>
-            <svg className={s.glassIcon}>
-              <use href={`${svgSprite}#icon-glass`} />
-            </svg>
-            <span className={s.glassVolume}>{amountWater}ml</span>
+            <Icons className="glassIconEdit" id={'glass'} />
+            <span className={s.glassVolume}>{counter}ml</span>
             <TimePicker
               className={s.inputGlass}
               defaultValue={defaultTime}
@@ -76,13 +75,11 @@ const AddAndEditWaterCard = ({ isEditable = false }) => {
               name="decrement"
               aria-label="decrementWater"
               onClick={handleAmountChange}
-              disabled={amountWater === 0}
+              disabled={counter === 0}
             >
-              <svg className={s.icon}>
-                <use href={`${svgSprite}#icon-minus`} />
-              </svg>
+              <Icons className="iconEdit" id={'minus'} fill={'#407bff'} />
             </button>
-            <span className={s.waterAmountValue}>{amountWater}ml</span>
+            <span className={s.waterAmountValue}>{screenValue}ml</span>
             <button
               type="button"
               name="increment"
@@ -90,9 +87,7 @@ const AddAndEditWaterCard = ({ isEditable = false }) => {
               aria-label="incrementWater"
               onClick={handleAmountChange}
             >
-              <svg className={s.icon}>
-                <use href={`${svgSprite}#icon-plus`} />
-              </svg>
+              <Icons className="iconEdit" id={'plus'} />
             </button>
           </div>
         </div>
@@ -118,7 +113,7 @@ const AddAndEditWaterCard = ({ isEditable = false }) => {
             type="number"
             min="1"
             max="5000"
-            value={amountWater}
+            value={counter}
             onChange={evt => handleAmountChange(evt)}
             onBlur={handleBlur}
             onFocus={handleFocus}

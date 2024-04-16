@@ -1,0 +1,11 @@
+.glassIconEdit {
+  stroke: var(--primary-sky-blue);
+  width: 36px;
+  height: 36px;
+}
+
+.iconEdit {
+  composes: glassIconEdit;
+  width: 24px;
+  height: 24px;
+}
