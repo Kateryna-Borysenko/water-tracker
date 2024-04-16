@@ -52,3 +52,15 @@ export const loginUser = createAsyncThunk(
     }
   },
 );
+
+export const logoutUser = createAsyncThunk(
+  'auth/logoutUser',
+  async (_, ThunkAPI) => {
+    try {
+      await axios.post(AUTH_ENDPOINT.LOGOUT);
+      return;
+    } catch (error) {
+      return ThunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
