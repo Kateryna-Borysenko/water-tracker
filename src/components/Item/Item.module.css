@@ -24,13 +24,16 @@
 }
 
 .listItemOptions {
-  list-style-type: disc;
-  list-style-position: inside;
+  display: inline;
 }
 
-.listItemOptions::marker {
+.listItemOptions>p::before {
+  content: '•';
   color: var(--primary-sky-blue);
-  font-size: 20px;
+  font-size: 36px;
+  margin-right: 6px;
+  vertical-align: middle;
+  line-height: 1;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1439px) {

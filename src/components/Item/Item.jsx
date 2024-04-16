@@ -6,12 +6,14 @@ const Item = ({ array, className }) => {
       {array.map((item, index) => (
         <li className={`${s.list} ${s[className]}`} key={index}>
           {item.svg ? (
-            <>
+            <div className={s.listItemBenefits}>
               <img src={item.svg} alt="Icon" />
               {item.text}
-            </>
+            </div>
           ) : (
-            <>{item}</>
+            <div className={s.listItemOptions}>
+              <p>{item}</p>
+            </div>
           )}
         </li>
       ))}
