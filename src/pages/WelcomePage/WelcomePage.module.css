@@ -2,7 +2,40 @@
   display: flex;
   height: 100%;
 }
-@media screen and (max-width: 767px) {
+
+.contentContainer {
+  margin-top: 24px;
+  margin-bottom: 40px;
+  min-width: 280px;
+}
+
+.itemContainerBenefits {
+  max-height: 416px;
+  margin-bottom: 24px;
+}
+
+.itemContainerOptions {
+  max-height: 416px;
+  padding: 24px 16px;
+  border-radius: 10px;
+  max-width: 100%;
+  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
+  background: var(--secondary-light-blue);
+}
+
+.slogan {
+  font-size: 24px;
+  line-height: 30px;
+  margin-bottom: 24px;
+  max-width: 246px;
+}
+
+.tryTrackerButton {
+  margin-bottom: 24px;
+  margin-top: 24px;
+}
+
+@media screen and (max-width: 768px) {
   .container {
     background-image: url(../../assets/static/image/bg-main-page-S.png);
     background-repeat: no-repeat, no-repeat;
@@ -11,29 +44,56 @@
   }
 
   @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
     .container {
       background-image: url(../../assets/static/image/bg-main-page-S-2x.png);
     }
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1439px) {
+@media screen and (min-width: 768px) {
   .container {
-    background-image: url(../../assets/static/image/bottle-home-screen-M.png),
-      url(../../assets/static/image/bg-main-page-wb-M.png);
+    background-image: url(../../assets/static/image/bg-main-page-M.png);
     background-repeat: no-repeat, no-repeat;
-    background-size: auto, 100% 800px;
-    background-position: 80%, center bottom;
+    background-size: 100%;
+    background-position: center bottom;
+    width: 100%;
   }
 
   @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
     .container {
-      background-image: url(../../assets/static/image/bg-main-page-wb-M-2x.png);
+      background-image: url(../../assets/static/image/bg-main-page-M-2x.png);
     }
+  }
+
+  .itemContainerOptions {
+    padding: 32px 24px;
+    max-width: 439px;
+    max-height: 332px;
+  }
+
+  .containerWelcomePage {
+    justify-content: flex-start;
+  }
+
+  .contentContainer {
+    margin-top: 40px;
+    margin-bottom: 50px;
+    width: 100%;
+  }
+
+  .slogan {
+    font-size: 26px;
+    line-height: 32px;
+    max-width: 439px;
+  }
+
+  .tryTrackerButton {
+    margin-bottom: 60px;
+    display: block;
   }
 }
 
@@ -47,11 +107,35 @@
   }
 
   @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
     .container {
       background-image: url(../../assets/static/image/bg-main-page-L-2x.png),
         url(../../assets/static/image/bg-element-main-page-L-2x.png);
     }
+  }
+
+  .itemContainerOptions {
+    padding: 32px 24px;
+
+  }
+
+  .itemContainerBenefits {
+    height: 100%;
+    margin-bottom: 0;
+  }
+
+  .tryTrackerButton {
+    margin-bottom: 0;
+  }
+
+  .contentContainer {
+    display: flex;
+    justify-content: center;
+    gap: 81px;
+    padding-top: 80px;
+    padding-bottom: 294px;
+    margin: 0;
+    align-items: flex-end;
   }
 }
