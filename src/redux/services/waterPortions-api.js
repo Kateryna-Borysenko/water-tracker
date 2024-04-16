@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { WATER_ENDPOINT } from '../../helpers/endpoints/waterEndpoint';
 const SERVER_BASE_URL = import.meta.env.VITE_SERVER_BASE_URL;
 
 const waterPortionsInstance = axios.create({
@@ -12,23 +12,28 @@ export const setTokenwaterPortionsInstance = token =>
 export const clearTokenwaterPortionsInstance = () =>
   (waterPortionsInstance.defaults.headers.common.Authorization = '');
 
-export const addWaterPortion = async waterPortionDetails => {
-  const waterPortion = await waterPortionsInstance.post(
-    '/water-portions',
-    waterPortionDetails,
+export const addWaterPortion = async waterPortionsDetails => {
+  const response = await waterPortionsInstance.post(
+    WATER_ENDPOINT.WATER_PORTIONS,
+    waterPortionsDetails,
   );
-
-  return waterPortion;
+  return response;
 };
 
-// export const getContacts = async () => {
-//   const contacts = await waterPortionsInstance.get('/contacts');
+export const editWaterPortion = async ({ waterVolume, date, id }) => {
+  const response = await waterPortionsInstance.put(
+    `${WATER_ENDPOINT.WATER_PORTIONS}/${id}`,
+    {
+      waterVolume,
+      date,
+    },
+  );
+  return response;
+};
 
-//   return contacts;
-// };
-
-// export const delContact = async contactId => {
-//   const contact = await waterPortionsInstance.delete(`/contacts/${contactId}`);
-
-//   return contact;
-// };
+export const deleteWaterPortion = async ({ id }) => {
+  const response = await waterPortionsInstance.put(
+    `${WATER_ENDPOINT.WATER_PORTIONS}/${id}`,
+  );
+  return response;
+};
