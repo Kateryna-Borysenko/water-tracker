@@ -1,0 +1,11 @@
+.textProgresBar {
+  color: var(--toastify-color-success);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.buttonProgresBar {
+  width: 100%;
+  padding: 6px 76px;
+}

@@ -8,7 +8,7 @@ const Button = ({
   onClick,
   ...rest
 }) => {
-  const buttonClasses = `${s.button} ${s[className]}`;
+  const buttonClasses = `${s.button} ${className}`;
 
   return (
     <button type={type} onClick={onClick} className={buttonClasses} {...rest}>
