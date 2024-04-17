@@ -6,7 +6,6 @@ import { AUTH_ENDPOINT } from '../../helpers/endpoints/authEndpoint';
 const SERVER_URL = import.meta.env.VITE_SERVER_BASE_URL;
 
 axios.defaults.baseURL = SERVER_URL;
-axios.defaults.withCredentials = true;
 
 export const registerUser = createAsyncThunk(
   'auth/registerUser',
