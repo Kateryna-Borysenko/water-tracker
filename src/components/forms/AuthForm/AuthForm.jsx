@@ -9,8 +9,12 @@ import {
   signupFormSchema,
   signinFormSchema,
 } from '../../../schemas/authFormValidationSchema';
-import { registerUser, loginUser } from '../../../redux/auth/authOperations';
-import { getLoading } from '../../../redux/auth/authSelectors';
+import {
+  registerUser,
+  loginUser,
+  resendVerificationEmail,
+} from '../../../redux/auth/authOperations';
+import { getLoading, getUser } from '../../../redux/auth/authSelectors';
 import Icons from '../../Icons/Icons';
 import s from './AuthForm.module.css';
 
@@ -25,8 +29,10 @@ const AuthForm = ({ type }) => {
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
 
   const dispatch = useDispatch();
-  const loading = useSelector(getLoading);
   const navigate = useNavigate();
+  const loading = useSelector(getLoading);
+  const user = useSelector(getUser);
+  const email = user.email;
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     const { email, password } = values;
@@ -53,6 +59,10 @@ const AuthForm = ({ type }) => {
 
   const toggleRepeatPasswordVisibility = () => {
     setShowRepeatPassword(!showRepeatPassword);
+  };
+
+  const handleResendEmail = () => {
+    dispatch(resendVerificationEmail({ email }));
   };
 
   return (
@@ -153,8 +163,22 @@ const AuthForm = ({ type }) => {
       )}
 
       {type === 'signin' && (
-        <div className={s.link}>
-          <Link to="/signup">Sign Up</Link>
+        <div>
+          <div className={s.link}>
+            <Link to="/signup">Sign Up</Link>
+          </div>
+          {email && (
+            <div className={s.resendEmailMassage}>
+              No confirmation email?
+              <button
+                className={s.resendEmailButton}
+                onClick={handleResendEmail}
+                type="submit"
+              >
+                Send
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>

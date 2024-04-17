@@ -60,3 +60,28 @@
     width: 384px;
   }
 }
+
+.buttonProgresBar {
+  width: 100%;
+  padding: 6px 76px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .buttonProgresBar {
+    width: 336px;
+    height: 44px;
+    padding: 10px 0;
+    line-height: 24px;
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .buttonProgresBar {
+    width: 178px;
+    height: 44px;
+    padding: 10px 0;
+    line-height: 24px;
+    font-size: 18px;
+  }
+}

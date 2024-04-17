@@ -16,7 +16,7 @@ export const addWaterPortion = async waterPortionDetails => {
   const waterPortion = await waterPortionsInstance.post(
     '/water-portions',
     waterPortionDetails,
-  );
+  ); 
 
   return waterPortion;
 };
