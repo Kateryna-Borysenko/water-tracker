@@ -1,4 +1,3 @@
-import ProgressBar from '../../components/ProgressBarHomePage/ProgressBar';
 import Container from '../../components/common/Container/Container';
 
 import Meta from '../../components/common/Meta/Meta';
