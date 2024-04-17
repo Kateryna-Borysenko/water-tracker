@@ -134,7 +134,7 @@ label {
 
 .passwordInput {
   /* margin-bottom: 12px; */
-  margin-bottom: 18px;
+  /* margin-bottom: 18px; */
 }
 
 .saveBtn {
@@ -222,10 +222,12 @@ label {
   border-radius: 6px;
   border: 1px solid var(--secondary-bluish-white);
   padding: 12px 10px;
+
   color: var(--primary-sky-blue);
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
+  /* margin-bottom: 24px; */
 }
 
 .input:is(:hover, :focus) {
@@ -235,21 +237,46 @@ label {
   color: var(--secondary-blue);
 }
 /* -------------Validation error---- */
-.errorValidation {
+/* .errorValidation {
   color: var(--toastify-color-error);
   font-size: 14px;
   font-weight: 400;
   line-height: 1.28;
+} */
+
+/* .error {
+  color: var(--secondary-red);
+  font-size: 12px;
+  line-height: 18px;
+  
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+} */
+
+.errorInput {
+  color: var(--secondary-red);
+  border-color: var(--secondary-red);
 }
 
+.labelInputErrWrapper {
+  /* position: relative; */
+  /* margin-bottom: 25px; */
+  padding-bottom: 5px;
+  /* чи margin? */
+}
 /* ---------eye btn (open, close) ---------*/
 .inputWrapper {
   position: relative;
+  padding-bottom: 25px;
 }
 
 /* -----------tablet-----------*/
 
 @media screen and (min-width: 768px) {
+  .labelInputErrWrapper {
+    padding-bottom: 0;
+  }
   .saveBtn {
     width: 160px;
     margin-left: auto;
@@ -261,6 +288,9 @@ label {
 
   .inputWrapper {
     width: 366px;
+  }
+  .error {
+    font-size: 14px;
   }
 }
 

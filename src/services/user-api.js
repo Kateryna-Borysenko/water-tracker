@@ -1,21 +1,38 @@
-import { apiInstance } from './api-common';
+// import { apiInstance } from './api-common';
 
 //data: user - потім вкажи що я буду повертати з бекенда !
 
+import axios from 'axios';
+
+const SERVER_BASE_URL = import.meta.env.VITE_SERVER_BASE_URL;
+
+const userInstance = axios.create({
+  baseURL: SERVER_BASE_URL,
+});
+
 export const apiUpdateUserData = async userData => {
-  const { data: user } = await apiInstance.put('/users/update', {
+  const { data } = await userInstance.put('/users/update', {
     ...userData,
   });
-  return user;
+  return data;
 };
 
-export const apiUpdateAvatar = async ({ avatarURL }) => {
-  const { data: user } = await apiInstance.patch('/users/avatar', {
-    avatarURL,
+//{ fd }
+
+export const apiUpdateAvatar = async fd => {
+  const { data } = await userInstance.patch('/users/avatar', fd, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
   });
 
-  return user;
+  return data;
 };
+
+// axios.patch('', fd, {
+//   onUploadProgress: () => {},
+//   headers: { 'Custom-Header': 'value' },
+// });
 
 //{ name, email, password }
 // {

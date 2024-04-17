@@ -7,7 +7,6 @@ const EyeBtn = () => {
   const [isOpenEye, setIsOpenEye] = useState(false);
 
   const handleToggleEye = e => {
-    e.preventDefault();
     if (isOpenEye) {
       setIsOpenEye(false);
       e.currentTarget.previousElementSibling.type = 'password';
@@ -19,7 +18,7 @@ const EyeBtn = () => {
   };
   return (
     <>
-      <button className={s.eyeBtn} onClick={handleToggleEye}>
+      <button type="button" className={s.eyeBtn} onClick={handleToggleEye}>
         {!isOpenEye ? (
           <ClosedEyeIcon width="16" height="16" />
         ) : (
