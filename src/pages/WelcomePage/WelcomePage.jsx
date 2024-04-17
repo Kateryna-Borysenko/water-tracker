@@ -14,7 +14,6 @@ const WelcomePage = () => {
           <div>Welcome to Water Tracker App</div>
         </Container>
       </div>
-      <ProgressBar />
     </>
   );
 };
