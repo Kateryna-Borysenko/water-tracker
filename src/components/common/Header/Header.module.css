@@ -1,23 +1,27 @@
 .header {
   display: flex;
   justify-content: space-between;
+  gap: 94px;
   align-items: center;
   padding: 8px 20px 0;
   max-width: 320px;
   width: 100%;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 @media screen and (min-width: 768px) {
   .header {
-    padding-top: 16px 32px 0;
+    gap: 512px;
+    padding: 16px 32px 0;
     max-width: 768px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .header {
-    padding-top: 12px;
+    gap: 1024px;
+    padding: 12px 20px 0;
     max-width: 1256px;
   }
 }

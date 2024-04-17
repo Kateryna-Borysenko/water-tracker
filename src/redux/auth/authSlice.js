@@ -1,5 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { registerUser, loginUser, logoutUser } from './authOperations';
+import {
+  registerUser,
+  loginUser,
+  logoutUser,
+  setTokenAuthInstance,
+  clearTokenAuthInstance,
+} from './authOperations';
+import {
+  clearTokenwaterPortionsInstance,
+  setTokenwaterPortionsInstance,
+} from '../services/waterPortions-api';
 
 const initialState = {
   user: {
@@ -48,6 +58,8 @@ export const authSlice = createSlice({
         state.isLoggedIn = true;
         state.user = { ...payload.user };
         state.token = payload.token;
+        setTokenAuthInstance(payload.token);
+        setTokenwaterPortionsInstance(payload.token);
       })
       .addCase(loginUser.rejected, (state, { payload }) => {
         state.error = payload;
@@ -60,6 +72,8 @@ export const authSlice = createSlice({
         state.loading = true;
       })
       .addCase(logoutUser.fulfilled, () => {
+        clearTokenAuthInstance();
+        clearTokenwaterPortionsInstance();
         return initialState;
       })
       .addCase(logoutUser.rejected, (state, { payload }) => {

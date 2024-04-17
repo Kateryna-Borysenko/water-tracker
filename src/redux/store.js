@@ -17,7 +17,7 @@ import { waterPortionsSlice } from '../redux/water/watersSlice';
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['user', 'token'],
+  whitelist: ['token'],
 };
 
 export const store = configureStore({

@@ -13,14 +13,14 @@ const UserLogo = () => {
     .substring(0, email.indexOf('@'))
     .replace(/^\w/, c => c.toUpperCase());
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const handleOpenModal = () => {
-    setIsModalOpen(prevState => !prevState);
+  const handleOpenPopup = () => {
+    setIsPopupOpen(prevState => !prevState);
   };
 
   return (
-    <div onClick={handleOpenModal} className={s.container}>
+    <div onClick={handleOpenPopup} className={s.container}>
       <p className={s.name}>{username ? username : defaultUserName}</p>
 
       {avatarURL ? (
@@ -35,7 +35,7 @@ const UserLogo = () => {
 
       <Icons id={'down-arrow'} fill={'#407bff'} />
 
-      {isModalOpen && <UserLogoModal />}
+      {isPopupOpen && <UserLogoModal handleClosePopup={handleOpenPopup} />}
     </div>
   );
 };
