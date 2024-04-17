@@ -12,8 +12,6 @@ import {
 import { registerUser, loginUser } from '../../../redux/auth/authOperations';
 import { getLoading } from '../../../redux/auth/authSelectors';
 import Icons from '../../Icons/Icons';
-// import eye from '../../../assets/static/icons/eye.svg';
-// import eyeSlash from '../../../assets/static/icons/eye-slash.svg';
 import s from './AuthForm.module.css';
 
 const AuthForm = ({ type }) => {
@@ -30,7 +28,7 @@ const AuthForm = ({ type }) => {
   const loading = useSelector(getLoading);
   const navigate = useNavigate();
 
-  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     const { email, password } = values;
 
     if (type === 'signup') {
@@ -38,7 +36,9 @@ const AuthForm = ({ type }) => {
     }
 
     if (type === 'signin') {
-      dispatch(loginUser({ email, password })).then(navigate('/home'));
+      const isLoged = await dispatch(loginUser({ email, password }));
+      if (isLoged.error) return;
+      navigate('/home');
     }
 
     setSubmitting(false);
