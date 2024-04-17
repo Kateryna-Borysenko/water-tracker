@@ -1,40 +1,42 @@
 import { useState } from 'react';
-// import downArrow from '../../../../assets/static/down-arrow.svg';
+import { useAuth } from '../../../../hooks/useAuth';
 import UserLogoModal from './UserLogoModal/UserLogoModal';
+import Icons from '../../../Icons/Icons';
 import s from './UserLogo.module.css';
 
 const UserLogo = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const {
+    user: { email, avatarURL, username },
+  } = useAuth();
 
-  const handleOpenModal = () => {
-    setIsModalOpen(prevState => !prevState);
+  const defaultUserName = email
+    .substring(0, email.indexOf('@'))
+    .replace(/^\w/, c => c.toUpperCase());
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleOpenPopup = () => {
+    setIsPopupOpen(prevState => !prevState);
   };
 
   return (
-    <>
-      <div onClick={handleOpenModal} className={s.container}>
-        {true && (
-          <>
-            <p className={s.name}>David</p>
-            {/* <div className={s.avatarWrap}>
-            <img className={s.avatar} src={'user.avatar'} alt="User avatar" />
-          </div> */}
-          </>
-        )}
+    <div onClick={handleOpenPopup} className={s.container}>
+      <p className={s.name}>{username ? username : defaultUserName}</p>
 
-        {true && <div className={s.avatarWrap}>D</div>}
+      {avatarURL ? (
+        <div className={s.avatarWrap}>
+          <img className={s.avatar} src={avatarURL} alt="User avatar" />
+        </div>
+      ) : (
+        <div className={s.avatarWrap}>
+          {username ? username[0] : defaultUserName[0]}
+        </div>
+      )}
 
-        {/* <img
-        className={s.avatar}
-        src={'user.email[0].toApperCase()'}
-        alt="User avatar"
-      /> */}
+      <Icons id={'down-arrow'} fill={'#407bff'} />
 
-        {/* <img className={s.icon} src={downArrow} alt="Icon down arrow" /> */}
-      </div>
-
-      {isModalOpen && <UserLogoModal />}
-    </>
+      {isPopupOpen && <UserLogoModal handleClosePopup={handleOpenPopup} />}
+    </div>
   );
 };
 

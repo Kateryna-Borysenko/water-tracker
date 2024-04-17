@@ -8,6 +8,8 @@ import HomePage from '../../pages/HomePage/HomePage';
 import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/styles/global.module.css';
+import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
+import { PrivatRoute } from '../PrivatRoute/PrivatRoute';
 
 const App = () => {
   return (
@@ -15,9 +17,31 @@ const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<WelcomePage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/signin" element={<SigninPage />} />
-          <Route path="/home" element={<HomePage />} />
+
+          <Route
+            path="/signup"
+            element={
+              <RestrictedRoute>
+                <SignupPage />
+              </RestrictedRoute>
+            }
+          />
+          <Route
+            path="/signin"
+            element={
+              <RestrictedRoute>
+                <SigninPage />
+              </RestrictedRoute>
+            }
+          />
+          <Route
+            path="/home"
+            element={
+              <PrivatRoute>
+                <HomePage />
+              </PrivatRoute>
+            }
+          />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
