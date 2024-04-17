@@ -1,0 +1,81 @@
+[
+  {
+    "date": "1, April",
+    "dailyNorm": "0.2",
+    "percent": "50%",
+    "quantity": "5"
+  },
+  {
+    "date": "2, April",
+    "dailyNorm": "0.18",
+    "percent": "60%",
+    "quantity": "5"
+  },
+  {
+    "date": "3, April",
+    "dailyNorm": "0.25",
+    "percent": "100%",
+    "quantity": "5"
+  },
+  {
+    "date": "4, April",
+    "dailyNorm": "0.4",
+    "percent": "80%",
+    "quantity": "5"
+  },
+  {
+    "date": "5, April",
+    "dailyNorm": "0.5",
+    "percent": "92%",
+    "quantity": "5"
+  },
+  {
+    "date": "6, April",
+    "dailyNorm": "0.2",
+    "percent": "60%",
+    "quantity": "5"
+  },
+  {
+    "date": "7, April",
+    "dailyNorm": "0.25",
+    "percent": "60%",
+    "quantity": "5"
+  },
+
+  {
+    "date": "8, April",
+    "dailyNorm": "0.4",
+    "percent": "60%",
+    "quantity": "5"
+  },
+  {
+    "date": "9, April",
+    "dailyNorm": "0.25",
+    "percent": "60%",
+    "quantity": "5"
+  },
+  {
+    "date": "10, April",
+    "dailyNorm": "0.45",
+    "percent": "60%",
+    "quantity": "5"
+  },
+  {
+    "date": "11, April",
+    "dailyNorm": "0.25",
+    "percent": "60%",
+    "quantity": "5"
+  },
+  {
+    "date": "12, April",
+    "dailyNorm": "0.3",
+    "percent": "60%",
+    "quantity": "5"
+  },
+  {
+    "date": "13, April",
+    "dailyNorm": "0.25",
+    "percent": "60%",
+    "quantity": "5"
+  }
+]

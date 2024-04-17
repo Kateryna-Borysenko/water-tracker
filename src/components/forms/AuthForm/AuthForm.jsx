@@ -1,11 +1,19 @@
 import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Title from '../../common/Title/Title';
 import Button from '../../../uikit/Button/Button';
-import { authFormValidationSchema } from '../../../schemas/authFormValidationSchema';
-// import eye from '../../../assets/static/eye.svg';
-// import eyeSlash from '../../../assets/static/eye-slash.svg';
+import {
+  signupFormSchema,
+  signinFormSchema,
+} from '../../../schemas/authFormValidationSchema';
+import { registerUser, loginUser } from '../../../redux/auth/authOperations';
+import { getLoading } from '../../../redux/auth/authSelectors';
+import Icons from '../../Icons/Icons';
+// import eye from '../../../assets/static/icons/eye.svg';
+// import eyeSlash from '../../../assets/static/icons/eye-slash.svg';
 import s from './AuthForm.module.css';
 
 const AuthForm = ({ type }) => {
@@ -18,10 +26,23 @@ const AuthForm = ({ type }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
 
-  const handleSubmit = (values, { setSubmitting }) => {
+  const dispatch = useDispatch();
+  const loading = useSelector(getLoading);
+  const navigate = useNavigate();
+
+  const handleSubmit = (values, { setSubmitting, resetForm }) => {
     const { email, password } = values;
-    console.log({ email, password });
+
+    if (type === 'signup') {
+      dispatch(registerUser({ email, password }));
+    }
+
+    if (type === 'signin') {
+      dispatch(loginUser({ email, password })).then(navigate('/home'));
+    }
+
     setSubmitting(false);
+    resetForm();
   };
 
   const togglePasswordVisibility = () => {
@@ -35,12 +56,14 @@ const AuthForm = ({ type }) => {
   return (
     <div className={s.container}>
       <Title
-        title={type === 'signup' ? 'Sing Up' : 'Sing In'}
+        title={type === 'signup' ? 'Sign Up' : 'Sign In'}
         className="authForm"
       />
       <Formik
         initialValues={initialValues}
-        validationSchema={authFormValidationSchema}
+        validationSchema={
+          type === 'signup' ? signupFormSchema : signinFormSchema
+        }
         onSubmit={handleSubmit}
         validateOnBlur={true}
       >
@@ -58,7 +81,6 @@ const AuthForm = ({ type }) => {
               />
               <ErrorMessage name="email" component="div" className={s.error} />
             </div>
-
             <div className={s.field}>
               <label>Enter your password</label>
               <Field
@@ -80,13 +102,9 @@ const AuthForm = ({ type }) => {
                 onClick={togglePasswordVisibility}
                 className={s.eyeButton}
               >
-                {/* <img
-                  src={showPassword ? eyeSlash : eye}
-                  alt={showPassword ? 'Hide' : 'Show'}
-                /> */}
+                <Icons id={showPassword ? 'eye-slash' : 'eye'} />
               </button>
             </div>
-
             {type === 'signup' && (
               <div className={s.field}>
                 <label>Repeat password</label>
@@ -111,10 +129,7 @@ const AuthForm = ({ type }) => {
                   onClick={toggleRepeatPasswordVisibility}
                   className={s.eyeButton}
                 >
-                  <img
-                    src={showRepeatPassword ? eyeSlash : eye}
-                    alt={showRepeatPassword ? 'Hide' : 'Show'}
-                  />
+                  <Icons id={showRepeatPassword ? 'eye-slash' : 'eye'} />
                 </button>
               </div>
             )}
@@ -123,6 +138,7 @@ const AuthForm = ({ type }) => {
               title={type === 'signup' ? 'Sign Up' : 'Sign In'}
               disabled={isSubmitting}
               className="authButton"
+              loading={loading}
             />
           </Form>
         )}

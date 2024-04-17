@@ -21,15 +21,50 @@
   cursor: pointer;
 }
 
+.authButton {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.addWaterBtn {
+  box-shadow: 0px 4px 8px 0px var(--box-shadow);
+  margin: 0;
+  width: 100%;
+}
+
 @media screen and (min-width: 768px) {
   .button {
+    height: 44px;
     font-size: 18px;
     line-height: 24px;
     padding: 10px 30px;
   }
+  .addWaterBtn {
+    width: 160px;
+  }
 }
 
-.authButton {
+.buttonProgresBar {
   width: 100%;
-  margin-bottom: 16px;
+  padding: 6px 76px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .buttonProgresBar {
+    width: 336px;
+    height: 44px;
+    padding: 10px 0;
+    line-height: 24px;
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .buttonProgresBar {
+    width: 178px;
+    height: 44px;
+    padding: 10px 0;
+    line-height: 24px;
+    font-size: 18px;
+  }
 }

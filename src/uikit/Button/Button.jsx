@@ -1,4 +1,5 @@
 import s from './Button.module.css';
+import Spinner from '../../components/common/Spinner/Spinner';
 
 const Button = ({
   type = 'button',
@@ -6,14 +7,22 @@ const Button = ({
   children,
   className,
   onClick,
+  loading,
   ...rest
 }) => {
-  const buttonClasses = `${s.button} ${className}`;
+  const buttonClasses = `${s.button} ${s[className]}`;
 
   return (
-    <button type={type} onClick={onClick} className={buttonClasses} {...rest}>
+    <button
+      type={type}
+      onClick={onClick}
+      className={buttonClasses}
+      disabled={loading}
+      {...rest}
+    >
+      {loading && <Spinner color="#fff" size="10px" />}
       {children}
-      {title}
+      {!loading && title}
     </button>
   );
 };
