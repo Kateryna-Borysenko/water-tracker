@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { TimePicker } from 'antd';
 import dayjs from 'dayjs';
 import { useDispatch } from 'react-redux';
@@ -13,35 +13,39 @@ import Icons from '../Icons/Icons';
 import s from './AddAndEditWaterCard.module.css';
 
 const AddAndEditWaterCard = ({
-  isEditable = true,
+  isEditable = false,
   waterVolume = 120,
-  date = '2024-04-14T18:24:00.000Z',
+  initialTime = '6:24 PM',
   id = '661c13d1990b4e425f6518e1',
 }) => {
-  const dispatch = useDispatch();
   const [defaultTime, setDefaultTime] = useState(dayjs());
-  // const [time, setTime] = useState(initialTime);
+  const [time, setTime] = useState(() => initialTime);
   const [water, setWater] = useState({
-    counterValue: 0,
-    inputValue: 50,
+    counterValue: isEditable ? waterVolume : 0,
+    inputValue: isEditable ? waterVolume : 0,
   });
+
+  const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
-
     if (!water) return;
-    const waterVolume = water;
-    // const superData= new Date().toLocaleTimeString()
-    const date = new Date().toISOString();
-    console.log(waterVolume);
+    const waterVolume = water.inputValue;
+    const date = dayjs(time, 'h:mm A').toISOString();
+    const waterDetails = {
+      waterVolume: waterVolume,
+      date: date,
+    };
+
+    console.log(waterDetails);
     setTokenwaterPortionsInstance(
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MWQ2MTE2NTkxNTE2ODFmNGVmZTgwNCIsImlhdCI6MTcxMzI3MTA2MiwiZXhwIjoxNzEzMzUzODYyfQ.FLV8XGuDmf6CRghsIqgbcGbI6mOsHLVCvh3fOM4eh_0',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MWQ2MTE2NTkxNTE2ODFmNGVmZTgwNCIsImlhdCI6MTcxMzM1NjUzNiwiZXhwIjoxNzEzNDM5MzM2fQ.HxgQBn_6WSXblPd4c2iFYEBCuSImoTNx6HS7Km7tlB4',
     );
     if (!isEditable) {
-      return dispatch(apiAddWaterPortion({ waterVolume, date }));
+      dispatch(apiAddWaterPortion({ waterVolume, date }));
+    } else {
+      dispatch(apiEditWaterPortion({ waterVolume, date, id }));
     }
-
-    dispatch(apiEditWaterPortion({ waterVolume, date, id }));
   };
 
   const handleClick = name => {
@@ -71,12 +75,8 @@ const AddAndEditWaterCard = ({
   };
 
   const handleVolumeChange = ({ target }) => {
-    setWater({ ...water, inputValue: +target.value });
+    setWater({ ...water, inputValue: parseInt(target.value, 10) });
   };
-
-  // const handleTimeChange = newTime => {
-  //   setTime(newTime);
-  // };
 
   const title = isEditable ? 'Edit the entered amount of water' : 'Add water';
   const subtitle = isEditable ? 'Correct entered data:' : 'Choose a value:';
@@ -89,15 +89,7 @@ const AddAndEditWaterCard = ({
           <div className={s.glassContainer}>
             <Icons className="glassIconEdit" id={'glass'} />
             <span className={s.glassVolume}>{water.counterValue}ml</span>
-            <span className={s.inputGlass}>{date}</span>
-            {/* <TimePicker
-              className={s.inputGlass}
-              defaultValue={defaultTime}
-              format="h:mm A"
-              minuteStep="5"
-              use12Hours="true"
-              onChange={value => setDefaultTime(value)}
-            /> */}
+            <span className={s.timeGlass}>{time}</span>
           </div>
         )}
         <Subtitle title={subtitle} className="addWaterModal" />
@@ -126,21 +118,25 @@ const AddAndEditWaterCard = ({
               <Icons className="iconEdit" id={'plus'} />
             </button>
           </div>
-
           <label htmlFor="time" className={s.text}>
             Recording time:
           </label>
-
           <TimePicker
             className={s.input}
             name="time"
-            defaultValue={defaultTime}
-            format="h:mm"
+            defaultValue={dayjs(time, 'h:mm A')}
+            format="h:mm A"
             minuteStep="5"
             use12Hours="true"
-            onChange={value => setDefaultTime(value)}
+            value={
+              isEditable ? dayjs(time, 'h:mm A') : dayjs(defaultTime, 'h:mm A')
+            }
+            onChange={value =>
+              isEditable
+                ? setTime(dayjs(value).format('h:mm A'))
+                : setDefaultTime(dayjs(value).format('h:mm A'))
+            }
           />
-
           <label htmlFor="value" className={s.label}>
             Enter the value of the water used:
           </label>

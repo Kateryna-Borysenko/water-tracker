@@ -18,11 +18,7 @@ import {
 
 const initialWaterPortions = {
   waterPortionsToday: [],
-  waterPortionsMonth: [],
-  waterPortionsEdit: null,
   isLoading: false,
-  isModalAdd: false,
-  isModalEdit: false,
   error: null,
 };
 
