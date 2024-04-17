@@ -7,7 +7,7 @@ import s from './SigninPage.module.css';
 const SigninPage = () => {
   return (
     <>
-      <Meta title="Sign Ip Page" />
+      <Meta title="Sign In Page" />
       <div className={s.container}>
         <Container>
           <div className={s.contentContainer}>
