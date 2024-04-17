@@ -51,3 +51,22 @@ export const loginUser = createAsyncThunk(
     }
   },
 );
+
+export const resendVerificationEmail = createAsyncThunk(
+  'auth/resendVerificationEmail',
+  async (credentials, ThunkAPI) => {
+    try {
+      const { data } = await axios.post(AUTH_ENDPOINT.VERIFY, credentials);
+      toast.success(data.message);
+      return;
+    } catch (error) {
+      if (error.response.status === 404) {
+        toast.error('User with this email does not exist');
+      }
+      if (error.response.status === 400) {
+        toast.error(error.response?.data?.message);
+      }
+      return ThunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
