@@ -3,6 +3,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { AUTH_ENDPOINT } from '../../helpers/endpoints/authEndpoint';
 
+import { apiUpdateUserData, apiUpdateAvatar } from '../services/user-api';
+
 const SERVER_URL = import.meta.env.VITE_SERVER_BASE_URL;
 
 axios.defaults.baseURL = SERVER_URL;
@@ -101,6 +103,39 @@ export const refreshUser = createAsyncThunk(
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+//----------------------------setting-card
+export const updateAvatar = createAsyncThunk(
+  'auth/updateAvatar',
+
+  async (data, thunkApi) => {
+    //
+    const { file, token } = data;
+    try {
+      const formData = new FormData();
+      formData.append('avatarURL', file);
+
+      console.log(formData.get('avatarURL'));
+      console.log(token);
+      const avatarURL = await apiUpdateAvatar(formData, token); //
+      return avatarURL;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const updateUserData = createAsyncThunk(
+  'auth/updateUserData',
+  async (_, thunkApi) => {
+    try {
+      await apiUpdateUserData();
+      return;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
     }
   },
 );

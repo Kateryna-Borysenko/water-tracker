@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { updateAvatar, updateUserData } from '../../redux/user/userOperations';
+// import { updateAvatar, updateUserData } from '../../redux/user/userOperations';
+import { updateAvatar, updateUserData } from '../../redux/auth/authOperations';
+
 import {
+  getToken,
   selectUpdateAvatar,
   selectUpdateUserData,
-  selectUserDataIsLoading,
-} from '../../redux/user/userSelectors';
+  // selectUserDataIsLoading,
+} from '../../redux/auth/authSelectors';
 
 import UploadingIcon from '../../assets/static/icons/uploading-2.svg?react';
 
@@ -30,8 +33,11 @@ import ErrorMessage from './ErrorMessage/ErrorMessage';
 import axios from 'axios';
 
 const SettingCard = () => {
-  const [avatar, setAvatar] = useState('');
+  // const [avatar, setAvatar] = useState('');
   const dispatch = useDispatch();
+  const avatar = useSelector(selectUpdateAvatar);
+  const user = useSelector(selectUpdateUserData);
+  const token = useSelector(getToken);
 
   const {
     values,
@@ -68,17 +74,18 @@ const SettingCard = () => {
     reader.onload = () => {
       if (reader.readyState === 2) {
         // setFieldValue('image', reader.result); //
-        setAvatar(reader.result);
+        // setAvatar(reader.result);
+        //встановлення стану
+
+        dispatch(updateAvatar({ file: reader.result, token: token })) //?
+          .unwrap(toast.success('Your avatar were successfully added!'))
+          .catch(() =>
+            toast.error('Something went wrong. Please try again later!'),
+          );
       }
     };
 
     reader.readAsDataURL(e.target.files[0]);
-
-    dispatch(updateAvatar(avatar))
-      .unwrap(toast.success('Your avatar were successfully added!'))
-      .catch(() =>
-        toast.error('Something went wrong. Please try again later!'),
-      );
 
     // console.log(values.image, 'IMAGE');
 
@@ -99,7 +106,6 @@ const SettingCard = () => {
   //надсилати лише ті поля які !== '' - бо формік повертає ВСІ поля
   // };
 
-  const avatarURL = false;
   const testEmail = 'qwe@gmai.com';
   const testDefaultUserName = testEmail.split('@')[0];
   const defaultAvatarFirstLetter = testDefaultUserName
@@ -110,7 +116,7 @@ const SettingCard = () => {
     <div className={s.container}>
       <h2 className={s.title}>Setting</h2>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} action="">
         <div className={s.wrapper}>
           <div className={s.leftBox}>
             <h3 className={` ${s.item} ${s.mediumText} ${s.smallMb}`}>
@@ -120,8 +126,8 @@ const SettingCard = () => {
 
             <div className={s.avatarWrapper}>
               <span className={s.avatar}>
-                {avatarURL || avatar ? (
-                  <img src={avatarURL || avatar} alt="avatar" />
+                {avatar ? (
+                  <img src={avatar} alt="avatar" />
                 ) : (
                   <p>{defaultAvatarFirstLetter}</p>
                 )}
@@ -130,7 +136,7 @@ const SettingCard = () => {
 
               <div className={s.fileWrapper}>
                 <input
-                  name="avatar"
+                  name="file"
                   accept="image/*"
                   // value={values.avatar}
                   type="file"

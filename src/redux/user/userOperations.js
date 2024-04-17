@@ -1,15 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { apiUpdateUserData, apiUpdateAvatar } from '../../services/user-api';
+import { apiUpdateUserData, apiUpdateAvatar } from '../services/user-api';
 
 export const updateAvatar = createAsyncThunk(
   'auth/updateAvatar',
-  async (avatar, thunkApi) => {
+  async (avatar, thunkApi, extraArgument) => {
     try {
       const fd = new FormData();
-      console.log(fd); //
+
       fd.append('avatar', avatar);
 
-      await apiUpdateAvatar(fd); //
+      // await apiUpdateAvatar(fd, extraArgument.token);
       return;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
