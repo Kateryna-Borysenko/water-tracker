@@ -1,0 +1,55 @@
+.listItems {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
+
+.list {
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--primary-charcoal-gray);
+}
+
+.listItemBenefits {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.listItemBenefits img {
+  width: 32px;
+  height: 32px;
+}
+
+.listItemOptions {
+  display: inline;
+}
+
+.listItemOptions>p::before {
+  content: '•';
+  color: var(--primary-sky-blue);
+  font-size: 36px;
+  margin-right: 6px;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .listItemBenefits img {
+    width: 40px;
+    height: 40px;
+  }
+
+  ul:has(li.listItemBenefits) {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  ul:has(li.listItemOptions) {
+    display: flex;
+    flex-direction: column;
+  }
+}
