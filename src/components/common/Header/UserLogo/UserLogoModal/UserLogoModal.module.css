@@ -1,6 +1,6 @@
 .headerModal {
   position: absolute;
-  z-index: 33;
+  z-index: 555;
   top: 52px;
   right: 0;
   display: inline-flex;
@@ -9,7 +9,7 @@
   align-items: flex-start;
   gap: 16px;
   border-radius: 10px;
-  background: var(--primery-white);
+  background-color: var(--primary-white);
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.2);
   transition: var(--transition);
 }

@@ -32,7 +32,9 @@ const AuthForm = ({ type }) => {
     const { email, password } = values;
 
     if (type === 'signup') {
-      dispatch(registerUser({ email, password }));
+      const isSigup = await dispatch(registerUser({ email, password }));
+      if (isSigup.error) return;
+      navigate('/signin');
     }
 
     if (type === 'signin') {

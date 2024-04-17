@@ -5,15 +5,21 @@ import Item from '../../components/Item/Item';
 import Button from '../../uikit/Button/Button';
 import Meta from '../../components/common/Meta/Meta';
 
-
 import {
   itemArrayBenefits,
   itemArrOptions,
 } from '../../components/Item/itemArrays';
 
 import s from '../WelcomePage/WelcomePage.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const WelcomePage = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/signup');
+  };
+
   return (
     <div className={s.container}>
       <Meta />
@@ -32,7 +38,11 @@ const WelcomePage = () => {
             />
             <Item array={itemArrayBenefits} className="listItemBenefits" />
             <div className={s.tryTrackerButton}>
-              <Button className='tryTrackerButton' title='Try tracker'/>
+              <Button
+                onClick={handleClick}
+                className="tryTrackerButton"
+                title="Try tracker"
+              />
             </div>
           </div>
           <div className={s.itemContainerOptions}>
