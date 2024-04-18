@@ -5,15 +5,7 @@ import bottle from '../../assets/static/image/bottle-home-screen-M-2x.png';
 import s from './HomePage.module.css';
 import ProgressBar from '../../components/ProgressBarHomePage/ProgressBar';
 
-//temporary code:
-import { useState } from 'react';
-import Modal from '../../components/common/Modal/Modal';
-import SettingCard from '../../components/SettingCard/SettingCard';
-
 const HomePage = () => {
-  //temporary code:
-  const [isOpenSettingModal, setIsOpenSettingModal] = useState(true); //false
-
   const handleCloseSettingModal = () => {
     setIsOpenSettingModal(false);
   };
@@ -31,12 +23,6 @@ const HomePage = () => {
               <Calendar />
             </div>
           </div>
-          {/* temporary code: */}
-          {isOpenSettingModal && (
-            <Modal onClose={handleCloseSettingModal} className="setting-card">
-              <SettingCard></SettingCard>
-            </Modal>
-          )}
         </Container>
       </div>
     </>

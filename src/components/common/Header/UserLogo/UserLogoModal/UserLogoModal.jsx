@@ -3,11 +3,14 @@ import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../../../../redux/auth/authOperations';
 import Modal from '../../../Modal/Modal';
 import ManagementCard from '../../../../ManagementCard/ManagementCard';
+import SettingCard from '../../../../SettingCard/SettingCard';
 import Icons from '../../../../Icons/Icons';
 import s from './UserLogoModal.module.css';
 
 const UserLogoModal = ({ handleClosePopup }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
+
   const dispatch = useDispatch();
 
   const handleOpenModal = e => {
@@ -19,6 +22,15 @@ const UserLogoModal = ({ handleClosePopup }) => {
     setIsModalOpen(false);
   };
 
+  const handleOpenSettingModal = e => {
+    e.stopPropagation();
+    setIsSettingModalOpen(prevState => !prevState);
+  };
+
+  // const handleCloseSettingModal = () => {
+  //   setIsSettingModalOpen(false);
+  // };
+
   const handleLogoutUser = () => {
     dispatch(logoutUser());
   };
@@ -27,7 +39,11 @@ const UserLogoModal = ({ handleClosePopup }) => {
     <ul onClose={handleClosePopup} className={s.headerModal}>
       <li className={s.item}>
         <Icons id={'settings'} />
-        <button type="button" className={s.btn}>
+        <button
+          type="button"
+          className={s.btn}
+          onClick={handleOpenSettingModal}
+        >
           Setting
         </button>
       </li>
@@ -38,7 +54,7 @@ const UserLogoModal = ({ handleClosePopup }) => {
           Log out
         </button>
 
-        {isModalOpen && (
+        {isModalOpen && !isSettingModalOpen && (
           <Modal onClose={handleCloseModal}>
             <ManagementCard
               title="Log out"
@@ -48,6 +64,13 @@ const UserLogoModal = ({ handleClosePopup }) => {
               onClick={handleLogoutUser}
             />
           </Modal>
+        )}
+
+        {isSettingModalOpen && !isModalOpen && (
+          <Modal className="setting-card">
+            <SettingCard />
+          </Modal>
+          //onClose={handleCloseSettingModal}
         )}
       </li>
     </ul>

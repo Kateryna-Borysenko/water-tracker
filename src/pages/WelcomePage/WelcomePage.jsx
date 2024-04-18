@@ -38,7 +38,6 @@ const WelcomePage = () => {
             />
             <Item array={itemArrayBenefits} className="listItemBenefits" />
             <div className={s.tryTrackerButton}>
-              <Button className="tryTrackerButton" title="Try tracker" />
               <Button
                 onClick={handleClick}
                 className="tryTrackerButton"
