@@ -1,3 +1,4 @@
+// ============= ADD WaterPortion ===============
 export const handlePendingAdd = state => {
   state.isLoading = true;
   state.error = null;
@@ -15,6 +16,12 @@ export const handleRejectedAdd = (state, { payload }) => {
   state.error = payload;
 };
 
+// ============= EDIT WaterPortion ===============
+export const handlePendingEdit = state => {
+  state.isLoading = true;
+  state.error = null;
+};
+
 export const handleFulfilledEdit = (state, { payload }) => {
   state.isLoading = false;
   state.error = null;
@@ -22,4 +29,27 @@ export const handleFulfilledEdit = (state, { payload }) => {
     waterPortion => waterPortion._id !== payload._id,
   );
   state.waterPortionsToday = [...oldToday, payload];
+};
+
+export const handleRejectedEdit = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = payload;
+};
+
+// ============= DELETE WaterPortion ===============
+export const handlePendingDelete = state => {
+  state.isLoading = true;
+  state.error = null;
+};
+
+export const handleFulfilledDelete = (state, { payload }) => {
+  const index = state.waterPortionsToday.findIndex(
+    waterPortionToday => waterPortionToday.id === payload.id,
+  );
+  state.waterPortionsToday.splice(index, 1);
+};
+
+export const handleRejectedDelete = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = payload;
 };
