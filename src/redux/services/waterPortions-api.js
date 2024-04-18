@@ -21,14 +21,3 @@ export const addWaterPortion = async waterPortionDetails => {
   return waterPortion;
 };
 
-// export const getContacts = async () => {
-//   const contacts = await waterPortionsInstance.get('/contacts');
-
-//   return contacts;
-// };
-
-// export const delContact = async contactId => {
-//   const contact = await waterPortionsInstance.delete(`/contacts/${contactId}`);
-
-//   return contact;
-// };
