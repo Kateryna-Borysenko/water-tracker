@@ -1,0 +1,69 @@
+.todayWaterItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border-bottom: 1px solid #D7E3FF;
+    padding: 12px;
+}
+
+.wrapItemLeft,
+.wrapItemRight{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.wrapItemLeft{
+    width: 204px;
+    gap: 12px;
+}
+
+.wrapItemLeft svg{
+    width: 26px;
+    height: 26px;
+}
+
+.wrapItemRight{
+    gap: 18px;
+}
+
+.textWaterAmount{
+    font-size: 18px;
+    line-height: 1.3;
+    font-weight: 400;
+    color: #407BFF;
+}
+
+.textTime{
+    font-size: 12px;
+    line-height: 2;
+    font-weight: 400;
+}
+
+.trashBtn,
+.pencilBtn{
+    border: none;
+    background-color: transparent;
+}
+
+.pencilBtn:hover,
+.pencilBtn:focus{
+    cursor: pointer;
+    border-bottom: 1px solid #9EBBFF;
+}
+
+.trashBtn:hover,
+.trashBtn:focus{
+    cursor: pointer;
+    border-bottom: 1px solid #EF5050;
+}
+
+@media screen and (min-width: 768px) {
+    .wrapItemLeft svg{
+        width: 32px;
+        height: 32px;
+    }
+}
