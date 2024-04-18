@@ -12,7 +12,7 @@ export const getRefreshingStatus = state => state.auth.isRefreshing;
 //
 
 //avatar
-export const selectUpdateAvatar = state => state.auth.user.avatarURL; //
+export const selectUpdateAvatar = state => state.auth.user.avatarURL;
 
 // user data
-export const selectUpdateUserData = state => state.auth.user; //?
+export const selectUpdateUserData = state => state.auth.user;

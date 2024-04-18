@@ -86,5 +86,34 @@ export const authSlice = createSlice({
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
       });
+
+    // ************** LOGOUT  ************** //
+
+    // -------------UPDATE USER DATA   ------------- //
+    // .addCase(updateUserData.fulfilled, (state, action) => {
+    //   state.loading = false;
+    //   state.user = { ...state.user, ...action.payload }; //
+    // })
+
+    // ------------- AVATAR   ------------- //
+    // .addCase(updateAvatar.fulfilled, (state, action) => {
+    //   state.loading = false;
+    //   state.user.avatarURL = action.payload;
+    // })
+    // //
+    // .addMatcher(
+    //   isAnyOf(updateAvatar.pending, updateUserData.pending),
+    //   state => {
+    //     state.loading = true;
+    //     state.error = null;
+    //   },
+    // )
+    // .addMatcher(
+    //   isAnyOf(updateAvatar.rejected, updateUserData.rejected),
+    //   (state, action) => {
+    //     state.loading = false;
+    //     state.error = action.payload;
+    //   },
+    // );
   },
 });

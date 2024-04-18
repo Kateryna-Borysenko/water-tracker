@@ -1,43 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Form, Field, useFormik } from 'formik';
 import { toast } from 'react-toastify';
-// import { updateAvatar, updateUserData } from '../../redux/user/userOperations';
 import { updateAvatar, updateUserData } from '../../redux/auth/authOperations';
-
 import {
   getToken,
   selectUpdateAvatar,
   selectUpdateUserData,
   // selectUserDataIsLoading,
 } from '../../redux/auth/authSelectors';
-
-import UploadingIcon from '../../assets/static/icons/uploading-2.svg?react';
-
-import s from './SettingCard.module.css';
-
-import avatar from '../../assets/static/testImage/default_avatar.jpeg';
-
-import EyeBtn from './EyeBtn/EyeBtn';
-import { Form, Field, useFormik } from 'formik';
 import { settingFormValidationSchema } from '../../schemas/settingFormValidationSchema';
+import EyeBtn from './EyeBtn/EyeBtn';
 import ErrorMessage from './ErrorMessage/ErrorMessage';
 
-//   const avatarURL = useSelector(selectUpdateAvatar);
-//   const userData = useSelctor(selectUpdateUserData);
-//   const isLoading = useSelector(selectUserDataIsLoading);
-//   const error = useSelector(selectUserDataError);
+import UploadingIcon from '../../assets/static/icons/uploading-2.svg?react'; //
 
-// const onSubmit = () => {
-//handleSubmit()
-// };
-import axios from 'axios';
+import s from './SettingCard.module.css';
 
 const SettingCard = () => {
   // const [avatar, setAvatar] = useState('');
   const dispatch = useDispatch();
   const avatar = useSelector(selectUpdateAvatar);
   const user = useSelector(selectUpdateUserData);
-  const token = useSelector(getToken);
+  const token = useSelector(getToken); //-
+  //   const isLoading = useSelector(selectUserDataIsLoading);
+  //   const error = useSelector(selectUserDataError);
 
   const {
     values,
@@ -53,11 +40,9 @@ const SettingCard = () => {
   } = useFormik({
     initialValues: {
       // image: '',
-
-      gender: '', //?
-
-      username: '',
-      email: '',
+      gender: user.gender || '',
+      username: user.username || '',
+      email: user.email || '',
       currentPassword: '',
       newPassword: '',
       repeatPassword: '',
@@ -66,48 +51,45 @@ const SettingCard = () => {
     onSubmit: ({ setSubmitting }) => {
       console.log(JSON.stringify(values, null, 2));
       setSubmitting(false);
-    }, //values ? вже винтянула
+    }, //values ?
   });
 
   const onChange = e => {
     let reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
-        // setFieldValue('image', reader.result); //
+        // setFieldValue('image', reader.result); //формік
         // setAvatar(reader.result);
-        //встановлення стану
-
-        dispatch(updateAvatar({ file: reader.result, token: token })) //?
-          .unwrap(toast.success('Your avatar were successfully added!'))
-          .catch(() =>
-            toast.error('Something went wrong. Please try again later!'),
-          );
+        // dispatch(updateAvatar(reader.result))
+        //   .unwrap(toast.success('Your avatar were successfully added!'))
+        //   .catch(error =>
+        //     toast.error('Something went wrong. Please try again later!'),
+        //   );
       }
     };
 
     reader.readAsDataURL(e.target.files[0]);
-
-    // console.log(values.image, 'IMAGE');
-
-    // console.log(e.target.files[0].size);
-
-    // if (e.target.files[0].size > 10485760) {
-    // } //10 мб ;Ж чи 10000000 'You can not upload the file grater than 10 MB'
-
-    //dispatch(updateAvatar(values.image)) // !!
-
-    //dispatch(updateAvatar(fd)) // !!
   };
 
-  // onChange, on Submit + запит на сервер
-  // const handleEmailChange = event => {
-  //   handleChange(event); //
+  // const fileInputRef = useRef();
 
-  //надсилати лише ті поля які !== '' - бо формік повертає ВСІ поля
+  // useEffect(() => {
+  //   if (file) {
+  //     dispatch(updateAvatar(file));
+
+  //     if (fileInputRef.current) {
+  //       fileInputRef.current.value = '';
+  //     }
+  //   }
+  // }, [file, dispatch]);
+
+  // const onSubmit = () => {
+
   // };
 
   const testEmail = 'qwe@gmai.com';
   const testDefaultUserName = testEmail.split('@')[0];
+
   const defaultAvatarFirstLetter = testDefaultUserName
     .split('')[0]
     .toUpperCase();
@@ -116,122 +98,127 @@ const SettingCard = () => {
     <div className={s.container}>
       <h2 className={s.title}>Setting</h2>
 
+      {/* -----------avatar----- */}
+      <h3 className={` ${s.item} ${s.mediumText} ${s.smallMb}`}>Your photo</h3>
+      <div className={s.avatarWrapper}>
+        <div className={s.avatar}>
+          {avatar ? (
+            <img src={avatar} alt="avatar" />
+          ) : (
+            <p>{defaultAvatarFirstLetter}</p>
+          )}
+        </div>
+
+        {/* -----------upload a photo----- */}
+        {/* action="" */}
+        <form className={s.fileForm}>
+          <input
+            name="file"
+            accept="image/*"
+            // value={values.avatar}
+            type="file"
+            id="upload"
+            className={s.visuallyHidden}
+            onChange={onChange}
+            // ref={fileInputRef}
+          />
+          <label htmlFor="upload" className={s.uploadingWrapper}>
+            <UploadingIcon className={s.uploadingIcon} />
+
+            <span className={s.uploadingText}>Upload a photo</span>
+          </label>
+        </form>
+      </div>
+
       <form onSubmit={handleSubmit} action="">
         <div className={s.wrapper}>
+          {/* -----------genderBox */}
+
           <div className={s.leftBox}>
-            <h3 className={` ${s.item} ${s.mediumText} ${s.smallMb}`}>
-              Your photo
-            </h3>
-            {/* -----------аватар----- */}
+            {/*  */}
+            <div className={s.genderWrapper}>
+              <h3 className={`${s.item} ${s.mediumText} ${s.mediumMb}`}>
+                Your gender identity
+              </h3>
 
-            <div className={s.avatarWrapper}>
-              <span className={s.avatar}>
-                {avatar ? (
-                  <img src={avatar} alt="avatar" />
-                ) : (
-                  <p>{defaultAvatarFirstLetter}</p>
-                )}
-              </span>
-              {/* -----------upload a photo----- */}
+              <div className={s.genderBox}>
+                <label className={` ${s.labelContainer} ${s.smallText} `}>
+                  <input
+                    type="radio"
+                    value="female"
+                    //   ? value="female"
+                    name="gender"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  Woman
+                  <span className={s.checkmark}></span>
+                </label>
 
-              <div className={s.fileWrapper}>
-                <input
-                  name="file"
-                  accept="image/*"
-                  // value={values.avatar}
-                  type="file"
-                  id="upload"
-                  className={s.visuallyHidden}
-                  onChange={onChange}
-                />
-                <label htmlFor="upload" className={s.uploadingWrapper}>
-                  <UploadingIcon className={s.uploadingIcon} />
-
-                  <span className={s.uploadingText}>Upload a photo</span>
+                <label className={` ${s.labelContainer} ${s.smallText} `}>
+                  <input
+                    type="radio"
+                    value="male"
+                    //   ? value="male"
+                    name="gender"
+                    onChange={handleChange}
+                  />
+                  Man
+                  <span className={s.checkmark}></span>
                 </label>
               </div>
             </div>
 
-            {/* -----------genderBox */}
-            <h3 className={`${s.item} ${s.mediumText} ${s.mediumMb}`}>
-              Your gender identity
-            </h3>
-
-            <div className={s.genderBox}>
-              <label className={` ${s.labelContainer} ${s.smallText} `}>
+            <div className={s.bottomInputWrapper}>
+              <div className={`${s.inputWrapper} `}>
+                <label
+                  htmlFor="username"
+                  className={` ${s.item} ${s.mediumText} ${s.smallMb}`}
+                >
+                  Your name
+                </label>
                 <input
-                  type="radio"
-                  value="female"
-                  //   а як бути з цим ? value="female"
-                  name="gender"
-                  onChange={handleChange}
+                  name="username"
+                  value={values.username}
+                  id="username"
+                  type="text"
+                  placeholder="Name"
+                  className={`${s.input}  ${
+                    touched.username && errors.username && s.errorInput
+                  }`}
                   onBlur={handleBlur}
-                />
-                Woman
-                <span className={s.checkmark}></span>
-              </label>
-
-              <label className={` ${s.labelContainer} ${s.smallText} `}>
-                <input
-                  type="radio"
-                  value="male"
-                  //   а як бути з цим ? value="male"
-                  name="gender"
                   onChange={handleChange}
                 />
-                Man
-                <span className={s.checkmark}></span>
-              </label>
-            </div>
+                <ErrorMessage
+                  errorMessage={errors.username}
+                  touched={touched.username}
+                />
+              </div>
 
-            <div className={`${s.inputWrapper} `}>
-              <label
-                htmlFor="username"
-                className={` ${s.item} ${s.mediumText} ${s.smallMb}`}
-              >
-                Your name
-              </label>
-              <input
-                name="username"
-                value={values.username}
-                id="username"
-                type="text"
-                placeholder="Name"
-                className={`${s.input}  ${
-                  touched.username && errors.username && s.errorInput
-                }`}
-                onBlur={handleBlur}
-                onChange={handleChange}
-              />
-              <ErrorMessage
-                errorMessage={errors.username}
-                touched={touched.username}
-              />
-            </div>
-
-            <div className={`${s.inputWrapper} `}>
-              <label
-                htmlFor="email"
-                className={`${s.item} ${s.mediumText} ${s.smallMb}`}
-              >
-                E-mail
-              </label>
-              <input
-                value={values.email}
-                id="email"
-                type="email"
-                name="email"
-                placeholder="E-mail"
-                className={`${s.input} ${s.smallText} ${
-                  touched.email && errors.email && s.errorInput
-                }`}
-                onBlur={handleBlur}
-                onChange={handleChange}
-              />
-              <ErrorMessage
-                errorMessage={errors.email}
-                touched={touched.email}
-              />
+              <div className={`${s.inputWrapper} `}>
+                <label
+                  htmlFor="email"
+                  className={`${s.item} ${s.mediumText} ${s.smallMb}`}
+                >
+                  E-mail
+                </label>
+                <input
+                  value={values.email}
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder="E-mail"
+                  className={`${s.input} ${s.smallText} ${
+                    touched.email && errors.email && s.errorInput
+                  }`}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                />
+                <ErrorMessage
+                  errorMessage={errors.email}
+                  touched={touched.email}
+                />
+              </div>
             </div>
           </div>
 

@@ -99,7 +99,12 @@ label {
 }
 
 /* -----------uplod a photo----- */
-.fileWrapper {
+/* .fileWrapper {
+  display: flex;
+  align-items: center;
+} */
+
+.fileForm {
   display: flex;
   align-items: center;
 }
@@ -159,6 +164,17 @@ label {
 }
 
 .leftBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /*  */
+}
+
+.genderWrapper {
+}
+
+.bottomInputWrapper {
+  /* margin-bottom: 0; */
 }
 
 .avatar {
@@ -308,7 +324,7 @@ label {
   }
 
   .genderBox {
-    margin-bottom: 52px;
+    /* margin-bottom: 52px; */
   }
 
   .input {
