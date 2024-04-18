@@ -1,0 +1,31 @@
+.textProgresBar {
+  color: var(--toastify-color-success);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 8px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .blockProgresBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  .textProgresBar {
+    margin-bottom: 19px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .blockProgresBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 31px;
+  }
+  .textProgresBar {
+    margin-bottom: 19px;
+  }
+}

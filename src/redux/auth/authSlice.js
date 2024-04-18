@@ -1,5 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { registerUser, loginUser } from './authOperations';
+import {
+  registerUser,
+  loginUser,
+  logoutUser,
+  setTokenAuthInstance,
+  clearTokenAuthInstance,
+} from './authOperations';
+import {
+  clearTokenwaterPortionsInstance,
+  setTokenwaterPortionsInstance,
+} from '../services/waterPortions-api';
 
 const initialState = {
   user: {
@@ -9,6 +19,7 @@ const initialState = {
     gender: null,
     waterRate: null,
   },
+  isLoggedIn: false,
   token: '',
   loading: false,
   error: null,
@@ -44,14 +55,30 @@ export const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
         state.loading = false;
+        state.isLoggedIn = true;
         state.user = { ...payload.user };
         state.token = payload.token;
+        setTokenAuthInstance(payload.token);
+        setTokenwaterPortionsInstance(payload.token);
       })
       .addCase(loginUser.rejected, (state, { payload }) => {
         state.error = payload;
         state.loading = false;
-      });
+      })
 
-    // ************** LOGOUT  ************** //
+      // ************** LOGOUT  ************** //
+      .addCase(logoutUser.pending, state => {
+        state.error = null;
+        state.loading = true;
+      })
+      .addCase(logoutUser.fulfilled, () => {
+        clearTokenAuthInstance();
+        clearTokenwaterPortionsInstance();
+        return initialState;
+      })
+      .addCase(logoutUser.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.loading = false;
+      });
   },
 });

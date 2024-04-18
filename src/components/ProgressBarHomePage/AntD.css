@@ -1,0 +1,111 @@
+.ant-slider-horizontal.ant-slider-with-marks {
+  cursor: auto;
+  margin-bottom: 52px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .ant-slider-horizontal.ant-slider-with-marks {
+    width: 356px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .ant-slider-horizontal.ant-slider-with-marks {
+    width: 391px;
+  }
+}
+
+.ant-slider-horizontal .ant-slider-rail {
+  height: 8px;
+  cursor: auto;
+  border-radius: 10px;
+  background-color: var(--secondary-bluish-white);
+}
+
+.ant-slider:hover .ant-slider-rail {
+  background-color: var(--secondary-bluish-white);
+}
+
+.ant-slider-horizontal .ant-slider-dot {
+  background-color: transparent;
+  border: none;
+}
+
+.ant-slider-horizontal .ant-slider-track {
+  height: 8px;
+  background-color: var(--secondary-blue);
+  cursor: auto;
+}
+
+.ant-slider:hover .ant-slider-track {
+  background-color: var(--secondary-blue);
+}
+
+.ant-slider:hover .ant-slider-handle::after {
+  box-shadow: 0 0 0 1px var(--toastify-color-success);
+}
+
+.ant-slider-horizontal .ant-slider-handle {
+  transform: translateX(-70%) !important;
+}
+
+.ant-slider .ant-slider-handle::before {
+  cursor: auto;
+}
+
+.ant-slider .ant-slider-handle:focus::before {
+  width: 14px;
+  height: 14px;
+}
+
+.ant-slider .ant-slider-handle::after {
+  box-shadow: 0 0 0 1px var(--toastify-color-success);
+  width: 14px;
+  height: 14px;
+  cursor: auto;
+}
+
+.ant-slider .ant-slider-handle:hover::after {
+  box-shadow: 0 0 0 1px var(--toastify-color-success);
+  width: 14px;
+  height: 14px;
+  inset-inline-start: 0px;
+  inset-block-start: 0px;
+}
+
+.ant-slider .ant-slider-handle:focus::after {
+  box-shadow: 0 0 0 1px var(--toastify-color-success);
+  width: 14px;
+  height: 14px;
+}
+
+.ant-slider-horizontal .ant-slider-mark {
+  margin-top: 19px;
+}
+
+.ant-slider .ant-slider-mark-text .custom {
+  color: var(--toastify-color-success);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  cursor: auto;
+}
+
+.ant-slider .ant-slider-mark-text-active .active {
+  color: var(--toastify-color-success);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  cursor: auto;
+}
+
+.ant-slider-horizontal .ant-slider-dot {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 0;
+  width: 1px;
+  height: 8px;
+  background-color: var(--secondary-bluish-white);
+  cursor: auto;
+}

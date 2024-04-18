@@ -31,7 +31,7 @@
 .eyeButton {
   position: absolute;
   right: 10px;
-  top: 55px;
+  top: 58px;
   transform: translateY(-50%);
   background: none;
   border: none;
@@ -44,13 +44,15 @@
   height: 24px;
 }
 
-.link {
+.link,
+.resendEmailButton {
   margin-bottom: 16px;
   color: var(--primary-sky-blue);
   transition: var(--transition);
 }
 
-.link:hover {
+.link:hover,
+.resendEmailButton:hover {
   margin-bottom: 16px;
   color: var(--secondary-orange);
 }
@@ -74,6 +76,17 @@
 
 @media screen and (min-width: 1440px) {
   .container {
-    width: 364px;
+    width: 384px;
   }
+}
+
+.resendEmailMassage {
+  color: var(--additional-gray);
+  font-weight: 300;
+}
+
+.resendEmailButton {
+  background-color: transparent;
+  border: none;
+  margin-left: 8px;
 }

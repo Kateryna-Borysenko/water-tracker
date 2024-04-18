@@ -1,7 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import s from './ManagementCard.module.css';
 
-const ManagementCard = ({ title, description, secondButton, className }) => {
+const ManagementCard = ({
+  title,
+  description,
+  secondButton,
+  className,
+  onClick,
+}) => {
   const buttonContainerClassNames = `${s.title} ${s[className]}`;
   const { t } = useTranslation();
   return (
@@ -12,7 +18,9 @@ const ManagementCard = ({ title, description, secondButton, className }) => {
         <button className={s.firstButton}>
           {t('managementCard.cancelButton')}
         </button>
-        <button className={s.secondButton}>{secondButton}</button>
+        <button onClick={onClick} className={s.secondButton}>
+          {secondButton}
+        </button>
       </div>
     </div>
   );

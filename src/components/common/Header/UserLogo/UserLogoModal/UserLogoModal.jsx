@@ -1,18 +1,54 @@
-// import settingIcon from '../../../../../assets/static/settings.svg';
-// import exitIcon from '../../../../../assets/static/logout.svg';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../../../../../redux/auth/authOperations';
+import Modal from '../../../Modal/Modal';
+import ManagementCard from '../../../../ManagementCard/ManagementCard';
+import Icons from '../../../../Icons/Icons';
 import s from './UserLogoModal.module.css';
 
-const UserLogoModal = () => {
+const UserLogoModal = ({ handleClosePopup }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleOpenModal = e => {
+    e.stopPropagation();
+    setIsModalOpen(prevState => !prevState);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleLogoutUser = () => {
+    dispatch(logoutUser());
+  };
+
   return (
-    <ul className={s.headerModal}>
+    <ul onClose={handleClosePopup} className={s.headerModal}>
       <li className={s.item}>
-        {/* <img width="16" height="16" src={settingIcon} alt="Icon setting" /> */}
-        <p>Setting</p>
+        <Icons id={'settings'} />
+        <button type="button" className={s.btn}>
+          Setting
+        </button>
       </li>
 
       <li className={s.item}>
-        {/* <img width="16" height="16" src={exitIcon} alt="Icon log out" /> */}
-        <p>Log out</p>
+        <Icons id={'logout'} />
+        <button onClick={handleOpenModal} type="button" className={s.btn}>
+          Log out
+        </button>
+
+        {isModalOpen && (
+          <Modal onClose={handleCloseModal}>
+            <ManagementCard
+              title="Log out"
+              description="Do you really want to leave?"
+              secondButton="Log out"
+              className="aligneRight"
+              onClick={handleLogoutUser}
+            />
+          </Modal>
+        )}
       </li>
     </ul>
   );

@@ -5,7 +5,6 @@ import svgr from 'vite-plugin-svgr';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), svgr()],
-  build: { sourcemap: true },
   resolve: {
     alias: {
       components: '/src/components',
@@ -14,6 +13,14 @@ export default defineConfig({
       styles: '/src/styles',
       service: '/src/service',
       reduxState: '/src/reduxState',
+      assets: '/src/assets',
+      base: '/',
+      build: {
+        // sourcemap: true,
+        rollupOptions: {
+          external: ['@chatscope/chat-ui-kit-styles'],
+        },
+      },
     },
   },
 });
