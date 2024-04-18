@@ -58,7 +58,6 @@ export const loginUser = createAsyncThunk(
   },
 );
 
-
 export const logoutUser = createAsyncThunk(
   'auth/logoutUser',
   async (_, ThunkAPI) => {
@@ -86,6 +85,22 @@ export const resendVerificationEmail = createAsyncThunk(
         toast.error(error.response?.data?.message);
       }
       return ThunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const refreshUser = createAsyncThunk(
+  'auth/refreshUser',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+    if (!token) return thunkAPI.rejectWithValue("You don't have a token!");
+    try {
+      setTokenAuthInstance(token);
+      const { data } = await axios.get(AUTH_ENDPOINT.REFRESH);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
