@@ -12,6 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { customMiddlewareLogger } from './Middleware/customMiddlewareLogger';
 import { authSlice } from '../redux/auth/authSlice';
+import calendarSlice from './calendar/calendarSlice';
 import { waterPortionsSlice } from '../redux/water/watersSlice';
 
 const persistConfig = {
@@ -24,6 +25,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authSlice.reducer),
     water: waterPortionsSlice.reducer,
+    calendar: calendarSlice,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

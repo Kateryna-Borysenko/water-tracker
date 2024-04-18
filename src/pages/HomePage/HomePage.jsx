@@ -12,10 +12,12 @@ const HomePage = () => {
       <div className={s.container}>
         <Container>
           <div className={s.homePageConteiner}>
-            <div className={s.contentContainer}>
-              <img src={bottle} className={s.bottle} alt="Bottle of Water" />
+            <div>
+              <div className={s.contentContainer}>
+                <img src={bottle} className={s.bottle} alt="Bottle of Water" />
+              </div>
+              <ProgressBar />
             </div>
-            <ProgressBar />
             <div className={s.homePageWidgetWrapper}>
               <Calendar />
             </div>

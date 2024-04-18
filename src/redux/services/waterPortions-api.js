@@ -16,19 +16,15 @@ export const addWaterPortion = async waterPortionDetails => {
   const waterPortion = await waterPortionsInstance.post(
     '/water-portions',
     waterPortionDetails,
-  ); 
+  );
 
   return waterPortion;
 };
 
-// export const getContacts = async () => {
-//   const contacts = await waterPortionsInstance.get('/contacts');
+export const getMonthlyUsage = async date => {
+  const response = await waterPortionsInstance.get('/monthly-data', {
+    params: { date: date },
+  });
 
-//   return contacts;
-// };
-
-// export const delContact = async contactId => {
-//   const contact = await waterPortionsInstance.delete(`/contacts/${contactId}`);
-
-//   return contact;
-// };
+  return response.data;
+};

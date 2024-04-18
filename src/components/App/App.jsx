@@ -9,7 +9,7 @@ import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/styles/global.module.css';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
-import { PrivatRoute } from '../PrivatRoute/PrivatRoute';
+//import { PrivatRoute } from '../PrivatRoute/PrivatRoute';
 
 const App = () => {
   return (
@@ -37,9 +37,9 @@ const App = () => {
           <Route
             path="/home"
             element={
-              <PrivatRoute>
-                <HomePage />
-              </PrivatRoute>
+              //<PrivatRoute>
+              <HomePage />
+              //</PrivatRoute>
             }
           />
           <Route path="*" element={<NotFoundPage />} />
