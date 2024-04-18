@@ -20,7 +20,8 @@ import s from './SettingCard.module.css';
 const SettingCard = () => {
   // const [avatar, setAvatar] = useState('');
   const dispatch = useDispatch();
-  const avatar = useSelector(selectUpdateAvatar);
+  // const avatar = useSelector(selectUpdateAvatar);
+  const avatar = false;
   const user = useSelector(selectUpdateUserData);
   const token = useSelector(getToken); //-
   //   const isLoading = useSelector(selectUserDataIsLoading);
@@ -90,9 +91,7 @@ const SettingCard = () => {
   const testEmail = 'qwe@gmai.com';
   const testDefaultUserName = testEmail.split('@')[0];
 
-  const defaultAvatarFirstLetter = testDefaultUserName
-    .split('')[0]
-    .toUpperCase();
+  const defaultAvatarFirstLetter = user.email.split('')[0].toUpperCase();
 
   return (
     <div className={s.container}>
