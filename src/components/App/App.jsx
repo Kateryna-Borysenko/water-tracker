@@ -10,8 +10,24 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/styles/global.module.css';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
 import { PrivatRoute } from '../PrivatRoute/PrivatRoute';
+import { useDispatch } from 'react-redux';
+import { useAuth } from '../../hooks/useAuth';
+import { useEffect } from 'react';
+import { refreshUser } from '../../redux/auth/authOperations';
+import Spinner from '../../components/common/Spinner/Spinner';
 
 const App = () => {
+  const dispatch = useDispatch();
+  const { refreshingStatus } = useAuth();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  if (refreshingStatus) {
+    return <Spinner color="#9ebbff" size="20" />;
+  }
+
   return (
     <>
       <Routes>
