@@ -15,12 +15,12 @@ const UserLogo = () => {
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const handleOpenPopup = () => {
-    setIsPopupOpen(prevState => !prevState);
+  const togglePopup = () => {
+    isPopupOpen ? setIsPopupOpen(false) : setIsPopupOpen(true);
   };
 
   return (
-    <div onClick={handleOpenPopup} className={s.container}>
+    <div className={s.container}>
       <p className={s.name}>{username ? username : defaultUserName}</p>
 
       {avatarURL ? (
@@ -33,11 +33,17 @@ const UserLogo = () => {
         </div>
       )}
 
-      <Icons id={'down-arrow'} fill={'#407bff'} />
+      <div onClick={togglePopup}>
+        {/* <button onClick={togglePopup} type="button"> */}
+        <Icons id={'down-arrow'} fill={'#407bff'} />
+        {/* </button> */}
+      </div>
 
-      {isPopupOpen && <UserLogoModal handleClosePopup={handleOpenPopup} />}
+      {isPopupOpen && <UserLogoModal />}
     </div>
   );
 };
 
 export default UserLogo;
+
+//handleClosePopup={togglePopup}

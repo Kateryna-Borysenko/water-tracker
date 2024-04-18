@@ -7,55 +7,44 @@ import SettingCard from '../../../../SettingCard/SettingCard';
 import Icons from '../../../../Icons/Icons';
 import s from './UserLogoModal.module.css';
 
-const UserLogoModal = ({ handleClosePopup }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const UserLogoModal = () => {
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
 
   const dispatch = useDispatch();
 
-  const handleOpenModal = e => {
-    e.stopPropagation();
-    setIsModalOpen(prevState => !prevState);
+  const toggleLogoutModal = () => {
+    isLogoutModalOpen
+      ? setIsLogoutModalOpen(false)
+      : setIsLogoutModalOpen(true);
   };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+  const toggleSettingModal = () => {
+    isSettingModalOpen
+      ? setIsSettingModalOpen(false)
+      : setIsSettingModalOpen(true);
   };
-
-  const handleOpenSettingModal = e => {
-    e.stopPropagation();
-    setIsSettingModalOpen(prevState => !prevState);
-  };
-
-  // const handleCloseSettingModal = () => {
-  //   setIsSettingModalOpen(false);
-  // };
 
   const handleLogoutUser = () => {
     dispatch(logoutUser());
   };
 
   return (
-    <ul onClose={handleClosePopup} className={s.headerModal}>
+    <ul className={s.headerModal}>
       <li className={s.item}>
-        <Icons id={'settings'} />
-        <button
-          type="button"
-          className={s.btn}
-          onClick={handleOpenSettingModal}
-        >
+        <button type="button" className={s.btn} onClick={toggleSettingModal}>
+          <Icons id={'settings'} />
           Setting
         </button>
       </li>
 
       <li className={s.item}>
-        <Icons id={'logout'} />
-        <button onClick={handleOpenModal} type="button" className={s.btn}>
+        <button onClick={toggleLogoutModal} type="button" className={s.btn}>
+          <Icons id={'logout'} />
           Log out
         </button>
 
-        {isModalOpen && !isSettingModalOpen && (
-          <Modal onClose={handleCloseModal}>
+        {isLogoutModalOpen && !isSettingModalOpen && (
+          <Modal onClose={toggleLogoutModal}>
             <ManagementCard
               title="Log out"
               description="Do you really want to leave?"
@@ -66,11 +55,10 @@ const UserLogoModal = ({ handleClosePopup }) => {
           </Modal>
         )}
 
-        {isSettingModalOpen && !isModalOpen && (
-          <Modal className="setting-card">
+        {isSettingModalOpen && !isLogoutModalOpen && (
+          <Modal className="setting-card" onClose={toggleSettingModal}>
             <SettingCard />
           </Modal>
-          //onClose={handleCloseSettingModal}
         )}
       </li>
     </ul>
