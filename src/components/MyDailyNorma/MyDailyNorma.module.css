@@ -2,22 +2,23 @@
   position: absolute;
   top: 52px;
   left: 0;
+  width: 164px;
   background: var(--primary-white);
   border-radius: 10px;
   padding: 8px 20px;
   box-shadow: var(--box-shadow);
-  width: 164px;
 }
 
 .dailyNormaTitle {
+  margin-bottom: 12px;
   font-size: 18px;
   color: var(--primary-charcoal-gray);
-  margin-bottom: 12px;
 }
 
 .normaValue {
   display: flex;
   align-items: center;
+  margin-top: 12px;
   padding: 0;
 }
 

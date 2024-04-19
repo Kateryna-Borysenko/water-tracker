@@ -44,10 +44,7 @@ const MyDailyNormaModal = () => {
           0)
         </p>
 
-        <Subtitle
-          title={'Calculate your rate:'}
-          className={'subtitleDailyNorma'}
-        />
+        <Subtitle title={'Calculate your rate:'} />
         <Formik
           initialValues={{
             gender: '',
