@@ -8,6 +8,7 @@ import {
   selectModalDate,
 } from '../../redux/calendar/calendarSelectors';
 import { closeModal } from '../../redux/calendar/calendarSlice';
+import modalLeftPosition from './helpers';
 import s from './Calendar.module.css';
 
 const DaysGeneralStats = () => {
@@ -43,18 +44,23 @@ const DaysGeneralStats = () => {
 
   useEffect(() => {
     if (isVisible) {
-      if (window.innerWidth > 767) {
+      if (window.innerWidth > 1439) {
         setModalStyle({
           position: 'fixed',
-          left: `${position.left - 115}px`,
-          top: `${position.top - 100}px`,
-          transform: 'translate(-50%, -50%)',
+          left: `${modalLeftPosition(-240, position.left)}px`,
+          top: `${position.top - 200}px`,
+        });
+      } else if (window.innerWidth > 767) {
+        setModalStyle({
+          position: 'fixed',
+          left: `${modalLeftPosition(-240, position.left)}px`,
+          top: `${position.top - 510}px`,
         });
       } else {
         setModalStyle({
           position: 'fixed',
           left: `${window.innerWidth / 2}px`,
-          top: `${position.top - 135}px`,
+          top: `${position.top - 130}px`,
           transform: 'translate(-50%, -50%)',
         });
       }
@@ -71,6 +77,7 @@ const DaysGeneralStats = () => {
   return (
     <div className={s.modalOverlay} onClick={() => dispatch(closeModal())}>
       <div
+        id="modalId"
         style={modalStyle}
         className={s.modalContent}
         onClick={e => e.stopPropagation()}
