@@ -1,20 +1,34 @@
-import dayjs from 'dayjs';
+import moment from 'moment';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectIsOpenModal,
+  selectModalPosition,
+  selectModalData,
+  selectModalDate,
+} from '../../redux/calendar/calendarSelectors';
+import { closeModal } from '../../redux/calendar/calendarSlice';
 import s from './Calendar.module.css';
 
-const DateModal = ({ isVisible, onClose, selectedDate, data, position }) => {
+const DaysGeneralStats = () => {
+  const isVisible = useSelector(selectIsOpenModal);
+  const position = useSelector(selectModalPosition);
+  const data = useSelector(selectModalData);
+  const selectedDate = useSelector(selectModalDate);
+  const dispatch = useDispatch();
   const [modalStyle, setModalStyle] = useState({});
+
   useEffect(() => {
     const handleKeyDown = event => {
       if (event.keyCode === 27) {
-        onClose();
+        dispatch(closeModal());
       }
     };
     document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onClose]);
+  }, [dispatch]);
 
   useEffect(() => {
     if (isVisible) {
@@ -33,7 +47,7 @@ const DateModal = ({ isVisible, onClose, selectedDate, data, position }) => {
         setModalStyle({
           position: 'fixed',
           left: `${position.left - 115}px`,
-          top: `${position.top - 135}px`,
+          top: `${position.top - 100}px`,
           transform: 'translate(-50%, -50%)',
         });
       } else {
@@ -51,11 +65,11 @@ const DateModal = ({ isVisible, onClose, selectedDate, data, position }) => {
     return null;
   }
   const formattedDate = selectedDate
-    ? dayjs(selectedDate).format('D, MMMM')
+    ? moment(selectedDate).format('D, MMMM')
     : '';
 
   return (
-    <div className={s.modalOverlay} onClick={onClose}>
+    <div className={s.modalOverlay} onClick={() => dispatch(closeModal())}>
       <div
         style={modalStyle}
         className={s.modalContent}
@@ -66,11 +80,11 @@ const DateModal = ({ isVisible, onClose, selectedDate, data, position }) => {
           Daily norm: <span className={s.modalValueText}>{data.dailyNorm}</span>
         </div>
         <div>
-          Fulfilment of the daily norm:{' '}
+          Fulfilment of the daily norm:
           <span className={s.modalValueText}>{data.percent}</span>
         </div>
         <div>
-          How many servings of water:{' '}
+          How many servings of water:
           <span className={s.modalValueText}>{data.quantity}</span>
         </div>
       </div>
@@ -78,4 +92,4 @@ const DateModal = ({ isVisible, onClose, selectedDate, data, position }) => {
   );
 };
 
-export default DateModal;
+export default DaysGeneralStats;

@@ -5,24 +5,29 @@ export const PercentCellRender = (date, handleDateSelect, waterUsage) => {
   const current = moment(date);
   const formattedDate = current.format('D, MMMM');
 
-  const handleClick = e => {
-    e.stopPropagation();
-    handleDateSelect(e, current.toDate(), 'manual');
-  };
+  const matchingDate = waterUsage.find(entry => entry.date === formattedDate);
 
-  const matchingDate = waterUsage.filter(entry => entry.date === formattedDate);
-  const percent = matchingDate.length > 0 ? matchingDate[0].percent : 0;
-
-  if (percent) {
+  if (matchingDate) {
     return {
-      percent,
+      percent: matchingDate.percent,
+      dailyNorm: matchingDate.dailyNorm,
+      quantity: matchingDate.quantity,
       element: (
-        <div onClick={handleClick}>
-          <div className={s.dateText}>{percent}</div>
+        <div onClick={e => handleDateSelect(e, current.toDate(), 'manual')}>
+          <div className={s.dateText}>{matchingDate.percent}</div>
         </div>
       ),
     };
   } else {
-    return '0';
+    return {
+      percent: '0%',
+      dailyNorm: '0',
+      quantity: '0',
+      element: (
+        <div onClick={e => handleDateSelect(e, current.toDate(), 'manual')}>
+          <div className={s.dateText}>0%</div>
+        </div>
+      ),
+    };
   }
 };
