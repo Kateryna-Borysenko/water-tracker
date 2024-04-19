@@ -8,6 +8,8 @@ import Icons from '../Icons/Icons';
 import s from './ProgressBar.module.css';
 import Modal from '../common/Modal/Modal';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectInterestWaterToday } from '../../redux/water/watersSelectors';
 
 const currentValue = 50;
 const marks = {
@@ -18,6 +20,7 @@ const marks = {
 
 const ProgressBar = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const interestWaterToday = useSelector(selectInterestWaterToday);
 
   const handleCloseModal = () => {
     setIsOpenModal(false);
@@ -42,7 +45,7 @@ const ProgressBar = () => {
                 );
                 return acc;
               }, {})}
-              value={currentValue}
+              value={interestWaterToday}
             />
           </div>
 
