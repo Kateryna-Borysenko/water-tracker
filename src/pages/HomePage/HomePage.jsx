@@ -5,8 +5,21 @@ import Meta from '../../components/common/Meta/Meta';
 import bottle from '../../assets/static/image/bottle-home-screen-M-2x.png';
 import s from './HomePage.module.css';
 import ProgressBar from '../../components/ProgressBarHomePage/ProgressBar';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectWaterPortionsToday } from '../../redux/water/watersSelectors';
+import { useEffect } from 'react';
+import { apiGetWaterPortionToday } from '../../redux/water/watersOperations';
 
 const HomePage = () => {
+  const waterPortionsToday = useSelector(selectWaterPortionsToday);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(apiGetWaterPortionToday());
+  }, [dispatch]);
+
+  console.log(waterPortionsToday);
+
   return (
     <>
       <Meta title="Home Page" />
