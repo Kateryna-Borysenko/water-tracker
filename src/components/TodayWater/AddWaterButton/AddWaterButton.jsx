@@ -8,14 +8,14 @@ export const AddWaterButton = () => {
     const [isOpenModal, setIsOpenModal] = useState(false);
 
     const handleCloseModal = () => {
-        setIsOpenModal(false)
-    }
+        setIsOpenModal(prevState => !prevState);
+    };    
 
     return (
         <>
         <button  
             className={s.addWaterBtn} 
-            onClick={() => setIsOpenModal(true)}
+            onClick={() => setIsOpenModal(prevState => !prevState)}
         >
             <Icons id={'plus'} size={24} className={'iconPlus'} /> 
             Add water
