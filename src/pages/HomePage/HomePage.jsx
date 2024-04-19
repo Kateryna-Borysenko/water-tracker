@@ -1,4 +1,5 @@
 import Container from '../../components/common/Container/Container';
+import TodayWaterList from '../../components/TodayWater/TodayWaterList/TodayWaterList';
 import Calendar from '../../components/Calendar/Calendar';
 import Meta from '../../components/common/Meta/Meta';
 import bottle from '../../assets/static/image/bottle-home-screen-M-2x.png';
@@ -17,6 +18,7 @@ const HomePage = () => {
             </div>
             <ProgressBar />
             <div className={s.homePageWidgetWrapper}>
+              <TodayWaterList />
               <Calendar />
             </div>
           </div>
