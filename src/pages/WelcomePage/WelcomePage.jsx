@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import Container from '../../components/common/Container/Container';
 import MainTitle from '../../components/common/MainTitle/MainTitle';
 import Subtitle from '../../components/common/Subtitle/Subtitle';
@@ -11,8 +12,6 @@ import {
 } from '../../components/Item/itemArrays';
 
 import s from '../WelcomePage/WelcomePage.module.css';
-import { useNavigate } from 'react-router-dom';
-import MyDailyNorma from '../../components/MyDailyNorma/MyDailyNorma';
 
 const WelcomePage = () => {
   const navigate = useNavigate();
@@ -51,8 +50,6 @@ const WelcomePage = () => {
             <Item array={itemArrOptions} className="listItemOptions" />
           </div>
         </div>
-
-        <MyDailyNorma />
       </Container>
     </div>
   );

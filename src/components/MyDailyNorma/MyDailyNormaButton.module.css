@@ -1,0 +1,22 @@
+.buttonEdit {
+  padding: 12px;
+  font-size: 16px;
+  color: var(--secondary-blue);
+  border: none;
+  background-color: transparent;
+  transition: var(--transition);
+}
+
+.buttonEdit:hover,
+.buttonEdit:focus,
+.buttonEdit:hover svg {
+  font-weight: 500;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .buttonEdit {
+    font-size: 18px;
+    line-height: 1.3;
+  }
+}
