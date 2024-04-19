@@ -18,7 +18,7 @@ export const getMonthlyUsage = async date => {
   });
 
   return response.data;
-=======
+};
 export const addWaterPortion = async waterPortionsDetails => {
   const response = await waterPortionsInstance.post(
     WATER_ENDPOINT.WATER_PORTIONS,
