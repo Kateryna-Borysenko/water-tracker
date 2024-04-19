@@ -48,6 +48,12 @@ export const loginUser = createAsyncThunk(
         toast.error('Email is not verified');
       }
 
+      if (error.response.status === 404) {
+        toast.error(
+          error.response?.data?.message || 'Email or password invalid',
+        );
+      }
+
       if (error.response.status === 401) {
         toast.error(
           error.response?.data?.message || 'Email or password invalid',
