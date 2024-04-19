@@ -15,10 +15,10 @@ import LangsSwitcher from '../../components/LangsSwitcher/LangsSwitcher'
 import s from './AddAndEditWaterCard.module.css';
 
 const AddAndEditWaterCard = ({
-  isEditable = false,
+  isEditable,
   waterVolume = 120,
   initialTime = '6:24 PM',
-  id = '661c13d1990b4e425f6518e1',
+  id = '6622948073b047d00719f6ce',
 }) => {
   const [defaultTime, setDefaultTime] = useState(dayjs());
   const [time, setTime] = useState(() => initialTime);
@@ -33,7 +33,7 @@ const AddAndEditWaterCard = ({
     e.preventDefault();
     if (!water) return;
     const waterVolume = water.inputValue;
-    const date = dayjs(time, 'h:mm A').toISOString();
+    const date = dayjs(isEditable ? time : defaultTime, 'h:mm A').toISOString();
     const waterDetails = {
       waterVolume: waterVolume,
       date: date,
@@ -41,7 +41,7 @@ const AddAndEditWaterCard = ({
 
     console.log(waterDetails);
     setTokenwaterPortionsInstance(
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MWQ2MTE2NTkxNTE2ODFmNGVmZTgwNCIsImlhdCI6MTcxMzM1NjUzNiwiZXhwIjoxNzEzNDM5MzM2fQ.HxgQBn_6WSXblPd4c2iFYEBCuSImoTNx6HS7Km7tlB4',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MWQ2MTE2NTkxNTE2ODFmNGVmZTgwNCIsImlhdCI6MTcxMzU0MTgzNywiZXhwIjoxNzEzNjI0NjM3fQ.5sukrFMVUM8CRUgkzKLheUtQBtFtMEg_QARrnXmxoTg',
     );
     if (!isEditable) {
       dispatch(apiAddWaterPortion({ waterVolume, date }));
