@@ -16,6 +16,7 @@ import { useEffect } from 'react';
 import { refreshUser } from '../../redux/auth/authOperations';
 import Spinner from '../../components/common/Spinner/Spinner';
 
+
 const App = () => {
   const dispatch = useDispatch();
   const { refreshingStatus } = useAuth();
@@ -54,7 +55,7 @@ const App = () => {
             path="/home"
             element={
               <PrivatRoute>
-                <HomePage />
+              <HomePage />
               </PrivatRoute>
             }
           />

@@ -1,12 +1,20 @@
-import moment from 'moment';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useMemo } from 'react';
+import { prevMonth, nextMonth } from '../../redux/calendar/calendarSlice';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { PercentCellRender } from './PercentCellRender';
+import { apiGetMonthlyUsage } from '../../redux/calendar/calendarOperations';
+import {
+  selectCurrentDate,
+  selectMonthlyData,
+} from '../../redux/calendar/calendarSelectors';
 import s from './Calendar.module.css';
-import waterUsage from './waterUsage.json';
 
 const CustomCalendar = ({ onDateSelect }) => {
-  const [currentDate, setCurrentDate] = useState(moment());
+  const dispatch = useDispatch();
+  const currentDate = useSelector(selectCurrentDate);
+  const waterUsage = useSelector(selectMonthlyData);
+
   const startDay = currentDate.clone().startOf('month').startOf('day');
   const endDay = currentDate.clone().endOf('month').endOf('day');
   let date = startDay.clone().subtract(1, 'day');
@@ -16,16 +24,21 @@ const CustomCalendar = ({ onDateSelect }) => {
     days.push(date.add(1, 'day').clone());
   }
 
-  const prevMonth = () => {
-    setCurrentDate(prev => prev.clone().subtract(1, 'month'));
+  const formattedDate = useMemo(
+    () => currentDate.format('YYYY-MM-DD'),
+    [currentDate],
+  );
+
+  useEffect(() => {
+    dispatch(apiGetMonthlyUsage(formattedDate));
+  }, [dispatch, formattedDate]);
+
+  const handlePrevMonth = () => {
+    dispatch(prevMonth());
   };
 
-  const nextMonth = () => {
-    setCurrentDate(prev => prev.clone().add(1, 'month'));
-  };
-
-  const handleDaySelect = (e, day) => {
-    onDateSelect(e, day, 'manual');
+  const handleNextMonth = () => {
+    dispatch(nextMonth());
   };
 
   return (
@@ -33,20 +46,24 @@ const CustomCalendar = ({ onDateSelect }) => {
       <div className={s.calendar}>
         <h3 className={s.calendarHeaderMonth}>Month</h3>
         <div className={s.calendarHeaderNav}>
-          <LeftOutlined onClick={prevMonth} className={s.arrow} />
+          <LeftOutlined onClick={handlePrevMonth} className={s.arrow} />
           <span>{currentDate.format('MMMM, YYYY')}</span>
-          <RightOutlined onClick={nextMonth} className={s.arrow} />
+          <RightOutlined onClick={handleNextMonth} className={s.arrow} />
         </div>
       </div>
       <div className={s.tableCalendar}>
         {days.map(day => {
           const { percent, element } = PercentCellRender(
             day,
-            handleDaySelect,
+            onDateSelect,
             waterUsage,
           );
           return (
-            <div key={day.format('YYYY-MM-DD')} className={s.calendarCell}>
+            <div
+              key={day.format('YYYY-MM-DD')}
+              className={s.calendarCell}
+              onClick={e => onDateSelect(e, day)}
+            >
               <div
                 className={`${s.calendarDay} ${
                   percent && percent !== '100%' ? s.dayLessNorm : ''

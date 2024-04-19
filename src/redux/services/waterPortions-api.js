@@ -12,6 +12,13 @@ export const setTokenwaterPortionsInstance = token =>
 export const clearTokenwaterPortionsInstance = () =>
   (waterPortionsInstance.defaults.headers.common.Authorization = '');
 
+export const getMonthlyUsage = async date => {
+  const response = await waterPortionsInstance.get('/monthly-data', {
+    params: { date: date },
+  });
+
+  return response.data;
+};
 export const addWaterPortion = async waterPortionsDetails => {
   const response = await waterPortionsInstance.post(
     WATER_ENDPOINT.WATER_PORTIONS,
