@@ -20,20 +20,40 @@ export const apiUpdateUserData = async userData => {
   return data;
 };
 
-export const apiUpdateAvatar = async formData => {
-  setAuthorizationHeaders(
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MWZkMGVhZTE1MzNiOGM3YjgyMjlmNCIsImlhdCI6MTcxMzM3MTQ4NywiZXhwIjoxNzEzNDU0Mjg3fQ.x3NYHgEEgZZR44P1msITIWldJD2Nx14nPWABhA6hDic',
+export const apiUpdateAvatar = async file => {
+  // setAuthorizationHeaders(
+  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MWZkMGVhZTE1MzNiOGM3YjgyMjlmNCIsImlhdCI6MTcxMzQ2NTEzMiwiZXhwIjoxNzEzNTQ3OTMyfQ.gbc5EsfehqoUGfzOuMCv8-O5p24BhfU8dX31dvwIxcM',
+  // );
+  // const formData = new FormData();
+  // formData.append('avatar', file);
+  const { data } = await userInstance.patch(
+    'users/avatar',
+    { file },
+    // {
+    // headers: { 'Content-Type': 'multipart/form-data' },
+    // }
   );
-
-  const { data } = await userInstance.patch('/users/avatar', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      // Authorization: `Bearer ${token}`, //
-    },
-  });
-  console.log('DATA API', data); // не проходить запит бо req file undefined
-  return data;
+  return data.avatarURL;
 };
+
+// export const apiUpdateAvatar = async file => {
+//   setAuthorizationHeaders(
+//     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MWZkMGVhZTE1MzNiOGM3YjgyMjlmNCIsImlhdCI6MTcxMzQ2NTEzMiwiZXhwIjoxNzEzNTQ3OTMyfQ.gbc5EsfehqoUGfzOuMCv8-O5p24BhfU8dX31dvwIxcM',
+//   );
+
+//   const { data } = await userInstance.patch(
+//     '/users/avatar',
+//     { file },
+//     // {
+//     //   headers: {
+//     //     'Content-Type': 'multipart/form-data',
+//     //     // Authorization: `Bearer ${token}`, //
+//     //   },
+//     // }
+//   );
+//   console.log('DATA API', data); // не проходить запит бо req file undefined
+//   return data;
+// };
 
 // axios.patch('', fd, {
 //   onUploadProgress: () => {},

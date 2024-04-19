@@ -26,6 +26,8 @@ const SettingCard = () => {
   const token = useSelector(getToken); //-
   //   const isLoading = useSelector(selectUserDataIsLoading);
   //   const error = useSelector(selectUserDataError);
+  const fileInputRef = useRef();
+  const [file, setFile] = useState('');
 
   const {
     values,
@@ -43,7 +45,7 @@ const SettingCard = () => {
       // image: '',
       gender: user.gender || '',
       username: user.username || '',
-      email: user.email || '',
+      email: user.email,
       currentPassword: '',
       newPassword: '',
       repeatPassword: '',
@@ -55,24 +57,39 @@ const SettingCard = () => {
     }, //values ?
   });
 
+  // const setFileToBase = file => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onloadend = () => {
+  //     setFile(reader.result);
+  //   };
+  // };
+
   const onChange = e => {
+    // const file = e.target.files[0];
+    // setFileToBase(file);
+    // console.log(file, 'File from onChange');
+
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      const selected = files[0];
+      setFile(selected);
+    }
     let reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
+        // setFile(reader.result);
         // setFieldValue('image', reader.result); //формік
         // setAvatar(reader.result);
-        // dispatch(updateAvatar(reader.result))
-        //   .unwrap(toast.success('Your avatar were successfully added!'))
-        //   .catch(error =>
-        //     toast.error('Something went wrong. Please try again later!'),
-        //   );
+        dispatch(updateAvatar(reader.result))
+          .unwrap(toast.success('Your avatar were successfully added!'))
+          .catch(error =>
+            toast.error('Something went wrong. Please try again later!' + ' '),
+          );
       }
     };
-
     reader.readAsDataURL(e.target.files[0]);
   };
-
-  // const fileInputRef = useRef();
 
   // useEffect(() => {
   //   if (file) {
@@ -84,14 +101,46 @@ const SettingCard = () => {
   //   }
   // }, [file, dispatch]);
 
-  // const onSubmit = () => {
+  const onSubmit = async () => {
+    const {
+      gender,
+      username,
+      email,
+      currentPassword,
+      newPassword,
+      repeatPassword,
+    } = values;
 
-  // };
+    //!currentPassword = current === ''
+    // if (currentPassword === '' && newPassword === '' && repeatPassword === '') {
+    // if{}
+    //       await dispatch(updateUserInfoThunk({ gender, email, username })).unwrap(
+    //         toast.success(
+    //           'Your data were successfully updated!',
+    //           `${(gender, email, username)}`,
+    //         ),
+    //       );
 
-  const testEmail = 'qwe@gmai.com';
-  const testDefaultUserName = testEmail.split('@')[0];
+    // .unwrap(toast.success('Your avatar were successfully added!'))
+    //           .catch(error =>
+    //             toast.error('Something went wrong. Please try again later!' + ' '),
+    //           );
 
-  const defaultAvatarFirstLetter = user.email.split('')[0].toUpperCase();
+    //   resetForm({
+    //     password,
+    //     newPassword,
+    //   });
+
+    //   onClose();
+
+    //   toast.success(`${t('formUser.notification.success')}`);
+    // }
+  };
+
+  // const testEmail = 'qwe@gmai.com';
+  // const testDefaultUserName = testEmail.split('@')[0];
+
+  const defaultAvatarFirstLetter = user.email.split('')[0];
 
   return (
     <div className={s.container}>
@@ -114,12 +163,13 @@ const SettingCard = () => {
           <input
             name="file"
             accept="image/*"
-            // value={values.avatar}
+            //value=file
+            // value={URL.createObjectURL(file)}
             type="file"
             id="upload"
             className={s.visuallyHidden}
             onChange={onChange}
-            // ref={fileInputRef}
+            ref={fileInputRef}
           />
           <label htmlFor="upload" className={s.uploadingWrapper}>
             <UploadingIcon className={s.uploadingIcon} />

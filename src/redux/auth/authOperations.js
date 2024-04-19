@@ -111,16 +111,21 @@ export const refreshUser = createAsyncThunk(
 export const updateAvatar = createAsyncThunk(
   'auth/updateAvatar',
 
-  async (data, thunkApi) => {
+  async (file, thunkApi) => {
     //
-    const { file, token } = data;
-    try {
-      const formData = new FormData();
-      formData.append('avatarURL', file);
+    console.log(file);
 
-      console.log(formData.get('avatarURL'));
-      console.log(token);
-      const avatarURL = await apiUpdateAvatar(formData, token); //
+    try {
+      // const formData = new FormData();
+      // formData.append('avatarURL', file);
+
+      // console.log(formData.get('avatarURL'));
+      // console.log(token);
+      // const convertetBlob = URL.createObjectURL(file);
+      // console.log(convertetBlob);
+      console.log(file);
+      const avatarURL = await apiUpdateAvatar(file); //
+
       return avatarURL;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
