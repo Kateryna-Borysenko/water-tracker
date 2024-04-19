@@ -14,7 +14,11 @@ import {
   loginUser,
   resendVerificationEmail,
 } from '../../../redux/auth/authOperations';
-import { getLoading, getUser } from '../../../redux/auth/authSelectors';
+import {
+  getLoading,
+  getUser,
+  getEmailVerificationStatus,
+} from '../../../redux/auth/authSelectors';
 import Icons from '../../Icons/Icons';
 import s from './AuthForm.module.css';
 
@@ -33,19 +37,20 @@ const AuthForm = ({ type }) => {
   const loading = useSelector(getLoading);
   const user = useSelector(getUser);
   const email = user.email;
+  const emailVerificationStatus = useSelector(getEmailVerificationStatus);
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     const { email, password } = values;
 
     if (type === 'signup') {
-      const isSigup = await dispatch(registerUser({ email, password }));
-      if (isSigup.error) return;
+      const isSignup = await dispatch(registerUser({ email, password }));
+      if (isSignup.error) return;
       navigate('/signin');
     }
 
     if (type === 'signin') {
-      const isLoged = await dispatch(loginUser({ email, password }));
-      if (isLoged.error) return;
+      const isLogged = await dispatch(loginUser({ email, password }));
+      if (isLogged.error) return;
       navigate('/home');
     }
 
@@ -167,7 +172,7 @@ const AuthForm = ({ type }) => {
           <div className={s.link}>
             <Link to="/signup">Sign Up</Link>
           </div>
-          {email && (
+          {email && emailVerificationStatus === false && (
             <div className={s.resendEmailMassage}>
               No confirmation email?
               <button

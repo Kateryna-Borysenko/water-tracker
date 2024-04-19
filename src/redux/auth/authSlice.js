@@ -16,6 +16,7 @@ const initialState = {
   user: {
     username: null,
     email: null,
+    verify: false,
     avatarURL: null,
     gender: null,
     waterRate: null,
@@ -30,9 +31,7 @@ const initialState = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    //Todo: checking expirationTime
-  },
+  reducers: {},
   extraReducers: builder => {
     builder
 
@@ -43,6 +42,7 @@ export const authSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, { payload }) => {
         state.user.email = payload.email;
+        state.user.verify = payload.verify;
         state.loading = false;
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
