@@ -22,7 +22,7 @@ import {
 
 const initialWaterPortions = {
   waterPortionsToday: [],
-  interestWaterToday: null,
+  interestWaterToday: 0,
   isLoading: false,
   error: null,
 };
