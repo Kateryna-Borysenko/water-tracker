@@ -8,6 +8,12 @@
   margin: 0 auto;
   box-sizing: border-box;
 }
+.logoLngsWrap {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 20px;
+}
 
 @media screen and (min-width: 768px) {
   .header {

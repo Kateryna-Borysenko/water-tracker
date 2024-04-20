@@ -5,10 +5,9 @@
     "logoutCardTitle": "Log out",
     "logoutCardDescription": "Log out",
     "cancelButton": "Скасувати",
-    "deleteButton": "Bидалити",
+    "deleteButton": "Bидaлити",
     "logoutButton": "Вийти"
   },
-
   "WelcomePage": {
     "mainTitle": "Трекер вживання води",
     "slogan": "Фіксуйте щоденне споживання води та ведіть його облік",
@@ -28,6 +27,16 @@
       "option5": "Зберігає стабільний стан організму",
       "option6": "Підтримує нормальну температуру тіла",
       "option7": "Забезпечує спроможність імунної системи боротьбі з хворобами"
+    },
+    "authForm": {
+      "signinTitle": "Персональний вхід",
+      "signupTitle": "Реєстрація нового користувача",
+      "email": "Введіть свою електронну пошту",
+      "password": "Введіть ваш пароль",
+      "emailPlaceholder": "Ємейл",
+      "passPlaceholder": "Пароль",
+      "signinBtnTitle": "Увійти",
+      "signupBtnTitle": "Зареєструватися"
     }
   }
 }

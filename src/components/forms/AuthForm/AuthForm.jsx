@@ -21,8 +21,11 @@ import {
 } from '../../../redux/auth/authSelectors';
 import Icons from '../../Icons/Icons';
 import s from './AuthForm.module.css';
+import { useTranslation } from 'react-i18next';
 
 const AuthForm = ({ type }) => {
+  const { t } = useTranslation();
+
   const initialValues = {
     email: '',
     password: '',
@@ -73,7 +76,11 @@ const AuthForm = ({ type }) => {
   return (
     <div className={s.container}>
       <Title
-        title={type === 'signup' ? 'Sign Up' : 'Sign In'}
+        title={
+          type === 'signup'
+            ? t('authForm.signupTitle')
+            : t('authForm.signinTitle')
+        }
         className="authForm"
       />
       <Formik

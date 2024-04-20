@@ -8,6 +8,7 @@
     "deleteButton": "Delete",
     "logoutButton": "Log out"
   },
+<<<<<<< Updated upstream
 
   "WelcomePage": {
     "mainTitle": "Water consumption tracker",
@@ -29,5 +30,16 @@
       "option6": "Maintaining within the normal temperature",
       "option7": "Maintaining an immune system capable of resisting disease"
     }
+=======
+  "authForm": {
+    "signinTitle": "Sign In",
+    "signupTitle": "Sign Up",
+    "email": "Enter your email",
+    "password": "Enter your password",
+    "emailPlaceholder": "E-mail",
+    "passPlaceholder": "Password",
+    "signinBtnTitle": "Sign In",
+    "signupBtnTitle": "Sign Up"
+>>>>>>> Stashed changes
   }
 }
