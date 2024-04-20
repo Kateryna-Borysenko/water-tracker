@@ -40,7 +40,7 @@ export const editWaterPortion = async ({ waterVolume, date, id }) => {
 };
 
 export const deleteWaterPortion = async ({ id }) => {
-  const response = await waterPortionsInstance.put(
+  const response = await waterPortionsInstance.delete(
     `${WATER_ENDPOINT.WATER_PORTIONS}/${id}`,
   );
   return response;

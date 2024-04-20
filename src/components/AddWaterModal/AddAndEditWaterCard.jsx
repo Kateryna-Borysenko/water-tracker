@@ -27,6 +27,7 @@ const AddAndEditWaterCard = ({ isEditable, waterVolume, initialTime, id }) => {
     e.preventDefault();
     if (!water) return;
     const waterVolume = water.inputValue;
+    console.log(waterVolume);
     const date = dayjs(isEditable ? time : defaultTime, 'h:mm A').toISOString();
     if (!isEditable) {
       dispatch(apiAddWaterPortion({ waterVolume, date }));
