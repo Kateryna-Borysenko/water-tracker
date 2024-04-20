@@ -162,15 +162,20 @@ const AuthForm = ({ type }) => {
       </Formik>
 
       {type === 'signup' && (
-        <div className={s.link}>
-          <Link to="/signin">Sign In</Link>
-        </div>
+        <Link className={s.link} to="/signin">
+          Sign In
+        </Link>
       )}
 
       {type === 'signin' && (
         <div>
-          <div className={s.link}>
-            <Link to="/signup">Sign Up</Link>
+          <div className={s.linkContainer}>
+            <Link className={s.link} to="/signup">
+              Sign Up
+            </Link>
+            <Link className={s.password} to="/new-password/email">
+              Forgot your Password?
+            </Link>
           </div>
           {email && emailVerificationStatus === false && (
             <div className={s.resendEmailMassage}>
