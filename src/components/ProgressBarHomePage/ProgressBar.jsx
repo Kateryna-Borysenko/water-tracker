@@ -21,7 +21,7 @@ const marks = {
 
 const ProgressBar = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
-  // const interestWaterToday = useSelector(selectInterestWaterToday);
+  const interestWaterToday = useSelector(selectInterestWaterToday);
 
   const handleCloseModal = () => {
     setIsOpenModal(false);
@@ -46,7 +46,7 @@ const ProgressBar = () => {
                 );
                 return acc;
               }, {})}
-              onChange={50}
+              value={interestWaterToday}
             />
           </div>
 
