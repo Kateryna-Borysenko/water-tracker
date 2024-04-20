@@ -10,16 +10,12 @@ import { useEffect } from 'react';
 import { apiGetWaterPortionToday } from '../../redux/water/watersOperations';
 import s from './HomePage.module.css';
 
-
 const HomePage = () => {
-  const waterPortionsToday = useSelector(selectWaterPortionsToday);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(apiGetWaterPortionToday());
   }, [dispatch]);
-
-  console.log(waterPortionsToday);
 
   return (
     <>

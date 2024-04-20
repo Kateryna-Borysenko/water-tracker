@@ -6,6 +6,7 @@ import {
   setTokenAuthInstance,
   clearTokenAuthInstance,
   refreshUser,
+  sentWaterRate,
 } from './authOperations';
 import {
   clearTokenwaterPortionsInstance,
@@ -97,6 +98,20 @@ export const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+      })
+      // ************** waterRate  ************** //
+      .addCase(sentWaterRate.pending, state => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(sentWaterRate.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.isLoggedIn = true;
+        state.waterRate = payload;
+      })
+      .addCase(sentWaterRate.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.loading = false;
       });
   },
 });

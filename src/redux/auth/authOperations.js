@@ -148,3 +148,19 @@ export const sentNewPassword = createAsyncThunk(
     }
   },
 );
+
+export const sentWaterRate = createAsyncThunk(
+  'auth/sentWaterRate',
+  async (waterDailyNorma, ThunkAPI) => {
+    try {
+      const { data } = await axios.putch(
+        AUTH_ENDPOINT.WATER_RATE,
+        waterDailyNorma,
+      );
+      toast.success(data.message);
+      return;
+    } catch (error) {
+      return ThunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
