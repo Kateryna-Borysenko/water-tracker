@@ -29,5 +29,17 @@
       "option6": "Maintaining within the normal temperature",
       "option7": "Maintaining an immune system capable of resisting disease"
     }
+  },
+
+  "AddAndEditWaterCard": {
+    "titleEdit": "Edit the entered amount of water",
+    "subtitleEdit": "Correct entered data:",
+    "titleAdd": "Add water",
+    "subtitleAdd": "Choose a value:",
+    "amountOfWater": "Amount of water:",
+    "recordingTime": "Recording time:",
+    "enterTheValue": "Enter the value of the water used:",
+    "saveButton": "Save",
+    "ml": "ml"
   }
 }
