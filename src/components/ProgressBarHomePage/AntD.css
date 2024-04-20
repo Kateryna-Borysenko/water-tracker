@@ -87,6 +87,7 @@
 
 .ant-slider .ant-slider-mark-text {
   cursor: auto;
+  color: var(--toastify-color-success);
 }
 
 .ant-slider .ant-slider-mark-text .custom {
