@@ -20,21 +20,22 @@ const UserLogo = () => {
   };
 
   return (
-    <div onClick={handleOpenPopup} className={s.container}>
-      <p className={s.name}>{username ? username : defaultUserName}</p>
+    <div style={{ position: 'relative' }}>
+      <div className={s.container} onClick={handleOpenPopup}>
+        <p className={s.name}>{username ? username : defaultUserName}</p>
 
-      {avatarURL ? (
-        <div className={s.avatarWrap}>
-          <img className={s.avatar} src={avatarURL} alt="User avatar" />
-        </div>
-      ) : (
-        <div className={s.avatarWrap}>
-          {username ? username[0] : defaultUserName[0]}
-        </div>
-      )}
+        {avatarURL ? (
+          <div className={s.avatarWrap}>
+            <img className={s.avatar} src={avatarURL} alt="User avatar" />
+          </div>
+        ) : (
+          <div className={s.avatarWrap}>
+            {username ? username[0] : defaultUserName[0]}
+          </div>
+        )}
 
-      <Icons id={'down-arrow'} fill={'#407bff'} />
-
+        <Icons id={'down-arrow'} fill={'#407bff'} />
+      </div>
       {isPopupOpen && <UserLogoModal handleClosePopup={handleOpenPopup} />}
     </div>
   );

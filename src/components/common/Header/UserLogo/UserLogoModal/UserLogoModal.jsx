@@ -11,12 +11,12 @@ const UserLogoModal = ({ handleClosePopup }) => {
   const dispatch = useDispatch();
 
   const handleOpenModal = e => {
-    e.stopPropagation();
     setIsModalOpen(prevState => !prevState);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    handleClosePopup();
   };
 
   const handleLogoutUser = () => {
@@ -46,6 +46,7 @@ const UserLogoModal = ({ handleClosePopup }) => {
               secondButton="Log out"
               className="aligneRight"
               onClick={handleLogoutUser}
+              onClickSecondBtn={handleCloseModal}
             />
           </Modal>
         )}
