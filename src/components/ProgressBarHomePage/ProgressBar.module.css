@@ -1,3 +1,7 @@
+.blockProgresBar {
+  padding-bottom: 40px;
+}
+
 .textProgresBar {
   color: var(--toastify-color-success);
   font-size: 18px;
@@ -24,6 +28,7 @@
     justify-content: center;
     align-items: center;
     gap: 31px;
+    padding-bottom: 0;
   }
   .textProgresBar {
     margin-bottom: 19px;
