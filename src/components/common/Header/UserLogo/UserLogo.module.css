@@ -3,6 +3,13 @@
   align-items: center;
   cursor: pointer;
   caret-color: transparent;
+  transition: var(--transition);
+}
+
+.container:hover,
+.container:focus {
+  scale: 1.02;
+  text-shadow: 4px 4px 1px rgba(0, 0, 0, 0.25);
 }
 
 .name {
@@ -12,7 +19,6 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 125%;
-
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -28,7 +34,6 @@
   border-radius: 50%;
   background-color: var(--secondary-blue);
   color: var(--primary-white);
-
   font-size: 20px;
 }
 
@@ -56,6 +61,7 @@
     max-width: 90px;
   }
 }
+
 @media screen and (min-width: 400px) and (max-width: 768px) {
   .name {
     max-width: 110px;
