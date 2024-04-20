@@ -4,9 +4,23 @@ import TodayWaterList from '../../components/TodayWater/TodayWaterList/TodayWate
 import Calendar from '../../components/Calendar/Calendar';
 import Meta from '../../components/common/Meta/Meta';
 import ProgressBar from '../../components/ProgressBarHomePage/ProgressBar';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectWaterPortionsToday } from '../../redux/water/watersSelectors';
+import { useEffect } from 'react';
+import { apiGetWaterPortionToday } from '../../redux/water/watersOperations';
 import s from './HomePage.module.css';
 
+
 const HomePage = () => {
+  const waterPortionsToday = useSelector(selectWaterPortionsToday);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(apiGetWaterPortionToday());
+  }, [dispatch]);
+
+  console.log(waterPortionsToday);
+
   return (
     <>
       <Meta title="Home Page" />

@@ -19,6 +19,15 @@ export const getMonthlyUsage = async date => {
 
   return response.data;
 };
+
+export const getWaterPortionToday = async () => {
+  const response = await waterPortionsInstance.get(
+    WATER_ENDPOINT.WATER_PORTIONS_TODAY,
+  );
+
+  return response;
+};
+
 export const addWaterPortion = async waterPortionsDetails => {
   const response = await waterPortionsInstance.post(
     WATER_ENDPOINT.WATER_PORTIONS,

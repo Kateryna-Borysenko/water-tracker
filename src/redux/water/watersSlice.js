@@ -3,8 +3,12 @@ import {
   apiAddWaterPortion,
   apiEditWaterPortion,
   apiDeleteWaterPortion,
+  apiGetWaterPortionToday,
 } from './watersOperations';
 import {
+  handlePendingGet,
+  handleFulfilledGet,
+  handleRejectedGet,
   handleFulfilledAdd,
   handleRejectedAdd,
   handlePendingAdd,
@@ -18,6 +22,7 @@ import {
 
 const initialWaterPortions = {
   waterPortionsToday: [],
+  interestWaterToday: null,
   isLoading: false,
   error: null,
 };
@@ -28,6 +33,10 @@ export const waterPortionsSlice = createSlice({
 
   extraReducers: builder =>
     builder
+      // ============= GET WaterPortion Today ===============
+      .addCase(apiGetWaterPortionToday.pending, handlePendingGet)
+      .addCase(apiGetWaterPortionToday.fulfilled, handleFulfilledGet)
+      .addCase(apiGetWaterPortionToday.rejected, handleRejectedGet)
       // ============= ADD WaterPortion ===============
       .addCase(apiAddWaterPortion.pending, handlePendingAdd)
       .addCase(apiAddWaterPortion.fulfilled, handleFulfilledAdd)

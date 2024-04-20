@@ -1,3 +1,21 @@
+// ============= GET WaterPortion Today ===============
+export const handlePendingGet = state => {
+  state.isLoading = true;
+  state.error = null;
+};
+
+export const handleFulfilledGet = (state, action) => {
+  state.isLoading = false;
+  state.error = null;
+  state.waterPortionsToday = action.payload;
+  state.interestWaterToday = action.payload.interest;
+};
+
+export const handleRejectedGet = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = payload;
+};
+
 // ============= ADD WaterPortion ===============
 export const handlePendingAdd = state => {
   state.isLoading = true;

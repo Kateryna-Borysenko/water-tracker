@@ -3,7 +3,20 @@ import {
   addWaterPortion,
   editWaterPortion,
   deleteWaterPortion,
+  getWaterPortionToday,
 } from '../services/waterPortions-api';
+
+export const apiGetWaterPortionToday = createAsyncThunk(
+  'waterPortions/apiGetWaterPortionToday',
+  async (_, thankApi) => {
+    try {
+      const response = await getWaterPortionToday();
+      return response.data;
+    } catch (error) {
+      return thankApi.rejectWithValue(error.message);
+    }
+  },
+);
 
 export const apiAddWaterPortion = createAsyncThunk(
   'waterPortions/apiAddWaterPortion',
