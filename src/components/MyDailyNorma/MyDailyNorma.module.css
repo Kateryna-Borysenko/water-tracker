@@ -1,0 +1,44 @@
+.dailyNormaContainer {
+  position: absolute;
+  top: 52px;
+  left: 0;
+  width: 164px;
+  background: var(--primary-white);
+  border-radius: 10px;
+  padding: 8px 20px;
+  box-shadow: var(--box-shadow);
+}
+
+.dailyNormaTitle {
+  margin-bottom: 12px;
+  font-size: 18px;
+  color: var(--primary-charcoal-gray);
+}
+
+.normaValue {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+  padding: 0;
+}
+
+.normaValue span {
+  font-size: 24px;
+  color: var(--primary-sky-blue);
+  font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  .normaValue span {
+    font-size: 22px;
+  }
+}
+
+.editButton {
+  padding: 12px;
+  font-size: 16px;
+  color: var(--secondary-blue);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
