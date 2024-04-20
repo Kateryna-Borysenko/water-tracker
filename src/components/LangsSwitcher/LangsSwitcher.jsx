@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import ukrainianFlagIcon from '../../assets/static/images/ukrainian-flag.png';
-import americanFlagIcon from '../../assets/static/images/american-flag.png';
+import ukrainianFlagIcon from '../../assets/static/image/ukrainian-flag.png'
+import americanFlagIcon from '../../assets/static/image/american-flag.png';
 import s from './LangsSwitcher.module.css';
 
 const languages = {

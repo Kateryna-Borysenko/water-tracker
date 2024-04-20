@@ -4,6 +4,7 @@ import './AntD.css';
 import Container from '../common/Container/Container';
 import Button from '../../uikit/Button/Button';
 import Icons from '../Icons/Icons';
+import AddAndEditWaterCard from '../AddWaterModal/AddAndEditWaterCard';
 
 import s from './ProgressBar.module.css';
 import Modal from '../common/Modal/Modal';
@@ -60,7 +61,11 @@ const ProgressBar = () => {
           </Button>
         </div>
       </Container>
-      {isOpenModal && <Modal onClose={handleCloseModal}></Modal>}
+      {isOpenModal && (
+        <Modal onClose={handleCloseModal}>
+          <AddAndEditWaterCard />
+        </Modal>
+      )}
     </>
   );
 };

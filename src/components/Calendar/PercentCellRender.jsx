@@ -13,7 +13,7 @@ export const PercentCellRender = (date, handleDateSelect, waterUsage) => {
       dailyNorm: matchingDate.dailyNorm,
       quantity: matchingDate.quantity,
       element: (
-        <div onClick={e => handleDateSelect(e, current.toDate(), 'manual')}>
+        <div>
           <div className={s.dateText}>{matchingDate.percent}</div>
         </div>
       ),
@@ -24,7 +24,7 @@ export const PercentCellRender = (date, handleDateSelect, waterUsage) => {
       dailyNorm: '0',
       quantity: '0',
       element: (
-        <div onClick={e => handleDateSelect(e, current.toDate(), 'manual')}>
+        <div>
           <div className={s.dateText}>0%</div>
         </div>
       ),

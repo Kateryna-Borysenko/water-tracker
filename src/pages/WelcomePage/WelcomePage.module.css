@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  height: calc(100vh - 68px);
+  height: 100%;
 }
 
 .contentContainer {
@@ -38,8 +38,8 @@
 @media screen and (max-width: 768px) {
   .container {
     background-image: url(../../assets/static/image/bg-main-page-S.png);
-    background-repeat: no-repeat, no-repeat;
-    background-size: 100% 800px;
+    background-repeat: no-repeat;
+    background-size: 100%;
     background-position: center bottom;
   }
 
@@ -55,7 +55,7 @@
 @media screen and (min-width: 768px) {
   .container {
     background-image: url(../../assets/static/image/bg-main-page-M.png);
-    background-repeat: no-repeat, no-repeat;
+    background-repeat: no-repeat;
     background-size: 100%;
     background-position: center bottom;
     width: 100%;
@@ -73,10 +73,6 @@
     padding: 32px 24px;
     max-width: 439px;
     max-height: 332px;
-  }
-
-  .containerWelcomePage {
-    justify-content: flex-start;
   }
 
   .contentContainer {
