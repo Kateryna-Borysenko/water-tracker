@@ -13,27 +13,34 @@ export const setAuthorizationHeaders = token => {
 };
 
 export const apiUpdateUserData = async userData => {
+  setAuthorizationHeaders(
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MjJlZWUxZWIwZWM3ZDk3NWNmOWVhOSIsImlhdCI6MTcxMzYyODQ2MywiZXhwIjoxNzEzNzExMjYzfQ.mYJs1sYK3WRy5gfX2NT70Yi9gH9Y9ZNU-gfIrJsRO_U',
+  );
   const { data } = await userInstance.put('/users/update', {
     ...userData,
   });
+  console.log(data, 'DATA'); //{user:{ username, ...} }
 
   return data;
 };
 
 export const apiUpdateAvatar = async file => {
-  // setAuthorizationHeaders(
-  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MWZkMGVhZTE1MzNiOGM3YjgyMjlmNCIsImlhdCI6MTcxMzQ2NTEzMiwiZXhwIjoxNzEzNTQ3OTMyfQ.gbc5EsfehqoUGfzOuMCv8-O5p24BhfU8dX31dvwIxcM',
-  // );
-  // const formData = new FormData();
-  // formData.append('avatar', file);
-  const { data } = await userInstance.patch(
-    'users/avatar',
-    { file },
-    // {
-    // headers: { 'Content-Type': 'multipart/form-data' },
-    // }
+  setAuthorizationHeaders(
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MjJlZWUxZWIwZWM3ZDk3NWNmOWVhOSIsImlhdCI6MTcxMzYyODQ2MywiZXhwIjoxNzEzNzExMjYzfQ.mYJs1sYK3WRy5gfX2NT70Yi9gH9Y9ZNU-gfIrJsRO_U',
   );
-  return data.avatarURL;
+  const formData = new FormData();
+  formData.append('avatar', file);
+
+  // console.log(formData.get('avatar')); //+
+
+  const { data } = await userInstance.patch('users/avatar', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+
+  console.log(data, 'api'); //-
+  return data;
+
+  // return data.avatarURL;
 };
 
 // export const apiUpdateAvatar = async file => {

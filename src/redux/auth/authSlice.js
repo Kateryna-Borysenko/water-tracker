@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
   registerUser,
   loginUser,
@@ -6,6 +6,8 @@ import {
   setTokenAuthInstance,
   clearTokenAuthInstance,
   refreshUser,
+  updateAvatar,
+  updateUserData,
 } from './authOperations';
 import {
   clearTokenwaterPortionsInstance,
@@ -85,35 +87,38 @@ export const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
-      });
+      })
 
-    // ************** LOGOUT  ************** //
+      // ************** LOGOUT  ************** //
 
-    // -------------UPDATE USER DATA   ------------- //
-    // .addCase(updateUserData.fulfilled, (state, action) => {
-    //   state.loading = false;
-    //   state.user = { ...state.user, ...action.payload }; //
-    // })
+      // -------------UPDATE USER DATA   ------------- //
+      .addCase(updateUserData.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = { ...state.user, ...action.payload }; //
+        console.log(state.user); //+
+      })
 
-    // ------------- AVATAR   ------------- //
-    // .addCase(updateAvatar.fulfilled, (state, action) => {
-    //   state.loading = false;
-    //   state.user.avatarURL = action.payload;
-    // })
-    // //
-    // .addMatcher(
-    //   isAnyOf(updateAvatar.pending, updateUserData.pending),
-    //   state => {
-    //     state.loading = true;
-    //     state.error = null;
-    //   },
-    // )
-    // .addMatcher(
-    //   isAnyOf(updateAvatar.rejected, updateUserData.rejected),
-    //   (state, action) => {
-    //     state.loading = false;
-    //     state.error = action.payload;
-    //   },
-    // );
+      // ------------- AVATAR   ------------- //
+      .addCase(updateAvatar.fulfilled, (state, action) => {
+        state.loading = false;
+
+        state.user.avatarURL = action.payload; //
+        console.log(state.user.avatarURL, 'PAYLOAD');
+      })
+
+      .addMatcher(
+        isAnyOf(updateAvatar.pending, updateUserData.pending),
+        state => {
+          state.loading = true;
+          state.error = null;
+        },
+      )
+      .addMatcher(
+        isAnyOf(updateAvatar.rejected, updateUserData.rejected),
+        (state, action) => {
+          state.loading = false;
+          state.error = action.payload;
+        },
+      );
   },
 });

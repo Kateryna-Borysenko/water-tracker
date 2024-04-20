@@ -113,19 +113,19 @@ export const updateAvatar = createAsyncThunk(
 
   async (file, thunkApi) => {
     //
-    console.log(file);
+    console.log(file, 'FILE'); //+
 
     try {
       // const formData = new FormData();
       // formData.append('avatarURL', file);
 
       // console.log(formData.get('avatarURL'));
-      // console.log(token);
+
       // const convertetBlob = URL.createObjectURL(file);
       // console.log(convertetBlob);
-      console.log(file);
-      const avatarURL = await apiUpdateAvatar(file); //
 
+      const avatarURL = await apiUpdateAvatar(file); //
+      console.log(avatarURL, 'thunk'); //-
       return avatarURL;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -135,10 +135,11 @@ export const updateAvatar = createAsyncThunk(
 
 export const updateUserData = createAsyncThunk(
   'auth/updateUserData',
-  async (_, thunkApi) => {
+  async (userData, thunkApi) => {
     try {
-      await apiUpdateUserData();
-      return;
+      const { user } = await apiUpdateUserData(userData);
+      console.log(user, 'DATA OPERATION');
+      return user; //
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

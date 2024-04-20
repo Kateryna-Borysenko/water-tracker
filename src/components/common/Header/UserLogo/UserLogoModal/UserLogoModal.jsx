@@ -18,6 +18,7 @@ const UserLogoModal = () => {
       ? setIsLogoutModalOpen(false)
       : setIsLogoutModalOpen(true);
   };
+
   const toggleSettingModal = () => {
     isSettingModalOpen
       ? setIsSettingModalOpen(false)
@@ -26,6 +27,10 @@ const UserLogoModal = () => {
 
   const handleLogoutUser = () => {
     dispatch(logoutUser());
+  };
+
+  const onClose = () => {
+    setIsSettingModalOpen(false);
   };
 
   return (
@@ -42,8 +47,7 @@ const UserLogoModal = () => {
           <Icons id={'logout'} />
           Log out
         </button>
-
-        {isLogoutModalOpen && !isSettingModalOpen && (
+        {isLogoutModalOpen && (
           <Modal onClose={toggleLogoutModal}>
             <ManagementCard
               title="Log out"
@@ -55,9 +59,9 @@ const UserLogoModal = () => {
           </Modal>
         )}
 
-        {isSettingModalOpen && !isLogoutModalOpen && (
-          <Modal className="setting-card" onClose={toggleSettingModal}>
-            <SettingCard />
+        {isSettingModalOpen && (
+          <Modal className="setting-card" onClose={onClose}>
+            <SettingCard onClose={onClose} />
           </Modal>
         )}
       </li>

@@ -17,13 +17,15 @@ import UploadingIcon from '../../assets/static/icons/uploading-2.svg?react'; //
 
 import s from './SettingCard.module.css';
 
-const SettingCard = () => {
+const SettingCard = ({ onClose }) => {
+  const [submitted, setSubmitted] = useState(false);
+  const [isOpen, setIsOpen] = useState(true); //-
+
   // const [avatar, setAvatar] = useState('');
   const dispatch = useDispatch();
   // const avatar = useSelector(selectUpdateAvatar);
-  const avatar = false;
+  // const avatar = false;
   const user = useSelector(selectUpdateUserData);
-  const token = useSelector(getToken); //-
   //   const isLoading = useSelector(selectUserDataIsLoading);
   //   const error = useSelector(selectUserDataError);
   const fileInputRef = useRef();
@@ -40,6 +42,7 @@ const SettingCard = () => {
     isValid,
     dirty,
     setFieldValue,
+    setSubmitting,
   } = useFormik({
     initialValues: {
       // image: '',
@@ -50,11 +53,80 @@ const SettingCard = () => {
       newPassword: '',
       repeatPassword: '',
     },
+    //() =>
     validationSchema: settingFormValidationSchema,
-    onSubmit: ({ setSubmitting }) => {
-      console.log(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, //values ?
+    onSubmit: () => {
+      // console.log(JSON.stringify(values, null, 2));
+      // setSubmitting(false);
+
+      if (
+        values.newPassword !== '' &&
+        values.currentPassword === '' &&
+        values.repeatPassword === ''
+      ) {
+        toast.error('Outdated and repeat passwords are required');
+        return;
+      }
+      if (
+        values.currentPassword !== '' &&
+        values.newPassword === '' &&
+        values.repeatPassword === ''
+      ) {
+        toast.error('New and repeat password are required');
+
+        return;
+      }
+      if (values.currentPassword !== '' && values.newPassword === '') {
+        toast.error('New password is required');
+
+        return;
+      }
+
+      if (values.currentPassword === '' && values.newPassword !== '') {
+        toast.error('Outdated password is required');
+
+        return;
+      }
+      if (
+        values.currentPassword !== '' &&
+        values.newPassword !== '' &&
+        repeatPassword === ''
+      ) {
+        toast.error('Repeat password is required');
+
+        return;
+      }
+      const body = {};
+
+      if (values.gender !== user.gender) {
+        body.gender = values.gender;
+      }
+      if (values.username !== user.username) body.username = values.username;
+      if (values.email !== user.email) body.email = values.email;
+      if (values.currentPassword) body.password = values.currentPassword;
+      if (values.newPassword) body.newPassword = values.newPassword;
+
+      if (Object.keys(body).length === 0) {
+        toast.error('Please fill at least one field');
+      } else {
+        dispatch(updateUserData(body))
+          .unwrap(
+            toast.success('Your data were successfully updated!'),
+            //   resetForm({
+            //     password,
+            //     newPassword,
+            //   });
+            // ?
+            onClose(),
+            // toast.success('Your data were successfully updated!'),
+          )
+          .catch(error => {
+            toast.error('Something went wrong. Please try again later!' + ' ');
+          });
+      }
+      // console.log(isSubmitting, isValid, dirty); //true true true ?
+      //disabled кнопка після 1го запиту
+    },
   });
 
   // const setFileToBase = file => {
@@ -75,72 +147,37 @@ const SettingCard = () => {
       const selected = files[0];
       setFile(selected);
     }
-    let reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        // setFile(reader.result);
-        // setFieldValue('image', reader.result); //формік
-        // setAvatar(reader.result);
-        dispatch(updateAvatar(reader.result))
-          .unwrap(toast.success('Your avatar were successfully added!'))
-          .catch(error =>
-            toast.error('Something went wrong. Please try again later!' + ' '),
-          );
-      }
-    };
-    reader.readAsDataURL(e.target.files[0]);
-  };
-
-  // useEffect(() => {
-  //   if (file) {
-  //     dispatch(updateAvatar(file));
-
-  //     if (fileInputRef.current) {
-  //       fileInputRef.current.value = '';
-  //     }
-  //   }
-  // }, [file, dispatch]);
-
-  const onSubmit = async () => {
-    const {
-      gender,
-      username,
-      email,
-      currentPassword,
-      newPassword,
-      repeatPassword,
-    } = values;
-
-    //!currentPassword = current === ''
-    // if (currentPassword === '' && newPassword === '' && repeatPassword === '') {
-    // if{}
-    //       await dispatch(updateUserInfoThunk({ gender, email, username })).unwrap(
-    //         toast.success(
-    //           'Your data were successfully updated!',
-    //           `${(gender, email, username)}`,
-    //         ),
+    // let reader = new FileReader();
+    // reader.onload = () => {
+    //   if (reader.readyState === 2) {
+    //     // setFile(reader.result);
+    //     // setFieldValue('image', reader.result); //формік
+    //     // setAvatar(reader.result);
+    //     dispatch(updateAvatar(reader.result))
+    //       .unwrap(toast.success('Your avatar were successfully added!'))
+    //       //закрити форму по успіху як??
+    //       .catch(error =>
+    //         toast.error('Something went wrong. Please try again later!' + ' '),
     //       );
-
-    // .unwrap(toast.success('Your avatar were successfully added!'))
-    //           .catch(error =>
-    //             toast.error('Something went wrong. Please try again later!' + ' '),
-    //           );
-
-    //   resetForm({
-    //     password,
-    //     newPassword,
-    //   });
-
-    //   onClose();
-
-    //   toast.success(`${t('formUser.notification.success')}`);
-    // }
+    //   }
+    // };
+    // reader.readAsDataURL(e.target.files[0]);
   };
+
+  useEffect(() => {
+    if (file) {
+      dispatch(updateAvatar(file));
+
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    }
+  }, [file, dispatch]);
 
   // const testEmail = 'qwe@gmai.com';
   // const testDefaultUserName = testEmail.split('@')[0];
 
-  const defaultAvatarFirstLetter = user.email.split('')[0];
+  const defaultAvatarFirstLetter = user.email.split('')[0].toUpperCase();
 
   return (
     <div className={s.container}>
@@ -150,8 +187,8 @@ const SettingCard = () => {
       <h3 className={` ${s.item} ${s.mediumText} ${s.smallMb}`}>Your photo</h3>
       <div className={s.avatarWrapper}>
         <div className={s.avatar}>
-          {avatar ? (
-            <img src={avatar} alt="avatar" />
+          {user.avatarURL ? (
+            <img src={user.avatarURL} alt="avatar" />
           ) : (
             <p>{defaultAvatarFirstLetter}</p>
           )}
@@ -195,10 +232,10 @@ const SettingCard = () => {
                   <input
                     type="radio"
                     value="female"
-                    //   ? value="female"
                     name="gender"
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    checked={values.gender === 'female'}
                   />
                   Woman
                   <span className={s.checkmark}></span>
@@ -208,7 +245,7 @@ const SettingCard = () => {
                   <input
                     type="radio"
                     value="male"
-                    //   ? value="male"
+                    checked={values.gender === 'male'}
                     name="gender"
                     onChange={handleChange}
                   />
@@ -363,7 +400,7 @@ const SettingCard = () => {
         </div>
         <button
           type="submit"
-          disabled={isSubmitting || !isValid || !dirty}
+          // disabled={isSubmitting || !isValid || !dirty}
           aria-label="Save changes"
           className={s.saveBtn}
         >
