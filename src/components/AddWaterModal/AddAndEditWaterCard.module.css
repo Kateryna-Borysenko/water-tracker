@@ -1,9 +1,8 @@
 .infoContainer {
-  width: 100%;
+  width: 208px;
   background: transparent;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 }
 
 .title {
@@ -41,6 +40,7 @@
   width: 44px;
   height: 44px;
 }
+
 .btn:focus,
 .btn:hover {
   border-color: var(--primary-sky-blue);
@@ -56,7 +56,7 @@
 }
 
 .waterAmountValue {
-  min-width: 92px;
+  width: 100%;
   padding: 6px 10px;
   composes: waterAmountSreen;
   background-color: var(--secondary-bluish-white);
@@ -112,6 +112,7 @@
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
+  margin-left: 12px;
 }
 
 .glassContainer {
@@ -139,7 +140,6 @@
   stroke: var(--primary-sky-blue);
   width: 36px;
   height: 36px;
-  margin-right: 12px;
 }
 
 .icon {
@@ -148,10 +148,21 @@
   height: 24px;
 }
 
+@media screen and (min-width: 769px) and (max-width: 1439px) {
+  .infoContainer {
+    width: 656px;
+  }
+}
+
 @media screen and (min-width: 768px) {
+  .waterAmountValue {
+    width: 92px;
+  }
+
   .title {
     width: auto;
   }
+
   .sreenContainer {
     justify-content: flex-end;
     flex-direction: row;
@@ -161,5 +172,11 @@
 
   .glassContainer {
     width: 254px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .infoContainer {
+    width: 544px;
   }
 }

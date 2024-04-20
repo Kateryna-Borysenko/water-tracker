@@ -1,7 +1,6 @@
 .calendarContainer {
   width: auto;
   height: auto;
-  margin: 24px 8px;
 }
 
 .calendar {
@@ -121,7 +120,6 @@
   .calendarContainer {
     width: auto;
     height: auto;
-    margin: 24px 24px 32px 24px;
   }
 
   .tableCalendar {

@@ -20,10 +20,10 @@ export const getWaterPortionToday = async () => {
   return response;
 };
 
-export const addWaterPortion = async waterPortionsDetails => {
+export const addWaterPortion = async ({ waterVolume, date }) => {
   const response = await waterPortionsInstance.post(
     WATER_ENDPOINT.WATER_PORTIONS,
-    waterPortionsDetails,
+    { waterVolume, date },
   );
   return response;
 };
