@@ -13,7 +13,7 @@ const Calendar = () => {
     const dayData = waterUsage.find(
       d => moment(d.date).format('D, MMMM') === moment(date).format('D, MMMM'),
     );
-    const rect = e.target.getBoundingClientRect();
+    const rect = e.currentTarget.getBoundingClientRect();
     const position = {
       left: rect.left + window.scrollX,
       top: rect.top + window.scrollY,
