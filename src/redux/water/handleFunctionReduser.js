@@ -4,11 +4,11 @@ export const handlePendingGet = state => {
   state.error = null;
 };
 
-export const handleFulfilledGet = (state, action) => {
+export const handleFulfilledGet = (state, { payload }) => {
   state.isLoading = false;
   state.error = null;
-  state.waterPortionsToday = action.payload;
-  state.interestWaterToday = action.payload.interest;
+  state.waterPortionsToday = payload.data;
+  state.interestWaterToday = payload.interest;
 };
 
 export const handleRejectedGet = (state, { payload }) => {
