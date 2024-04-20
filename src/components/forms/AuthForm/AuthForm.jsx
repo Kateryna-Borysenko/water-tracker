@@ -20,6 +20,7 @@ import {
   getEmailVerificationStatus,
 } from '../../../redux/auth/authSelectors';
 import Icons from '../../Icons/Icons';
+import google from '../../../assets/static/google.svg';
 import s from './AuthForm.module.css';
 
 const AuthForm = ({ type }) => {
@@ -72,10 +73,20 @@ const AuthForm = ({ type }) => {
 
   return (
     <div className={s.container}>
-      <Title
-        title={type === 'signup' ? 'Sign Up' : 'Sign In'}
-        className="authForm"
-      />
+      <div className={s.googleContainer}>
+        <Title
+          title={type === 'signup' ? 'Sign Up' : 'Sign In'}
+          className="authForm"
+        />
+        <a
+          //https://water-tracker-node-rest-api.onrender.com/api/auth/google
+          //http://localhost:5000/api/auth/google
+          href={`${import.meta.env.VITE_SERVER_BASE_URL}/auth/google`}
+          className={s.googleLink}
+        >
+          <img src={google} alt="Google auth button" className={s.googleIcon} />
+        </a>
+      </div>
       <Formik
         initialValues={initialValues}
         validationSchema={

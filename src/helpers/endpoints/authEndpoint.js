@@ -4,4 +4,5 @@ export const AUTH_ENDPOINT = {
   LOGOUT: '/users/logout',
   VERIFY: '/users/verify',
   REFRESH: '/users/current',
+  GOOGLE: '/users/google-redirect', //!!!
 };

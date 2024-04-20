@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   registerUser,
   loginUser,
+  googleAuth,
   logoutUser,
   setTokenAuthInstance,
   clearTokenAuthInstance,
@@ -64,6 +65,24 @@ export const authSlice = createSlice({
         setTokenwaterPortionsInstance(payload.token);
       })
       .addCase(loginUser.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.loading = false;
+      })
+
+      // **************  GOOGLE  ************** //
+      .addCase(googleAuth.pending, state => {
+        state.error = null;
+        state.loading = true;
+      })
+      .addCase(googleAuth.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.isLoggedIn = true;
+        state.user = { ...payload.user };
+        state.token = payload.token;
+        // setTokenAuthInstance(payload.token);
+        // setTokenwaterPortionsInstance(payload.token);
+      })
+      .addCase(googleAuth.rejected, (state, { payload }) => {
         state.error = payload;
         state.loading = false;
       })

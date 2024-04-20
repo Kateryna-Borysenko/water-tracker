@@ -16,7 +16,6 @@ import { useEffect } from 'react';
 import { refreshUser } from '../../redux/auth/authOperations';
 import Spinner from '../../components/common/Spinner/Spinner';
 
-
 const App = () => {
   const dispatch = useDispatch();
   const { refreshingStatus } = useAuth();
@@ -26,7 +25,7 @@ const App = () => {
   }, [dispatch]);
 
   if (refreshingStatus) {
-    return <Spinner color="#9ebbff" size="20" />;
+    return <Spinner color="#9ebbff" size="20px" />;
   }
 
   return (
@@ -55,7 +54,7 @@ const App = () => {
             path="/home"
             element={
               <PrivatRoute>
-              <HomePage />
+                <HomePage />
               </PrivatRoute>
             }
           />

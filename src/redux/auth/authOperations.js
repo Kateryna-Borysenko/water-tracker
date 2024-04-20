@@ -110,3 +110,18 @@ export const refreshUser = createAsyncThunk(
     }
   },
 );
+
+export const googleAuth = createAsyncThunk(
+  'auth/googleAuth',
+  async (googleAuthToken, ThunkAPI) => {
+    try {
+      const { data } = await axios.post(AUTH_ENDPOINT.GOOGLE, {
+        googleAuthToken,
+      });
+      toast.success(`Welcome to Water Tracker App !`);
+      return data;
+    } catch (error) {
+      return ThunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
