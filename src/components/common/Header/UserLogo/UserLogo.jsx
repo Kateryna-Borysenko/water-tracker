@@ -9,10 +9,6 @@ const UserLogo = () => {
     user: { email, avatarURL, username },
   } = useAuth();
 
-  const defaultUserName = email
-    .substring(0, email.indexOf('@'))
-    .replace(/^\w/, c => c.toUpperCase());
-
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const handleOpenPopup = () => {
@@ -22,7 +18,7 @@ const UserLogo = () => {
   return (
     <div style={{ position: 'relative' }}>
       <div className={s.container} onClick={handleOpenPopup}>
-        <p className={s.name}>{username ? username : defaultUserName}</p>
+        {username && <p className={s.name}>{username}</p>}
 
         {avatarURL ? (
           <div className={s.avatarWrap}>
@@ -30,7 +26,7 @@ const UserLogo = () => {
           </div>
         ) : (
           <div className={s.avatarWrap}>
-            {username ? username[0] : defaultUserName[0]}
+            {username ? username[0] : email[0]}
           </div>
         )}
 

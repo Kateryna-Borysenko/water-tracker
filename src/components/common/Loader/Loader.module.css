@@ -1,0 +1,8 @@
+.loader {
+  width: 100vh;
+  height: 100vh;
+  background-color: var(--secondary-light-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
