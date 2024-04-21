@@ -14,9 +14,9 @@ const MyDailyNormaModal = ({ onClose }) => {
     const time = activityTime === '' ? 0 : parseFloat(activityTime);
 
     if (gender === 'For woman') {
-      formula = (weight * 0.03 + time * 0.4).toFixed(2);
+      formula = (weight * 0.03 + time * 0.4).toFixed(1);
     } else {
-      formula = (weight * 0.04 + time * 0.6).toFixed(2);
+      formula = (weight * 0.04 + time * 0.6).toFixed(1);
     }
 
     return `${formula} L`;
@@ -48,9 +48,9 @@ const MyDailyNormaModal = ({ onClose }) => {
       </div>
       <div className={s.modalParagraphContainer}>
         <div className={s.secondContainer}>
-          <p>
-            For girl:
-            <span className={s.highlight}>V=(M*0.03) + (T*0.4)</span>
+          <p className={s.forWoman}>
+            For woman:
+            <span className={s.highlight}>V=(M*0.03)+(T*0.4)</span>
           </p>
           <p>
             For man:
@@ -58,10 +58,10 @@ const MyDailyNormaModal = ({ onClose }) => {
           </p>
         </div>
         <p className={s.modalP}>
-          * V is the volume of the water norm in liters per day, M is your body
-          weight, T is the time of active sports, or another type of activity
-          commensurate in terms of loads (in the absence of these, you must set
-          0)
+          <span className={s.accent}>*</span>V is the volume of the water norm
+          in liters per day, M is your body weight, T is the time of active
+          sports, or another type of activity commensurate in terms of loads (in
+          the absence of these, you must set 0)
         </p>
 
         <Subtitle title={'Calculate your rate:'} />
@@ -102,16 +102,20 @@ const MyDailyNormaModal = ({ onClose }) => {
                   <ErrorMessage
                     name="gender"
                     component="div"
-                    className={touched.gender && errors.gender ? s.error : null}
+                    className={`${s.error} ${
+                      touched.gender && errors.gender && s.error
+                    }`}
                   />
                 </div>
                 <div>
-                  <label>
+                  <label className={s.weightLabel}>
                     <p className={s.aboveInputText}>
                       Your weight in kilograms:
                     </p>
                     <Field
-                      className={s.modalInput}
+                      className={`${s.modalInput} ${
+                        touched.weight && errors.weight && s.errorInput
+                      }`}
                       type="number"
                       name="weight"
                       placeholder="0"
@@ -119,12 +123,14 @@ const MyDailyNormaModal = ({ onClose }) => {
                       step="1"
                       onChange={handleChange}
                     />
+                    <ErrorMessage
+                      name="weight"
+                      component="div"
+                      className={`${s.error} ${
+                        touched.weight && errors.weight && s.error
+                      }`}
+                    />
                   </label>
-                  <ErrorMessage
-                    name="weight"
-                    component="div"
-                    className={touched.weight && errors.weight ? s.error : null}
-                  />
                 </div>
                 <div>
                   <label>
@@ -133,7 +139,11 @@ const MyDailyNormaModal = ({ onClose }) => {
                       activities with a high physical. load in hours:
                     </p>
                     <Field
-                      className={s.modalInput}
+                      className={`${s.modalInput} ${
+                        touched.activityTime &&
+                        errors.activityTime &&
+                        s.errorInput
+                      }`}
                       type="number"
                       name="activityTime"
                       placeholder="0"
@@ -146,32 +156,33 @@ const MyDailyNormaModal = ({ onClose }) => {
                   <ErrorMessage
                     name="activityTime"
                     component="div"
-                    className={
-                      touched.activityTime && errors.activityTime
-                        ? s.error
-                        : null
-                    }
+                    className={`${s.error} ${
+                      touched.activityTime && errors.activityTime && s.error
+                    }`}
                   />
                 </div>
                 <div>
-                  <label>
+                  <div className={s.waterNormContainer}>
                     The required amount of water in liters per day:
                     <span className={s.waterAmount}>
                       {errors.activityTime || errors.weight || errors.gender
                         ? `${0} L`
                         : calculateWaterAmount(values)}
                     </span>
-                  </label>
+                  </div>
                 </div>
               </div>
               <div>
-                <label>
+                <div className={s.waterLabel}>
                   <Subtitle
                     title="Write down how much water you will drink:"
                     className="subtitleDailyNorma"
                   />
+
                   <Field
-                    className={s.modalInput}
+                    className={`${s.modalInput} ${
+                      touched.drankWater && errors.drankWater && s.errorInput
+                    }`}
                     type="number"
                     name="drankWater"
                     placeholder="0"
@@ -182,13 +193,17 @@ const MyDailyNormaModal = ({ onClose }) => {
                   <ErrorMessage
                     name="drankWater"
                     component="div"
-                    className={
-                      touched.drankWater && errors.drankWater ? s.error : null
-                    }
+                    className={`${s.error} ${
+                      touched.drankWater && errors.drankWater && s.error
+                    }`}
                   />
-                </label>
+                </div>
               </div>
-              <Button type="submit" disabled={isSubmitting}>
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="myDailyNormaButton"
+              >
                 Save
               </Button>
             </Form>

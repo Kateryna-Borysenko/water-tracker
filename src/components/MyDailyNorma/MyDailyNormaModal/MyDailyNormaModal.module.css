@@ -1,5 +1,5 @@
 .container {
-  width: 544px;
+  width: 236px;
 }
 
 .textContainer {
@@ -21,14 +21,19 @@
   margin-top: 24px;
 }
 
-.secondContainer {
-  display: flex;
+.forWoman {
+  margin-bottom: 16px;
 }
 
 .highlight {
   color: var(--primary-sky-blue);
-  margin-right: 24px;
-  margin-left: 4px;
+  font-size: 16px;
+}
+
+.accent {
+  display: inline-block;
+  color: var(--primary-sky-blue);
+  margin-right: 4px;
 }
 
 .modalP {
@@ -76,14 +81,22 @@
 .modalInput {
   color: var(--primary-sky-blue);
   display: flex;
-  width: 96%;
-  height: 100%;
+  width: 100%;
   border-radius: 6px;
   border: thin solid var(--secondary-bluish-white);
   padding: 12px 10px;
+  box-sizing: border-box;
+  margin-top: 16px;
+}
+
+.waterNormContainer {
+  display: flex;
+  align-items: center;
 }
 
 .waterAmount {
+  display: flex;
+  width: 40%;
   color: var(--primary-sky-blue);
   font-weight: bold;
   margin-left: 8px;
@@ -118,4 +131,29 @@
   display: flex;
   justify-content: flex-end;
   margin-top: 24px;
+}
+
+.waterLabel {
+  min-height: 122px;
+}
+
+.weightLabel {
+  display: block;
+  min-height: 100px;
+}
+
+.error {
+  color: var(--secondary-red);
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.errorInput {
+  color: var(--secondary-red);
+  border-color: var(--secondary-red);
+}
+
+/* ////////?? */
+.secondContainer {
+  /* display: flex; */
 }
