@@ -47,20 +47,20 @@ const DaysGeneralStats = () => {
       if (window.innerWidth > 1439) {
         setModalStyle({
           position: 'fixed',
-          left: `${modalLeftPosition(-240, position.left)}px`,
-          top: `${position.top - 200}px`,
+          left: `${modalLeftPosition(-250, position.left)}px`,
+          top: `${position.top - 210}px`,
         });
       } else if (window.innerWidth > 767) {
         setModalStyle({
           position: 'fixed',
-          left: `${modalLeftPosition(-240, position.left)}px`,
-          top: `${position.top - 510}px`,
+          left: `${modalLeftPosition(-250, position.left)}px`,
+          top: `${position.top - 550}px`,
         });
       } else {
         setModalStyle({
           position: 'fixed',
           left: `${window.innerWidth / 2}px`,
-          top: `${position.top - 130}px`,
+          top: `${position.top - 120}px`,
           transform: 'translate(-50%, -50%)',
         });
       }
@@ -84,14 +84,15 @@ const DaysGeneralStats = () => {
       >
         <div className={s.dateModal}>{formattedDate}</div>
         <div className={s.modalMainText}>
-          Daily norm: <span className={s.modalValueText}>{data.dailyNorm}</span>
+          Daily norm:&nbsp;
+          <span className={s.modalValueText}>{data.dailyNorm}</span>
         </div>
         <div>
-          Fulfilment of the daily norm:
+          Fulfilment of the daily norm:&nbsp;
           <span className={s.modalValueText}>{data.percent}</span>
         </div>
         <div>
-          How many servings of water:
+          How many servings of water:&nbsp;
           <span className={s.modalValueText}>{data.quantity}</span>
         </div>
       </div>
