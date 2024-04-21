@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
-import Title from '../common/Title/Title';
-import Subtitle from '../common/Subtitle/Subtitle';
-import Button from '../../uikit/Button/Button';
+import Title from '../../../components/common/Title/Title';
+import Subtitle from '../../../components/common/Subtitle/Subtitle';
+import Button from '../../../uikit/Button/Button';
 import s from './MyDailyNormaModal.module.css';
 
 const MyDailyNormaModal = () => {
@@ -56,7 +56,7 @@ const MyDailyNormaModal = () => {
             calculateWaterAmount(values);
           }}
         >
-          {({ values, handleChange }) => (
+          {({ isSubmitting, errors, touched }) => (
             <Form>
               <div className={s.dailyModalForm}>
                 <div className={s.forManForWoman}>
@@ -116,8 +116,8 @@ const MyDailyNormaModal = () => {
               <div>
                 <label>
                   <Subtitle
-                    title={'Write down how much water you will drink:'}
-                    className={'subtitleDailyNorma'}
+                    title="Write down how much water you will drink:"
+                    className="subtitleDailyNorma"
                   />
                   <Field
                     className={s.modalInput}
@@ -127,7 +127,7 @@ const MyDailyNormaModal = () => {
                   />
                 </label>
               </div>
-              <Button className={'myDailyNormaSaveButton'}>Save</Button>
+              <Button className="myDailyNormaSaveButton">Save</Button>
             </Form>
           )}
         </Formik>

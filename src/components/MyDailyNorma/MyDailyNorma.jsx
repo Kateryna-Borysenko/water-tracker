@@ -1,5 +1,5 @@
 import Subtitle from '../common/Subtitle/Subtitle';
-import MyDailyNormaButton from './MyDailyNormaButton';
+import MyDailyNormaButton from './MyDailyNormaButton/MyDailyNormaButton';
 import s from './MyDailyNorma.module.css';
 
 const MyDailyNorma = () => {
