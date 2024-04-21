@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { TimePicker } from 'antd';
 import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   apiAddWaterPortion,
   apiEditWaterPortion,
@@ -10,8 +10,9 @@ import {
 import Subtitle from '../common/Subtitle/Subtitle';
 import Button from '../../uikit/Button/Button';
 import Icons from '../Icons/Icons';
-import LangsSwitcher from '../../components/LangsSwitcher/LangsSwitcher'
+import LangsSwitcher from '../../components/LangsSwitcher/LangsSwitcher';
 import s from './AddAndEditWaterCard.module.css';
+import { getToken } from '../../redux/auth/authSelectors';
 
 const AddAndEditWaterCard = ({
   isEditable,
@@ -20,6 +21,7 @@ const AddAndEditWaterCard = ({
   id,
   onClose,
 }) => {
+  const token = useSelector(getToken);
   const [defaultTime, setDefaultTime] = useState(dayjs());
   const [time, setTime] = useState(initialTime);
   const [water, setWater] = useState({
@@ -35,6 +37,7 @@ const AddAndEditWaterCard = ({
     const waterVolume = water.inputValue;
 
     const date = dayjs(isEditable ? time : defaultTime, 'h:mm A').toISOString();
+
     if (!isEditable) {
       dispatch(apiAddWaterPortion({ waterVolume, date }));
     } else {
@@ -79,10 +82,15 @@ const AddAndEditWaterCard = ({
 
   const { t } = useTranslation();
 
-  const title = isEditable ? t('AddAndEditWaterCard.titleEdit') : t('AddAndEditWaterCard.titleAdd');
-  const subtitle = isEditable ? t('AddAndEditWaterCard.subtitleEdit') : t('AddAndEditWaterCard.subtitleAdd');
+  const title = isEditable
+    ? t('AddAndEditWaterCard.titleEdit')
+    : t('AddAndEditWaterCard.titleAdd');
+  const subtitle = isEditable
+    ? t('AddAndEditWaterCard.subtitleEdit')
+    : t('AddAndEditWaterCard.subtitleAdd');
 
   return (
+
     <div className={s.infoContainer}>
       <LangsSwitcher />
       <h2 className={s.title}>{title}</h2>
