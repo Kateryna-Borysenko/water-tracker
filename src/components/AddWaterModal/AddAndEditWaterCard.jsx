@@ -13,7 +13,13 @@ import Icons from '../Icons/Icons';
 import LangsSwitcher from '../../components/LangsSwitcher/LangsSwitcher'
 import s from './AddAndEditWaterCard.module.css';
 
-const AddAndEditWaterCard = ({ isEditable, waterVolume, initialTime, id }) => {
+const AddAndEditWaterCard = ({
+  isEditable,
+  waterVolume,
+  initialTime,
+  id,
+  onClose,
+}) => {
   const [defaultTime, setDefaultTime] = useState(dayjs());
   const [time, setTime] = useState(initialTime);
   const [water, setWater] = useState({
@@ -25,15 +31,16 @@ const AddAndEditWaterCard = ({ isEditable, waterVolume, initialTime, id }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (!water) return;
+    if (!water.inputValue) return;
     const waterVolume = water.inputValue;
-    console.log(waterVolume);
+
     const date = dayjs(isEditable ? time : defaultTime, 'h:mm A').toISOString();
     if (!isEditable) {
       dispatch(apiAddWaterPortion({ waterVolume, date }));
     } else {
       dispatch(apiEditWaterPortion({ waterVolume, date, id }));
     }
+    onClose();
   };
 
   const handleClick = name => {

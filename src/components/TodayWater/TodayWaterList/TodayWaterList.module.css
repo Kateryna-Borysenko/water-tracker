@@ -11,13 +11,12 @@
 
 .todayWaterList {
   height: 172px;
-  width: 254px;
+  width: 100%;
   overflow-y: auto;
 }
 
 @media screen and (min-width: 768px) {
   .todayWaterList {
-    width: 646px;
     height: 170px;
   }
 

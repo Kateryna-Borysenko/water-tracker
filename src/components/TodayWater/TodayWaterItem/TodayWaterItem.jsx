@@ -70,6 +70,7 @@ export const TodayWaterItem = ({ waterVolume, time, id }) => {
             waterVolume={waterVolume}
             initialTime={time}
             id={id}
+            onClose={handleCloseModal}
           />
         </Modal>
       )}

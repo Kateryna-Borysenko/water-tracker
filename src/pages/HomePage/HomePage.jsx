@@ -10,33 +10,26 @@ import { useEffect } from 'react';
 import { apiGetWaterPortionToday } from '../../redux/water/watersOperations';
 import s from './HomePage.module.css';
 
-
 const HomePage = () => {
-  const waterPortionsToday = useSelector(selectWaterPortionsToday);
+  // const waterPortionsToday = useSelector(selectWaterPortionsToday);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(apiGetWaterPortionToday());
   }, [dispatch]);
 
-  console.log(waterPortionsToday);
-
   return (
     <>
-      <Meta title="Home Page" />
       <div className={s.container}>
-        <Container>
-          <div className={s.homePageConteiner}>
-            <div>
-              <div className={s.contentContainer}>
-                <MyDailyNorma />
-              </div>
-              <ProgressBar />
-            </div>
-            <div className={s.homePageWidgetWrapper}>
-              <TodayWaterList />
-              <Calendar />
-            </div>
+        <Meta title="Home Page" />
+        <Container className="containerHomePage">
+          <div className={s.contentContainer}>
+            <MyDailyNorma />
+            <ProgressBar />
+          </div>
+          <div className={s.homePageWidgetWrapper}>
+            <TodayWaterList />
+            <Calendar />
           </div>
         </Container>
       </div>

@@ -12,11 +12,11 @@ export const setTokenwaterPortionsInstance = token =>
 export const clearTokenwaterPortionsInstance = () =>
   (waterPortionsInstance.defaults.headers.common.Authorization = '');
 
+
 export const getWaterPortionToday = async () => {
   const response = await waterPortionsInstance.get(
     WATER_ENDPOINT.WATER_PORTIONS_TODAY,
   );
-
   return response;
 };
 

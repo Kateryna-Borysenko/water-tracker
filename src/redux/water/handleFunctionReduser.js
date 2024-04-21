@@ -43,8 +43,9 @@ export const handlePendingEdit = state => {
 export const handleFulfilledEdit = (state, { payload }) => {
   state.isLoading = false;
   state.error = null;
+  console.log(state.waterPortionToday);
   const oldToday = state.waterPortionsToday.filter(
-    waterPortion => waterPortion._id !== payload._id,
+    waterPortion => waterPortion.id !== payload.id,
   );
   state.waterPortionsToday = [...oldToday, payload];
 };
@@ -62,7 +63,7 @@ export const handlePendingDelete = state => {
 
 export const handleFulfilledDelete = (state, { payload }) => {
   const index = state.waterPortionsToday.findIndex(
-    waterPortionToday => waterPortionToday.id === payload.id,
+    waterPortionToday => waterPortionToday.id === payload,
   );
   state.waterPortionsToday.splice(index, 1);
 };
