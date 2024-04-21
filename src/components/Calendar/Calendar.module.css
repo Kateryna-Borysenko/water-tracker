@@ -102,6 +102,7 @@
   border-radius: 10px;
   background: var(--primary-white);
   box-shadow: var(--box-shadow);
+  min-width: 240px;
 }
 
 .modalMainText {

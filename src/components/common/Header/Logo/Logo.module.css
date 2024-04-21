@@ -7,6 +7,7 @@
   font-weight: 700;
   text-transform: uppercase;
   width: 102px;
+  transition: var(--transition);
   padding-top: 8px;
 }
 
@@ -16,5 +17,7 @@
   font-weight: 700;
   text-transform: uppercase;
   line-height: normal;
-  transition: var(--transition);
+}
+.container:hover .icon {
+  scale: 1.1;
 }

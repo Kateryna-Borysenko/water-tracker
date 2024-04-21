@@ -56,8 +56,17 @@
   transition: var(--transition);
 }
 
+.password {
+  color: var(--primary-sky-blue);
+  transition: var(--transition);
+  font-size: 12px;
+}
+
+.password:hover {
+  color: var(--secondary-orange);
+}
+
 .link:hover,
-.password:hover,
 .resendEmailButton:hover {
   margin-bottom: 16px;
   color: var(--secondary-orange);

@@ -4,8 +4,12 @@ import s from './Calendar.module.css';
 export const PercentCellRender = (date, handleDateSelect, waterUsage) => {
   const current = moment(date);
   const formattedDate = current.format('D, MMMM');
-
-  const matchingDate = waterUsage.find(entry => entry.date === formattedDate);
+  const matchingDate =
+    waterUsage && waterUsage
+      ? waterUsage.find(
+          entry => moment(entry.date).format('D, MMMM') === formattedDate,
+        )
+      : undefined;
 
   if (matchingDate) {
     return {

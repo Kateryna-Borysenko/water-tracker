@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import ukrainianFlagIcon from '../../assets/static/image/ukrainian-flag.png'
+import ukrainianFlagIcon from '../../assets/static/image/ukrainian-flag.png';
 import americanFlagIcon from '../../assets/static/image/american-flag.png';
 import s from './LangsSwitcher.module.css';
 
@@ -23,7 +23,7 @@ const LangsSwitcher = () => {
             <img
               src={languages[lng].icon}
               alt={languages[lng].nativeName}
-              width="50"
+              width="28"
             />
           </button>
         </div>

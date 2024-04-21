@@ -3,13 +3,6 @@
   align-items: center;
   cursor: pointer;
   caret-color: transparent;
-  transition: var(--transition);
-}
-
-.container:hover,
-.container:focus {
-  scale: 1.02;
-  text-shadow: 4px 4px 1px rgba(0, 0, 0, 0.25);
 }
 
 .name {
