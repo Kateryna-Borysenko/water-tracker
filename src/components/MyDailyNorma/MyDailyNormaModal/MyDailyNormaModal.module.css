@@ -28,6 +28,7 @@
 .highlight {
   color: var(--primary-sky-blue);
   font-size: 16px;
+  margin-left: 6px;
 }
 
 .accent {
@@ -37,6 +38,7 @@
 }
 
 .modalP {
+  font-size: 12px;
   color: #8f8f8f;
   border: 1px solid var(--secondary-bluish-white);
   border-radius: 10px;
@@ -153,7 +155,18 @@
   border-color: var(--secondary-red);
 }
 
-/* ////////?? */
-.secondContainer {
-  /* display: flex; */
+@media screen and (min-width: 768px) {
+  .container {
+    /* outline: 1px solid red; */
+    width: 704px;
+  }
+
+  .secondContainer {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .forWoman {
+    margin-right: 24px;
+  }
 }
