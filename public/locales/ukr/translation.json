@@ -2,8 +2,8 @@
   "managementCard": {
     "deleteCardTitle": "Видалити запис",
     "deleteCardDescription": "Ви впевнені, що хочете видалити запис?",
-    "logoutCardTitle": "Log out",
-    "logoutCardDescription": "Log out",
+    "logoutCardTitle": "Вийти",
+    "logoutCardDescription": "Ви впевнені, що хочете вийти?",
     "cancelButton": "Скасувати",
     "deleteButton": "Bидaлити",
     "logoutButton": "Вийти"
