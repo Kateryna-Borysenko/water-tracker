@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Title from '../../common/Title/Title';
 import Button from '../../../uikit/Button/Button';
 import { passwordFormSchema } from '../../../schemas/passwordFormValidationSchema';
@@ -34,9 +35,11 @@ const NewPasswordForm = () => {
     resetForm();
   };
 
+  const { t } = useTranslation();
+
   return (
     <div className={s.container}>
-      <Title title="Forgot your Password?" />
+      <Title title={t('newPasswordForm.newPasswordTitle')} />
       <Formik
         initialValues={initialValues}
         validationSchema={passwordFormSchema}
@@ -46,11 +49,11 @@ const NewPasswordForm = () => {
         {({ isSubmitting, errors, touched }) => (
           <Form className={s.form}>
             <div className={s.field}>
-              <label>Enter your password</label>
+              <label>{t('newPasswordForm.newPasswordLabel')}</label>
               <Field
                 type={showPassword ? 'text' : 'password'}
                 name="password"
-                placeholder="Password"
+                placeholder={t('newPasswordForm.newPasswordPlaceholder')}
                 className={`${s.input} ${
                   touched.password && errors.password && s.errorInput
                 }`}
@@ -71,7 +74,7 @@ const NewPasswordForm = () => {
             </div>
             <Button
               type="submit"
-              title="Sent New Password"
+              title={t('newPasswordForm.newPasswordButton')}
               disabled={isSubmitting}
               className="forgotYourPassword"
               loading={loading}
@@ -81,9 +84,9 @@ const NewPasswordForm = () => {
       </Formik>
 
       <div className={s.linkContainer}>
-        Return to
+        {t('newPasswordForm.newPasswordReturnTo')}
         <Link className={s.link} to="/signin">
-          Sign In
+          {t('newPasswordForm.newPasswordLinkSignIn')}
         </Link>
       </div>
     </div>
