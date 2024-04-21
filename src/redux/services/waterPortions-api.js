@@ -12,18 +12,18 @@ export const setTokenwaterPortionsInstance = token =>
 export const clearTokenwaterPortionsInstance = () =>
   (waterPortionsInstance.defaults.headers.common.Authorization = '');
 
+
 export const getWaterPortionToday = async () => {
   const response = await waterPortionsInstance.get(
     WATER_ENDPOINT.WATER_PORTIONS_TODAY,
   );
-
   return response;
 };
 
-export const addWaterPortion = async waterPortionsDetails => {
+export const addWaterPortion = async ({ waterVolume, date }) => {
   const response = await waterPortionsInstance.post(
     WATER_ENDPOINT.WATER_PORTIONS,
-    waterPortionsDetails,
+    { waterVolume, date },
   );
   return response;
 };
@@ -40,7 +40,7 @@ export const editWaterPortion = async ({ waterVolume, date, id }) => {
 };
 
 export const deleteWaterPortion = async ({ id }) => {
-  const response = await waterPortionsInstance.put(
+  const response = await waterPortionsInstance.delete(
     `${WATER_ENDPOINT.WATER_PORTIONS}/${id}`,
   );
   return response;
