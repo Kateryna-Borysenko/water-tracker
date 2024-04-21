@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Title from '../../../components/common/Title/Title';
 import Subtitle from '../../../components/common/Subtitle/Subtitle';
 import Button from '../../../uikit/Button/Button';
+import { myDailyNormaValidationSchema } from '../../../schemas/myDailyNormaValidationSchema.js';
 import s from './MyDailyNormaModal.module.css';
 
 const MyDailyNormaModal = () => {
@@ -19,6 +20,11 @@ const MyDailyNormaModal = () => {
     }
 
     setWaterAmount(`${formula} L`);
+  };
+
+  const handleSubmit = (values, { setSubmitting }) => {
+    calculateWaterAmount(values);
+    setSubmitting(false);
   };
 
   return (
@@ -52,9 +58,9 @@ const MyDailyNormaModal = () => {
             activityTime: '',
             drankWater: '',
           }}
-          onSubmit={values => {
-            calculateWaterAmount(values);
-          }}
+          validationSchema={myDailyNormaValidationSchema}
+          onSubmit={handleSubmit}
+          validateOnBlur={true}
         >
           {({ isSubmitting, errors, touched }) => (
             <Form>
@@ -78,6 +84,11 @@ const MyDailyNormaModal = () => {
                     />
                     For man
                   </label>
+                  <ErrorMessage
+                    name="gender"
+                    component="div"
+                    className={touched.gender && errors.gender ? s.error : null}
+                  />
                 </div>
                 <div>
                   <label>
@@ -86,11 +97,18 @@ const MyDailyNormaModal = () => {
                     </p>
                     <Field
                       className={s.modalInput}
-                      type="text"
+                      type="number"
                       name="weight"
                       placeholder="0"
+                      min="0"
+                      step="1"
                     />
                   </label>
+                  <ErrorMessage
+                    name="weight"
+                    component="div"
+                    className={touched.weight && errors.weight ? s.error : null}
+                  />
                 </div>
                 <div>
                   <label>
@@ -100,11 +118,22 @@ const MyDailyNormaModal = () => {
                     </p>
                     <Field
                       className={s.modalInput}
-                      type="text"
+                      type="number"
                       name="activityTime"
                       placeholder="0"
+                      min="0"
+                      step="1"
                     />
                   </label>
+                  <ErrorMessage
+                    name="activityTime"
+                    component="div"
+                    className={
+                      touched.activityTime && errors.activityTime
+                        ? s.error
+                        : null
+                    }
+                  />
                 </div>
                 <div>
                   <label>
@@ -121,13 +150,24 @@ const MyDailyNormaModal = () => {
                   />
                   <Field
                     className={s.modalInput}
-                    type="text"
+                    type="number"
                     name="drankWater"
                     placeholder="0"
+                    min="0"
+                    step="1"
+                  />
+                  <ErrorMessage
+                    name="drankWater"
+                    component="div"
+                    className={
+                      touched.drankWater && errors.drankWater ? s.error : null
+                    }
                   />
                 </label>
               </div>
-              <Button className="myDailyNormaSaveButton">Save</Button>
+              <Button type="submit" disabled={isSubmitting}>
+                Save
+              </Button>
             </Form>
           )}
         </Formik>
