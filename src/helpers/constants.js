@@ -20,4 +20,6 @@ export const MINIMUM_VALUE_MESSAGE = 'The value must be at least 1 ml';
 export const MAXIMUM_WEIGHT_MESSAGE =
   'Weight must be less than or equal to 500 kg';
 export const MAXIMUM_DRANK_WATER_MESSAGE =
-  'The value must be less than or equal to 15000 ml';
+  'The value must be less than or equal to 15 l';
+export const MINIMUM_ACTIVE_TIME_MESSAGE =
+  'Activity time must be greater than or equal to 0';

@@ -1,30 +1,44 @@
-import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { toast } from 'react-toastify';
 import Title from '../../../components/common/Title/Title';
 import Subtitle from '../../../components/common/Subtitle/Subtitle';
 import Button from '../../../uikit/Button/Button';
 import { myDailyNormaValidationSchema } from '../../../schemas/myDailyNormaValidationSchema.js';
 import s from './MyDailyNormaModal.module.css';
 
-const MyDailyNormaModal = () => {
-  const [waterAmount, setWaterAmount] = useState('');
-
+const MyDailyNormaModal = ({ onClose }) => {
   const calculateWaterAmount = values => {
     const { gender, weight, activityTime } = values;
+
     let formula = 0;
+    const time = activityTime === '' ? 0 : parseFloat(activityTime);
 
     if (gender === 'For woman') {
-      formula = (weight * 0.03 + activityTime * 0.4).toFixed(2);
+      formula = (weight * 0.03 + time * 0.4).toFixed(2);
     } else {
-      formula = (weight * 0.04 + activityTime * 0.6).toFixed(2);
+      formula = (weight * 0.04 + time * 0.6).toFixed(2);
     }
 
-    setWaterAmount(`${formula} L`);
+    return `${formula} L`;
   };
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    calculateWaterAmount(values);
+  const handleSubmit = (values, { resetForm, setSubmitting }) => {
+    const drankWater = parseFloat(values.drankWater) * 1000;
+
+    //Todo: отправить данные на back и внести изменения в redux
+    console.log('Drank water:', drankWater);
+
+    const recommendedWater = calculateWaterAmount(values);
+    toast.success(`Recommended water intake: ${recommendedWater}`, {
+      style: {
+        width: '300px',
+        textAlign: 'center',
+      },
+    });
+
+    resetForm();
     setSubmitting(false);
+    onClose();
   };
 
   return (
@@ -53,16 +67,15 @@ const MyDailyNormaModal = () => {
         <Subtitle title={'Calculate your rate:'} />
         <Formik
           initialValues={{
-            gender: '',
+            gender: 'For woman',
             weight: '',
             activityTime: '',
             drankWater: '',
           }}
           validationSchema={myDailyNormaValidationSchema}
           onSubmit={handleSubmit}
-          validateOnBlur={true}
         >
-          {({ isSubmitting, errors, touched }) => (
+          {({ isSubmitting, errors, touched, values, handleChange }) => (
             <Form>
               <div className={s.dailyModalForm}>
                 <div className={s.forManForWoman}>
@@ -72,6 +85,7 @@ const MyDailyNormaModal = () => {
                       type="radio"
                       name="gender"
                       value="For woman"
+                      onChange={handleChange}
                     />
                     For woman
                   </label>
@@ -81,6 +95,7 @@ const MyDailyNormaModal = () => {
                       type="radio"
                       name="gender"
                       value="For man"
+                      onChange={handleChange}
                     />
                     For man
                   </label>
@@ -102,6 +117,7 @@ const MyDailyNormaModal = () => {
                       placeholder="0"
                       min="0"
                       step="1"
+                      onChange={handleChange}
                     />
                   </label>
                   <ErrorMessage
@@ -122,7 +138,9 @@ const MyDailyNormaModal = () => {
                       name="activityTime"
                       placeholder="0"
                       min="0"
+                      max="24"
                       step="1"
+                      onChange={handleChange}
                     />
                   </label>
                   <ErrorMessage
@@ -138,7 +156,11 @@ const MyDailyNormaModal = () => {
                 <div>
                   <label>
                     The required amount of water in liters per day:
-                    <span className={s.waterAmount}>{waterAmount}</span>
+                    <span className={s.waterAmount}>
+                      {errors.activityTime || errors.weight || errors.gender
+                        ? `${0} L`
+                        : calculateWaterAmount(values)}
+                    </span>
                   </label>
                 </div>
               </div>
@@ -154,7 +176,8 @@ const MyDailyNormaModal = () => {
                     name="drankWater"
                     placeholder="0"
                     min="0"
-                    step="1"
+                    step="0.001"
+                    onChange={handleChange}
                   />
                   <ErrorMessage
                     name="drankWater"
