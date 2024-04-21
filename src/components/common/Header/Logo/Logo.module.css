@@ -7,6 +7,7 @@
   font-weight: 700;
   text-transform: uppercase;
   width: 102px;
+  transition: var(--transition);
 }
 
 .title {
@@ -15,4 +16,7 @@
   font-weight: 700;
   text-transform: uppercase;
   line-height: normal;
+}
+.container:hover .icon {
+  scale: 1.1;
 }

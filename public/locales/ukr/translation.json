@@ -27,16 +27,28 @@
       "option5": "Зберігає стабільний стан організму",
       "option6": "Підтримує нормальну температуру тіла",
       "option7": "Забезпечує спроможність імунної системи боротьбі з хворобами"
-    },
-    "authForm": {
-      "signinTitle": "Персональний вхід",
-      "signupTitle": "Реєстрація нового користувача",
-      "email": "Введіть свою електронну пошту",
-      "password": "Введіть ваш пароль",
-      "emailPlaceholder": "Ємейл",
-      "passPlaceholder": "Пароль",
-      "signinBtnTitle": "Увійти",
-      "signupBtnTitle": "Зареєструватися"
     }
-  }
+  },
+  "authForm": {
+    "signinTitle": "Персональний вхід",
+    "signupTitle": "Реєстрація нового користувача",
+    "email": "Введіть свою електронну пошту",
+    "password": "Введіть ваш пароль",
+    "repeatePass": "Повторити пароль",
+    "emailPlaceholder": "Ємейл",
+    "passPlaceholder": "Пароль",
+    "signinBtnTitle": "Увійти",
+    "signupBtnTitle": "Зареєструватися",
+    "signinLink": "Вхід",
+    "signupLink": "Реєстрація",
+    "resendEmailMassage": "Немає електронного листа з підтвердженням?",
+    "resendEmailButton": "Відправити"
+  },
+  "EMAIL_ERROR_MESSAGE": "Введіть дійсну електронну адресу",
+  "PASSWORD_ERROR_MESSAGE": "Мінімум 8 символів, максимум 64",
+  "REQUIRED_EMAIL_MESSAGE": "Поле електронної пошти обов'язкове",
+  "REQUIRED_PASSWORD_MESSAGE": "Поле пароля обов'язкове",
+  "MATCH_PASSWORD_MESSAGE": "Паролі мають збігатися",
+  "REQUIRED_REPEAT_PASSWORD_MESSAGE": "Поле повторення пароля обов'язкове",
+  "userAuthTitle": "Вхід"
 }

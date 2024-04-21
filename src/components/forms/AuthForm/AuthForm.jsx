@@ -6,10 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import Title from '../../common/Title/Title';
 import Button from '../../../uikit/Button/Button';
 import {
-  signupFormSchema,
-  signinFormSchema,
-} from '../../../schemas/authFormValidationSchema';
-import {
   registerUser,
   loginUser,
   resendVerificationEmail,
@@ -22,9 +18,11 @@ import {
 import Icons from '../../Icons/Icons';
 import s from './AuthForm.module.css';
 import { useTranslation } from 'react-i18next';
+import useValidationSchema from '../../../schemas/authFormValidationSchema';
 
 const AuthForm = ({ type }) => {
   const { t } = useTranslation();
+  const { signupFormSchema, signinFormSchema } = useValidationSchema();
 
   const initialValues = {
     email: '',
@@ -94,11 +92,11 @@ const AuthForm = ({ type }) => {
         {({ isSubmitting, errors, touched }) => (
           <Form className={s.form}>
             <div className={s.field}>
-              <label>Enter your email</label>
+              <label>{t('authForm.email')}</label>
               <Field
                 type="email"
                 name="email"
-                placeholder="E-mail"
+                placeholder={t('authForm.emailPlaceholder')}
                 className={`${s.input} ${
                   touched.email && errors.email && s.errorInput
                 }`}
@@ -106,11 +104,11 @@ const AuthForm = ({ type }) => {
               <ErrorMessage name="email" component="div" className={s.error} />
             </div>
             <div className={s.field}>
-              <label>Enter your password</label>
+              <label>{t('authForm.password')}</label>
               <Field
                 type={showPassword ? 'text' : 'password'}
                 name="password"
-                placeholder="Password"
+                placeholder={t('authForm.passPlaceholder')}
                 className={`${s.input} ${
                   touched.password && errors.password && s.errorInput
                 }`}
@@ -131,11 +129,11 @@ const AuthForm = ({ type }) => {
             </div>
             {type === 'signup' && (
               <div className={s.field}>
-                <label>Repeat password</label>
+                <label>{t('authForm.repeatePass')}</label>
                 <Field
                   type={showRepeatPassword ? 'text' : 'password'}
                   name="repeatPassword"
-                  placeholder="Repeat Password"
+                  placeholder={t('authForm.repeatePass')}
                   className={`${s.input} ${
                     touched.repeatPassword &&
                     errors.repeatPassword &&
@@ -159,7 +157,11 @@ const AuthForm = ({ type }) => {
             )}
             <Button
               type="submit"
-              title={type === 'signup' ? 'Sign Up' : 'Sign In'}
+              title={
+                type === 'signup'
+                  ? t('authForm.signupBtnTitle')
+                  : t('authForm.signinBtnTitle')
+              }
               disabled={isSubmitting}
               className="authButton"
               loading={loading}
@@ -170,24 +172,24 @@ const AuthForm = ({ type }) => {
 
       {type === 'signup' && (
         <div className={s.link}>
-          <Link to="/signin">Sign In</Link>
+          <Link to="/signin">{t('authForm.signinLink')}</Link>
         </div>
       )}
 
       {type === 'signin' && (
         <div>
           <div className={s.link}>
-            <Link to="/signup">Sign Up</Link>
+            <Link to="/signup">{t('authForm.signupLink')}</Link>
           </div>
           {email && emailVerificationStatus === false && (
             <div className={s.resendEmailMassage}>
-              No confirmation email?
+              {t('authForm.resendEmailMassage')}
               <button
                 className={s.resendEmailButton}
                 onClick={handleResendEmail}
                 type="submit"
               >
-                Send
+                {t('authForm.resendEmailButton')}
               </button>
             </div>
           )}

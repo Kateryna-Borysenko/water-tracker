@@ -12,8 +12,9 @@ const Header = () => {
     <header className={s.header}>
       <div className={s.logoLngsWrap}>
         <Logo />
-        <LangsSwitcher />
+        {!loading && <LangsSwitcher />}
       </div>
+
       {loggedInStatus ? <UserLogo /> : <UserAuth />}
     </header>
   );

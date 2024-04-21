@@ -27,16 +27,28 @@
       "option5": "Ensuring the stability of the internal environment",
       "option6": "Maintaining within the normal temperature",
       "option7": "Maintaining an immune system capable of resisting disease"
-    },
-    "authForm": {
-      "signinTitle": "Sign In",
-      "signupTitle": "Sign Up",
-      "email": "Enter your email",
-      "password": "Enter your password",
-      "emailPlaceholder": "E-mail",
-      "passPlaceholder": "Password",
-      "signinBtnTitle": "Sign In",
-      "signupBtnTitle": "Sign Up"
     }
-  }
+  },
+  "authForm": {
+    "signinTitle": "Sign In",
+    "signupTitle": "Sign Up",
+    "email": "Enter your email",
+    "password": "Enter your password",
+    "repeatePass": "Repeat password",
+    "emailPlaceholder": "E-mail",
+    "passPlaceholder": "Password",
+    "signinBtnTitle": "Sign In",
+    "signupBtnTitle": "Sign Up",
+    "signinLink": "Sign in",
+    "signupLink": "Sign up",
+    "resendEmailMassage": "No confirmation email?",
+    "resendEmailButton": "Send"
+  },
+  "EMAIL_ERROR_MESSAGE": "Enter a valid email",
+  "PASSWORD_ERROR_MESSAGE": "The password is min 8 and max 64",
+  "REQUIRED_EMAIL_MESSAGE": "Email field is required",
+  "REQUIRED_PASSWORD_MESSAGE": "Password field is required",
+  "MATCH_PASSWORD_MESSAGE": "Passwords must match",
+  "REQUIRED_REPEAT_PASSWORD_MESSAGE": "Repeat password field is required",
+  "userAuthTitle": "Sign in"
 }

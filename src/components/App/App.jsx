@@ -15,6 +15,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useEffect } from 'react';
 import { refreshUser } from '../../redux/auth/authOperations';
 import Spinner from '../../components/common/Spinner/Spinner';
+import Loader from '../common/Loader/Loader';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,11 @@ const App = () => {
   }, [dispatch]);
 
   if (refreshingStatus) {
-    return <Spinner color="#9ebbff" size="20px" />;
+    return (
+      <Loader>
+        <Spinner color="#9ebbff" size="20px" />
+      </Loader>
+    );
   }
 
   return (
