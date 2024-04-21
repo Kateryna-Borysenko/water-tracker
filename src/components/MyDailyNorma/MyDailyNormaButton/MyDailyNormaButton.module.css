@@ -1,22 +1,19 @@
-.buttonEdit {
-  padding: 0 12px;
-  font-size: 16px;
-  color: var(--secondary-blue);
+.editButton {
   border: none;
   background-color: transparent;
+  color: var(--secondary-blue);
+  font-size: 16px;
+  line-height: 20px;
   transition: var(--transition);
+  margin-left: 12px;
 }
 
-.buttonEdit:hover,
-.buttonEdit:focus,
-.buttonEdit:hover svg {
-  font-weight: 500;
-  cursor: pointer;
+.editButton:hover {
+  color: var(--secondary-orange);
 }
 
 @media screen and (min-width: 768px) {
-  .buttonEdit {
+  .editButton {
     font-size: 18px;
-    line-height: 1.3;
   }
 }

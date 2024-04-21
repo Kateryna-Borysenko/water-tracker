@@ -199,13 +199,15 @@ const MyDailyNormaModal = ({ onClose }) => {
                   />
                 </div>
               </div>
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="myDailyNormaButton"
-              >
-                Save
-              </Button>
+              <div className={s.buttonContainer}>
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="myDailyNormaButton"
+                >
+                  Save
+                </Button>
+              </div>
             </Form>
           )}
         </Formik>

@@ -14,7 +14,7 @@ export const MyDailyNormaButton = () => {
     <>
       <button
         type="button"
-        className={s.buttonEdit}
+        className={s.editButton}
         onClick={() => setIsOpenModal(prevState => !prevState)}
       >
         Edit
