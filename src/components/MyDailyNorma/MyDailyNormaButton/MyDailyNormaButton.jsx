@@ -3,7 +3,7 @@ import Modal from '../../common/Modal/Modal';
 import MyDailyNormaModal from '../MyDailyNormaModal/MyDailyNormaModal';
 import s from './MyDailyNormaButton.module.css';
 import { useDispatch } from 'react-redux';
-import { sentWaterRate } from '../../redux/auth/authOperations';
+import { sentWaterRate } from '../../../redux/auth/authOperations';
 
 export const MyDailyNormaButton = () => {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export const MyDailyNormaButton = () => {
     <>
       <button
         type="button"
-        className={s.buttonEdit}
+        className={s.editButton}
         onClick={() => {
           setIsOpenModal(prevState => !prevState);
           dispatch(sentWaterRate({ waterRate: 1900 }));

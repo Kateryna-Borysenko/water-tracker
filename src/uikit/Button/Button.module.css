@@ -93,6 +93,10 @@
     line-height: 24px;
     font-size: 18px;
   }
+
+  .myDailyNormaButton {
+    width: 160px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
