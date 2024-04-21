@@ -2,8 +2,8 @@
   "managementCard": {
     "deleteCardTitle": "Видалити запис",
     "deleteCardDescription": "Ви впевнені, що хочете видалити запис?",
-    "logoutCardTitle": "Log out",
-    "logoutCardDescription": "Log out",
+    "logoutCardTitle": "Вийти",
+    "logoutCardDescription": "Ви впевнені, що хочете вийти?",
     "cancelButton": "Скасувати",
     "deleteButton": "Bидaлити",
     "logoutButton": "Вийти"
@@ -83,5 +83,24 @@
     "newPasswordButton": "Відправити новий Пароль",
     "newPasswordReturnTo": "Повернутися до сторінки",
     "newPasswordLinkSignIn": "Вхід"
+  },
+  "calendar": {
+    "January": "Січень",
+    "February": "Лютий",
+    "March": "Березень",
+    "April": "Квітень",
+    "May": "Травень",
+    "June": "Чевень",
+    "July": "Липень",
+    "August": "Серпень",
+    "September": "Вересень",
+    "October": "Жовтень",
+    "November": "Листопад",
+    "December": "Грудень",
+    "month": "Місяць",
+    "norm": "Добова норма",
+    "percent": "Випито від добової норми",
+    "quantity": "Кількість разів споживання",
+    "liter": "л"
   }
 }
