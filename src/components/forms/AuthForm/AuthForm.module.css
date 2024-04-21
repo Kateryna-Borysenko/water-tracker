@@ -104,3 +104,21 @@
   border: none;
   margin-left: 8px;
 }
+
+.googleContainer {
+  position: relative;
+}
+
+.googleLink {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 30px;
+  width: 30px;
+  border-radius: 6px;
+  transition: var(--transition);
+}
+
+.googleLink:hover {
+  background-color: var(--secondary-light-blue);
+}

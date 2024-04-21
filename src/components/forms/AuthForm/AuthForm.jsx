@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Title from '../../common/Title/Title';
 import Button from '../../../uikit/Button/Button';
 import {
@@ -10,15 +11,15 @@ import {
   loginUser,
   resendVerificationEmail,
 } from '../../../redux/auth/authOperations';
+import useValidationSchema from '../../../schemas/authFormValidationSchema';
 import {
   getLoading,
   getUser,
   getEmailVerificationStatus,
 } from '../../../redux/auth/authSelectors';
 import Icons from '../../Icons/Icons';
+import googleLogo from '../../../assets/static/google.svg';
 import s from './AuthForm.module.css';
-import { useTranslation } from 'react-i18next';
-import useValidationSchema from '../../../schemas/authFormValidationSchema';
 
 const AuthForm = ({ type }) => {
   const { t } = useTranslation();
@@ -73,14 +74,28 @@ const AuthForm = ({ type }) => {
 
   return (
     <div className={s.container}>
-      <Title
-        title={
-          type === 'signup'
-            ? t('authForm.signupTitle')
-            : t('authForm.signinTitle')
-        }
-        className="authForm"
-      />
+      <div className={s.googleContainer}>
+        <Title
+          title={
+            type === 'signup'
+              ? t('authForm.signupTitle')
+              : t('authForm.signinTitle')
+          }
+          className="authForm"
+        />
+        <a
+          //https://water-tracker-node-rest-api.onrender.com/api/auth/google
+          //http://localhost:5000/api/auth/google
+          href={`${import.meta.env.VITE_SERVER_BASE_URL}/auth/google`}
+          className={s.googleLink}
+        >
+          <img
+            src={googleLogo}
+            alt="Google auth button"
+            className={s.googleIcon}
+          />
+        </a>
+      </div>
       <Formik
         initialValues={initialValues}
         validationSchema={
