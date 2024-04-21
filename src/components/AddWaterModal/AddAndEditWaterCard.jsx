@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { TimePicker } from 'antd';
 import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   apiAddWaterPortion,
   apiEditWaterPortion,
@@ -11,8 +11,9 @@ import { setTokenwaterPortionsInstance } from '../../redux/services/waterPortion
 import Subtitle from '../common/Subtitle/Subtitle';
 import Button from '../../uikit/Button/Button';
 import Icons from '../Icons/Icons';
-import LangsSwitcher from '../../components/LangsSwitcher/LangsSwitcher'
+import LangsSwitcher from '../../components/LangsSwitcher/LangsSwitcher';
 import s from './AddAndEditWaterCard.module.css';
+import { getToken } from '../../redux/auth/authSelectors';
 
 const AddAndEditWaterCard = ({
   isEditable = false,
@@ -20,6 +21,7 @@ const AddAndEditWaterCard = ({
   initialTime = '6:24 PM',
   id = '661c13d1990b4e425f6518e1',
 }) => {
+  const token = useSelector(getToken);
   const [defaultTime, setDefaultTime] = useState(dayjs());
   const [time, setTime] = useState(() => initialTime);
   const [water, setWater] = useState({
@@ -40,9 +42,7 @@ const AddAndEditWaterCard = ({
     };
 
     console.log(waterDetails);
-    setTokenwaterPortionsInstance(
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MWQ2MTE2NTkxNTE2ODFmNGVmZTgwNCIsImlhdCI6MTcxMzM1NjUzNiwiZXhwIjoxNzEzNDM5MzM2fQ.HxgQBn_6WSXblPd4c2iFYEBCuSImoTNx6HS7Km7tlB4',
-    );
+    setTokenwaterPortionsInstance(token);
     if (!isEditable) {
       dispatch(apiAddWaterPortion({ waterVolume, date }));
     } else {
@@ -82,8 +82,12 @@ const AddAndEditWaterCard = ({
 
   const { t } = useTranslation();
 
-  const title = isEditable ? t('AddAndEditWaterCard.titleEdit') : t('AddAndEditWaterCard.titleAdd');
-  const subtitle = isEditable ? t('AddAndEditWaterCard.subtitleEdit') : t('AddAndEditWaterCard.subtitleAdd');
+  const title = isEditable
+    ? t('AddAndEditWaterCard.titleEdit')
+    : t('AddAndEditWaterCard.titleAdd');
+  const subtitle = isEditable
+    ? t('AddAndEditWaterCard.subtitleEdit')
+    : t('AddAndEditWaterCard.subtitleAdd');
 
   return (
     <>
@@ -93,7 +97,10 @@ const AddAndEditWaterCard = ({
         {isEditable && (
           <div className={s.glassContainer}>
             <Icons className="glassIconEdit" id={'glass'} />
-            <span className={s.glassVolume}>{water.counterValue}{t('AddAndEditWaterCard.ml')}</span>
+            <span className={s.glassVolume}>
+              {water.counterValue}
+              {t('AddAndEditWaterCard.ml')}
+            </span>
             <span className={s.timeGlass}>{time}</span>
           </div>
         )}
@@ -112,7 +119,10 @@ const AddAndEditWaterCard = ({
             >
               <Icons className="iconEdit" id={'minus'} fill={'#407bff'} />
             </button>
-            <span className={s.waterAmountValue}>{water.counterValue}{t('AddAndEditWaterCard.ml')}</span>
+            <span className={s.waterAmountValue}>
+              {water.counterValue}
+              {t('AddAndEditWaterCard.ml')}
+            </span>
             <button
               type="button"
               name="increment"
@@ -156,8 +166,15 @@ const AddAndEditWaterCard = ({
             onChange={handleVolumeChange}
           />
           <div className={s.sreenContainer}>
-            <span className={s.waterAmountSreen}>{water.counterValue}{t('AddAndEditWaterCard.ml')}</span>
-            <Button type="submit" title={t('AddAndEditWaterCard.saveButton')} className="addWaterBtn" />
+            <span className={s.waterAmountSreen}>
+              {water.counterValue}
+              {t('AddAndEditWaterCard.ml')}
+            </span>
+            <Button
+              type="submit"
+              title={t('AddAndEditWaterCard.saveButton')}
+              className="addWaterBtn"
+            />
           </div>
         </form>
       </div>
