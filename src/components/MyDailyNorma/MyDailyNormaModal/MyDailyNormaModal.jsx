@@ -70,7 +70,7 @@ const MyDailyNormaModal = ({ onClose }) => {
             gender: 'For woman',
             weight: '',
             activityTime: '',
-            drankWater: '',
+            drankWater: '', //todo: получить значение с redux
           }}
           validationSchema={myDailyNormaValidationSchema}
           onSubmit={handleSubmit}
