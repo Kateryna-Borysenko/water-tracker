@@ -52,6 +52,10 @@
   margin: 14px auto 24px;
 }
 
+.myDailyNormaButton {
+  width: 100%;
+}
+
 @media screen and (min-width: 768px) {
   .button {
     height: 44px;
