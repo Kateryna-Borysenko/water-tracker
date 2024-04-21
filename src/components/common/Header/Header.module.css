@@ -7,18 +7,22 @@
   width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
+  gap: 4px;
 }
 .logoLngsWrap {
   display: flex;
   align-items: center;
   justify-content: start;
-  gap: 20px;
+  gap: 8px;
 }
 
 @media screen and (min-width: 768px) {
   .header {
     padding: 16px 32px 0;
     max-width: 768px;
+  }
+  .logoLngsWrap {
+    gap: 20px;
   }
 }
 

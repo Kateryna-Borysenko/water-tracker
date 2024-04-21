@@ -183,7 +183,7 @@ const AuthForm = ({ type }) => {
               {t('authForm.signupLink')}
             </Link>
             <Link className={s.password} to="/new-password/email">
-              Forgot your Password?
+              {t('authForm.forgotPass')}
             </Link>
           </div>
           {email && emailVerificationStatus === false && (

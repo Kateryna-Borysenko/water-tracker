@@ -42,7 +42,8 @@
     "signinLink": "Sign in",
     "signupLink": "Sign up",
     "resendEmailMassage": "No confirmation email?",
-    "resendEmailButton": "Send"
+    "resendEmailButton": "Send",
+    "forgotPass": "Forgot your Password?"
   },
   "EMAIL_ERROR_MESSAGE": "Enter a valid email",
   "PASSWORD_ERROR_MESSAGE": "The password is min 8 and max 64",
@@ -61,5 +62,9 @@
     "enterTheValue": "Enter the value of the water used:",
     "saveButton": "Save",
     "ml": "ml"
+  },
+  "popup": {
+    "setting": "Setting",
+    "logout": "Log out"
   }
 }

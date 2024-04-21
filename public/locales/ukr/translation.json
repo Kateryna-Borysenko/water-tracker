@@ -42,7 +42,8 @@
     "signinLink": "Вхід",
     "signupLink": "Реєстрація",
     "resendEmailMassage": "Немає електронного листа з підтвердженням?",
-    "resendEmailButton": "Відправити"
+    "resendEmailButton": "Відправити",
+    "forgotPass": "Забули свій пароль?"
   },
   "EMAIL_ERROR_MESSAGE": "Введіть дійсну електронну адресу",
   "PASSWORD_ERROR_MESSAGE": "Мінімум 8 символів, максимум 64",
@@ -61,5 +62,9 @@
     "enterTheValue": "Введіть обсяг випитої води:",
     "saveButton": "Зберегти",
     "ml": "мл"
+  },
+  "popup": {
+    "setting": "Налаштування",
+    "logout": "Вийти"
   }
 }
