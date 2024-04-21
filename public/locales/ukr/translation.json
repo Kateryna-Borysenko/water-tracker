@@ -50,5 +50,16 @@
   "REQUIRED_PASSWORD_MESSAGE": "Поле пароля обов'язкове",
   "MATCH_PASSWORD_MESSAGE": "Паролі мають збігатися",
   "REQUIRED_REPEAT_PASSWORD_MESSAGE": "Поле повторення пароля обов'язкове",
-  "userAuthTitle": "Вхід"
+  "userAuthTitle": "Вхід",
+  "AddAndEditWaterCard": {
+    "titleEdit": "Редагуйте введену кількість води",
+    "subtitleEdit": "Виправте введені дані:",
+    "titleAdd": "Додати воду",
+    "subtitleAdd": "Виберіть об'єм:",
+    "amountOfWater": "Кількість води",
+    "recordingTime": "Час запису:",
+    "enterTheValue": "Введіть обсяг випитої води:",
+    "saveButton": "Зберегти",
+    "ml": "мл"
+  }
 }

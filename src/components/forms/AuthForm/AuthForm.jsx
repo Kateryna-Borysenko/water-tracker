@@ -178,8 +178,13 @@ const AuthForm = ({ type }) => {
 
       {type === 'signin' && (
         <div>
-          <div className={s.link}>
-            <Link to="/signup">{t('authForm.signupLink')}</Link>
+          <div className={s.linkContainer}>
+            <Link className={s.link} to="/signup">
+              {t('authForm.signupLink')}
+            </Link>
+            <Link className={s.password} to="/new-password/email">
+              Forgot your Password?
+            </Link>
           </div>
           {email && emailVerificationStatus === false && (
             <div className={s.resendEmailMassage}>

@@ -3,12 +3,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: calc(100vh - 68px);
   max-width: 620px;
   margin: 0 auto;
 }
 
 .image {
-  width: 150px;
+  width: 100px;
   height: auto;
 }
 
@@ -23,7 +24,6 @@
 }
 
 .description {
-  padding: 0 40px 0 0;
   box-sizing: border-box;
   text-align: center;
 }

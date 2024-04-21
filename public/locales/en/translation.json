@@ -50,5 +50,16 @@
   "REQUIRED_PASSWORD_MESSAGE": "Password field is required",
   "MATCH_PASSWORD_MESSAGE": "Passwords must match",
   "REQUIRED_REPEAT_PASSWORD_MESSAGE": "Repeat password field is required",
-  "userAuthTitle": "Sign in"
+  "userAuthTitle": "Sign in",
+  "AddAndEditWaterCard": {
+    "titleEdit": "Edit the entered amount of water",
+    "subtitleEdit": "Correct entered data:",
+    "titleAdd": "Add water",
+    "subtitleAdd": "Choose a value:",
+    "amountOfWater": "Amount of water:",
+    "recordingTime": "Recording time:",
+    "enterTheValue": "Enter the value of the water used:",
+    "saveButton": "Save",
+    "ml": "ml"
+  }
 }

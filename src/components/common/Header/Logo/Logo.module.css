@@ -8,6 +8,7 @@
   text-transform: uppercase;
   width: 102px;
   transition: var(--transition);
+  padding-top: 8px;
 }
 
 .title {
