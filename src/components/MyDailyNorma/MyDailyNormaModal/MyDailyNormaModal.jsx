@@ -5,8 +5,16 @@ import Subtitle from '../../../components/common/Subtitle/Subtitle';
 import Button from '../../../uikit/Button/Button';
 import { myDailyNormaValidationSchema } from '../../../schemas/myDailyNormaValidationSchema.js';
 import s from './MyDailyNormaModal.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { sentWaterRate } from '../../../redux/auth/authOperations.js';
+import { selectWaterRate } from '../../../redux/auth/authSelectors.js';
 
 const MyDailyNormaModal = ({ onClose }) => {
+  const dispatch = useDispatch();
+  const waterRate = useSelector(selectWaterRate);
+
+  const DailyNormaL = waterRate / 1000;
+
   const calculateWaterAmount = values => {
     const { gender, weight, activityTime } = values;
 
@@ -25,8 +33,7 @@ const MyDailyNormaModal = ({ onClose }) => {
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
     const drankWater = parseFloat(values.drankWater) * 1000;
 
-    //Todo: отправить данные на back и внести изменения в redux
-    console.log('Drank water:', drankWater);
+    dispatch(sentWaterRate({ waterRate: drankWater }));
 
     const recommendedWater = calculateWaterAmount(values);
     toast.success(`Recommended water intake: ${recommendedWater}`, {
@@ -70,7 +77,7 @@ const MyDailyNormaModal = ({ onClose }) => {
             gender: 'For woman',
             weight: '',
             activityTime: '',
-            drankWater: '', //todo: получить значение с redux
+            drankWater: DailyNormaL,
           }}
           validationSchema={myDailyNormaValidationSchema}
           onSubmit={handleSubmit}
