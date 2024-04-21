@@ -67,6 +67,23 @@
     "setting": "Налаштування",
     "logout": "Вийти"
   },
+  "forgotPasswordForm": {
+    "forgotPasswordTitle": "Забули Пароль?",
+    "forgotPasswordDescription": "Інструкції щодо скидання Паролю будуть відправлені на вашу основну електронну адресу.",
+    "forgotPasswordLabel": "Введіть вашу електронну адресу",
+    "forgotPasswordPlaceholder": "Адреса електронної пошти",
+    "forgotPasswordButton": "Надіслати інструкції щодо скидання Паролю",
+    "forgotPasswordReturnTo": "Повернутися до сторінки",
+    "forgotPasswordLinkSignIn": "Вхід"
+  },
+  "newPasswordForm": {
+    "newPasswordTitle": "Забули Пароль?",
+    "newPasswordLabel": "Ведіть ваш Пароль",
+    "newPasswordPlaceholder": "Пароль",
+    "newPasswordButton": "Відправити новий Пароль",
+    "newPasswordReturnTo": "Повернутися до сторінки",
+    "newPasswordLinkSignIn": "Вхід"
+  },
   "calendar": {
     "January": "Січень",
     "February": "Лютий",

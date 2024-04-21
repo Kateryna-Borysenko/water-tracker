@@ -59,6 +59,7 @@
 .password {
   color: var(--primary-sky-blue);
   transition: var(--transition);
+  font-size: 12px;
 }
 
 .password:hover {

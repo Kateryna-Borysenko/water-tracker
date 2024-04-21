@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Title from '../../common/Title/Title';
 import Button from '../../../uikit/Button/Button';
 import { emailFormSchema } from '../../../schemas/emailFormValidationSchema';
@@ -26,11 +27,13 @@ const ForgotPasswordForm = () => {
     resetForm();
   };
 
+  const { t } = useTranslation();
+
   return (
     <div className={s.container}>
-      <Title title="Forgot your Password?" />
+      <Title title={t('forgotPasswordForm.forgotPasswordTitle')} />
       <p className={s.description}>
-        Password reset instructions will be sent to your primary email address.
+        {t('forgotPasswordForm.forgotPasswordDescription')}
       </p>
 
       <Formik
@@ -42,11 +45,11 @@ const ForgotPasswordForm = () => {
         {({ isSubmitting, errors, touched }) => (
           <Form className={s.form}>
             <div className={s.field}>
-              <label>Enter your email</label>
+              <label>{t('forgotPasswordForm.forgotPasswordLabel')}</label>
               <Field
                 type="email"
                 name="email"
-                placeholder="E-mail"
+                placeholder={t('forgotPasswordForm.forgotPasswordPlaceholder')}
                 className={`${s.input} ${
                   touched.email && errors.email && s.errorInput
                 }`}
@@ -55,7 +58,7 @@ const ForgotPasswordForm = () => {
             </div>
             <Button
               type="submit"
-              title="Email Reset Instructions"
+              title={t('forgotPasswordForm.forgotPasswordButton')}
               disabled={isSubmitting}
               className="forgotYourPassword"
               loading={loading}
@@ -65,9 +68,9 @@ const ForgotPasswordForm = () => {
       </Formik>
 
       <div className={s.linkContainer}>
-        Return to
+        {t('forgotPasswordForm.forgotPasswordReturnTo')}
         <Link className={s.link} to="/signin">
-          Sign In
+          {t('forgotPasswordForm.forgotPasswordLinkSignIn')}
         </Link>
       </div>
     </div>
