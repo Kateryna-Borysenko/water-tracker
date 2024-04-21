@@ -4,6 +4,7 @@ import { logoutUser } from '../../../../../redux/auth/authOperations';
 import Modal from '../../../Modal/Modal';
 import ManagementCard from '../../../../ManagementCard/ManagementCard';
 import Icons from '../../../../Icons/Icons';
+import { useTranslation } from 'react-i18next';
 import s from './UserLogoModal.module.css';
 
 const UserLogoModal = ({ handleClosePopup }) => {
@@ -23,6 +24,8 @@ const UserLogoModal = ({ handleClosePopup }) => {
     dispatch(logoutUser());
   };
 
+  const { t } = useTranslation();
+
   return (
     <ul onClose={handleClosePopup} className={s.headerModal}>
       <li className={s.item}>
@@ -41,9 +44,9 @@ const UserLogoModal = ({ handleClosePopup }) => {
         {isModalOpen && (
           <Modal onClose={handleCloseModal}>
             <ManagementCard
-              title="Log out"
-              description="Do you really want to leave?"
-              secondButton="Log out"
+              title={t('managementCard.logoutCardTitle')}
+              description={t('managementCard.logoutCardDescription')}
+              secondButton={t('managementCard.logoutButton')}
               className="aligneRight"
               onClick={handleLogoutUser}
               onClickSecondBtn={handleCloseModal}

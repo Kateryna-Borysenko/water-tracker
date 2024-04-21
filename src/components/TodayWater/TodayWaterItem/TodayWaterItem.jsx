@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import Modal from '../../common/Modal/Modal';
 import AddWaterModal from '../../AddWaterModal/AddAndEditWaterCard';
 import Icons from '../../Icons/Icons';
+import { useTranslation } from 'react-i18next';
 import s from './TodayWaterItem.module.css'
 
 
@@ -19,6 +20,8 @@ export const TodayWaterItem = ({ waterVolume, time }) => {
         const date = new Date(dateTimeStr);
         return format(date, 'h:mm a');
     };
+
+    const { t } = useTranslation();
 
     return (
         <>
@@ -43,9 +46,9 @@ export const TodayWaterItem = ({ waterVolume, time }) => {
             {isOpenModalDelete && (
                 <Modal onClose={handleCloseModal}>
                     <ManagementCard
-                        title="Delete entry"
-                        description="Are you sure you want to delete the entry?"
-                        secondButton="Delete"
+                        title={t('managementCard.deleteCardTitle')}
+                        description={t('managementCard.deleteCardDescription')}
+                        secondButton={t('managementCard.deleteButton')}
                         className="alignRight"
                     />
                 </Modal>
