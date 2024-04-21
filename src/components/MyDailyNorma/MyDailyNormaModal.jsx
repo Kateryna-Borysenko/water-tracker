@@ -4,12 +4,9 @@ import Title from '../common/Title/Title';
 import Subtitle from '../common/Subtitle/Subtitle';
 import Button from '../../uikit/Button/Button';
 import s from './MyDailyNormaModal.module.css';
-import { useDispatch } from 'react-redux';
-import { sentWaterRate } from '../../redux/auth/authOperations';
 
 const MyDailyNormaModal = () => {
   const [waterAmount, setWaterAmount] = useState('');
-  const dispatch = useDispatch();
 
   const calculateWaterAmount = values => {
     const { gender, weight, activityTime } = values;
@@ -20,7 +17,7 @@ const MyDailyNormaModal = () => {
     } else {
       formula = (weight * 0.04 + activityTime * 0.6).toFixed(2);
     }
-    dispatch(sentWaterRate(`${formula} L`));
+
     setWaterAmount(`${formula} L`);
   };
 
