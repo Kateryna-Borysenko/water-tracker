@@ -6,7 +6,6 @@ import ManagementCard from '../../../../ManagementCard/ManagementCard';
 import Icons from '../../../../Icons/Icons';
 import { useTranslation } from 'react-i18next';
 import s from './UserLogoModal.module.css';
-import { useTranslation } from 'react-i18next';
 
 const UserLogoModal = ({ handleClosePopup }) => {
   const { t } = useTranslation();
@@ -25,8 +24,6 @@ const UserLogoModal = ({ handleClosePopup }) => {
   const handleLogoutUser = () => {
     dispatch(logoutUser());
   };
-
-  const { t } = useTranslation();
 
   return (
     <ul onClose={handleClosePopup} className={s.headerModal}>
