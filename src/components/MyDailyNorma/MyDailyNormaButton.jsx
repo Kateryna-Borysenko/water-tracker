@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Modal from '../common/Modal/Modal';
-import MyDailyNormaModal from './MyDailyNormaModal';
+import Modal from '../../components/common/Modal/Modal';
+import MyDailyNormaModal from '../MyDailyNorma/MyDailyNormaModal';
 import s from './MyDailyNormaButton.module.css';
 import { useDispatch } from 'react-redux';
 import { sentWaterRate } from '../../redux/auth/authOperations';
@@ -28,7 +28,7 @@ export const MyDailyNormaButton = () => {
 
       {isOpenModal && (
         <Modal onClose={handleCloseModal}>
-          <MyDailyNormaModal />
+          <MyDailyNormaModal onClose={handleCloseModal} />
         </Modal>
       )}
     </>
