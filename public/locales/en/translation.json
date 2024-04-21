@@ -67,6 +67,23 @@
     "setting": "Setting",
     "logout": "Log out"
   },
+  "forgotPasswordForm": {
+    "forgotPasswordTitle": "Forgot your Password?",
+    "forgotPasswordDescription": "Password reset instructions will be sent to your primary email address.",
+    "forgotPasswordLabel": "Enter your email",
+    "forgotPasswordPlaceholder": "E-mail",
+    "forgotPasswordButton": "Email Reset Instructions",
+    "forgotPasswordReturnTo": "Return to",
+    "forgotPasswordLinkSignIn": "Sign In"
+  },
+  "newPasswordForm": {
+    "newPasswordTitle": "Forgot your Password?",
+    "newPasswordLabel": "Enter your password",
+    "newPasswordPlaceholder": "Password",
+    "newPasswordButton": "Sent New Password",
+    "newPasswordReturnTo": "Return to",
+    "newPasswordLinkSignIn": "Sign In"
+  },
   "calendar": {
     "January": "January",
     "February": "February",

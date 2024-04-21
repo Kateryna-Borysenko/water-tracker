@@ -1,5 +1,5 @@
 .container {
-  width: 236px;
+  width: 544px;
 }
 
 .textContainer {
@@ -21,26 +21,18 @@
   margin-top: 24px;
 }
 
-.forWoman {
-  margin-bottom: 16px;
+.secondContainer {
+  display: flex;
 }
 
 .highlight {
   color: var(--primary-sky-blue);
-  font-size: 16px;
-  margin-left: 6px;
-}
-
-.accent {
-  display: inline-block;
-  color: var(--primary-sky-blue);
-  margin-right: 4px;
+  margin-right: 24px;
+  margin-left: 4px;
 }
 
 .modalP {
-  font-size: 12px;
-  line-height: 16px;
-  color: var(--additional-gray);
+  color: #8f8f8f;
   border: 1px solid var(--secondary-bluish-white);
   border-radius: 10px;
   padding: 10px;
@@ -74,31 +66,39 @@
   cursor: pointer;
   width: 14px;
   margin-right: 8px;
-  transition: var(--transition);
+  transition: all 500ms ease;
+}
+
+.inputRadio:checked {
+  transition: all 500ms ease;
 }
 
 .modalInput {
   color: var(--primary-sky-blue);
   display: flex;
-  width: 100%;
+  width: 96%;
+  height: 100%;
   border-radius: 6px;
   border: thin solid var(--secondary-bluish-white);
   padding: 12px 10px;
-  box-sizing: border-box;
-  margin-top: 16px;
-}
-
-.waterNormContainer {
-  display: flex;
-  align-items: center;
 }
 
 .waterAmount {
-  display: flex;
-  width: 40%;
   color: var(--primary-sky-blue);
   font-weight: bold;
   margin-left: 8px;
+}
+
+.ModalButton {
+  background-color: var(--primary-sky-blue);
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+  width: 160px;
+  height: 44px;
 }
 
 .modalInput:focus {
@@ -110,68 +110,12 @@
   color: var(--primary-sky-blue);
 }
 
+.ModalButton:hover {
+  background-color: #0056b3;
+}
+
 .divButtonModal {
   display: flex;
   justify-content: flex-end;
   margin-top: 24px;
-}
-
-.waterLabel {
-  min-height: 122px;
-}
-
-.weightLabel {
-  display: block;
-  min-height: 100px;
-}
-
-.error {
-  color: var(--secondary-red);
-  font-size: 14px;
-  line-height: 18px;
-}
-
-.errorInput {
-  color: var(--secondary-red);
-  border-color: var(--secondary-red);
-}
-
-@media screen and (min-width: 768px) {
-  .container {
-    width: 704px;
-  }
-
-  .secondContainer {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .forWoman {
-    margin-right: 24px;
-  }
-
-  .buttonContainer {
-    height: 44px;
-  }
-
-  .buttonContainer button {
-    position: absolute;
-    right: 24px;
-  }
-
-  .modalP {
-    font-size: 13px;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .container {
-    width: 592px;
-  }
-
-  .buttonContainer button {
-    width: 164px;
-    position: absolute;
-    right: 24px;
-  }
 }

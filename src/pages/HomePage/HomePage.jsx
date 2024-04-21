@@ -18,20 +18,16 @@ const HomePage = () => {
 
   return (
     <>
-      <Meta title="Home Page" />
       <div className={s.container}>
-        <Container>
-          <div className={s.homePageConteiner}>
-            <div>
-              <div className={s.contentContainer}>
-                <MyDailyNorma />
-              </div>
-              <ProgressBar />
-            </div>
-            <div className={s.homePageWidgetWrapper}>
-              <TodayWaterList />
-              <Calendar />
-            </div>
+        <Meta title="Home Page" />
+        <Container className="containerHomePage">
+          <div className={s.contentContainer}>
+            <MyDailyNorma />
+            <ProgressBar />
+          </div>
+          <div className={s.homePageWidgetWrapper}>
+            <TodayWaterList />
+            <Calendar />
           </div>
         </Container>
       </div>

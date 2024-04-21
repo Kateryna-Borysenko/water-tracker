@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Modal from '../../common/Modal/Modal';
-import MyDailyNormaModal from '../MyDailyNormaModal/MyDailyNormaModal';
+import Modal from '../common/Modal/Modal';
+import MyDailyNormaModal from './MyDailyNormaModal';
 import s from './MyDailyNormaButton.module.css';
 
 export const MyDailyNormaButton = () => {
@@ -22,7 +22,7 @@ export const MyDailyNormaButton = () => {
 
       {isOpenModal && (
         <Modal onClose={handleCloseModal}>
-          <MyDailyNormaModal onClose={handleCloseModal} />
+          <MyDailyNormaModal />
         </Modal>
       )}
     </>

@@ -22,4 +22,9 @@
     max-width: 1256px;
     padding: 0 20px;
   }
+  .containerHomePage {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+  }
 }

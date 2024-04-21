@@ -59,6 +59,7 @@
 .password {
   color: var(--primary-sky-blue);
   transition: var(--transition);
+  font-size: 12px;
 }
 
 .password:hover {
@@ -103,4 +104,22 @@
   background-color: transparent;
   border: none;
   margin-left: 8px;
+}
+
+.googleContainer {
+  position: relative;
+}
+
+.googleLink {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 30px;
+  width: 30px;
+  border-radius: 6px;
+  transition: var(--transition);
+}
+
+.googleLink:hover {
+  background-color: var(--secondary-light-blue);
 }
