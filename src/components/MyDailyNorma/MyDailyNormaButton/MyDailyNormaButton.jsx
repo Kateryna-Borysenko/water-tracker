@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Modal from '../../components/common/Modal/Modal';
-import MyDailyNormaModal from '../MyDailyNorma/MyDailyNormaModal';
+import Modal from '../../common/Modal/Modal';
+import MyDailyNormaModal from '../MyDailyNormaModal/MyDailyNormaModal';
 import s from './MyDailyNormaButton.module.css';
 import { useDispatch } from 'react-redux';
 import { sentWaterRate } from '../../redux/auth/authOperations';

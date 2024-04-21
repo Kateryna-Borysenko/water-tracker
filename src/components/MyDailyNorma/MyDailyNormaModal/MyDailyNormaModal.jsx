@@ -1,52 +1,24 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { toast } from 'react-toastify';
-
+import { useState } from 'react';
+import { Formik, Form, Field } from 'formik';
 import Title from '../../../components/common/Title/Title';
 import Subtitle from '../../../components/common/Subtitle/Subtitle';
 import Button from '../../../uikit/Button/Button';
-import { myDailyNormaValidationSchema } from '../../../schemas/myDailyNormaValidationSchema.js';
 import s from './MyDailyNormaModal.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { sentWaterRate } from '../../../redux/auth/authOperations.js';
-import { selectWaterRate } from '../../../redux/auth/authSelectors.js';
 
-const MyDailyNormaModal = ({ onClose }) => {
-  const dispatch = useDispatch();
-  const waterRate = useSelector(selectWaterRate);
-
-  const DailyNormaL = waterRate / 1000;
+const MyDailyNormaModal = () => {
+  const [waterAmount, setWaterAmount] = useState('');
 
   const calculateWaterAmount = values => {
     const { gender, weight, activityTime } = values;
-
     let formula = 0;
-    const time = activityTime === '' ? 0 : parseFloat(activityTime);
 
     if (gender === 'For woman') {
-      formula = (weight * 0.03 + time * 0.4).toFixed(1);
+      formula = (weight * 0.03 + activityTime * 0.4).toFixed(2);
     } else {
-      formula = (weight * 0.04 + time * 0.6).toFixed(1);
+      formula = (weight * 0.04 + activityTime * 0.6).toFixed(2);
     }
 
-    return `${formula} L`;
-  };
-
-  const handleSubmit = (values, { resetForm, setSubmitting }) => {
-    const drankWater = parseFloat(values.drankWater) * 1000;
-
-    dispatch(sentWaterRate({ waterRate: drankWater }));
-
-    const recommendedWater = calculateWaterAmount(values);
-    toast.success(`Recommended water intake: ${recommendedWater}`, {
-      style: {
-        width: '300px',
-        textAlign: 'center',
-      },
-    });
-
-    resetForm();
-    setSubmitting(false);
-    onClose();
+    setWaterAmount(`${formula} L`);
   };
 
   return (
@@ -56,9 +28,9 @@ const MyDailyNormaModal = ({ onClose }) => {
       </div>
       <div className={s.modalParagraphContainer}>
         <div className={s.secondContainer}>
-          <p className={s.forWoman}>
-            For woman:
-            <span className={s.highlight}>V=(M*0.03)+(T*0.4)</span>
+          <p>
+            For girl:
+            <span className={s.highlight}>V=(M*0.03) + (T*0.4)</span>
           </p>
           <p>
             For man:
@@ -66,24 +38,25 @@ const MyDailyNormaModal = ({ onClose }) => {
           </p>
         </div>
         <p className={s.modalP}>
-          <span className={s.accent}>*</span>V is the volume of the water norm
-          in liters per day, M is your body weight, T is the time of active
-          sports, or another type of activity commensurate in terms of loads (in
-          the absence of these, you must set 0)
+          * V is the volume of the water norm in liters per day, M is your body
+          weight, T is the time of active sports, or another type of activity
+          commensurate in terms of loads (in the absence of these, you must set
+          0)
         </p>
 
         <Subtitle title={'Calculate your rate:'} />
         <Formik
           initialValues={{
-            gender: 'For woman',
+            gender: '',
             weight: '',
             activityTime: '',
-            drankWater: DailyNormaL,
+            drankWater: '',
           }}
-          validationSchema={myDailyNormaValidationSchema}
-          onSubmit={handleSubmit}
+          onSubmit={values => {
+            calculateWaterAmount(values);
+          }}
         >
-          {({ isSubmitting, errors, touched, values, handleChange }) => (
+          {({ isSubmitting, errors, touched }) => (
             <Form>
               <div className={s.dailyModalForm}>
                 <div className={s.forManForWoman}>
@@ -93,7 +66,6 @@ const MyDailyNormaModal = ({ onClose }) => {
                       type="radio"
                       name="gender"
                       value="For woman"
-                      onChange={handleChange}
                     />
                     For woman
                   </label>
@@ -103,40 +75,20 @@ const MyDailyNormaModal = ({ onClose }) => {
                       type="radio"
                       name="gender"
                       value="For man"
-                      onChange={handleChange}
                     />
                     For man
                   </label>
-                  <ErrorMessage
-                    name="gender"
-                    component="div"
-                    className={`${s.error} ${
-                      touched.gender && errors.gender && s.error
-                    }`}
-                  />
                 </div>
                 <div>
-                  <label className={s.weightLabel}>
+                  <label>
                     <p className={s.aboveInputText}>
                       Your weight in kilograms:
                     </p>
                     <Field
-                      className={`${s.modalInput} ${
-                        touched.weight && errors.weight && s.errorInput
-                      }`}
-                      type="number"
+                      className={s.modalInput}
+                      type="text"
                       name="weight"
                       placeholder="0"
-                      min="0"
-                      step="1"
-                      onChange={handleChange}
-                    />
-                    <ErrorMessage
-                      name="weight"
-                      component="div"
-                      className={`${s.error} ${
-                        touched.weight && errors.weight && s.error
-                      }`}
                     />
                   </label>
                 </div>
@@ -147,75 +99,35 @@ const MyDailyNormaModal = ({ onClose }) => {
                       activities with a high physical. load in hours:
                     </p>
                     <Field
-                      className={`${s.modalInput} ${
-                        touched.activityTime &&
-                        errors.activityTime &&
-                        s.errorInput
-                      }`}
-                      type="number"
+                      className={s.modalInput}
+                      type="text"
                       name="activityTime"
                       placeholder="0"
-                      min="0"
-                      max="24"
-                      step="1"
-                      onChange={handleChange}
                     />
                   </label>
-                  <ErrorMessage
-                    name="activityTime"
-                    component="div"
-                    className={`${s.error} ${
-                      touched.activityTime && errors.activityTime && s.error
-                    }`}
-                  />
                 </div>
                 <div>
-                  <div className={s.waterNormContainer}>
+                  <label>
                     The required amount of water in liters per day:
-                    <span className={s.waterAmount}>
-                      {errors.activityTime || errors.weight || errors.gender
-                        ? `${0} L`
-                        : calculateWaterAmount(values)}
-                    </span>
-                  </div>
+                    <span className={s.waterAmount}>{waterAmount}</span>
+                  </label>
                 </div>
               </div>
               <div>
-                <div className={s.waterLabel}>
+                <label>
                   <Subtitle
                     title="Write down how much water you will drink:"
                     className="subtitleDailyNorma"
                   />
-
                   <Field
-                    className={`${s.modalInput} ${
-                      touched.drankWater && errors.drankWater && s.errorInput
-                    }`}
-                    type="number"
+                    className={s.modalInput}
+                    type="text"
                     name="drankWater"
                     placeholder="0"
-                    min="0"
-                    step="0.001"
-                    onChange={handleChange}
                   />
-                  <ErrorMessage
-                    name="drankWater"
-                    component="div"
-                    className={`${s.error} ${
-                      touched.drankWater && errors.drankWater && s.error
-                    }`}
-                  />
-                </div>
+                </label>
               </div>
-              <div className={s.buttonContainer}>
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="myDailyNormaButton"
-                >
-                  Save
-                </Button>
-              </div>
+              <Button className="myDailyNormaSaveButton">Save</Button>
             </Form>
           )}
         </Formik>
