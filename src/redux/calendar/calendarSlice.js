@@ -8,8 +8,6 @@ import {
   handlePendingAdd,
 } from './handleFunctionReducer';
 
-import waterUsage from '../../components/Calendar/waterUsage.json';
-
 export const initialState = {
   currentDate: moment().toISOString(),
   isVisible: false,
@@ -20,7 +18,7 @@ export const initialState = {
     quantity: '0',
   },
   modalPosition: { left: 0, top: 0 },
-  monthlyData: waterUsage,
+  monthlyData: [],
   status: STATUSES.idle,
   error: null,
 };

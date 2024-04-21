@@ -10,7 +10,7 @@ export const handleFulfilledAdd = (state, { payload }) => {
   state.isLoading = false;
   state.error = null;
   state.status = STATUSES.success;
-  state.monthlyData.push(payload);
+  state.monthlyData = payload;
   state.isModalAdd = false;
 };
 
