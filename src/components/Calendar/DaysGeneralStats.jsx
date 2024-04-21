@@ -1,20 +1,24 @@
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import {
   selectIsOpenModal,
   selectModalPosition,
   selectModalData,
   selectModalDate,
+  selectWaterRate,
 } from '../../redux/calendar/calendarSelectors';
 import { closeModal } from '../../redux/calendar/calendarSlice';
 import modalLeftPosition from './helpers';
 import s from './Calendar.module.css';
 
 const DaysGeneralStats = () => {
+  const { t } = useTranslation();
   const isVisible = useSelector(selectIsOpenModal);
   const position = useSelector(selectModalPosition);
   const data = useSelector(selectModalData);
+  const waterRate = useSelector(selectWaterRate);
   const selectedDate = useSelector(selectModalDate);
   const dispatch = useDispatch();
   const [modalStyle, setModalStyle] = useState({});
@@ -70,9 +74,14 @@ const DaysGeneralStats = () => {
   if (!isVisible) {
     return null;
   }
-  const formattedDate = selectedDate
-    ? moment(selectedDate).format('D, MMMM')
-    : '';
+  const day = moment(selectedDate).format('D');
+  const month = moment(selectedDate).format('MMMM');
+  let dailyNormAmount = 0;
+  if (data.dailyNorm === '0') {
+    dailyNormAmount = waterRate / 1000;
+  } else {
+    dailyNormAmount = data.dailyNorm.slice(0, data.dailyNorm.length - 1);
+  }
 
   return (
     <div className={s.modalOverlay} onClick={() => dispatch(closeModal())}>
@@ -82,17 +91,24 @@ const DaysGeneralStats = () => {
         className={s.modalContent}
         onClick={e => e.stopPropagation()}
       >
-        <div className={s.dateModal}>{formattedDate}</div>
+        <div className={s.dateModal}>
+          {day}
+          {', '}
+          {t(`calendar.${month}`)}
+        </div>
         <div className={s.modalMainText}>
-          Daily norm:&nbsp;
-          <span className={s.modalValueText}>{data.dailyNorm}</span>
+          {t('calendar.norm')}
+          {':'}&nbsp;
+          <span className={s.modalValueText}>
+            {dailyNormAmount} {t('calendar.liter')}
+          </span>
         </div>
         <div>
-          Fulfilment of the daily norm:&nbsp;
+          {t('calendar.percent')}:&nbsp;
           <span className={s.modalValueText}>{data.percent}</span>
         </div>
         <div>
-          How many servings of water:&nbsp;
+          {t('calendar.quantity')}:&nbsp;
           <span className={s.modalValueText}>{data.quantity}</span>
         </div>
       </div>
