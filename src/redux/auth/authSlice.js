@@ -107,7 +107,7 @@ export const authSlice = createSlice({
       .addCase(sentWaterRate.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.isLoggedIn = true;
-        state.waterRate = payload;
+        state.user.waterRate = payload.waterRate;
       })
       .addCase(sentWaterRate.rejected, (state, { payload }) => {
         state.error = payload;

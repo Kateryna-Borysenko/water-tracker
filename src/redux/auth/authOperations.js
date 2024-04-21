@@ -153,12 +153,12 @@ export const sentWaterRate = createAsyncThunk(
   'auth/sentWaterRate',
   async (waterDailyNorma, ThunkAPI) => {
     try {
-      const { data } = await axios.putch(
+      const { data } = await axios.patch(
         AUTH_ENDPOINT.WATER_RATE,
         waterDailyNorma,
       );
-      toast.success(data.message);
-      return;
+      // toast.success(data.message);
+      return data;
     } catch (error) {
       return ThunkAPI.rejectWithValue(error.message);
     }

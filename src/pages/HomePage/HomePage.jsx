@@ -4,8 +4,7 @@ import TodayWaterList from '../../components/TodayWater/TodayWaterList/TodayWate
 import Calendar from '../../components/Calendar/Calendar';
 import Meta from '../../components/common/Meta/Meta';
 import ProgressBar from '../../components/ProgressBarHomePage/ProgressBar';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectWaterPortionsToday } from '../../redux/water/watersSelectors';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { apiGetWaterPortionToday } from '../../redux/water/watersOperations';
 import s from './HomePage.module.css';
