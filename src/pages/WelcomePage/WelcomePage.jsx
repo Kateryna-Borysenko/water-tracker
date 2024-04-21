@@ -4,7 +4,6 @@ import MainTitle from '../../components/common/MainTitle/MainTitle';
 import Subtitle from '../../components/common/Subtitle/Subtitle';
 import Item from '../../components/Item/Item';
 import Button from '../../uikit/Button/Button';
-import LangsSwitcher from '../../components/LangsSwitcher/LangsSwitcher';
 import Meta from '../../components/common/Meta/Meta';
 
 import {
@@ -37,7 +36,6 @@ const WelcomePage = () => {
     <div className={s.container}>
       <Meta />
       <Container className="containerWelcomePage">
-        <LangsSwitcher />
         <div className={s.contentContainer}>
           <div className={s.itemContainerBenefits}>
             <MainTitle

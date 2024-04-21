@@ -9,6 +9,11 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 125%;
+  transition: var(--transition);
+}
+
+.title:hover {
+  color: var(--secondary-orange);
 }
 
 @media screen and (min-width: 768px) {

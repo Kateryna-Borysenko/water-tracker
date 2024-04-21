@@ -15,7 +15,7 @@
 }
 
 .item {
-  max-width: 86px;
+  min-width: 86px;
   display: flex;
   gap: 8px;
   align-items: center;

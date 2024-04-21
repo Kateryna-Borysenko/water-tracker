@@ -2,13 +2,12 @@
   "managementCard": {
     "deleteCardTitle": "Видалити запис",
     "deleteCardDescription": "Ви впевнені, що хочете видалити запис?",
-    "logoutCardTitle": "Log out",
-    "logoutCardDescription": "Log out",
+    "logoutCardTitle": "Вийти",
+    "logoutCardDescription": "Ви впевнені, що хочете вийти?",
     "cancelButton": "Скасувати",
-    "deleteButton": "Bидалити",
+    "deleteButton": "Bидaлити",
     "logoutButton": "Вийти"
   },
-
   "WelcomePage": {
     "mainTitle": "Трекер вживання води",
     "slogan": "Фіксуйте щоденне споживання води та ведіть його облік",
@@ -29,5 +28,62 @@
       "option6": "Підтримує нормальну температуру тіла",
       "option7": "Забезпечує спроможність імунної системи боротьбі з хворобами"
     }
+  },
+  "authForm": {
+    "signinTitle": "Персональний вхід",
+    "signupTitle": "Реєстрація нового користувача",
+    "email": "Введіть свою електронну пошту",
+    "password": "Введіть ваш пароль",
+    "repeatePass": "Повторити пароль",
+    "emailPlaceholder": "Ємейл",
+    "passPlaceholder": "Пароль",
+    "signinBtnTitle": "Увійти",
+    "signupBtnTitle": "Зареєструватися",
+    "signinLink": "Вхід",
+    "signupLink": "Реєстрація",
+    "resendEmailMassage": "Немає електронного листа з підтвердженням?",
+    "resendEmailButton": "Відправити",
+    "forgotPass": "Забули свій пароль?"
+  },
+  "EMAIL_ERROR_MESSAGE": "Введіть дійсну електронну адресу",
+  "PASSWORD_ERROR_MESSAGE": "Мінімум 8 символів, максимум 64",
+  "REQUIRED_EMAIL_MESSAGE": "Поле електронної пошти обов'язкове",
+  "REQUIRED_PASSWORD_MESSAGE": "Поле пароля обов'язкове",
+  "MATCH_PASSWORD_MESSAGE": "Паролі мають збігатися",
+  "REQUIRED_REPEAT_PASSWORD_MESSAGE": "Поле повторення пароля обов'язкове",
+  "userAuthTitle": "Вхід",
+  "AddAndEditWaterCard": {
+    "titleEdit": "Редагуйте введену кількість води",
+    "subtitleEdit": "Виправте введені дані:",
+    "titleAdd": "Додати воду",
+    "subtitleAdd": "Виберіть об'єм:",
+    "amountOfWater": "Кількість води",
+    "recordingTime": "Час запису:",
+    "enterTheValue": "Введіть обсяг випитої води:",
+    "saveButton": "Зберегти",
+    "ml": "мл"
+  },
+  "popup": {
+    "setting": "Налаштування",
+    "logout": "Вийти"
+  },
+  "calendar": {
+    "January": "Січень",
+    "February": "Лютий",
+    "March": "Березень",
+    "April": "Квітень",
+    "May": "Травень",
+    "June": "Чевень",
+    "July": "Липень",
+    "August": "Серпень",
+    "September": "Вересень",
+    "October": "Жовтень",
+    "November": "Листопад",
+    "December": "Грудень",
+    "month": "Місяць",
+    "norm": "Добова норма",
+    "percent": "Випито від добової норми",
+    "quantity": "Кількість разів споживання",
+    "liter": "л"
   }
 }

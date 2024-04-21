@@ -4,9 +4,11 @@ import { logoutUser } from '../../../../../redux/auth/authOperations';
 import Modal from '../../../Modal/Modal';
 import ManagementCard from '../../../../ManagementCard/ManagementCard';
 import Icons from '../../../../Icons/Icons';
+import { useTranslation } from 'react-i18next';
 import s from './UserLogoModal.module.css';
 
 const UserLogoModal = ({ handleClosePopup }) => {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -28,22 +30,22 @@ const UserLogoModal = ({ handleClosePopup }) => {
       <li className={s.item}>
         <Icons id={'settings'} />
         <button type="button" className={s.btn}>
-          Setting
+          {t('popup.setting')}
         </button>
       </li>
 
       <li className={s.item}>
         <Icons id={'logout'} />
         <button onClick={handleOpenModal} type="button" className={s.btn}>
-          Log out
+          {t('popup.logout')}
         </button>
 
         {isModalOpen && (
           <Modal onClose={handleCloseModal}>
             <ManagementCard
-              title="Log out"
-              description="Do you really want to leave?"
-              secondButton="Log out"
+              title={t('managementCard.logoutCardTitle')}
+              description={t('managementCard.logoutCardDescription')}
+              secondButton={t('managementCard.logoutButton')}
               className="aligneRight"
               onClick={handleLogoutUser}
               onClickSecondBtn={handleCloseModal}

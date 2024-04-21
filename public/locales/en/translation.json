@@ -8,7 +8,6 @@
     "deleteButton": "Delete",
     "logoutButton": "Log out"
   },
-
   "WelcomePage": {
     "mainTitle": "Water consumption tracker",
     "slogan": "Record daily water intake and track",
@@ -29,5 +28,62 @@
       "option6": "Maintaining within the normal temperature",
       "option7": "Maintaining an immune system capable of resisting disease"
     }
+  },
+  "authForm": {
+    "signinTitle": "Sign In",
+    "signupTitle": "Sign Up",
+    "email": "Enter your email",
+    "password": "Enter your password",
+    "repeatePass": "Repeat password",
+    "emailPlaceholder": "E-mail",
+    "passPlaceholder": "Password",
+    "signinBtnTitle": "Sign In",
+    "signupBtnTitle": "Sign Up",
+    "signinLink": "Sign in",
+    "signupLink": "Sign up",
+    "resendEmailMassage": "No confirmation email?",
+    "resendEmailButton": "Send",
+    "forgotPass": "Forgot your Password?"
+  },
+  "EMAIL_ERROR_MESSAGE": "Enter a valid email",
+  "PASSWORD_ERROR_MESSAGE": "The password is min 8 and max 64",
+  "REQUIRED_EMAIL_MESSAGE": "Email field is required",
+  "REQUIRED_PASSWORD_MESSAGE": "Password field is required",
+  "MATCH_PASSWORD_MESSAGE": "Passwords must match",
+  "REQUIRED_REPEAT_PASSWORD_MESSAGE": "Repeat password field is required",
+  "userAuthTitle": "Sign in",
+  "AddAndEditWaterCard": {
+    "titleEdit": "Edit the entered amount of water",
+    "subtitleEdit": "Correct entered data:",
+    "titleAdd": "Add water",
+    "subtitleAdd": "Choose a value:",
+    "amountOfWater": "Amount of water:",
+    "recordingTime": "Recording time:",
+    "enterTheValue": "Enter the value of the water used:",
+    "saveButton": "Save",
+    "ml": "ml"
+  },
+  "popup": {
+    "setting": "Setting",
+    "logout": "Log out"
+  },
+  "calendar": {
+    "January": "January",
+    "February": "February",
+    "March": "March",
+    "April": "April",
+    "May": "May",
+    "June": "June",
+    "July": "July",
+    "August": "August",
+    "September": "September",
+    "October": "October",
+    "November": "November",
+    "December": "December",
+    "month": "Month",
+    "norm": "Daily norm",
+    "percent": "Fulfilment of the daily norm",
+    "quantity": "How many servings of water",
+    "liter": "L"
   }
 }

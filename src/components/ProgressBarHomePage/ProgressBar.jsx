@@ -1,16 +1,16 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Slider } from 'antd';
 import './AntD.css';
 
 import Container from '../common/Container/Container';
 import Button from '../../uikit/Button/Button';
 import Icons from '../Icons/Icons';
+import Modal from '../common/Modal/Modal';
 import AddAndEditWaterCard from '../AddWaterModal/AddAndEditWaterCard';
+import { selectInterestWaterToday } from '../../redux/water/watersSelectors';
 
 import s from './ProgressBar.module.css';
-import Modal from '../common/Modal/Modal';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectInterestWaterToday } from '../../redux/water/watersSelectors';
 
 const currentValue = 50;
 const marks = {
@@ -63,7 +63,7 @@ const ProgressBar = () => {
       </Container>
       {isOpenModal && (
         <Modal onClose={handleCloseModal}>
-          <AddAndEditWaterCard />
+          <AddAndEditWaterCard onClose={handleCloseModal} />
         </Modal>
       )}
     </>

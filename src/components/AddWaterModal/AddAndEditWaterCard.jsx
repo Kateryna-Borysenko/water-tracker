@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { TimePicker } from 'antd';
+import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
 import { useDispatch } from 'react-redux';
 import {
@@ -10,6 +11,7 @@ import { setTokenwaterPortionsInstance } from '../../redux/services/waterPortion
 import Subtitle from '../common/Subtitle/Subtitle';
 import Button from '../../uikit/Button/Button';
 import Icons from '../Icons/Icons';
+import LangsSwitcher from '../../components/LangsSwitcher/LangsSwitcher'
 import s from './AddAndEditWaterCard.module.css';
 
 const AddAndEditWaterCard = ({
@@ -78,22 +80,25 @@ const AddAndEditWaterCard = ({
     setWater({ ...water, inputValue: parseInt(target.value, 10) });
   };
 
-  const title = isEditable ? 'Edit the entered amount of water' : 'Add water';
-  const subtitle = isEditable ? 'Correct entered data:' : 'Choose a value:';
+  const { t } = useTranslation();
+
+  const title = isEditable ? t('AddAndEditWaterCard.titleEdit') : t('AddAndEditWaterCard.titleAdd');
+  const subtitle = isEditable ? t('AddAndEditWaterCard.subtitleEdit') : t('AddAndEditWaterCard.subtitleAdd');
 
   return (
     <>
       <div className={s.infoContainer}>
+        <LangsSwitcher />
         <h2 className={s.title}>{title}</h2>
         {isEditable && (
           <div className={s.glassContainer}>
             <Icons className="glassIconEdit" id={'glass'} />
-            <span className={s.glassVolume}>{water.counterValue}ml</span>
+            <span className={s.glassVolume}>{water.counterValue}{t('AddAndEditWaterCard.ml')}</span>
             <span className={s.timeGlass}>{time}</span>
           </div>
         )}
         <Subtitle title={subtitle} className="addWaterModal" />
-        <h4 className={s.text}>Amount of water:</h4>
+        <h4 className={s.text}>{t('AddAndEditWaterCard.amountOfWater')}</h4>
 
         <form onSubmit={handleSubmit}>
           <div className={s.btnContainer}>
@@ -107,7 +112,7 @@ const AddAndEditWaterCard = ({
             >
               <Icons className="iconEdit" id={'minus'} fill={'#407bff'} />
             </button>
-            <span className={s.waterAmountValue}>{water.counterValue}ml</span>
+            <span className={s.waterAmountValue}>{water.counterValue}{t('AddAndEditWaterCard.ml')}</span>
             <button
               type="button"
               name="increment"
@@ -119,7 +124,7 @@ const AddAndEditWaterCard = ({
             </button>
           </div>
           <label htmlFor="time" className={s.text}>
-            Recording time:
+            {t('AddAndEditWaterCard.recordingTime')}
           </label>
           <TimePicker
             className={s.input}
@@ -138,7 +143,7 @@ const AddAndEditWaterCard = ({
             }
           />
           <label htmlFor="value" className={s.label}>
-            Enter the value of the water used:
+            {t('AddAndEditWaterCard.enterTheValue')}
           </label>
           <input
             className={s.input}
@@ -151,8 +156,8 @@ const AddAndEditWaterCard = ({
             onChange={handleVolumeChange}
           />
           <div className={s.sreenContainer}>
-            <span className={s.waterAmountSreen}>{water.counterValue}ml</span>
-            <Button type="submit" title="Save" className="addWaterBtn" />
+            <span className={s.waterAmountSreen}>{water.counterValue}{t('AddAndEditWaterCard.ml')}</span>
+            <Button type="submit" title={t('AddAndEditWaterCard.saveButton')} className="addWaterBtn" />
           </div>
         </form>
       </div>

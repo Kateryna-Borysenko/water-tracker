@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useMemo } from 'react';
 import { prevMonth, nextMonth } from '../../redux/calendar/calendarSlice';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import { PercentCellRender } from './PercentCellRender';
 import { apiGetMonthlyUsage } from '../../redux/calendar/calendarOperations';
 import {
@@ -11,6 +12,7 @@ import {
 import s from './Calendar.module.css';
 
 const CustomCalendar = ({ onDateSelect }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const currentDate = useSelector(selectCurrentDate);
   const waterUsage = useSelector(selectMonthlyData);
@@ -44,10 +46,14 @@ const CustomCalendar = ({ onDateSelect }) => {
   return (
     <div className={s.calendarContainer}>
       <div className={s.calendar}>
-        <h3 className={s.calendarHeaderMonth}>Month</h3>
+        <h3 className={s.calendarHeaderMonth}>{t('calendar.month')}</h3>
         <div className={s.calendarHeaderNav}>
           <LeftOutlined onClick={handlePrevMonth} className={s.arrow} />
-          <span>{currentDate.format('MMMM, YYYY')}</span>
+          <span>
+            {t(`calendar.${currentDate.format('MMMM')}`)}
+            {', '}
+            {currentDate.format('YYYY')}
+          </span>
           <RightOutlined onClick={handleNextMonth} className={s.arrow} />
         </div>
       </div>

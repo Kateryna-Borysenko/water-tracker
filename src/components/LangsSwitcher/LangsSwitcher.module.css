@@ -1,11 +1,10 @@
 .switcher {
   display: flex;
   align-items: center;
-  min-height: 45px;
 }
 
 .btnWrapper {
-  min-width: 45px;
+  min-width: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,7 +14,7 @@
 .active {
   border: 2px solid var(--primary-sky-blue);
   border-radius: 50%;
-  width: 35px;
+  width: 28px;
   padding: 2px;
 }
 
@@ -27,6 +26,6 @@
 }
 
 .button:hover {
-  width: 35px;
+  width: 28px;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
 }
