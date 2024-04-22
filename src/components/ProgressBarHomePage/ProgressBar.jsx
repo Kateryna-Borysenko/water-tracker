@@ -13,6 +13,7 @@ import { selectInterestWaterToday } from '../../redux/water/watersSelectors';
 import s from './ProgressBar.module.css';
 
 // const currentValue = 100;
+// const currentValue = 100;
 const marks = {
   0: '0%',
   50: '50%',
