@@ -2,6 +2,7 @@ import moment from 'moment';
 import { createSelector } from 'reselect';
 
 const selectCalendarState = state => state.calendar;
+const selectUserState = state => state.auth.user;
 
 export const selectCurrentDate = createSelector(
   [selectCalendarState],
@@ -39,4 +40,9 @@ export const selectStatus = createSelector(
 export const selectError = createSelector(
   [selectCalendarState],
   calendar => calendar.error,
+);
+
+export const selectWaterRate = createSelector(
+  [selectUserState],
+  user => user.waterRate,
 );
