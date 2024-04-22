@@ -8,6 +8,7 @@ import {
   refreshUser,
   updateAvatar,
   updateUserData,
+  sentWaterRate,
 } from './authOperations';
 import {
   clearTokenwaterPortionsInstance,
@@ -18,6 +19,7 @@ const initialState = {
   user: {
     username: null,
     email: null,
+    verify: false,
     avatarURL: null,
     gender: null,
     waterRate: null,
@@ -33,13 +35,24 @@ const initialState = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    //Todo: checking expirationTime
-  },
+  reducers: {},
   extraReducers: builder => {
     builder
 
       // *************  REGISTER  ************ //
+      .addCase(registerUser.pending, state => {
+        state.error = null;
+        state.loading = true;
+      })
+      .addCase(registerUser.fulfilled, (state, { payload }) => {
+        state.user.email = payload.email;
+        state.user.verify = payload.verify;
+        state.loading = false;
+      })
+      .addCase(registerUser.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.loading = false;
+      })
 
       // **************  LOGIN  ************** //
       .addCase(loginUser.pending, state => {
@@ -103,7 +116,6 @@ export const authSlice = createSlice({
 
         state.user.avatarURL = action.payload;
       })
-
       .addMatcher(
         isAnyOf(updateAvatar.pending, updateUserData.pending),
         state => {
@@ -121,6 +133,20 @@ export const authSlice = createSlice({
           state.isAvatarLoading = false;
           state.error = action.payload;
         },
-      );
+      )
+      // ************** waterRate  ************** //
+      .addCase(sentWaterRate.pending, state => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(sentWaterRate.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.isLoggedIn = true;
+        state.user.waterRate = payload.waterRate;
+      })
+      .addCase(sentWaterRate.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.loading = false;
+      });
   },
 });

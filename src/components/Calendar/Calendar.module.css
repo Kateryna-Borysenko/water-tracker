@@ -1,7 +1,6 @@
 .calendarContainer {
   width: auto;
   height: auto;
-  margin: 24px 8px;
 }
 
 .calendar {
@@ -102,6 +101,7 @@
   border-radius: 10px;
   background: var(--primary-white);
   box-shadow: var(--box-shadow);
+  min-width: 240px;
 }
 
 .modalMainText {
@@ -120,7 +120,6 @@
   .calendarContainer {
     width: auto;
     height: auto;
-    margin: 24px 24px 32px 24px;
   }
 
   .tableCalendar {

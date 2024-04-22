@@ -3,22 +3,28 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Title from '../../common/Title/Title';
 import Button from '../../../uikit/Button/Button';
-import {
-  signupFormSchema,
-  signinFormSchema,
-} from '../../../schemas/authFormValidationSchema';
 import {
   registerUser,
   loginUser,
   resendVerificationEmail,
 } from '../../../redux/auth/authOperations';
-import { getLoading, getUser } from '../../../redux/auth/authSelectors';
+import useValidationSchema from '../../../schemas/authFormValidationSchema';
+import {
+  getLoading,
+  getUser,
+  getEmailVerificationStatus,
+} from '../../../redux/auth/authSelectors';
 import Icons from '../../Icons/Icons';
+import googleLogo from '../../../assets/static/google.svg';
 import s from './AuthForm.module.css';
 
 const AuthForm = ({ type }) => {
+  const { t } = useTranslation();
+  const { signupFormSchema, signinFormSchema } = useValidationSchema();
+
   const initialValues = {
     email: '',
     password: '',
@@ -33,19 +39,20 @@ const AuthForm = ({ type }) => {
   const loading = useSelector(getLoading);
   const user = useSelector(getUser);
   const email = user.email;
+  const emailVerificationStatus = useSelector(getEmailVerificationStatus);
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     const { email, password } = values;
 
     if (type === 'signup') {
-      const isSigup = await dispatch(registerUser({ email, password }));
-      if (isSigup.error) return;
+      const isSignup = await dispatch(registerUser({ email, password }));
+      if (isSignup.error) return;
       navigate('/signin');
     }
 
     if (type === 'signin') {
-      const isLoged = await dispatch(loginUser({ email, password }));
-      if (isLoged.error) return;
+      const isLogged = await dispatch(loginUser({ email, password }));
+      if (isLogged.error) return;
       navigate('/home');
     }
 
@@ -67,10 +74,28 @@ const AuthForm = ({ type }) => {
 
   return (
     <div className={s.container}>
-      <Title
-        title={type === 'signup' ? 'Sign Up' : 'Sign In'}
-        className="authForm"
-      />
+      <div className={s.googleContainer}>
+        <Title
+          title={
+            type === 'signup'
+              ? t('authForm.signupTitle')
+              : t('authForm.signinTitle')
+          }
+          className="authForm"
+        />
+        <a
+          //https://water-tracker-node-rest-api.onrender.com/api/auth/google
+          //http://localhost:5000/api/auth/google
+          href={`${import.meta.env.VITE_SERVER_BASE_URL}/auth/google`}
+          className={s.googleLink}
+        >
+          <img
+            src={googleLogo}
+            alt="Google auth button"
+            className={s.googleIcon}
+          />
+        </a>
+      </div>
       <Formik
         initialValues={initialValues}
         validationSchema={
@@ -82,11 +107,11 @@ const AuthForm = ({ type }) => {
         {({ isSubmitting, errors, touched }) => (
           <Form className={s.form}>
             <div className={s.field}>
-              <label>Enter your email</label>
+              <label>{t('authForm.email')}</label>
               <Field
                 type="email"
                 name="email"
-                placeholder="E-mail"
+                placeholder={t('authForm.emailPlaceholder')}
                 className={`${s.input} ${
                   touched.email && errors.email && s.errorInput
                 }`}
@@ -94,11 +119,11 @@ const AuthForm = ({ type }) => {
               <ErrorMessage name="email" component="div" className={s.error} />
             </div>
             <div className={s.field}>
-              <label>Enter your password</label>
+              <label>{t('authForm.password')}</label>
               <Field
                 type={showPassword ? 'text' : 'password'}
                 name="password"
-                placeholder="Password"
+                placeholder={t('authForm.passPlaceholder')}
                 className={`${s.input} ${
                   touched.password && errors.password && s.errorInput
                 }`}
@@ -119,11 +144,11 @@ const AuthForm = ({ type }) => {
             </div>
             {type === 'signup' && (
               <div className={s.field}>
-                <label>Repeat password</label>
+                <label>{t('authForm.repeatePass')}</label>
                 <Field
                   type={showRepeatPassword ? 'text' : 'password'}
                   name="repeatPassword"
-                  placeholder="Repeat Password"
+                  placeholder={t('authForm.repeatePass')}
                   className={`${s.input} ${
                     touched.repeatPassword &&
                     errors.repeatPassword &&
@@ -147,7 +172,11 @@ const AuthForm = ({ type }) => {
             )}
             <Button
               type="submit"
-              title={type === 'signup' ? 'Sign Up' : 'Sign In'}
+              title={
+                type === 'signup'
+                  ? t('authForm.signupBtnTitle')
+                  : t('authForm.signinBtnTitle')
+              }
               disabled={isSubmitting}
               className="authButton"
               loading={loading}
@@ -158,24 +187,29 @@ const AuthForm = ({ type }) => {
 
       {type === 'signup' && (
         <div className={s.link}>
-          <Link to="/signin">Sign In</Link>
+          <Link to="/signin">{t('authForm.signinLink')}</Link>
         </div>
       )}
 
       {type === 'signin' && (
         <div>
-          <div className={s.link}>
-            <Link to="/signup">Sign Up</Link>
+          <div className={s.linkContainer}>
+            <Link className={s.link} to="/signup">
+              {t('authForm.signupLink')}
+            </Link>
+            <Link className={s.password} to="/new-password/email">
+              {t('authForm.forgotPass')}
+            </Link>
           </div>
-          {email && (
+          {email && emailVerificationStatus === false && (
             <div className={s.resendEmailMassage}>
-              No confirmation email?
+              {t('authForm.resendEmailMassage')}
               <button
                 className={s.resendEmailButton}
                 onClick={handleResendEmail}
                 type="submit"
               >
-                Send
+                {t('authForm.resendEmailButton')}
               </button>
             </div>
           )}

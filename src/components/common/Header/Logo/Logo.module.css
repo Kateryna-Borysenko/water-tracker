@@ -7,16 +7,8 @@
   font-weight: 700;
   text-transform: uppercase;
   width: 102px;
-  padding-top: 8px;
-}
-
-.icon {
   transition: var(--transition);
-}
-
-.icon:hover,
-.icon:focus {
-  scale: 1.05;
+  padding-top: 8px;
 }
 
 .title {
@@ -25,10 +17,7 @@
   font-weight: 700;
   text-transform: uppercase;
   line-height: normal;
-  transition: var(--transition);
 }
-
-.title:hover,
-.title:focus {
-  text-shadow: 4px 4px 1px rgba(0, 0, 0, 0.25);
+.container:hover .icon {
+  scale: 1.1;
 }

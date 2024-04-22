@@ -22,6 +22,10 @@
   outline: none;
 }
 
+.input:focus {
+  outline: 1px solid var(--secondary-blue);
+}
+
 .input::placeholder {
   color: var(--secondary-blue);
   font-size: 16px;
@@ -37,11 +41,12 @@
   border: none;
   padding: 0;
   cursor: pointer;
+  outline: none;
 }
 
-.eyeButton img {
-  width: 24px;
-  height: 24px;
+.linkContainer {
+  display: flex;
+  justify-content: space-between;
 }
 
 .link,
@@ -49,6 +54,15 @@
   margin-bottom: 16px;
   color: var(--primary-sky-blue);
   transition: var(--transition);
+}
+
+.password {
+  color: var(--primary-sky-blue);
+  transition: var(--transition);
+}
+
+.password:hover {
+  color: var(--secondary-orange);
 }
 
 .link:hover,
@@ -89,4 +103,22 @@
   background-color: transparent;
   border: none;
   margin-left: 8px;
+}
+
+.googleContainer {
+  position: relative;
+}
+
+.googleLink {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 30px;
+  width: 30px;
+  border-radius: 6px;
+  transition: var(--transition);
+}
+
+.googleLink:hover {
+  background-color: var(--secondary-light-blue);
 }

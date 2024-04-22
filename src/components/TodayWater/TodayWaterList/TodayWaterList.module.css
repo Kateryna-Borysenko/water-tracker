@@ -1,0 +1,46 @@
+.listContainer {
+  width: 100%;
+}
+
+.todayTitle {
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 500;
+  padding-bottom: 16px;
+}
+
+.todayWaterList {
+  height: 172px;
+  width: 100%;
+  overflow-y: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .todayWaterList {
+    height: 170px;
+  }
+
+  .todayTitle {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .todayWaterList {
+    width: 534px;
+  }
+}
+
+.todayWaterList::-webkit-scrollbar {
+  width: 4px;
+}
+
+.todayWaterList::-webkit-scrollbar-track {
+  background-color: #d7e3ff;
+}
+
+.todayWaterList::-webkit-scrollbar-thumb {
+  background-color: #407bff;
+  border-radius: 4px;
+}

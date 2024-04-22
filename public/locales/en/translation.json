@@ -7,5 +7,100 @@
     "cancelButton": "Cancel",
     "deleteButton": "Delete",
     "logoutButton": "Log out"
+  },
+  "WelcomePage": {
+    "mainTitle": "Water consumption tracker",
+    "slogan": "Record daily water intake and track",
+    "subtitleBenefits": "Tracker Benefits",
+    "itemArrayBenefits": {
+      "benefit1": "Habit drive",
+      "benefit2": "View statistics",
+      "benefit3": "Personal rate setting"
+    },
+    "tryTreckerButton": "Try tracker",
+    "subtitleOptions": "Why drink water",
+    "itemArrayOptions": {
+      "option1": "Supply of nutrients to all organs",
+      "option2": "Providing oxygen to the lungs",
+      "option3": "Maintaining the work of the heart",
+      "option4": "Release of processed substances",
+      "option5": "Ensuring the stability of the internal environment",
+      "option6": "Maintaining within the normal temperature",
+      "option7": "Maintaining an immune system capable of resisting disease"
+    }
+  },
+  "authForm": {
+    "signinTitle": "Sign In",
+    "signupTitle": "Sign Up",
+    "email": "Enter your email",
+    "password": "Enter your password",
+    "repeatePass": "Repeat password",
+    "emailPlaceholder": "E-mail",
+    "passPlaceholder": "Password",
+    "signinBtnTitle": "Sign In",
+    "signupBtnTitle": "Sign Up",
+    "signinLink": "Sign in",
+    "signupLink": "Sign up",
+    "resendEmailMassage": "No confirmation email?",
+    "resendEmailButton": "Send",
+    "forgotPass": "Forgot your Password?"
+  },
+  "EMAIL_ERROR_MESSAGE": "Enter a valid email",
+  "PASSWORD_ERROR_MESSAGE": "The password is min 8 and max 64",
+  "REQUIRED_EMAIL_MESSAGE": "Email field is required",
+  "REQUIRED_PASSWORD_MESSAGE": "Password field is required",
+  "MATCH_PASSWORD_MESSAGE": "Passwords must match",
+  "REQUIRED_REPEAT_PASSWORD_MESSAGE": "Repeat password field is required",
+  "userAuthTitle": "Sign in",
+  "AddAndEditWaterCard": {
+    "titleEdit": "Edit the entered amount of water",
+    "subtitleEdit": "Correct entered data:",
+    "titleAdd": "Add water",
+    "subtitleAdd": "Choose a value:",
+    "amountOfWater": "Amount of water:",
+    "recordingTime": "Recording time:",
+    "enterTheValue": "Enter the value of the water used:",
+    "saveButton": "Save",
+    "ml": "ml"
+  },
+  "popup": {
+    "setting": "Setting",
+    "logout": "Log out"
+  },
+  "forgotPasswordForm": {
+    "forgotPasswordTitle": "Forgot your Password?",
+    "forgotPasswordDescription": "Password reset instructions will be sent to your primary email address.",
+    "forgotPasswordLabel": "Enter your email",
+    "forgotPasswordPlaceholder": "E-mail",
+    "forgotPasswordButton": "Email Reset Instructions",
+    "forgotPasswordReturnTo": "Return to",
+    "forgotPasswordLinkSignIn": "Sign In"
+  },
+  "newPasswordForm": {
+    "newPasswordTitle": "Forgot your Password?",
+    "newPasswordLabel": "Enter your password",
+    "newPasswordPlaceholder": "Password",
+    "newPasswordButton": "Sent New Password",
+    "newPasswordReturnTo": "Return to",
+    "newPasswordLinkSignIn": "Sign In"
+  },
+  "calendar": {
+    "January": "January",
+    "February": "February",
+    "March": "March",
+    "April": "April",
+    "May": "May",
+    "June": "June",
+    "July": "July",
+    "August": "August",
+    "September": "September",
+    "October": "October",
+    "November": "November",
+    "December": "December",
+    "month": "Month",
+    "norm": "Daily norm",
+    "percent": "Fulfilment of the daily norm",
+    "quantity": "How many servings of water",
+    "liter": "L"
   }
 }

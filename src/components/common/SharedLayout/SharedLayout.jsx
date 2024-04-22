@@ -6,14 +6,14 @@ import s from './SharedLayout.module.css';
 
 const SharedLayout = () => {
   return (
-    <div className={s.wraper}>
-      <Header />
-      <Suspense fallback={<Spinner />}>
+    <Suspense fallback={<Spinner />}>
+      <div className={s.wraper}>
+        <Header />
         <main style={{ minHeight: '100%' }}>
           <Outlet />
         </main>
-      </Suspense>
-    </div>
+      </div>
+    </Suspense>
   );
 };
 

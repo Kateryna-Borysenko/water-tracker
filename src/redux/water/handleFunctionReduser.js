@@ -1,3 +1,22 @@
+// ============= GET WaterPortion Today ===============
+export const handlePendingGet = state => {
+  state.isLoading = true;
+  state.error = null;
+};
+
+export const handleFulfilledGet = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = null;
+  state.waterPortionsToday = payload.data.length === 0 ? 0 : payload.data;
+  state.interestWaterToday = payload.interest;
+};
+
+export const handleRejectedGet = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = payload;
+  state.waterPortionsToday = 0;
+};
+
 // ============= ADD WaterPortion ===============
 export const handlePendingAdd = state => {
   state.isLoading = true;
@@ -25,8 +44,9 @@ export const handlePendingEdit = state => {
 export const handleFulfilledEdit = (state, { payload }) => {
   state.isLoading = false;
   state.error = null;
+  console.log(state.waterPortionToday);
   const oldToday = state.waterPortionsToday.filter(
-    waterPortion => waterPortion._id !== payload._id,
+    waterPortion => waterPortion.id !== payload.id,
   );
   state.waterPortionsToday = [...oldToday, payload];
 };
@@ -44,7 +64,7 @@ export const handlePendingDelete = state => {
 
 export const handleFulfilledDelete = (state, { payload }) => {
   const index = state.waterPortionsToday.findIndex(
-    waterPortionToday => waterPortionToday.id === payload.id,
+    waterPortionToday => waterPortionToday.id === payload,
   );
   state.waterPortionsToday.splice(index, 1);
 };

@@ -18,7 +18,7 @@ export const itemArrayBenefits = [
 ];
 
 
-export const itemArrOptions = [
+export const itemArrayOptions = [
   'Supply of nutrients to all organs',
   'Providing oxygen to the lungs',
   'Maintaining the work of the heart',

@@ -9,41 +9,32 @@ const UserLogo = () => {
     user: { email, avatarURL, username },
   } = useAuth();
 
-  const defaultUserName = email
-    .substring(0, email.indexOf('@'))
-    .replace(/^\w/, c => c.toUpperCase());
-
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const togglePopup = () => {
-    isPopupOpen ? setIsPopupOpen(false) : setIsPopupOpen(true);
+  const handleOpenPopup = () => {
+    setIsPopupOpen(prevState => !prevState);
   };
 
   return (
-    <div className={s.container}>
-      <p className={s.name}>{username ? username : defaultUserName}</p>
+    <div style={{ position: 'relative' }}>
+      <div className={s.container} onClick={handleOpenPopup}>
+        {username && <p className={s.name}>{username}</p>}
 
-      {avatarURL ? (
-        <div className={s.avatarWrap}>
-          <img className={s.avatar} src={avatarURL} alt="User avatar" />
-        </div>
-      ) : (
-        <div className={s.avatarWrap}>
-          {username ? username[0] : defaultUserName[0]}
-        </div>
-      )}
+        {avatarURL ? (
+          <div className={s.avatarWrap}>
+            <img className={s.avatar} src={avatarURL} alt="User avatar" />
+          </div>
+        ) : (
+          <div className={s.avatarWrap}>
+            {username ? username[0] : email[0]}
+          </div>
+        )}
 
-      <div onClick={togglePopup}>
-        {/* <button onClick={togglePopup} type="button"> */}
         <Icons id={'down-arrow'} fill={'#407bff'} />
-        {/* </button> */}
       </div>
-
-      {isPopupOpen && <UserLogoModal />}
+      {isPopupOpen && <UserLogoModal handleClosePopup={handleOpenPopup} />}
     </div>
   );
 };
 
 export default UserLogo;
-
-//handleClosePopup={togglePopup}

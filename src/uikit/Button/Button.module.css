@@ -16,6 +16,10 @@
   margin: 0 auto;
 }
 
+.button:focus {
+  outline: 2px solid var(--secondary-blue);
+}
+
 .button:hover {
   box-shadow: var(--box-shadow);
   cursor: pointer;
@@ -37,21 +41,19 @@
   height: 36px;
 }
 
-.saveSettingsBtn {
-  width: 100%;
-  box-shadow: var(--box-shadow);
-  line-height: 1.25;
-  margin: 0;
+.myDailyNormaSaveButton {
+  width: 160px;
+  margin-top: 24px;
+  margin-left: auto;
+  margin-right: 0;
 }
 
-.saveSettingsBtn:is(:hover, :focus) {
-  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+.forgotYourPassword {
+  margin: 14px auto 24px;
 }
-.saveSettingsBtn:active {
-  box-shadow: none;
-}
-.saveSettingsBtn:focus {
-  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+
+.myDailyNormaButton {
+  width: 100%;
 }
 
 @media screen and (min-width: 768px) {
@@ -92,7 +94,7 @@
 
 .buttonProgresBar {
   width: 100%;
-  padding: 6px 76px;
+  padding: 6px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1439px) {
@@ -102,6 +104,10 @@
     padding: 10px 0;
     line-height: 24px;
     font-size: 18px;
+  }
+
+  .myDailyNormaButton {
+    width: 160px;
   }
 }
 
@@ -113,4 +119,22 @@
     line-height: 24px;
     font-size: 18px;
   }
+}
+
+/* -----------settings modal----------- */
+.saveSettingsBtn {
+  width: 100%;
+  box-shadow: var(--box-shadow);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.saveSettingsBtn:is(:hover, :focus) {
+  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+}
+.saveSettingsBtn:active {
+  box-shadow: none;
+}
+.saveSettingsBtn:focus {
+  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
 }

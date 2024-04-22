@@ -15,6 +15,10 @@ import { useAuth } from '../../hooks/useAuth';
 import { useEffect } from 'react';
 import { refreshUser } from '../../redux/auth/authOperations';
 import Spinner from '../../components/common/Spinner/Spinner';
+import Loader from '../common/Loader/Loader';
+import ForgotPasswordPage from '../../pages/ForgotPasswordPage/ForgotPasswordPage';
+import ForgotPasswordForm from '../forms/ForgotPasswordForm/ForgotPasswordForm';
+import NewPasswordForm from '../forms/NewPasswordForm/NewPasswordForm';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -25,7 +29,11 @@ const App = () => {
   }, [dispatch]);
 
   if (refreshingStatus) {
-    return <Spinner color="#9ebbff" size="20" />;
+    return (
+      <Loader>
+        <Spinner color="#9ebbff" size="20px" />
+      </Loader>
+    );
   }
 
   return (
@@ -58,6 +66,10 @@ const App = () => {
               </PrivatRoute>
             }
           />
+          <Route path="/new-password" element={<ForgotPasswordPage />}>
+            <Route path="email" element={<ForgotPasswordForm />} />
+            <Route path="password" element={<NewPasswordForm />} />
+          </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

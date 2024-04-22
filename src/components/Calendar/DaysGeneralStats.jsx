@@ -1,20 +1,35 @@
-import dayjs from 'dayjs';
+import moment from 'moment';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectIsOpenModal,
+  selectModalPosition,
+  selectModalData,
+  selectModalDate,
+} from '../../redux/calendar/calendarSelectors';
+import { closeModal } from '../../redux/calendar/calendarSlice';
+import modalLeftPosition from './helpers';
 import s from './Calendar.module.css';
 
-const DateModal = ({ isVisible, onClose, selectedDate, data, position }) => {
+const DaysGeneralStats = () => {
+  const isVisible = useSelector(selectIsOpenModal);
+  const position = useSelector(selectModalPosition);
+  const data = useSelector(selectModalData);
+  const selectedDate = useSelector(selectModalDate);
+  const dispatch = useDispatch();
   const [modalStyle, setModalStyle] = useState({});
+
   useEffect(() => {
     const handleKeyDown = event => {
       if (event.keyCode === 27) {
-        onClose();
+        dispatch(closeModal());
       }
     };
     document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onClose]);
+  }, [dispatch]);
 
   useEffect(() => {
     if (isVisible) {
@@ -29,18 +44,23 @@ const DateModal = ({ isVisible, onClose, selectedDate, data, position }) => {
 
   useEffect(() => {
     if (isVisible) {
-      if (window.innerWidth > 767) {
+      if (window.innerWidth > 1439) {
         setModalStyle({
           position: 'fixed',
-          left: `${position.left - 115}px`,
-          top: `${position.top - 135}px`,
-          transform: 'translate(-50%, -50%)',
+          left: `${modalLeftPosition(-250, position.left)}px`,
+          top: `${position.top - 210}px`,
+        });
+      } else if (window.innerWidth > 767) {
+        setModalStyle({
+          position: 'fixed',
+          left: `${modalLeftPosition(-250, position.left)}px`,
+          top: `${position.top - 550}px`,
         });
       } else {
         setModalStyle({
           position: 'fixed',
           left: `${window.innerWidth / 2}px`,
-          top: `${position.top - 135}px`,
+          top: `${position.top - 120}px`,
           transform: 'translate(-50%, -50%)',
         });
       }
@@ -51,26 +71,28 @@ const DateModal = ({ isVisible, onClose, selectedDate, data, position }) => {
     return null;
   }
   const formattedDate = selectedDate
-    ? dayjs(selectedDate).format('D, MMMM')
+    ? moment(selectedDate).format('D, MMMM')
     : '';
 
   return (
-    <div className={s.modalOverlay} onClick={onClose}>
+    <div className={s.modalOverlay} onClick={() => dispatch(closeModal())}>
       <div
+        id="modalId"
         style={modalStyle}
         className={s.modalContent}
         onClick={e => e.stopPropagation()}
       >
         <div className={s.dateModal}>{formattedDate}</div>
         <div className={s.modalMainText}>
-          Daily norm: <span className={s.modalValueText}>{data.dailyNorm}</span>
+          Daily norm:&nbsp;
+          <span className={s.modalValueText}>{data.dailyNorm}</span>
         </div>
         <div>
-          Fulfilment of the daily norm:{' '}
+          Fulfilment of the daily norm:&nbsp;
           <span className={s.modalValueText}>{data.percent}</span>
         </div>
         <div>
-          How many servings of water:{' '}
+          How many servings of water:&nbsp;
           <span className={s.modalValueText}>{data.quantity}</span>
         </div>
       </div>
@@ -78,4 +100,4 @@ const DateModal = ({ isVisible, onClose, selectedDate, data, position }) => {
   );
 };
 
-export default DateModal;
+export default DaysGeneralStats;

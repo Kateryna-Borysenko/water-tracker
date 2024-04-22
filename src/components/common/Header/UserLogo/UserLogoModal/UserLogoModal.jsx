@@ -7,62 +7,70 @@ import SettingsForm from '../../../../forms/SettingsForm/SettingsForm';
 import Icons from '../../../../Icons/Icons';
 
 import s from './UserLogoModal.module.css';
+import { useTranslation } from 'react-i18next';
 
-const UserLogoModal = () => {
-  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+const UserLogoModal = ({ handleClosePopup }) => {
+  const { t } = useTranslation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
-
   const dispatch = useDispatch();
 
-  const toggleLogoutModal = () => {
-    isLogoutModalOpen
-      ? setIsLogoutModalOpen(false)
-      : setIsLogoutModalOpen(true);
+  const handleOpenModal = e => {
+    setIsModalOpen(prevState => !prevState);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    handleClosePopup();
   };
 
   const handleLogoutUser = () => {
     dispatch(logoutUser());
   };
 
-  const toggleSettingModal = () => {
-    isSettingModalOpen
-      ? setIsSettingModalOpen(false)
-      : setIsSettingModalOpen(true);
+  const handleOpenSettingModal = () => {
+    //  setIsSettingModalOpen(prevState => !prevState);
+    setIsSettingModalOpen(true);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseSettingModal = () => {
     setIsSettingModalOpen(false);
   };
 
   return (
     <ul className={s.headerModal}>
       <li className={s.item}>
-        <button type="button" className={s.btn} onClick={toggleSettingModal}>
-          <Icons id={'settings'} />
-          Setting
+        <Icons id={'settings'} />
+        <button
+          type="button"
+          className={s.btn}
+          onClick={handleOpenSettingModal}
+        >
+          {t('popup.setting')}
         </button>
       </li>
 
       <li className={s.item}>
-        <button onClick={toggleLogoutModal} type="button" className={s.btn}>
-          <Icons id={'logout'} />
-          Log out
+        <Icons id={'logout'} />
+        <button onClick={handleOpenModal} type="button" className={s.btn}>
+          {t('popup.logout')}
         </button>
-        {isLogoutModalOpen && (
-          <Modal onClose={toggleLogoutModal}>
+        {isModalOpen && (
+          <Modal onClose={handleCloseModal}>
             <ManagementCard
               title="Log out"
               description="Do you really want to leave?"
               secondButton="Log out"
               className="aligneRight"
               onClick={handleLogoutUser}
+              onClickSecondBtn={handleCloseModal}
             />
           </Modal>
         )}
 
         {isSettingModalOpen && (
-          <Modal className="setting-card" onClose={handleCloseModal}>
-            <SettingsForm onClose={handleCloseModal} />
+          <Modal className="setting-card" onClose={handleCloseSettingModal}>
+            <SettingsForm onClose={handleCloseSettingModal} />
           </Modal>
         )}
       </li>

@@ -24,7 +24,9 @@
     justify-content: center;
     align-items: center;
     gap: 31px;
+    margin-bottom: 0;
   }
+
   .textProgresBar {
     margin-bottom: 19px;
   }

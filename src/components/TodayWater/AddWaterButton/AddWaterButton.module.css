@@ -1,0 +1,31 @@
+.addWaterBtn{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 8px;
+
+    border: none;
+    background-color: transparent;
+    margin-top: 12px;
+
+    color: 16px;
+    line-height: 1.25;
+    font-weight: 500;
+    color: #407BFF;
+}
+
+.addWaterBtn:hover,
+.addWaterBtn:focus,
+.addWaterBtn:hover svg{
+    color: #FF9D43;
+    stroke: #FF9D43;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+    .addWaterBtn{
+        font-size: 18px;
+        line-height: 1.3;
+    }
+}

@@ -7,6 +7,7 @@ const ManagementCard = ({
   secondButton,
   className,
   onClick,
+  onClickSecondBtn,
 }) => {
   const buttonContainerClassNames = `${s.title} ${s[className]}`;
   const { t } = useTranslation();
@@ -15,7 +16,7 @@ const ManagementCard = ({
       <h2 className={s.title}>{title}</h2>
       <h2 className={s.description}>{description}</h2>
       <div className={buttonContainerClassNames}>
-        <button className={s.firstButton}>
+        <button onClick={onClickSecondBtn} className={s.firstButton}>
           {t('managementCard.cancelButton')}
         </button>
         <button onClick={onClick} className={s.secondButton}>

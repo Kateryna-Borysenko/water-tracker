@@ -10,7 +10,7 @@ const Logo = () => {
         src={logo}
         alt="Logo of water tracker, a drop of water"
       />
-      <div className={s.title}>Tracker of water</div>
+      <p className={s.title}>Tracker of water</p>
     </Link>
   );
 };
