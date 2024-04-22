@@ -108,8 +108,14 @@
     flex-direction: row;
   }
 
-  .contentContainer {
-    padding-top: 30px;
-    margin-bottom: 0;
+  .bottle {
+    left: 36px;
+    height: auto;
+    width: 738px;
+
+    .contentContainer {
+      padding-top: 30px;
+      margin-bottom: 0;
+    }
   }
 }

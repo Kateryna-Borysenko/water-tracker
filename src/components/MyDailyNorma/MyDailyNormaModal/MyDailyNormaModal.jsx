@@ -1,6 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
-
 import Title from '../../../components/common/Title/Title';
 import Subtitle from '../../../components/common/Subtitle/Subtitle';
 import Button from '../../../uikit/Button/Button';
@@ -160,14 +159,14 @@ const MyDailyNormaModal = ({ onClose }) => {
                       step="1"
                       onChange={handleChange}
                     />
+                    <ErrorMessage
+                      name="activityTime"
+                      component="div"
+                      className={`${s.error} ${
+                        touched.activityTime && errors.activityTime && s.error
+                      }`}
+                    />
                   </label>
-                  <ErrorMessage
-                    name="activityTime"
-                    component="div"
-                    className={`${s.error} ${
-                      touched.activityTime && errors.activityTime && s.error
-                    }`}
-                  />
                 </div>
                 <div>
                   <div className={s.waterNormContainer}>
