@@ -159,14 +159,14 @@ const MyDailyNormaModal = ({ onClose }) => {
                       step="1"
                       onChange={handleChange}
                     />
+                    <ErrorMessage
+                      name="activityTime"
+                      component="div"
+                      className={`${s.error} ${
+                        touched.activityTime && errors.activityTime && s.error
+                      }`}
+                    />
                   </label>
-                  <ErrorMessage
-                    name="activityTime"
-                    component="div"
-                    className={`${s.error} ${
-                      touched.activityTime && errors.activityTime && s.error
-                    }`}
-                  />
                 </div>
                 <div>
                   <div className={s.waterNormContainer}>
