@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { useDispatch } from 'react-redux';
-import { apiDeleteWaterPortion } from '../../../redux/water/watersOperations';
+import {
+  apiDeleteWaterPortion,
+  apiGetWaterPortionToday,
+} from '../../../redux/water/watersOperations';
 import Modal from '../../common/Modal/Modal';
 import AddWaterModal from '../../AddWaterModal/AddAndEditWaterCard';
 import ManagementCard from '../../ManagementCard/ManagementCard';
@@ -19,8 +22,9 @@ export const TodayWaterItem = ({ waterVolume, time, id }) => {
     setIsOpenModalDelete(false);
   };
 
-  const handleDeleteItem = id => {
-    dispatch(apiDeleteWaterPortion(id));
+  const handleDeleteItem = async id => {
+    await dispatch(apiDeleteWaterPortion(id));
+    await dispatch(apiGetWaterPortionToday());
     handleCloseModal();
   };
 

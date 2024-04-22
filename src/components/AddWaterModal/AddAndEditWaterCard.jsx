@@ -13,6 +13,7 @@ import Button from '../../uikit/Button/Button';
 import Icons from '../Icons/Icons';
 import LangsSwitcher from '../../components/LangsSwitcher/LangsSwitcher';
 import s from './AddAndEditWaterCard.module.css';
+import { apiGetWaterPortionToday } from '../../redux/water/watersOperations';
 
 const AddAndEditWaterCard = ({
   isEditable,
@@ -40,12 +41,14 @@ const AddAndEditWaterCard = ({
     if (!isEditable) {
       const isAdded = await dispatch(apiAddWaterPortion({ waterVolume, date }));
       if (isAdded.error) return toast.error(`Failed to add amount of water`);
+      await dispatch(apiGetWaterPortionToday());
       onClose();
     } else {
       const isAdded = await dispatch(
         apiEditWaterPortion({ waterVolume, date, id }),
       );
       if (isAdded.error) return toast.error(`Failed to update amount of water`);
+      await dispatch(apiGetWaterPortionToday());
       onClose();
     }
   };
