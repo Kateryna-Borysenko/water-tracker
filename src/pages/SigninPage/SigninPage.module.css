@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* height: calc(100vh - 68px); */
+  height: calc(100vh - 68px);
   position: relative;
   background-image: url(../../assets/static/image/bg-element-home-screen-S-2x.png);
   background-repeat: no-repeat;
@@ -13,6 +13,7 @@
 @media screen and (max-width: 768px) {
   .container {
     display: block;
+    height: 100%;
   }
 }
 
