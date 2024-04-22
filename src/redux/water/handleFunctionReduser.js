@@ -7,13 +7,14 @@ export const handlePendingGet = state => {
 export const handleFulfilledGet = (state, { payload }) => {
   state.isLoading = false;
   state.error = null;
-  state.waterPortionsToday = payload.data;
+  state.waterPortionsToday = payload.data.length === 0 ? 0 : payload.data;
   state.interestWaterToday = payload.interest;
 };
 
 export const handleRejectedGet = (state, { payload }) => {
   state.isLoading = false;
   state.error = payload;
+  state.waterPortionsToday = 0;
 };
 
 // ============= ADD WaterPortion ===============

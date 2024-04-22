@@ -12,7 +12,7 @@ import { selectInterestWaterToday } from '../../redux/water/watersSelectors';
 
 import s from './ProgressBar.module.css';
 
-const currentValue = 50;
+// const currentValue = 100;
 const marks = {
   0: '0%',
   50: '50%',
@@ -36,7 +36,9 @@ const ProgressBar = () => {
             marks={Object.keys(marks).reduce((acc, key) => {
               acc[key] = (
                 <span
-                  className={currentValue === Number(key) ? 'active' : 'custom'}
+                  className={
+                    interestWaterToday === Number(key) ? 'active' : 'custom'
+                  }
                 >
                   {marks[key]}
                 </span>

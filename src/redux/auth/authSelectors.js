@@ -11,3 +11,5 @@ export const getLoggedInStatus = state => state.auth.isLoggedIn;
 export const getToken = state => state.auth.token;
 
 export const getRefreshingStatus = state => state.auth.isRefreshing;
+
+export const selectWaterRate = state => state.auth.user.waterRate;

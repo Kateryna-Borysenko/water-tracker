@@ -5,4 +5,5 @@ export const AUTH_ENDPOINT = {
   VERIFY: '/users/verify',
   REFRESH: '/users/current',
   RESET_PASSWORD: '', //Todo: посмотреть адрес на беке
+  WATER_RATE: '/users/waterRate',
 };
