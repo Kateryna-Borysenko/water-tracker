@@ -102,5 +102,10 @@
     "percent": "Fulfilment of the daily norm",
     "quantity": "How many servings of water",
     "liter": "L"
+  },
+  "logout": {
+    "title": "Log out",
+    "description": "Do you really want to leave?",
+    "secondButton": "Log out"
   }
 }

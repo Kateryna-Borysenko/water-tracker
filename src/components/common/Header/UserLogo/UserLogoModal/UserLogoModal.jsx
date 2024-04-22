@@ -15,7 +15,7 @@ const UserLogoModal = ({ handleClosePopup }) => {
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const handleOpenModal = e => {
+  const handleOpenModal = () => {
     setIsModalOpen(prevState => !prevState);
   };
 
@@ -38,30 +38,26 @@ const UserLogoModal = ({ handleClosePopup }) => {
   };
 
   return (
-    <ul className={s.headerModal}>
-      <li className={s.item}>
-        <Icons id={'settings'} />
-        <button
-          type="button"
-          className={s.btn}
-          onClick={handleOpenSettingModal}
-        >
+    <ul onClose={handleClosePopup} className={s.headerModal}>
+      <li>
+        <button type="button" className={s.btn} onClick={handleOpenSettingModal}>
+          <Icons id={'settings'} className={s.icon} />
           {t('popup.setting')}
         </button>
       </li>
 
-      <li className={s.item}>
-        <Icons id={'logout'} />
+      <li>
         <button onClick={handleOpenModal} type="button" className={s.btn}>
+          <Icons id={'logout'} className={s.icon} />
           {t('popup.logout')}
         </button>
         {isModalOpen && (
           <Modal onClose={handleCloseModal}>
             <ManagementCard
-              title="Log out"
-              description="Do you really want to leave?"
-              secondButton="Log out"
-              className="aligneRight"
+              title={t('logout.title')}
+              description={t('logout.description')}
+              secondButton={t('logout.secondButton')}
+              className="alignRight"
               onClick={handleLogoutUser}
               onClickSecondBtn={handleCloseModal}
             />

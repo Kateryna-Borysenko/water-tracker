@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { TimePicker } from 'antd';
 import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
-import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import {
   apiAddWaterPortion,
   apiEditWaterPortion,
@@ -12,7 +13,7 @@ import Button from '../../uikit/Button/Button';
 import Icons from '../Icons/Icons';
 import LangsSwitcher from '../../components/LangsSwitcher/LangsSwitcher';
 import s from './AddAndEditWaterCard.module.css';
-import { getToken } from '../../redux/auth/authSelectors';
+import { apiGetWaterPortionToday } from '../../redux/water/watersOperations';
 
 const AddAndEditWaterCard = ({
   isEditable,
@@ -21,9 +22,8 @@ const AddAndEditWaterCard = ({
   id,
   onClose,
 }) => {
-  const token = useSelector(getToken);
   const [defaultTime, setDefaultTime] = useState(dayjs());
-  const [time, setTime] = useState(initialTime);
+  const [time, setTime] = useState(() => initialTime);
   const [water, setWater] = useState({
     counterValue: isEditable ? waterVolume : 0,
     inputValue: isEditable ? waterVolume : 0,
@@ -31,7 +31,7 @@ const AddAndEditWaterCard = ({
 
   const dispatch = useDispatch();
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     if (!water.inputValue) return;
     const waterVolume = water.inputValue;
@@ -39,11 +39,18 @@ const AddAndEditWaterCard = ({
     const date = dayjs(isEditable ? time : defaultTime, 'h:mm A').toISOString();
 
     if (!isEditable) {
-      dispatch(apiAddWaterPortion({ waterVolume, date }));
+      const isAdded = await dispatch(apiAddWaterPortion({ waterVolume, date }));
+      if (isAdded.error) return toast.error(`Failed to add amount of water`);
+      await dispatch(apiGetWaterPortionToday());
+      onClose();
     } else {
-      dispatch(apiEditWaterPortion({ waterVolume, date, id }));
+      const isAdded = await dispatch(
+        apiEditWaterPortion({ waterVolume, date, id }),
+      );
+      if (isAdded.error) return toast.error(`Failed to update amount of water`);
+      await dispatch(apiGetWaterPortionToday());
+      onClose();
     }
-    onClose();
   };
 
   const handleClick = name => {
@@ -90,14 +97,16 @@ const AddAndEditWaterCard = ({
     : t('AddAndEditWaterCard.subtitleAdd');
 
   return (
-
     <div className={s.infoContainer}>
       <LangsSwitcher />
       <h2 className={s.title}>{title}</h2>
       {isEditable && (
         <div className={s.glassContainer}>
           <Icons className="glassIconEdit" id={'glass'} />
-          <span className={s.glassVolume}>{water.counterValue}{t('AddAndEditWaterCard.ml')}</span>
+          <span className={s.glassVolume}>
+            {water.counterValue}
+            {t('AddAndEditWaterCard.ml')}
+          </span>
           <span className={s.timeGlass}>{formatTime(time)}</span>
         </div>
       )}
@@ -116,7 +125,10 @@ const AddAndEditWaterCard = ({
           >
             <Icons className="iconEdit" id={'minus'} fill={'#407bff'} />
           </button>
-          <span className={s.waterAmountValue}>{water.counterValue}{t('AddAndEditWaterCard.ml')}</span>
+          <span className={s.waterAmountValue}>
+            {water.counterValue}
+            {t('AddAndEditWaterCard.ml')}
+          </span>
           <button
             type="button"
             name="increment"
@@ -128,7 +140,7 @@ const AddAndEditWaterCard = ({
           </button>
         </div>
         <label htmlFor="time" className={s.text}>
-           {t('AddAndEditWaterCard.recordingTime')}
+          {t('AddAndEditWaterCard.recordingTime')}
         </label>
         <TimePicker
           className={s.input}
@@ -148,7 +160,7 @@ const AddAndEditWaterCard = ({
           }
         />
         <label htmlFor="value" className={s.label}>
-         {t('AddAndEditWaterCard.enterTheValue')}
+          {t('AddAndEditWaterCard.enterTheValue')}
         </label>
         <input
           className={s.input}
@@ -161,8 +173,15 @@ const AddAndEditWaterCard = ({
           onChange={handleVolumeChange}
         />
         <div className={s.sreenContainer}>
-          <span className={s.waterAmountSreen}>{water.counterValue}{t('AddAndEditWaterCard.ml')}</span>
-          <Button type="submit" title={t('AddAndEditWaterCard.saveButton')} className="addWaterBtn" />
+          <span className={s.waterAmountSreen}>
+            {water.counterValue}
+            {t('AddAndEditWaterCard.ml')}
+          </span>
+          <Button
+            type="submit"
+            title={t('AddAndEditWaterCard.saveButton')}
+            className="addWaterBtn"
+          />
         </div>
       </form>
     </div>

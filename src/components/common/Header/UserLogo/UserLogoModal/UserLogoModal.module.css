@@ -14,7 +14,14 @@
   transition: var(--transition);
 }
 
-.item {
+.btn {
+  border: none;
+  background-color: transparent;
+  color: var(--primary-sky-blue);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 125%;
+  transition: var(--transition);
   min-width: 86px;
   display: flex;
   gap: 8px;
@@ -23,11 +30,8 @@
   caret-color: transparent;
 }
 
-.btn {
-  border: none;
-  background-color: transparent;
-  color: var(--primary-sky-blue);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 125%;
+.btn:hover,
+.btn:focus {
+  color: var(--secondary-orange);
+  stroke: var(--secondary-orange);
 }
