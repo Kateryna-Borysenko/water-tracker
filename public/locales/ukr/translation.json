@@ -107,5 +107,19 @@
     "title": "Вихід",
     "description": "Ви дійсно хочете піти?",
     "secondButton": "Підтвердити"
+  },
+  "MyDailyNorma": {
+    "MyDailyNormaTitle": "Моя денна норма",
+    "MyDailyNormaL": "Л",
+    "MyDailyNormaButton": "Редагувати",
+    "MyDailyNormaModalForWoman": "Для жінок",
+    "MyDailyNormaModalForMan": "Для чоловіків",
+    "MyDailyNormaModalAccent": "V - об'єм води за нормою в літрах на день, M - ваша маса тіла, T - час активних спортивних занять або іншого типу активності, еквівалентного за навантаженням (у разі відсутності таких - слід встановити 0)",
+    "MyDailyNormaModalSubtitle": "Розрахуйте ваш рівень:",
+    "MyDailyNormaModalWeight": "Ваша вага в кілограмах:",
+    "MyDailyNormaModalActivity": "Час активної участі в спорті або інших діяльностях з високим фізичним навантаженням у годинах:",
+    "MyDailyNormaModalWater": "Необхідна кількість води в літрах на день:",
+    "MyDailyNormaModalNorma": "Зазначте, скільки води ви будете пити:",
+    "MyDailyNormaModalButton": "Зберегти"
   }
 }
