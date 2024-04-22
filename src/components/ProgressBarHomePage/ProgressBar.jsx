@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { Slider } from 'antd';
 import './AntD.css';
 
-import Container from '../common/Container/Container';
 import Button from '../../uikit/Button/Button';
 import Icons from '../Icons/Icons';
 import Modal from '../common/Modal/Modal';
@@ -12,17 +11,16 @@ import { selectInterestWaterToday } from '../../redux/water/watersSelectors';
 
 import s from './ProgressBar.module.css';
 
-// const currentValue = 100;
-// const currentValue = 100;
-const marks = {
-  0: '0%',
-  50: '50%',
-  100: '100%',
-};
-
 const ProgressBar = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const interestWaterToday = useSelector(selectInterestWaterToday);
+  const interestFixed = interestWaterToday.toFixed(0);
+
+  const marks = {
+    0: '0%',
+    50: '50%',
+    100: interestFixed < 100 ? '100%' : `${interestFixed}%`,
+  };
 
   const handleCloseModal = () => {
     setIsOpenModal(false);

@@ -8,6 +8,7 @@ import s from './MyDailyNormaModal.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { sentWaterRate } from '../../../redux/auth/authOperations.js';
 import { selectWaterRate } from '../../../redux/auth/authSelectors.js';
+import { apiGetWaterPortionToday } from '../../../redux/water/watersOperations.js';
 
 const MyDailyNormaModal = ({ onClose }) => {
   const dispatch = useDispatch();
@@ -33,19 +34,21 @@ const MyDailyNormaModal = ({ onClose }) => {
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
     const drankWater = parseFloat(values.drankWater) * 1000;
 
-    dispatch(sentWaterRate({ waterRate: drankWater }));
+    dispatch(sentWaterRate({ waterRate: drankWater })).then(() => {
+      dispatch(apiGetWaterPortionToday());
 
-    const recommendedWater = calculateWaterAmount(values);
-    toast.success(`Recommended water intake: ${recommendedWater}`, {
-      style: {
-        width: '300px',
-        textAlign: 'center',
-      },
+      const recommendedWater = calculateWaterAmount(values);
+      toast.success(`Recommended water intake: ${recommendedWater}`, {
+        style: {
+          width: '300px',
+          textAlign: 'center',
+        },
+      });
+
+      resetForm();
+      setSubmitting(false);
+      onClose();
     });
-
-    resetForm();
-    setSubmitting(false);
-    onClose();
   };
 
   return (
