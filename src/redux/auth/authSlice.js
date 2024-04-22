@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
   registerUser,
   loginUser,
@@ -6,6 +6,8 @@ import {
   setTokenAuthInstance,
   clearTokenAuthInstance,
   refreshUser,
+  updateAvatar,
+  updateUserData,
   sentWaterRate,
 } from './authOperations';
 import {
@@ -27,6 +29,7 @@ const initialState = {
   token: '',
   loading: false,
   error: null,
+  isAvatarLoading: false,
 };
 
 export const authSlice = createSlice({
@@ -99,6 +102,21 @@ export const authSlice = createSlice({
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
       })
+
+      // -------------UPDATE USER DATA   ------------- //
+      .addCase(updateUserData.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = { ...state.user, ...action.payload.user };
+      })
+
+      // ------------- AVATAR   ------------- //
+      .addCase(updateAvatar.fulfilled, (state, action) => {
+        state.loading = false;
+        state.isAvatarLoading = false;
+
+        state.user.avatarURL = action.payload;
+      })
+
       // ************** waterRate  ************** //
       .addCase(sentWaterRate.pending, state => {
         state.loading = false;
@@ -112,6 +130,24 @@ export const authSlice = createSlice({
       .addCase(sentWaterRate.rejected, (state, { payload }) => {
         state.error = payload;
         state.loading = false;
-      });
+      })
+      .addMatcher(
+        isAnyOf(updateAvatar.pending, updateUserData.pending),
+        state => {
+          state.loading = true;
+          state.error = null;
+        },
+      )
+      .addMatcher(isAnyOf(updateAvatar.pending), state => {
+        state.isAvatarLoading = true;
+      })
+      .addMatcher(
+        isAnyOf(updateAvatar.rejected, updateUserData.rejected),
+        (state, action) => {
+          state.loading = false;
+          state.isAvatarLoading = false;
+          state.error = action.payload;
+        },
+      );
   },
 });

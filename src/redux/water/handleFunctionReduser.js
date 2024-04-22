@@ -7,7 +7,7 @@ export const handlePendingGet = state => {
 export const handleFulfilledGet = (state, { payload }) => {
   state.isLoading = false;
   state.error = null;
-  state.waterPortionsToday = payload.data.length === 0 ? [] : payload.data;
+  state.waterPortionsToday = payload.data?.length === 0 ? [] : payload.data;
   state.interestWaterToday = payload.interest;
 };
 

@@ -12,4 +12,7 @@ export const getToken = state => state.auth.token;
 
 export const getRefreshingStatus = state => state.auth.isRefreshing;
 
+export const selectUpdateUserData = state => state.auth.user;
+export const selectAvatarLoading = state => state.auth.isAvatarLoading;
+
 export const selectWaterRate = state => state.auth.user.waterRate;

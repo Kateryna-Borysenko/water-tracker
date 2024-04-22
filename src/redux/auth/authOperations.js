@@ -4,6 +4,8 @@ import { toast } from 'react-toastify';
 import { AUTH_ENDPOINT } from '../../helpers/endpoints/authEndpoint';
 import { setTokenwaterPortionsInstance } from '../services/waterPortions-api';
 
+import { apiUpdateUserData, apiUpdateAvatar } from '../services/user-api';
+
 const SERVER_URL = import.meta.env.VITE_SERVER_BASE_URL;
 
 axios.defaults.baseURL = SERVER_URL;
@@ -102,13 +104,33 @@ export const refreshUser = createAsyncThunk(
     const state = thunkAPI.getState();
     const token = state.auth.token;
     if (!token) return thunkAPI.rejectWithValue("You don't have a token!");
+
     try {
       setTokenAuthInstance(token);
       setTokenwaterPortionsInstance(token);
       const { data } = await axios.get(AUTH_ENDPOINT.REFRESH);
+      console.log(data, 'data');
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const updateAvatar = createAsyncThunk(
+  'auth/updateAvatar',
+
+  async (file, thunkApi) => {
+    try {
+      console.log('thunk');
+      const state = thunkApi.getState();
+      const token = state.auth.token; //
+      const avatarURL = await apiUpdateAvatar(file, token);
+      toast.success('Your avatar was successfully updated!');
+      return avatarURL;
+    } catch (error) {
+      toast.error(error.response?.data?.message);
+      return thunkApi.rejectWithValue(error.message);
     }
   },
 );
@@ -131,6 +153,22 @@ export const passwordResetInstructions = createAsyncThunk(
         toast.error(error.response?.data?.message);
       }
       return ThunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const updateUserData = createAsyncThunk(
+  'auth/updateUserData',
+  async (userData, thunkApi) => {
+    try {
+      const state = thunkApi.getState();
+      const token = state.auth.token; //
+      const { data } = await apiUpdateUserData(userData, token);
+      toast.success('Your data were successfully updated!');
+      return data;
+    } catch (error) {
+      toast.error(error.response?.data?.message);
+      return thunkApi.rejectWithValue(error.message);
     }
   },
 );

@@ -39,3 +39,20 @@
     padding: 32px 24px;
   }
 }
+
+/*  -----------setting container------- */
+.setting-card {
+  padding: 32px 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .setting-card {
+    width: 656px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .setting-card {
+    width: 960px;
+  }
+}
