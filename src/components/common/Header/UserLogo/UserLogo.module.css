@@ -15,6 +15,11 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: var(--transition);
+}
+
+.name:hover {
+  color: var(--secondary-orange);
 }
 
 .avatarWrap {
