@@ -2,6 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { AUTH_ENDPOINT } from '../../helpers/endpoints/authEndpoint';
+import { setTokenwaterPortionsInstance } from '../services/waterPortions-api';
 
 const SERVER_URL = import.meta.env.VITE_SERVER_BASE_URL;
 
@@ -103,6 +104,7 @@ export const refreshUser = createAsyncThunk(
     if (!token) return thunkAPI.rejectWithValue("You don't have a token!");
     try {
       setTokenAuthInstance(token);
+      setTokenwaterPortionsInstance(token);
       const { data } = await axios.get(AUTH_ENDPOINT.REFRESH);
       return data;
     } catch (error) {
