@@ -10,6 +10,13 @@
   background-position: center bottom;
 }
 
+@media screen and (max-width: 768px) {
+  .container {
+    display: block;
+    height: 100%;
+  }
+}
+
 .contentContainer {
   position: relative;
   z-index: 1;
