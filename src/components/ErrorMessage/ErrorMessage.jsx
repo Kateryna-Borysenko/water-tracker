@@ -10,6 +10,3 @@ const ErrorMessage = ({
   );
 };
 export default ErrorMessage;
-
-//className && className  ??
-//   <div className={`${s.errorMessage} ${className}`}>{errorMessage}</div>;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import OpenedEyeIcon from '../../../assets/static/icons/eye.svg?react';
-import ClosedEyeIcon from '../../../assets/static/icons/eye-slash.svg?react';
+import Icons from '../../components/Icons/Icons';
+
 import s from './EyeBtn.module.css';
 
 const EyeBtn = () => {
@@ -19,11 +19,7 @@ const EyeBtn = () => {
   return (
     <>
       <button type="button" className={s.eyeBtn} onClick={handleToggleEye}>
-        {!isOpenEye ? (
-          <ClosedEyeIcon width="16" height="16" />
-        ) : (
-          <OpenedEyeIcon width="16" height="16" />
-        )}
+        {!isOpenEye ? <Icons id={'eye-slash'} /> : <Icons id={'eye'} />}
       </button>
     </>
   );

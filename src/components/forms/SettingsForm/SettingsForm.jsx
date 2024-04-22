@@ -1,35 +1,37 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Form, Field, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
-import { updateAvatar, updateUserData } from '../../redux/auth/authOperations';
 import {
-  getToken,
-  selectUpdateAvatar,
+  updateAvatar,
+  updateUserData,
+} from '../../../redux/auth/authOperations';
+import {
   selectUpdateUserData,
-  // selectUserDataIsLoading,
-} from '../../redux/auth/authSelectors';
-import { settingFormValidationSchema } from '../../schemas/settingFormValidationSchema';
-import EyeBtn from './EyeBtn/EyeBtn';
-import ErrorMessage from './ErrorMessage/ErrorMessage';
+  // getError,
+  // getLoading,
+  selectAvatarLoading,
+} from '../../../redux/auth/authSelectors';
+import { settingFormValidationSchema } from '../../../schemas/settingFormValidationSchema';
 
-import UploadingIcon from '../../assets/static/icons/uploading-2.svg?react'; //
+import EyeBtn from '../../EyeBtn/EyeBtn';
+import ErrorMessage from '../../ErrorMessage/ErrorMessage';
+import Button from '../../../uikit/Button/Button';
+import Spinner from '../../common/Spinner/Spinner';
 
-import s from './SettingCard.module.css';
+// import Icons from '../Icons/Icons';
+import UploadingIcon from '../../../assets/static/icons/uploading-2.svg?react';
 
-const SettingCard = ({ onClose }) => {
-  const [submitted, setSubmitted] = useState(false);
-  const [isOpen, setIsOpen] = useState(true); //-
+import s from './SettingsForm.module.css';
 
-  // const [avatar, setAvatar] = useState('');
+const SettingsForm = ({ onClose }) => {
   const dispatch = useDispatch();
-  // const avatar = useSelector(selectUpdateAvatar);
-  // const avatar = false;
-  const user = useSelector(selectUpdateUserData);
-  //   const isLoading = useSelector(selectUserDataIsLoading);
-  //   const error = useSelector(selectUserDataError);
   const fileInputRef = useRef();
   const [file, setFile] = useState('');
+  const user = useSelector(selectUpdateUserData);
+  const isLoading = useSelector(selectAvatarLoading);
+  // const error = useSelector(getError);
+  // ..обробка помилок ??
 
   const {
     values,
@@ -43,17 +45,17 @@ const SettingCard = ({ onClose }) => {
     dirty,
     setFieldValue,
     setSubmitting,
+    resetForm,
   } = useFormik({
     initialValues: {
       // image: '',
       gender: user.gender || '',
       username: user.username || '',
       email: user.email,
-      currentPassword: '',
+      password: '',
       newPassword: '',
       repeatPassword: '',
     },
-    //() =>
     validationSchema: settingFormValidationSchema,
     onSubmit: () => {
       // console.log(JSON.stringify(values, null, 2));
@@ -61,121 +63,89 @@ const SettingCard = ({ onClose }) => {
 
       if (
         values.newPassword !== '' &&
-        values.currentPassword === '' &&
+        values.password === '' &&
         values.repeatPassword === ''
       ) {
         toast.error('Outdated and repeat passwords are required');
         return;
       }
       if (
-        values.currentPassword !== '' &&
+        values.password !== '' &&
         values.newPassword === '' &&
         values.repeatPassword === ''
       ) {
         toast.error('New and repeat password are required');
-
         return;
       }
-      if (values.currentPassword !== '' && values.newPassword === '') {
+      if (values.password !== '' && values.newPassword === '') {
         toast.error('New password is required');
-
         return;
       }
-
-      if (values.currentPassword === '' && values.newPassword !== '') {
+      if (values.password === '' && values.newPassword !== '') {
         toast.error('Outdated password is required');
-
         return;
       }
       if (
-        values.currentPassword !== '' &&
+        values.password !== '' &&
         values.newPassword !== '' &&
-        repeatPassword === ''
+        values.repeatPassword === ''
       ) {
         toast.error('Repeat password is required');
-
         return;
       }
-      const body = {};
 
-      if (values.gender !== user.gender) {
+      const body = {};
+      if (values.gender && values.gender !== user.gender) {
         body.gender = values.gender;
       }
-      if (values.username !== user.username) body.username = values.username;
-      if (values.email !== user.email) body.email = values.email;
-      if (values.currentPassword) body.password = values.currentPassword;
+      if (values.username && values.username !== user.username)
+        body.username = values.username;
+      if (values.email && values.email !== user.email)
+        body.email = values.email;
+      if (values.password) body.password = values.password;
       if (values.newPassword) body.newPassword = values.newPassword;
+
+      if (values.email === '') return toast.error('Email can`t be empty');
+      //чи setFieldValue  values.email = user.email
 
       if (Object.keys(body).length === 0) {
         toast.error('Please fill at least one field');
       } else {
         dispatch(updateUserData(body))
-          .unwrap(
-            toast.success('Your data were successfully updated!'),
-            //   resetForm({
-            //     password,
-            //     newPassword,
-            //   });
-            // ?
-            onClose(),
-            // toast.success('Your data were successfully updated!'),
-          )
-          .catch(error => {
-            toast.error('Something went wrong. Please try again later!' + ' ');
-          });
+          .unwrap()
+          .then(response => {
+            //resetForm ?  чи автофіл підставляє
+            // resetForm({
+            //   password,
+            //   newPassword,
+            // });
+            setSubmitting(false); //
+            resetForm(); //
+            onClose();
+          })
+          .catch(error => console.error(error));
       }
       // console.log(isSubmitting, isValid, dirty); //true true true ?
       //disabled кнопка після 1го запиту
     },
   });
 
-  // const setFileToBase = file => {
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(file);
-  //   reader.onloadend = () => {
-  //     setFile(reader.result);
-  //   };
-  // };
-
   const onChange = e => {
-    // const file = e.target.files[0];
-    // setFileToBase(file);
-    // console.log(file, 'File from onChange');
-
     const files = e.target.files;
     if (files && files.length > 0) {
       const selected = files[0];
       setFile(selected);
     }
-    // let reader = new FileReader();
-    // reader.onload = () => {
-    //   if (reader.readyState === 2) {
-    //     // setFile(reader.result);
-    //     // setFieldValue('image', reader.result); //формік
-    //     // setAvatar(reader.result);
-    //     dispatch(updateAvatar(reader.result))
-    //       .unwrap(toast.success('Your avatar were successfully added!'))
-    //       //закрити форму по успіху як??
-    //       .catch(error =>
-    //         toast.error('Something went wrong. Please try again later!' + ' '),
-    //       );
-    //   }
-    // };
-    // reader.readAsDataURL(e.target.files[0]);
   };
 
   useEffect(() => {
     if (file) {
       dispatch(updateAvatar(file));
-
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
       }
     }
   }, [file, dispatch]);
-
-  // const testEmail = 'qwe@gmai.com';
-  // const testDefaultUserName = testEmail.split('@')[0];
 
   const defaultAvatarFirstLetter = user.email.split('')[0].toUpperCase();
 
@@ -183,45 +153,36 @@ const SettingCard = ({ onClose }) => {
     <div className={s.container}>
       <h2 className={s.title}>Setting</h2>
 
-      {/* -----------avatar----- */}
       <h3 className={` ${s.item} ${s.mediumText} ${s.smallMb}`}>Your photo</h3>
       <div className={s.avatarWrapper}>
         <div className={s.avatar}>
-          {user.avatarURL ? (
+          {user.avatarURL && !isLoading && (
             <img src={user.avatarURL} alt="avatar" />
-          ) : (
-            <p>{defaultAvatarFirstLetter}</p>
           )}
+          {!user.avatarURL && !isLoading && <p>{defaultAvatarFirstLetter}</p>}
+          {isLoading && <Spinner />}
         </div>
 
-        {/* -----------upload a photo----- */}
-        {/* action="" */}
         <form className={s.fileForm}>
           <input
             name="file"
             accept="image/*"
-            //value=file
-            // value={URL.createObjectURL(file)}
             type="file"
             id="upload"
-            className={s.visuallyHidden}
+            className={`${s.visuallyHidden} ${s.uploadingBtn}`}
             onChange={onChange}
             ref={fileInputRef}
           />
           <label htmlFor="upload" className={s.uploadingWrapper}>
             <UploadingIcon className={s.uploadingIcon} />
-
             <span className={s.uploadingText}>Upload a photo</span>
           </label>
         </form>
       </div>
 
-      <form onSubmit={handleSubmit} action="">
+      <form onSubmit={handleSubmit}>
         <div className={s.wrapper}>
-          {/* -----------genderBox */}
-
           <div className={s.leftBox}>
-            {/*  */}
             <div className={s.genderWrapper}>
               <h3 className={`${s.item} ${s.mediumText} ${s.mediumMb}`}>
                 Your gender identity
@@ -248,6 +209,7 @@ const SettingCard = ({ onClose }) => {
                     checked={values.gender === 'male'}
                     name="gender"
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   Man
                   <span className={s.checkmark}></span>
@@ -314,30 +276,28 @@ const SettingCard = ({ onClose }) => {
             </h3>
 
             <label
-              htmlFor="currentPassword"
+              htmlFor="password"
               className={`${s.itemText} ${s.smallText}`}
             >
               Outdated password:
             </label>
             <div className={`${s.inputWrapper} ${s.passwordInput}`}>
               <input
-                value={values.currentPassword}
-                id="currentPassword"
+                value={values.password}
+                id="password"
                 type="password"
-                name="currentPassword"
+                name="password"
                 placeholder="Password"
                 className={`${s.input} ${
-                  touched.currentPassword &&
-                  errors.currentPassword &&
-                  s.errorInput
+                  touched.password && errors.password && s.errorInput
                 }`}
                 onBlur={handleBlur}
                 onChange={handleChange}
               />
               <EyeBtn />
               <ErrorMessage
-                errorMessage={errors.currentPassword}
-                touched={touched.currentPassword}
+                errorMessage={errors.password}
+                touched={touched.password}
               />
             </div>
 
@@ -398,17 +358,24 @@ const SettingCard = ({ onClose }) => {
             </div>
           </div>
         </div>
-        <button
+        <Button
+          type="submit"
+          title={'Save'}
+          // disabled={isSubmitting}
+          className="saveSettingsBtn"
+          // loading={loading}
+        />
+        {/* <button
           type="submit"
           // disabled={isSubmitting || !isValid || !dirty}
           aria-label="Save changes"
           className={s.saveBtn}
         >
           Save
-        </button>
+        </button> */}
       </form>
     </div>
   );
 };
 
-export default SettingCard;
+export default SettingsForm;

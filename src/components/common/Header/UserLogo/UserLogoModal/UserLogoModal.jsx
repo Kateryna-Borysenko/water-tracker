@@ -3,8 +3,9 @@ import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../../../../redux/auth/authOperations';
 import Modal from '../../../Modal/Modal';
 import ManagementCard from '../../../../ManagementCard/ManagementCard';
-import SettingCard from '../../../../SettingCard/SettingCard';
+import SettingsForm from '../../../../forms/SettingsForm/SettingsForm';
 import Icons from '../../../../Icons/Icons';
+
 import s from './UserLogoModal.module.css';
 
 const UserLogoModal = () => {
@@ -19,17 +20,17 @@ const UserLogoModal = () => {
       : setIsLogoutModalOpen(true);
   };
 
+  const handleLogoutUser = () => {
+    dispatch(logoutUser());
+  };
+
   const toggleSettingModal = () => {
     isSettingModalOpen
       ? setIsSettingModalOpen(false)
       : setIsSettingModalOpen(true);
   };
 
-  const handleLogoutUser = () => {
-    dispatch(logoutUser());
-  };
-
-  const onClose = () => {
+  const handleCloseModal = () => {
     setIsSettingModalOpen(false);
   };
 
@@ -60,8 +61,8 @@ const UserLogoModal = () => {
         )}
 
         {isSettingModalOpen && (
-          <Modal className="setting-card" onClose={onClose}>
-            <SettingCard onClose={onClose} />
+          <Modal className="setting-card" onClose={handleCloseModal}>
+            <SettingsForm onClose={handleCloseModal} />
           </Modal>
         )}
       </li>

@@ -42,30 +42,19 @@
 
 /*  -----------setting container------- */
 
-.closeBtn {
-  /* right: 14px; */
-}
-
-.container.setting-card {
+.setting-card {
   padding: 32px 12px;
-  /* width: 256px; */
 }
 
-/* може container не треба */
 @media screen and (min-width: 768px) {
-  .container.setting-card {
+  .setting-card {
     width: 656px;
-
-    /* width: 704px; */
     padding: 32px 24px;
-    /* height: 860px; */
   }
 }
 
-@media screen and (min-width: 1256px) {
-  .container.setting-card {
+@media screen and (min-width: 1440px) {
+  .setting-card {
     width: 960px;
-    /* width: 1008px; */
-    /* height: 592px; */
   }
 }

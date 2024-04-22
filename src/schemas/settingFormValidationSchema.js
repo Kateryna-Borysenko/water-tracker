@@ -18,9 +18,7 @@ export const settingFormValidationSchema = Yup.object().shape({
   username: Yup.string().trim().matches(USER_NAME_REGEX, USER_NAME_MESSAGE),
   email: Yup.string().trim().matches(EMAIL_REGEX, EMAIL_ERROR_MESSAGE),
 
-  currentPassword: Yup.string()
-    .trim()
-    .matches(PASSWORD_REGEX, PASSWORD_ERROR_MESSAGE),
+  password: Yup.string().trim().matches(PASSWORD_REGEX, PASSWORD_ERROR_MESSAGE),
   // .required(REQUIRED_OUTDATED_PASSWORD_MESSAGE),
 
   newPassword: Yup.string()

@@ -9,3 +9,12 @@
   width: 24px;
   height: 24px;
 }
+
+.uploadingIcon:hover {
+  stroke: var(--secondary-orange);
+}
+
+.uploadingIcon {
+  transition: var(--transition);
+  padding-right: 8px;
+}

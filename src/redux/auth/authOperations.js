@@ -97,9 +97,11 @@ export const refreshUser = createAsyncThunk(
     const state = thunkAPI.getState();
     const token = state.auth.token;
     if (!token) return thunkAPI.rejectWithValue("You don't have a token!");
+
     try {
       setTokenAuthInstance(token);
       const { data } = await axios.get(AUTH_ENDPOINT.REFRESH);
+      console.log(data, 'data');
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -112,22 +114,16 @@ export const updateAvatar = createAsyncThunk(
   'auth/updateAvatar',
 
   async (file, thunkApi) => {
-    //
-    console.log(file, 'FILE'); //+
-
     try {
-      // const formData = new FormData();
-      // formData.append('avatarURL', file);
+      //
+      const state = thunkApi.getState();
+      const token = state.auth.token;
 
-      // console.log(formData.get('avatarURL'));
-
-      // const convertetBlob = URL.createObjectURL(file);
-      // console.log(convertetBlob);
-
-      const avatarURL = await apiUpdateAvatar(file); //
-      console.log(avatarURL, 'thunk'); //-
+      const avatarURL = await apiUpdateAvatar(file, token);
+      toast.success('Your avatar was successfully updated!');
       return avatarURL;
     } catch (error) {
+      toast.error(error.response?.data?.message);
       return thunkApi.rejectWithValue(error.message);
     }
   },
@@ -137,10 +133,15 @@ export const updateUserData = createAsyncThunk(
   'auth/updateUserData',
   async (userData, thunkApi) => {
     try {
-      const { user } = await apiUpdateUserData(userData);
-      console.log(user, 'DATA OPERATION');
-      return user; //
+      //
+      const state = thunkApi.getState();
+      const token = state.auth.token;
+
+      const { data } = await apiUpdateUserData(userData, token);
+      toast.success('Your data were successfully updated!');
+      return data;
     } catch (error) {
+      toast.error(error.response?.data?.message);
       return thunkApi.rejectWithValue(error.message);
     }
   },

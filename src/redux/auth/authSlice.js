@@ -27,6 +27,7 @@ const initialState = {
   token: '',
   loading: false,
   error: null,
+  isAvatarLoading: false,
 };
 
 export const authSlice = createSlice({
@@ -89,21 +90,18 @@ export const authSlice = createSlice({
         state.isRefreshing = false;
       })
 
-      // ************** LOGOUT  ************** //
-
       // -------------UPDATE USER DATA   ------------- //
       .addCase(updateUserData.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = { ...state.user, ...action.payload }; //
-        console.log(state.user); //+
+        state.user = { ...state.user, ...action.payload.user };
       })
 
       // ------------- AVATAR   ------------- //
       .addCase(updateAvatar.fulfilled, (state, action) => {
         state.loading = false;
+        state.isAvatarLoading = false;
 
-        state.user.avatarURL = action.payload; //
-        console.log(state.user.avatarURL, 'PAYLOAD');
+        state.user.avatarURL = action.payload;
       })
 
       .addMatcher(
@@ -113,10 +111,14 @@ export const authSlice = createSlice({
           state.error = null;
         },
       )
+      .addMatcher(isAnyOf(updateAvatar.pending), state => {
+        state.isAvatarLoading = true;
+      })
       .addMatcher(
         isAnyOf(updateAvatar.rejected, updateUserData.rejected),
         (state, action) => {
           state.loading = false;
+          state.isAvatarLoading = false;
           state.error = action.payload;
         },
       );
