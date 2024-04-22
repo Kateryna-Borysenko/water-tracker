@@ -13,9 +13,9 @@ export const TodayWaterList = () => {
       <h3 className={s.todayTitle}>Today</h3>
       <ul className={s.todayWaterList}>
         {waterItems.length !== 0 ? (
-          waterItems.map(item => (
+          waterItems.map((item, index) => (
             <TodayWaterItem
-              key={item._id}
+              key={index}
               waterVolume={item.waterVolume}
               time={item.date}
               id={item._id}

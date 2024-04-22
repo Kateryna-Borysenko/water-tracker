@@ -9,11 +9,14 @@ const MyDailyNorma = () => {
   const DailyNormaL = waterRate / 1000;
 
   return (
-    <div className={s.container}>
-      <Subtitle title="My daily norma" />
-      <div className={s.normValue}>
-        <span>{DailyNormaL} L</span>
-        <MyDailyNormaButton />
+    <div className={s.dailyNormaContainer}>
+      <div className={s.container}>
+        <Subtitle title="My daily norma" />
+        <div className={s.normValue}>
+          <span>{DailyNormaL} L</span>
+          <MyDailyNormaButton />
+        </div>
+        <div className={s.imgBottle}></div>
       </div>
     </div>
   );

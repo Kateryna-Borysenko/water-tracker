@@ -10,7 +10,31 @@
   box-sizing: border-box;
 }
 
-.normValue {
+.imgBottle {
+  z-index: -1;
+  width: 100%;
+  height: 208px;
+  background-image: url('../../assets/static/image/bottle-home-screen-M.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+@media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .container {
+    background-image: url('../../assets/static/image/bottle-home-screen-M-2x.png');
+  }
+}
+
+.dailyNormaTitle {
+  margin-bottom: 12px;
+  font-size: 18px;
+  color: var(--primary-charcoal-gray);
+}
+
+.normaValue {
   display: flex;
   align-items: center;
   margin-top: 12px;

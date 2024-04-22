@@ -46,22 +46,11 @@ export const apiDeleteWaterPortion = createAsyncThunk(
   'waterPortions/deleteAddWaterPortion',
   async (id, thunkAPI) => {
     try {
-      const response = await deleteWaterPortion({ id });
-      return response.data[0]._id;
+      const data = await deleteWaterPortion({ id });
+
+      return data.data._id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
-
-// export const apiDeleteWaterPortion = createAsyncThunk(
-//   'waterPortions/deleteAddWaterPortion',
-//   async (id, thankApi) => {
-//     try {
-//       const response = await deleteWaterPortion({ id });
-//       return response.data;
-//     } catch (error) {
-//       return thankApi.rejectWithValue(error.message);
-//     }
-//   },
-// );

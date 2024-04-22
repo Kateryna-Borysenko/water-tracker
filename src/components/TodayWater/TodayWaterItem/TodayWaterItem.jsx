@@ -19,6 +19,11 @@ export const TodayWaterItem = ({ waterVolume, time, id }) => {
     setIsOpenModalDelete(false);
   };
 
+  const handleDeleteItem = id => {
+    dispatch(apiDeleteWaterPortion(id));
+    handleCloseModal();
+  };
+
   const formatTime = dateTimeStr => {
     const date = new Date(dateTimeStr);
     return format(date, 'h:mm a');
@@ -57,7 +62,7 @@ export const TodayWaterItem = ({ waterVolume, time, id }) => {
             description="Are you sure you want to delete the entry?"
             secondButton="Delete"
             className="alignRight"
-            onClick={() => dispatch(apiDeleteWaterPortion(id))}
+            onClick={() => handleDeleteItem(id)}
             onClickSecondBtn={handleCloseModal}
           />
         </Modal>
