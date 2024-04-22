@@ -1,6 +1,6 @@
 import Container from '../../components/common/Container/Container';
-// import MyDailyNorma from  '../../components/MyDailyNorma/MyDailyNorma';
-// import TodayWaterList from '../../components/TodayWater/TodayWaterList/TodayWaterList';
+import MyDailyNorma from '../../components/MyDailyNorma/MyDailyNorma';
+import TodayWaterList from '../../components/TodayWater/TodayWaterList/TodayWaterList';
 import Calendar from '../../components/Calendar/Calendar';
 import Meta from '../../components/common/Meta/Meta';
 import ProgressBar from '../../components/ProgressBarHomePage/ProgressBar';
@@ -22,11 +22,11 @@ const HomePage = () => {
         <Meta title="Home Page" />
         <Container className="containerHomePage">
           <div className={s.contentContainer}>
-            {/* <MyDailyNorma /> */}
+            <MyDailyNorma />
             <ProgressBar />
           </div>
           <div className={s.homePageWidgetWrapper}>
-            {/* <TodayWaterList /> */}
+            <TodayWaterList />
             <Calendar />
           </div>
         </Container>
