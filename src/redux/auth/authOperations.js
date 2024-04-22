@@ -122,8 +122,9 @@ export const updateAvatar = createAsyncThunk(
 
   async (file, thunkApi) => {
     try {
-      // const state = thunkApi.getState();
-      // const token = state.auth.token;
+      console.log('thunk');
+      const state = thunkApi.getState();
+      const token = state.auth.token; //
       const avatarURL = await apiUpdateAvatar(file, token);
       toast.success('Your avatar was successfully updated!');
       return avatarURL;
@@ -160,8 +161,8 @@ export const updateUserData = createAsyncThunk(
   'auth/updateUserData',
   async (userData, thunkApi) => {
     try {
-      // const state = thunkApi.getState();
-      // const token = state.auth.token;
+      const state = thunkApi.getState();
+      const token = state.auth.token; //
       const { data } = await apiUpdateUserData(userData, token);
       toast.success('Your data were successfully updated!');
       return data;

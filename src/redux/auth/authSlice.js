@@ -116,6 +116,21 @@ export const authSlice = createSlice({
 
         state.user.avatarURL = action.payload;
       })
+
+      // ************** waterRate  ************** //
+      .addCase(sentWaterRate.pending, state => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(sentWaterRate.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.isLoggedIn = true;
+        state.user.waterRate = payload.waterRate;
+      })
+      .addCase(sentWaterRate.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.loading = false;
+      })
       .addMatcher(
         isAnyOf(updateAvatar.pending, updateUserData.pending),
         state => {
@@ -133,20 +148,6 @@ export const authSlice = createSlice({
           state.isAvatarLoading = false;
           state.error = action.payload;
         },
-      )
-      // ************** waterRate  ************** //
-      .addCase(sentWaterRate.pending, state => {
-        state.loading = false;
-        state.error = null;
-      })
-      .addCase(sentWaterRate.fulfilled, (state, { payload }) => {
-        state.loading = false;
-        state.isLoggedIn = true;
-        state.user.waterRate = payload.waterRate;
-      })
-      .addCase(sentWaterRate.rejected, (state, { payload }) => {
-        state.error = payload;
-        state.loading = false;
-      });
+      );
   },
 });
