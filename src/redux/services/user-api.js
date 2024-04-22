@@ -13,7 +13,7 @@ export const setAuthorizationHeaders = token => {
 //clear token ?
 
 export const apiUpdateUserData = async (userData, token) => {
-  setAuthorizationHeaders(token); //
+  // setAuthorizationHeaders(token);
   const data = await userInstance.put('/users/update', {
     ...userData,
   });
@@ -25,7 +25,7 @@ export const apiUpdateAvatar = async (file, token) => {
   const formData = new FormData();
   formData.append('avatarURL', file);
 
-  setAuthorizationHeaders(token); //
+  // setAuthorizationHeaders(token);
   const { data } = await userInstance.patch('users/avatar', formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
