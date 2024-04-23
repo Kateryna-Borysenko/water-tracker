@@ -1,18 +1,23 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
+import { myDailyNormaValidationSchema } from '../../../schemas/myDailyNormaValidationSchema.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { sentWaterRate } from '../../../redux/auth/authOperations.js';
+import {
+  getLoading,
+  selectWaterRate,
+} from '../../../redux/auth/authSelectors.js';
+import { apiGetWaterPortionToday } from '../../../redux/water/watersOperations.js';
 import Title from '../../../components/common/Title/Title';
 import Subtitle from '../../../components/common/Subtitle/Subtitle';
 import Button from '../../../uikit/Button/Button';
-import { myDailyNormaValidationSchema } from '../../../schemas/myDailyNormaValidationSchema.js';
 import s from './MyDailyNormaModal.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { sentWaterRate } from '../../../redux/auth/authOperations.js';
-import { selectWaterRate } from '../../../redux/auth/authSelectors.js';
-import { apiGetWaterPortionToday } from '../../../redux/water/watersOperations.js';
 
 const MyDailyNormaModal = ({ onClose }) => {
   const dispatch = useDispatch();
   const waterRate = useSelector(selectWaterRate);
+  const loading = useSelector(getLoading);
 
   const DailyNormaL = waterRate / 1000;
 
@@ -51,30 +56,30 @@ const MyDailyNormaModal = ({ onClose }) => {
     });
   };
 
+  const { t } = useTranslation();
+
   return (
     <div className={s.container}>
       <div className={s.textContainer}>
-        <Title title={'My daily norma'} />
+        <Title title={t('MyDailyNorma.MyDailyNormaTitle')} />
       </div>
       <div className={s.modalParagraphContainer}>
         <div className={s.secondContainer}>
           <p className={s.forWoman}>
-            For woman:
+            {t('MyDailyNorma.MyDailyNormaModalForWoman')}:
             <span className={s.highlight}>V=(M*0.03)+(T*0.4)</span>
           </p>
           <p>
-            For man:
+            {t('MyDailyNorma.MyDailyNormaModalForMan')}:
             <span className={s.highlight}>V=(M*0.04) + (T*0.6)</span>
           </p>
         </div>
         <p className={s.modalP}>
-          <span className={s.accent}>*</span>V is the volume of the water norm
-          in liters per day, M is your body weight, T is the time of active
-          sports, or another type of activity commensurate in terms of loads (in
-          the absence of these, you must set 0)
+          <span className={s.accent}>*</span>
+          {t('MyDailyNorma.MyDailyNormaModalAccent')}
         </p>
 
-        <Subtitle title={'Calculate your rate:'} />
+        <Subtitle title={t('MyDailyNorma.MyDailyNormaModalSubtitle')} />
         <Formik
           initialValues={{
             gender: 'For woman',
@@ -85,7 +90,7 @@ const MyDailyNormaModal = ({ onClose }) => {
           validationSchema={myDailyNormaValidationSchema}
           onSubmit={handleSubmit}
         >
-          {({ isSubmitting, errors, touched, values, handleChange }) => (
+          {({ errors, touched, values, handleChange }) => (
             <Form>
               <div className={s.dailyModalForm}>
                 <div className={s.forManForWoman}>
@@ -97,7 +102,7 @@ const MyDailyNormaModal = ({ onClose }) => {
                       value="For woman"
                       onChange={handleChange}
                     />
-                    For woman
+                    {t('MyDailyNorma.MyDailyNormaModalForWoman')}
                   </label>
                   <label>
                     <Field
@@ -107,7 +112,7 @@ const MyDailyNormaModal = ({ onClose }) => {
                       value="For man"
                       onChange={handleChange}
                     />
-                    For man
+                    {t('MyDailyNorma.MyDailyNormaModalForMan')}
                   </label>
                   <ErrorMessage
                     name="gender"
@@ -120,7 +125,7 @@ const MyDailyNormaModal = ({ onClose }) => {
                 <div>
                   <label className={s.weightLabel}>
                     <p className={s.aboveInputText}>
-                      Your weight in kilograms:
+                      {t('MyDailyNorma.MyDailyNormaModalWeight')}
                     </p>
                     <Field
                       className={`${s.modalInput} ${
@@ -145,8 +150,7 @@ const MyDailyNormaModal = ({ onClose }) => {
                 <div>
                   <label>
                     <p className={s.aboveInputText}>
-                      The time of active participation in sports or other
-                      activities with a high physical. load in hours:
+                      {t('MyDailyNorma.MyDailyNormaModalActivity')}
                     </p>
                     <Field
                       className={`${s.modalInput} ${
@@ -173,7 +177,7 @@ const MyDailyNormaModal = ({ onClose }) => {
                 </div>
                 <div>
                   <div className={s.waterNormContainer}>
-                    The required amount of water in liters per day:
+                    {t('MyDailyNorma.MyDailyNormaModalWater')}
                     <span className={s.waterAmount}>
                       {errors.activityTime || errors.weight || errors.gender
                         ? `${0} L`
@@ -185,7 +189,7 @@ const MyDailyNormaModal = ({ onClose }) => {
               <div>
                 <div className={s.waterLabel}>
                   <Subtitle
-                    title="Write down how much water you will drink:"
+                    title={t('MyDailyNorma.MyDailyNormaModalNorma')}
                     className="subtitleDailyNorma"
                   />
 
@@ -212,10 +216,11 @@ const MyDailyNormaModal = ({ onClose }) => {
               <div className={s.buttonContainer}>
                 <Button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={loading}
                   className="myDailyNormaButton"
+                  loading={loading}
                 >
-                  Save
+                  {t('MyDailyNorma.MyDailyNormaModalButton')}
                 </Button>
               </div>
             </Form>

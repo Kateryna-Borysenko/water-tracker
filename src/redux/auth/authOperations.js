@@ -109,7 +109,6 @@ export const refreshUser = createAsyncThunk(
       setTokenAuthInstance(token);
       setTokenwaterPortionsInstance(token);
       const { data } = await axios.get(AUTH_ENDPOINT.REFRESH);
-      console.log(data, 'data');
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

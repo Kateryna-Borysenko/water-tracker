@@ -53,6 +53,9 @@ export const calendarSlice = createSlice({
     setModalData: (state, action) => {
       state.modalData = action.payload;
     },
+    logoutUserCalendarAction(_, __) {
+      return initialState;
+    },
   },
   extraReducers: builder =>
     builder
@@ -69,6 +72,7 @@ export const {
   closeModal,
   setPosition,
   setModalData,
+  logoutUserCalendarAction,
 } = calendarSlice.actions;
 
 export default calendarSlice.reducer;
