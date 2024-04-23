@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
@@ -27,6 +27,10 @@ const SettingsForm = ({ onClose }) => {
   const isLoading = useSelector(selectAvatarLoading);
   const loadingSave = useSelector(getLoading);
 
+  // isValid,
+  //   dirty,
+  //   setFieldValue,
+
   const {
     values,
     errors,
@@ -35,9 +39,7 @@ const SettingsForm = ({ onClose }) => {
     handleBlur,
     handleSubmit,
     isSubmitting,
-    isValid,
-    dirty,
-    setFieldValue,
+
     setSubmitting,
     resetForm,
   } = useFormik({
@@ -103,7 +105,7 @@ const SettingsForm = ({ onClose }) => {
       } else {
         dispatch(updateUserData(body))
           .unwrap()
-          .then(response => {
+          .then(() => {
             //resetForm ?  чи автофіл підставляє
             // resetForm({
             //   password,
