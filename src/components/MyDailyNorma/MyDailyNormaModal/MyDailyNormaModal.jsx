@@ -8,6 +8,7 @@ import {
   getLoading,
   selectWaterRate,
 } from '../../../redux/auth/authSelectors.js';
+import { apiGetWaterPortionToday } from '../../../redux/water/watersOperations.js';
 import Title from '../../../components/common/Title/Title';
 import Subtitle from '../../../components/common/Subtitle/Subtitle';
 import Button from '../../../uikit/Button/Button';
@@ -38,19 +39,21 @@ const MyDailyNormaModal = ({ onClose }) => {
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
     const drankWater = parseFloat(values.drankWater) * 1000;
 
-    dispatch(sentWaterRate({ waterRate: drankWater }));
+    dispatch(sentWaterRate({ waterRate: drankWater })).then(() => {
+      dispatch(apiGetWaterPortionToday());
 
-    const recommendedWater = calculateWaterAmount(values);
-    toast.success(`Recommended water intake: ${recommendedWater}`, {
-      style: {
-        width: '300px',
-        textAlign: 'center',
-      },
+      const recommendedWater = calculateWaterAmount(values);
+      toast.success(`Recommended water intake: ${recommendedWater}`, {
+        style: {
+          width: '300px',
+          textAlign: 'center',
+        },
+      });
+
+      resetForm();
+      setSubmitting(false);
+      onClose();
     });
-
-    resetForm();
-    setSubmitting(false);
-    onClose();
   };
 
   const { t } = useTranslation();
@@ -87,7 +90,7 @@ const MyDailyNormaModal = ({ onClose }) => {
           validationSchema={myDailyNormaValidationSchema}
           onSubmit={handleSubmit}
         >
-          {({ isSubmitting, errors, touched, values, handleChange }) => (
+          {({ errors, touched, values, handleChange }) => (
             <Form>
               <div className={s.dailyModalForm}>
                 <div className={s.forManForWoman}>

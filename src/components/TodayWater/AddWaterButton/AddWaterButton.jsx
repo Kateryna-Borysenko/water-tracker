@@ -8,7 +8,6 @@ export const AddWaterButton = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const handleCloseModal = () => {
-    console.log(isOpenModal);
     setIsOpenModal(prevState => !prevState);
   };
 

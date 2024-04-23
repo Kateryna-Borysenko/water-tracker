@@ -7,7 +7,7 @@ import s from './MyDailyNorma.module.css';
 
 const MyDailyNorma = () => {
   const waterRate = useSelector(selectWaterRate);
-  const DailyNormaL = waterRate / 1000;
+  const DailyNormaL = (waterRate / 1000).toFixed(1);
 
   const { t } = useTranslation();
 
