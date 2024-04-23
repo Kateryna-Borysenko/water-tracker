@@ -42,7 +42,6 @@ const CustomCalendar = ({ onDateSelect }) => {
   }, [dispatch, formattedDate, waterPortionsToday, waterRateEdit]);
 
   const handlePrevMonth = () => {
-    console.log(prevMonth);
     dispatch(prevMonth());
   };
 

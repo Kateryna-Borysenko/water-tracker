@@ -9,6 +9,8 @@ import {
   updateAvatar,
   updateUserData,
   sentWaterRate,
+  verifyResetPasswordEmail,
+  resetPassword,
 } from './authOperations';
 import {
   clearTokenwaterPortionsInstance,
@@ -72,6 +74,32 @@ export const authSlice = createSlice({
         state.loading = false;
       })
 
+      // ***********  RESET PASSWORD step-1  *********** //
+      .addCase(verifyResetPasswordEmail.pending, state => {
+        state.error = null;
+        state.loading = true;
+      })
+      .addCase(verifyResetPasswordEmail.fulfilled, state => {
+        state.loading = false;
+      })
+      .addCase(verifyResetPasswordEmail.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.loading = false;
+      })
+
+      // ***********  RESET PASSWORD step-2  *********** //
+      .addCase(resetPassword.pending, state => {
+        state.error = null;
+        state.loading = true;
+      })
+      .addCase(resetPassword.fulfilled, state => {
+        state.loading = false;
+      })
+      .addCase(resetPassword.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.loading = false;
+      })
+
       // ************** LOGOUT  ************** //
       .addCase(logoutUser.pending, state => {
         state.error = null;
@@ -103,13 +131,13 @@ export const authSlice = createSlice({
         state.isRefreshing = false;
       })
 
-      // -------------UPDATE USER DATA   ------------- //
+      // **********  UPDATE USER DATA  *********** //
       .addCase(updateUserData.fulfilled, (state, action) => {
         state.loading = false;
         state.user = { ...state.user, ...action.payload.user };
       })
 
-      // ------------- AVATAR   ------------- //
+      // ***********    AVATAR    ************ //
       .addCase(updateAvatar.fulfilled, (state, action) => {
         state.loading = false;
         state.isAvatarLoading = false;
@@ -117,7 +145,7 @@ export const authSlice = createSlice({
         state.user.avatarURL = action.payload;
       })
 
-      // ************** waterRate  ************** //
+      // *************  WATER RATE ************* //
       .addCase(sentWaterRate.pending, state => {
         state.loading = true;
         state.error = null;

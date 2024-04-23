@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,6 +19,7 @@ const ForgotPasswordForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loading = useSelector(getLoading);
+  console.log('🌷  loading:', loading);
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     const { email } = values;
