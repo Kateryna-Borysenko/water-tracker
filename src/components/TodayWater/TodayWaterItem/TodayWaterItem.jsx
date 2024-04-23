@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { format } from 'date-fns';
-import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import {
   apiDeleteWaterPortion,
   apiGetWaterPortionToday,
@@ -10,12 +11,14 @@ import AddWaterModal from '../../AddWaterModal/AddAndEditWaterCard';
 import ManagementCard from '../../ManagementCard/ManagementCard';
 import Icons from '../../Icons/Icons';
 import s from './TodayWaterItem.module.css';
+import { selectWaterLoading } from '../../../redux/water/watersSelectors';
 
 export const TodayWaterItem = ({ waterVolume, time, id }) => {
   const [isOpenModalEdit, setIsOpenModalEdit] = useState(false);
   const [isOpenModalDelete, setIsOpenModalDelete] = useState(false);
 
   const dispatch = useDispatch();
+  const loadingWater = useSelector(selectWaterLoading);
 
   const handleCloseModal = () => {
     setIsOpenModalEdit(false);
@@ -23,8 +26,11 @@ export const TodayWaterItem = ({ waterVolume, time, id }) => {
   };
 
   const handleDeleteItem = async id => {
-    await dispatch(apiDeleteWaterPortion(id));
-    await dispatch(apiGetWaterPortionToday());
+    const isDel = await dispatch(apiDeleteWaterPortion(id));
+    if (isDel.error) return toast.error(`Failed to delete water portion`);
+    const isGet = await dispatch(apiGetWaterPortionToday());
+    if (isGet.error)
+      return toast.error(`Failed to get of water portions today`);
     handleCloseModal();
   };
 
@@ -68,6 +74,8 @@ export const TodayWaterItem = ({ waterVolume, time, id }) => {
             className="alignRight"
             onClick={() => handleDeleteItem(id)}
             onClickSecondBtn={handleCloseModal}
+            disabledYesBtn={loadingWater}
+            loading={loadingWater}
           />
         </Modal>
       )}

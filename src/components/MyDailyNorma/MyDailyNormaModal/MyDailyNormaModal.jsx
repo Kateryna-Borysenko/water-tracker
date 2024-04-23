@@ -1,18 +1,22 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { myDailyNormaValidationSchema } from '../../../schemas/myDailyNormaValidationSchema.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { sentWaterRate } from '../../../redux/auth/authOperations.js';
+import {
+  getLoading,
+  selectWaterRate,
+} from '../../../redux/auth/authSelectors.js';
 import Title from '../../../components/common/Title/Title';
 import Subtitle from '../../../components/common/Subtitle/Subtitle';
 import Button from '../../../uikit/Button/Button';
-import { myDailyNormaValidationSchema } from '../../../schemas/myDailyNormaValidationSchema.js';
 import s from './MyDailyNormaModal.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { sentWaterRate } from '../../../redux/auth/authOperations.js';
-import { selectWaterRate } from '../../../redux/auth/authSelectors.js';
 
 const MyDailyNormaModal = ({ onClose }) => {
   const dispatch = useDispatch();
   const waterRate = useSelector(selectWaterRate);
+  const loading = useSelector(getLoading);
 
   const DailyNormaL = waterRate / 1000;
 
@@ -68,7 +72,8 @@ const MyDailyNormaModal = ({ onClose }) => {
           </p>
         </div>
         <p className={s.modalP}>
-          <span className={s.accent}>*</span>{t('MyDailyNorma.MyDailyNormaModalAccent')}
+          <span className={s.accent}>*</span>
+          {t('MyDailyNorma.MyDailyNormaModalAccent')}
         </p>
 
         <Subtitle title={t('MyDailyNorma.MyDailyNormaModalSubtitle')} />
@@ -208,8 +213,9 @@ const MyDailyNormaModal = ({ onClose }) => {
               <div className={s.buttonContainer}>
                 <Button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={loading}
                   className="myDailyNormaButton"
+                  loading={loading}
                 >
                   {t('MyDailyNorma.MyDailyNormaModalButton')}
                 </Button>

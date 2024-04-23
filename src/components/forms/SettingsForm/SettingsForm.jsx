@@ -8,20 +8,15 @@ import {
 } from '../../../redux/auth/authOperations';
 import {
   selectUpdateUserData,
-  // getError,
-  // getLoading,
+  getLoading,
   selectAvatarLoading,
 } from '../../../redux/auth/authSelectors';
 import { settingFormValidationSchema } from '../../../schemas/settingFormValidationSchema';
-
 import EyeBtn from '../../EyeBtn/EyeBtn';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import Button from '../../../uikit/Button/Button';
 import Spinner from '../../common/Spinner/Spinner';
-
-// import Icons from '../Icons/Icons';
 import UploadingIcon from '../../../assets/static/icons/uploading-2.svg?react';
-
 import s from './SettingsForm.module.css';
 
 const SettingsForm = ({ onClose }) => {
@@ -30,8 +25,7 @@ const SettingsForm = ({ onClose }) => {
   const [file, setFile] = useState('');
   const user = useSelector(selectUpdateUserData);
   const isLoading = useSelector(selectAvatarLoading);
-  // const error = useSelector(getError);
-  // ..обробка помилок ??
+  const loadingSave = useSelector(getLoading);
 
   const {
     values,
@@ -48,7 +42,6 @@ const SettingsForm = ({ onClose }) => {
     resetForm,
   } = useFormik({
     initialValues: {
-      // image: '',
       gender: user.gender || '',
       username: user.username || '',
       email: user.email,
@@ -58,9 +51,6 @@ const SettingsForm = ({ onClose }) => {
     },
     validationSchema: settingFormValidationSchema,
     onSubmit: () => {
-      // console.log(JSON.stringify(values, null, 2));
-      // setSubmitting(false);
-
       if (
         values.newPassword !== '' &&
         values.password === '' &&
@@ -361,18 +351,10 @@ const SettingsForm = ({ onClose }) => {
         <Button
           type="submit"
           title={'Save'}
-          // disabled={isSubmitting}
+          disabled={isSubmitting}
           className="saveSettingsBtn"
-          // loading={loading}
+          loading={loadingSave}
         />
-        {/* <button
-          type="submit"
-          // disabled={isSubmitting || !isValid || !dirty}
-          aria-label="Save changes"
-          className={s.saveBtn}
-        >
-          Save
-        </button> */}
       </form>
     </div>
   );

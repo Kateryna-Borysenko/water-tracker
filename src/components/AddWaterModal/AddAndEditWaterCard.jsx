@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { TimePicker } from 'antd';
 import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
@@ -7,13 +7,13 @@ import { toast } from 'react-toastify';
 import {
   apiAddWaterPortion,
   apiEditWaterPortion,
+  apiGetWaterPortionToday,
 } from '../../redux/water/watersOperations';
+import { selectWaterLoading } from '../../redux/water/watersSelectors';
 import Subtitle from '../common/Subtitle/Subtitle';
 import Button from '../../uikit/Button/Button';
 import Icons from '../Icons/Icons';
-import LangsSwitcher from '../../components/LangsSwitcher/LangsSwitcher';
 import s from './AddAndEditWaterCard.module.css';
-import { apiGetWaterPortionToday } from '../../redux/water/watersOperations';
 
 const AddAndEditWaterCard = ({
   isEditable,
@@ -28,6 +28,7 @@ const AddAndEditWaterCard = ({
     counterValue: isEditable ? waterVolume : 0,
     inputValue: isEditable ? waterVolume : 0,
   });
+  const loadingWater = useSelector(selectWaterLoading);
 
   const dispatch = useDispatch();
 
@@ -41,14 +42,19 @@ const AddAndEditWaterCard = ({
     if (!isEditable) {
       const isAdded = await dispatch(apiAddWaterPortion({ waterVolume, date }));
       if (isAdded.error) return toast.error(`Failed to add amount of water`);
-      await dispatch(apiGetWaterPortionToday());
+      const isGet = await dispatch(apiGetWaterPortionToday());
+      if (isGet.error)
+        return toast.error(`Failed to get of water portions today`);
       onClose();
     } else {
       const isAdded = await dispatch(
         apiEditWaterPortion({ waterVolume, date, id }),
       );
       if (isAdded.error) return toast.error(`Failed to update amount of water`);
-      await dispatch(apiGetWaterPortionToday());
+      const isGet = await dispatch(apiGetWaterPortionToday());
+      if (isGet.error)
+        return toast.error(`Failed to get of water portions today`);
+
       onClose();
     }
   };
@@ -98,7 +104,6 @@ const AddAndEditWaterCard = ({
 
   return (
     <div className={s.infoContainer}>
-      <LangsSwitcher />
       <h2 className={s.title}>{title}</h2>
       {isEditable && (
         <div className={s.glassContainer}>
@@ -181,6 +186,7 @@ const AddAndEditWaterCard = ({
             type="submit"
             title={t('AddAndEditWaterCard.saveButton')}
             className="addWaterBtn"
+            loading={loadingWater}
           />
         </div>
       </form>

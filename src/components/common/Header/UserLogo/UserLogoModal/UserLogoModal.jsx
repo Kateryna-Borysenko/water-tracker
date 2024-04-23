@@ -1,19 +1,23 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { logoutUser } from '../../../../../redux/auth/authOperations';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import Modal from '../../../Modal/Modal';
 import ManagementCard from '../../../../ManagementCard/ManagementCard';
 import SettingsForm from '../../../../forms/SettingsForm/SettingsForm';
 import Icons from '../../../../Icons/Icons';
-
+import { getLoading } from '../../../../../redux/auth/authSelectors';
+import { logoutUser } from '../../../../../redux/auth/authOperations';
+import { logoutUserWaterAction } from '../../../../../redux/water/watersSlice';
+import { logoutUserCalendarAction } from '../../../../../redux/calendar/calendarSlice';
 import s from './UserLogoModal.module.css';
-import { useTranslation } from 'react-i18next';
 
 const UserLogoModal = ({ handleClosePopup }) => {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
   const dispatch = useDispatch();
+  const loading = useSelector(getLoading);
 
   const handleOpenModal = () => {
     setIsModalOpen(prevState => !prevState);
@@ -24,12 +28,14 @@ const UserLogoModal = ({ handleClosePopup }) => {
     handleClosePopup();
   };
 
-  const handleLogoutUser = () => {
-    dispatch(logoutUser());
+  const handleLogoutUser = async () => {
+    const isLogout = await dispatch(logoutUser());
+    if (isLogout.error) return toast.error(`Failed logout user`);
+    dispatch(logoutUserWaterAction());
+    dispatch(logoutUserCalendarAction());
   };
 
   const handleOpenSettingModal = () => {
-    //  setIsSettingModalOpen(prevState => !prevState);
     setIsSettingModalOpen(true);
   };
 
@@ -40,7 +46,11 @@ const UserLogoModal = ({ handleClosePopup }) => {
   return (
     <ul onClose={handleClosePopup} className={s.headerModal}>
       <li>
-        <button type="button" className={s.btn} onClick={handleOpenSettingModal}>
+        <button
+          type="button"
+          className={s.btn}
+          onClick={handleOpenSettingModal}
+        >
           <Icons id={'settings'} className={s.icon} />
           {t('popup.setting')}
         </button>
@@ -60,6 +70,8 @@ const UserLogoModal = ({ handleClosePopup }) => {
               className="alignRight"
               onClick={handleLogoutUser}
               onClickSecondBtn={handleCloseModal}
+              disabledYesBtn={loading}
+              loading={loading}
             />
           </Modal>
         )}
