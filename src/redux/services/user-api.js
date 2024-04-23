@@ -22,7 +22,6 @@ export const apiUpdateUserData = async (userData, token) => {
 };
 
 export const apiUpdateAvatar = async (file, token) => {
-  console.log('api');
   const formData = new FormData();
   formData.append('avatarURL', file);
 
