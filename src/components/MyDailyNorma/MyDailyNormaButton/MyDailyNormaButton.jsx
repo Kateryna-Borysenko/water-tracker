@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Modal from '../../common/Modal/Modal';
 import MyDailyNormaModal from '../MyDailyNormaModal/MyDailyNormaModal';
 import s from './MyDailyNormaButton.module.css';
@@ -13,6 +14,8 @@ export const MyDailyNormaButton = () => {
     setIsOpenModal(prevState => !prevState);
   };
 
+  const { t } = useTranslation();
+
   return (
     <>
       <button
@@ -23,7 +26,7 @@ export const MyDailyNormaButton = () => {
           dispatch(sentWaterRate({ waterRate: 1900 }));
         }}
       >
-        Edit
+        {t('MyDailyNorma.MyDailyNormaButton')}
       </button>
 
       {isOpenModal && (

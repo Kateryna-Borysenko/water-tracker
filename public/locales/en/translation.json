@@ -107,5 +107,19 @@
     "title": "Log out",
     "description": "Do you really want to leave?",
     "secondButton": "Log out"
+  },
+  "MyDailyNorma": {
+    "MyDailyNormaTitle": "My daily norma",
+    "MyDailyNormaL": "L",
+    "MyDailyNormaButton": "Edit",
+    "MyDailyNormaModalForWoman": "For woman",
+    "MyDailyNormaModalForMan": "For man",
+    "MyDailyNormaModalAccent": "V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or another type of activity commensurate in terms of loads (in the absence of these, you must set 0)",
+    "MyDailyNormaModalSubtitle": "Calculate your rate:",
+    "MyDailyNormaModalWeight": "Your weight in kilograms:",
+    "MyDailyNormaModalActivity": "The time of active participation in sports or other activities with a high physical load in hours:",
+    "MyDailyNormaModalWater": "The required amount of water in liters per day:",
+    "MyDailyNormaModalNorma": "Write down how much water you will drink:",
+    "MyDailyNormaModalButton": "Save"
   }
 }
