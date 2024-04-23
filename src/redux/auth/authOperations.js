@@ -196,7 +196,6 @@ export const sentWaterRate = createAsyncThunk(
         AUTH_ENDPOINT.WATER_RATE,
         waterDailyNorma,
       );
-      // toast.success(data.message);
       return data;
     } catch (error) {
       return ThunkAPI.rejectWithValue(error.message);
