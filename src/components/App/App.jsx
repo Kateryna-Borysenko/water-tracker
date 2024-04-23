@@ -11,8 +11,6 @@ import Loader from '../common/Loader/Loader';
 import ForgotPasswordForm from '../forms/ForgotPasswordForm/ForgotPasswordForm';
 import NewPasswordForm from '../forms/NewPasswordForm/NewPasswordForm';
 import SharedLayout from '../common/SharedLayout/SharedLayout';
-import '../../assets/styles/global.module.css';
-import 'react-toastify/dist/ReactToastify.css';
 const WelcomePage = lazy(() => import('pages/WelcomePage/WelcomePage'));
 const SigninPage = lazy(() => import('pages/SigninPage/SigninPage'));
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
@@ -21,6 +19,8 @@ const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage'));
 const ForgotPasswordPage = lazy(() =>
   import('pages/ForgotPasswordPage/ForgotPasswordPage'),
 );
+import 'react-toastify/dist/ReactToastify.css';
+import '../../assets/styles/global.module.css';
 
 const App = () => {
   const dispatch = useDispatch();
