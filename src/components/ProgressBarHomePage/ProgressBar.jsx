@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Slider } from 'antd';
 import './AntD.css';
+import { useTranslation } from 'react-i18next';
 
 import Button from '../../uikit/Button/Button';
 import Icons from '../Icons/Icons';
@@ -15,6 +16,8 @@ const ProgressBar = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const interestWaterToday = useSelector(selectInterestWaterToday);
   const interestFixed = interestWaterToday.toFixed(0);
+
+  const { t } = useTranslation();
 
   const marks = {
     0: '0%',
@@ -30,7 +33,9 @@ const ProgressBar = () => {
     <>
       <div className={s.blockProgresBar}>
         <div>
-          <p className={s.textProgresBar}>Today</p>
+          <p className={s.textProgresBar}>
+            {t('ProgressBar.ProgressBarTitle')}
+          </p>
           <Slider
             marks={Object.keys(marks).reduce((acc, key) => {
               acc[key] = (
@@ -49,7 +54,7 @@ const ProgressBar = () => {
         </div>
 
         <Button
-          title={'Add Water'}
+          title={t('ProgressBar.ProgressBarButton')}
           className="buttonProgresBar"
           onClick={() => {
             setIsOpenModal(true);
