@@ -3,11 +3,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { AUTH_ENDPOINT } from '../../helpers/endpoints/authEndpoint';
 import { setTokenwaterPortionsInstance } from '../services/waterPortions-api';
-
 import { apiUpdateUserData, apiUpdateAvatar } from '../services/user-api';
 
 const SERVER_URL = import.meta.env.VITE_SERVER_BASE_URL;
-
 axios.defaults.baseURL = SERVER_URL;
 
 export const setTokenAuthInstance = token =>
@@ -133,8 +131,8 @@ export const updateAvatar = createAsyncThunk(
   },
 );
 
-export const passwordResetInstructions = createAsyncThunk(
-  'auth/passwordResetInstructions',
+export const verifyResetPasswordEmail = createAsyncThunk(
+  'auth/verifyResetPasswordEmail',
   async (credentials, ThunkAPI) => {
     try {
       const { data } = await axios.post(
@@ -145,7 +143,26 @@ export const passwordResetInstructions = createAsyncThunk(
       return;
     } catch (error) {
       if (error.response.status === 404) {
-        toast.error('User with this email does not exist');
+        toast.error(error.response?.data?.message);
+      }
+      return ThunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const resetPassword = createAsyncThunk(
+  'auth/resetPassword',
+  async ({ password, verificationToken }, ThunkAPI) => {
+    try {
+      const { data } = await axios.patch(
+        `${AUTH_ENDPOINT.RESET_PASSWORD}/${verificationToken}`,
+        { password },
+      );
+      toast.success(data.message);
+      return;
+    } catch (error) {
+      if (error.response.status === 401) {
+        toast.error(error.response?.data?.message);
       }
       if (error.response.status === 400) {
         toast.error(error.response?.data?.message);
@@ -160,29 +177,13 @@ export const updateUserData = createAsyncThunk(
   async (userData, thunkApi) => {
     try {
       const state = thunkApi.getState();
-      const token = state.auth.token; //
+      const token = state.auth.token;
       const { data } = await apiUpdateUserData(userData, token);
       toast.success('Your data were successfully updated!');
       return data;
     } catch (error) {
       toast.error(error.response?.data?.message);
       return thunkApi.rejectWithValue(error.message);
-    }
-  },
-);
-
-export const sentNewPassword = createAsyncThunk(
-  'auth/sentNewPassword',
-  async (credentials, ThunkAPI) => {
-    try {
-      const { data } = await axios.post(
-        AUTH_ENDPOINT.RESET_PASSWORD,
-        credentials,
-      );
-      toast.success(data.message);
-      return;
-    } catch (error) {
-      return ThunkAPI.rejectWithValue(error.message);
     }
   },
 );

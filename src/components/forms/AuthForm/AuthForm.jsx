@@ -197,7 +197,7 @@ const AuthForm = ({ type }) => {
             <Link className={s.link} to="/signup">
               {t('authForm.signupLink')}
             </Link>
-            <Link className={s.password} to="/new-password/email">
+            <Link className={s.password} to="/reset-password">
               {t('authForm.forgotPass')}
             </Link>
           </div>

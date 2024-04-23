@@ -1,16 +1,13 @@
-import moment from 'moment';
+import { format } from 'date-fns';
 import s from './Calendar.module.css';
 
-export const PercentCellRender = (date, handleDateSelect, waterUsage) => {
-  const current = moment(date);
-  const formattedDate = current.format('D, MMMM');
+export const PercentCellRender = (date, waterUsage) => {
+  const current = new Date(date);
+  const formattedDate = format(current, 'd, MMMM');
   const matchingDate =
     waterUsage && waterUsage
-      ? waterUsage.find(
-          entry => moment(entry.date).format('D, MMMM') === formattedDate,
-        )
+      ? waterUsage.find(entry => entry.date === formattedDate)
       : undefined;
-
   if (matchingDate) {
     return {
       percent: matchingDate.percent,
