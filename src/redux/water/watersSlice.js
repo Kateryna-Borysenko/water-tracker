@@ -30,6 +30,11 @@ const initialWaterPortions = {
 export const waterPortionsSlice = createSlice({
   name: 'waterPortions',
   initialState: initialWaterPortions,
+  reducers: {
+    logoutUserWaterAction(_, __) {
+      return initialWaterPortions;
+    },
+  },
 
   extraReducers: builder =>
     builder
@@ -50,3 +55,5 @@ export const waterPortionsSlice = createSlice({
       .addCase(apiDeleteWaterPortion.fulfilled, handleFulfilledDelete)
       .addCase(apiDeleteWaterPortion.rejected, handleRejectedDelete),
 });
+
+export const { logoutUserWaterAction } = waterPortionsSlice.actions;

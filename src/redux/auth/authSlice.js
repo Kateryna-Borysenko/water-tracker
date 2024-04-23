@@ -119,7 +119,7 @@ export const authSlice = createSlice({
 
       // ************** waterRate  ************** //
       .addCase(sentWaterRate.pending, state => {
-        state.loading = false;
+        state.loading = true;
         state.error = null;
       })
       .addCase(sentWaterRate.fulfilled, (state, { payload }) => {

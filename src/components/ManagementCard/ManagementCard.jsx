@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import s from './ManagementCard.module.css';
+import Spinner from '../common/Spinner/Spinner';
 
 const ManagementCard = ({
   title,
@@ -7,7 +8,9 @@ const ManagementCard = ({
   secondButton,
   className,
   onClick,
-  onClickSecondBtn,
+  onClickCancelBtn,
+  disabledYesBtn,
+  loading,
 }) => {
   const buttonContainerClassNames = `${s.title} ${s[className]}`;
   const { t } = useTranslation();
@@ -16,11 +19,16 @@ const ManagementCard = ({
       <h2 className={s.title}>{title}</h2>
       <h2 className={s.description}>{description}</h2>
       <div className={buttonContainerClassNames}>
-        <button onClick={onClickSecondBtn} className={s.firstButton}>
+        <button onClick={onClickCancelBtn} className={s.firstButton}>
           {t('managementCard.cancelButton')}
         </button>
-        <button onClick={onClick} className={s.secondButton}>
-          {secondButton}
+        <button
+          onClick={onClick}
+          className={s.secondButton}
+          disabled={disabledYesBtn}
+        >
+          {loading && <Spinner color="#fff" size="10px" />}
+          {!loading && secondButton}
         </button>
       </div>
     </div>
