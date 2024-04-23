@@ -1,16 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useMemo } from 'react';
-import { prevMonth, nextMonth } from '../../redux/calendar/calendarSlice';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
+import { startOfMonth, endOfMonth, addDays, isBefore, format } from 'date-fns';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { prevMonth, nextMonth } from '../../redux/calendar/calendarSlice';
 import { PercentCellRender } from './PercentCellRender';
-import { apiGetMonthlyUsage } from '../../redux/calendar/calendarOperations';
+import { selectWaterRate } from '../../redux/auth/authSelectors';
 import {
   selectCurrentDate,
   selectMonthlyData,
 } from '../../redux/calendar/calendarSelectors';
-import s from './Calendar.module.css';
+import { apiGetMonthlyUsage } from '../../redux/calendar/calendarOperations';
 import { selectWaterPortionsToday } from '../../redux/water/watersSelectors';
+import s from './Calendar.module.css';
 
 const CustomCalendar = ({ onDateSelect }) => {
   const { t } = useTranslation();
@@ -18,26 +20,29 @@ const CustomCalendar = ({ onDateSelect }) => {
   const currentDate = useSelector(selectCurrentDate);
   const waterUsage = useSelector(selectMonthlyData);
   const waterPortionsToday = useSelector(selectWaterPortionsToday);
+  const waterRateEdit = useSelector(selectWaterRate);
 
-  const startDay = currentDate.clone().startOf('month').startOf('day');
-  const endDay = currentDate.clone().endOf('month').endOf('day');
-  let date = startDay.clone().subtract(1, 'day');
+  const startDay = startOfMonth(currentDate);
+  const endDay = endOfMonth(currentDate);
+  let date = startDay;
 
   const days = [];
-  while (date.isBefore(endDay, 'day')) {
-    days.push(date.add(1, 'day').clone());
+  while (isBefore(date, endDay)) {
+    days.push(new Date(date));
+    date = addDays(date, 1);
   }
 
   const formattedDate = useMemo(
-    () => currentDate.format('YYYY-MM-DD'),
+    () => format(currentDate, 'yyyy-MM-dd'),
     [currentDate],
   );
 
   useEffect(() => {
     dispatch(apiGetMonthlyUsage(formattedDate));
-  }, [dispatch, formattedDate, waterPortionsToday]);
+  }, [dispatch, formattedDate, waterPortionsToday, waterRateEdit]);
 
   const handlePrevMonth = () => {
+    console.log(prevMonth);
     dispatch(prevMonth());
   };
 
@@ -52,23 +57,19 @@ const CustomCalendar = ({ onDateSelect }) => {
         <div className={s.calendarHeaderNav}>
           <LeftOutlined onClick={handlePrevMonth} className={s.arrow} />
           <span>
-            {t(`calendar.${currentDate.format('MMMM')}`)}
+            {t(`calendar.${format(currentDate, 'MMMM')}`)}
             {', '}
-            {currentDate.format('YYYY')}
+            {format(currentDate, 'yyyy')}
           </span>
           <RightOutlined onClick={handleNextMonth} className={s.arrow} />
         </div>
       </div>
       <div className={s.tableCalendar}>
         {days.map(day => {
-          const { percent, element } = PercentCellRender(
-            day,
-            onDateSelect,
-            waterUsage,
-          );
+          const { percent, element } = PercentCellRender(day, waterUsage);
           return (
             <div
-              key={day.format('YYYY-MM-DD')}
+              key={format(day, 'yyyy-MM-dd')}
               className={s.calendarCell}
               onClick={e => onDateSelect(e, day)}
             >
@@ -77,7 +78,7 @@ const CustomCalendar = ({ onDateSelect }) => {
                   percent && percent !== '100%' ? s.dayLessNorm : ''
                 }`}
               >
-                {day.format('D')}
+                {format(day, 'd')}
               </div>
               <div className={s.dateText}>{element}</div>
             </div>

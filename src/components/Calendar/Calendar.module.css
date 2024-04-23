@@ -37,6 +37,7 @@
 }
 
 .tableCalendar {
+  height: 439px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   row-gap: 16px;
@@ -123,6 +124,7 @@
   }
 
   .tableCalendar {
+    height: 292px;
     grid-template-columns: repeat(10, 1fr);
     gap: 20px 22px;
   }
