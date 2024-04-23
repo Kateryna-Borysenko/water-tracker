@@ -33,7 +33,7 @@ const Calendar = () => {
     const position = {
       position: 'fixed',
       left: `${modalLeftPosition(xOffset, rect.left + window.scrollX)}px`,
-      top: `${rect.top /* + window.scrollY */ + yOffset}px`,
+      top: `${rect.top + yOffset}px`,
     };
 
     const modalInitialState = initialState.modalData;
@@ -60,9 +60,18 @@ const Calendar = () => {
     }
   };
 
+  const handleInteraction = (e, date) => {
+    e.preventDefault();
+    handleDateSelect(e, date);
+  };
+
+  const handlers = {
+    onDateSelect: handleDateSelect,
+    onInteraction: handleInteraction,
+  };
   return (
     <>
-      <CustomCalendar onDateSelect={handleDateSelect} />
+      <CustomCalendar onDateSelect={handlers} />
       <DaysGeneralStats />
     </>
   );
