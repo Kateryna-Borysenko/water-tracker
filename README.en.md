@@ -22,9 +22,17 @@
 
 ---
 
+<img src="./public/screens/pages-min.png">
+
+---
+
 ## Description
 
 The Water Tracker is a web application that allows users to track their daily water intake and maintain a sufficient water balance. It becomes an invaluable assistant for people with an active lifestyle, athletes, activists, as well as for people with certain health issues when it is necessary to limit water consumption and strictly adhere to a prescribed drinking regimen by a doctor.
+
+---
+
+ <img src="./public/screens/auth-form-min.png">
 
 ---
 
@@ -38,6 +46,14 @@ The Water Tracker is a web application that allows users to track their daily wa
 - recording consumed water portions throughout the day, their editing, and deletion
 - **_calculation of the percentage of consumed water_** to the daily water norm
 - **_calendar with records of water consumption_** for each day as a percentage of the daily norm
+
+---
+
+<img src="./public/screens/modals-min.png">
+
+---
+
+<img src="./public/screens/Norma-Settings-min.png">
 
 ---
 
