@@ -1,7 +1,7 @@
-import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { format } from 'date-fns';
 import {
   selectIsOpenModal,
   selectModalPosition,
@@ -10,7 +10,6 @@ import {
   selectWaterRate,
 } from '../../redux/calendar/calendarSelectors';
 import { closeModal } from '../../redux/calendar/calendarSlice';
-import modalLeftPosition from './helpers';
 import s from './Calendar.module.css';
 
 const DaysGeneralStats = () => {
@@ -47,26 +46,13 @@ const DaysGeneralStats = () => {
   }, [isVisible]);
 
   useEffect(() => {
+    const transform = 'translate(-50%, -50%)';
+    const left = window.innerWidth / 2;
     if (isVisible) {
-      if (window.innerWidth > 1439) {
-        setModalStyle({
-          position: 'fixed',
-          left: `${modalLeftPosition(-250, position.left)}px`,
-          top: `${position.top - 210}px`,
-        });
-      } else if (window.innerWidth > 767) {
-        setModalStyle({
-          position: 'fixed',
-          left: `${modalLeftPosition(-250, position.left)}px`,
-          top: `${position.top - 550}px`,
-        });
+      if (window.innerWidth < 768) {
+        setModalStyle({ ...position, transform: transform, left: left });
       } else {
-        setModalStyle({
-          position: 'fixed',
-          left: `${window.innerWidth / 2}px`,
-          top: `${position.top - 120}px`,
-          transform: 'translate(-50%, -50%)',
-        });
+        setModalStyle(position);
       }
     }
   }, [isVisible, position]);
@@ -74,8 +60,8 @@ const DaysGeneralStats = () => {
   if (!isVisible) {
     return null;
   }
-  const day = moment(selectedDate).format('D');
-  const month = moment(selectedDate).format('MMMM');
+  const day = format(selectedDate, 'd');
+  const month = format(selectedDate, 'MMMM');
   let dailyNormAmount = 0;
   if (data.dailyNorm === '0') {
     dailyNormAmount = waterRate / 1000;
