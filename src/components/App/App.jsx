@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { lazy, useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
 import { refreshUser } from '../../redux/auth/authOperations';
 import { useAuth } from '../../hooks/useAuth';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
 import { PrivatRoute } from '../PrivatRoute/PrivatRoute';
-import { ToastContainer } from 'react-toastify';
 import Spinner from '../../components/common/Spinner/Spinner';
 import Loader from '../common/Loader/Loader';
 import ForgotPasswordForm from '../forms/ForgotPasswordForm/ForgotPasswordForm';
@@ -68,9 +68,9 @@ const App = () => {
               </PrivatRoute>
             }
           />
-          <Route path="/new-password" element={<ForgotPasswordPage />}>
-            <Route path="email" element={<ForgotPasswordForm />} />
-            <Route path="password" element={<NewPasswordForm />} />
+          <Route path="/reset-password" element={<ForgotPasswordPage />}>
+            <Route path="" element={<ForgotPasswordForm />} />
+            <Route path=":verificationToken" element={<NewPasswordForm />} />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Route>

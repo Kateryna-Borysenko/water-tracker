@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 import Title from '../../common/Title/Title';
 import Button from '../../../uikit/Button/Button';
 import { passwordFormSchema } from '../../../schemas/passwordFormValidationSchema';
-import { sentNewPassword } from '../../../redux/auth/authOperations';
+import { resetPassword } from '../../../redux/auth/authOperations';
 import { getLoading } from '../../../redux/auth/authSelectors';
 import Icons from '../../Icons/Icons';
 import s from './NewPasswordForm.module.css';
@@ -20,6 +21,7 @@ const NewPasswordForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loading = useSelector(getLoading);
+  const { verificationToken } = useParams();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -29,7 +31,7 @@ const NewPasswordForm = () => {
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     const { password } = values;
-    await dispatch(sentNewPassword({ password }));
+    await dispatch(resetPassword({ password, verificationToken }));
     navigate('/signin');
     setSubmitting(false);
     resetForm();
