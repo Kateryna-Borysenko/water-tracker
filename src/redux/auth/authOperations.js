@@ -121,7 +121,6 @@ export const updateAvatar = createAsyncThunk(
 
   async (file, thunkApi) => {
     try {
-      console.log('thunk');
       const state = thunkApi.getState();
       const token = state.auth.token; //
       const avatarURL = await apiUpdateAvatar(file, token);
