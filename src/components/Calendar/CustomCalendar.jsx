@@ -71,7 +71,8 @@ const CustomCalendar = ({ onDateSelect }) => {
             <div
               key={format(day, 'yyyy-MM-dd')}
               className={s.calendarCell}
-              onClick={e => onDateSelect(e, day)}
+              onClick={e => onDateSelect.onInteraction(e, day)}
+              onTouchEnd={e => onDateSelect.onInteraction(e, day)}
             >
               <div
                 className={`${s.calendarDay} ${
