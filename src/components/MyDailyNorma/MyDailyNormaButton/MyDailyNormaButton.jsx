@@ -26,7 +26,7 @@ export const MyDailyNormaButton = () => {
       </button>
 
       {isOpenModal && (
-        <Modal onClose={handleCloseModal}>
+        <Modal onClose={handleCloseModal} className="my-daily-norma">
           <MyDailyNormaModal onClose={handleCloseModal} />
         </Modal>
       )}

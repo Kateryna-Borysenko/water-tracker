@@ -59,7 +59,7 @@ const ProgressBar = () => {
         </Button>
       </div>
       {isOpenModal && (
-        <Modal onClose={handleCloseModal}>
+        <Modal onClose={handleCloseModal} className="add-water">
           <AddAndEditWaterCard onClose={handleCloseModal} />
         </Modal>
       )}

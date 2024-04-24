@@ -1,5 +1,5 @@
-.container {
-  width: 236px;
+.secondContainer {
+  margin-top: 24px;
 }
 
 .textContainer {
@@ -18,7 +18,8 @@
 }
 
 .modalParagraphContainer {
-  margin-top: 24px;
+  max-height: 416px;
+  overflow-x: scroll;
 }
 
 .forWoman {
@@ -138,7 +139,7 @@
 
 @media screen and (min-width: 768px) {
   .container {
-    width: 704px;
+    width: 656px;
   }
 
   .secondContainer {
@@ -162,11 +163,15 @@
   .modalP {
     font-size: 13px;
   }
+  .modalParagraphContainer {
+    max-height: none;
+    overflow-x: unset;
+  }
 }
 
 @media screen and (min-width: 1440px) {
   .container {
-    width: 592px;
+    width: 544px;
   }
 
   .buttonContainer button {
