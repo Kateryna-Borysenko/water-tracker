@@ -1,7 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { startOfMonth, endOfMonth, addDays, isBefore, format } from 'date-fns';
+import {
+  startOfMonth,
+  endOfMonth,
+  addDays,
+  isBefore,
+  format,
+  getYear,
+  getMonth,
+} from 'date-fns';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { prevMonth, nextMonth } from '../../redux/calendar/calendarSlice';
 import { PercentCellRender } from './PercentCellRender';
@@ -49,6 +57,25 @@ const CustomCalendar = ({ onDateSelect }) => {
     dispatch(nextMonth());
   };
 
+  const isLessThisYearMonth = () => {
+    const chosenYear = getYear(currentDate);
+    const chosenMonth = getMonth(currentDate);
+    const thisYear = getYear(new Date());
+    const thisMonth = getMonth(new Date());
+
+    if (chosenYear < thisYear) {
+      return true;
+    } else if (chosenYear > thisYear) {
+      return false;
+    } else if (chosenMonth < thisMonth) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const checkDate = isLessThisYearMonth();
+
   return (
     <div className={s.calendarContainer}>
       <div className={s.calendar}>
@@ -60,12 +87,17 @@ const CustomCalendar = ({ onDateSelect }) => {
             {', '}
             {format(currentDate, 'yyyy')}
           </span>
-          <RightOutlined onClick={handleNextMonth} className={s.arrow} />
+          <RightOutlined
+            onClick={handleNextMonth}
+            className={`${s.arrow} ${!checkDate ? s.inactive : ''}`}
+          />
         </div>
       </div>
       <div className={s.tableCalendar}>
         {days.map(day => {
           const { percent, element } = PercentCellRender(day, waterUsage);
+          const percentAmount = Number(percent.slice(0, percent.indexOf('%')));
+
           return (
             <div
               key={format(day, 'yyyy-MM-dd')}
@@ -75,7 +107,7 @@ const CustomCalendar = ({ onDateSelect }) => {
             >
               <div
                 className={`${s.calendarDay} ${
-                  percent && percent !== '100%' ? s.dayLessNorm : ''
+                  percent && percentAmount < 100 ? s.dayLessNorm : ''
                 }`}
               >
                 {format(day, 'd')}

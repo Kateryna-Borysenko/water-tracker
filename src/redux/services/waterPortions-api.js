@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { WATER_ENDPOINT } from '../../helpers/endpoints/waterEndpoint';
+import { timezone } from '../../helpers/endpoints/timeZone';
 const SERVER_BASE_URL = import.meta.env.VITE_SERVER_BASE_URL;
+
+axios.defaults.headers.common['Time-Zone'] = timezone;
 
 const waterPortionsInstance = axios.create({
   baseURL: SERVER_BASE_URL,
@@ -11,7 +14,6 @@ export const setTokenwaterPortionsInstance = token =>
 
 export const clearTokenwaterPortionsInstance = () =>
   (waterPortionsInstance.defaults.headers.common.Authorization = '');
-
 
 export const getWaterPortionToday = async () => {
   const response = await waterPortionsInstance.get(
