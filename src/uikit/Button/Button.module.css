@@ -50,6 +50,7 @@
 
 .forgotYourPassword {
   margin: 14px auto 24px;
+  min-width: 164px;
 }
 
 .myDailyNormaButton {
