@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Modal from '../../common/Modal/Modal';
 import AddWaterModal from '../../AddWaterModal/AddAndEditWaterCard';
 import Icons from '../../Icons/Icons';
@@ -6,6 +7,8 @@ import s from './AddWaterButton.module.css';
 
 export const AddWaterButton = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const { t } = useTranslation();
 
   const handleCloseModal = () => {
     setIsOpenModal(prevState => !prevState);
@@ -18,7 +21,7 @@ export const AddWaterButton = () => {
         onClick={() => setIsOpenModal(prevState => !prevState)}
       >
         <Icons id={'plus'} size={24} className={'iconPlus'} />
-        Add water
+        {t('TodayWater.TodayWaterButton')}
       </button>
 
       {isOpenModal && (

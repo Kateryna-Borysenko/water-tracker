@@ -121,5 +121,15 @@
     "MyDailyNormaModalWater": "The required amount of water in liters per day:",
     "MyDailyNormaModalNorma": "Write down how much water you will drink:",
     "MyDailyNormaModalButton": "Save"
+  },
+  "ProgressBar": {
+    "ProgressBarTitle": "Today",
+    "ProgressBarButton": "Add Water"
+  },
+  "TodayWater": {
+    "TodayWaterTitle": "Today",
+    "TodayWaterButton": "Add Water",
+    "TodayWaterMessage": "No notes yet",
+    "ml": "ml"
   }
 }

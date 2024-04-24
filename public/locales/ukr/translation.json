@@ -121,5 +121,15 @@
     "MyDailyNormaModalWater": "Необхідна кількість води в літрах на день:",
     "MyDailyNormaModalNorma": "Зазначте, скільки води ви будете пити:",
     "MyDailyNormaModalButton": "Зберегти"
+  },
+  "ProgressBar": {
+    "ProgressBarTitle": "Сьогодні",
+    "ProgressBarButton": "Додати порцію"
+  },
+  "TodayWater": {
+    "TodayWaterTitle": "Сьогодні",
+    "TodayWaterButton": "Додати порцію",
+    "TodayWaterMessage": "Записів ще немає",
+    "ml": "мл"
   }
 }

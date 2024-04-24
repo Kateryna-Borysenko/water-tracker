@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { format } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import {
   apiDeleteWaterPortion,
@@ -39,12 +40,16 @@ export const TodayWaterItem = ({ waterVolume, time, id }) => {
     return format(date, 'h:mm a');
   };
 
+  const { t } = useTranslation();
+
   return (
     <>
       <li className={s.todayWaterItem}>
         <div className={s.wrapItemLeft}>
           <Icons id={'glass'} className={s.glassIcon} />
-          <p className={s.textWaterAmount}>{waterVolume} ml</p>
+          <p className={s.textWaterAmount}>
+            {waterVolume} {t('TodayWater.ml')}
+          </p>
           <p className={s.textTime}>{formatTime(time)}</p>
         </div>
 
