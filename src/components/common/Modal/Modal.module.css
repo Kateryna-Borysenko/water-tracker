@@ -24,14 +24,14 @@
 .closeBtn {
   position: absolute;
   top: 26px;
-  right: 20px;
-  padding: 8px 0;
+  right: 12px;
   font-size: 28px;
   line-height: 0.6;
   color: var(--primary-sky-blue);
   border: none;
   background: none;
   cursor: pointer;
+  z-index: 200;
 }
 
 @media screen and (min-width: 768px) {
@@ -40,19 +40,40 @@
   }
 }
 
-/*  -----------setting container------- */
 .setting-card {
   padding: 32px 12px;
 }
 
+.managment-card,
+.my-daily-norma,
+.add-water,
+.setting-card {
+  width: 280px;
+}
+
 @media screen and (min-width: 768px) {
   .setting-card {
-    width: 656px;
+    width: 704px;
+
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .add-water,
+  .my-daily-norma {
+    width: 704px;
+  }
+
+  .managment-card {
+    width: 592px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .setting-card {
     width: 960px;
+  }
+  .add-water,
+  .my-daily-norma {
+    width: 592px;
   }
 }

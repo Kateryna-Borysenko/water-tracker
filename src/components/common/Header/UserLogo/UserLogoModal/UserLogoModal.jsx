@@ -41,6 +41,7 @@ const UserLogoModal = ({ handleClosePopup }) => {
 
   const handleCloseSettingModal = () => {
     setIsSettingModalOpen(false);
+    handleClosePopup();
   };
 
   return (
@@ -62,7 +63,7 @@ const UserLogoModal = ({ handleClosePopup }) => {
           {t('popup.logout')}
         </button>
         {isModalOpen && (
-          <Modal onClose={handleCloseModal}>
+          <Modal onClose={handleCloseModal} className="managment-card">
             <ManagementCard
               title={t('logout.title')}
               description={t('logout.description')}

@@ -71,7 +71,7 @@ export const TodayWaterItem = ({ waterVolume, time, id }) => {
       </li>
 
       {isOpenModalDelete && (
-        <Modal onClose={handleCloseModal}>
+        <Modal onClose={handleCloseModal} className="managment-card">
           <ManagementCard
             title="Delete entry"
             description="Are you sure you want to delete the entry?"

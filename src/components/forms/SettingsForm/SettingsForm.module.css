@@ -4,6 +4,11 @@
   /* border: 2px solid green; */
 }
 
+.scrollContainer {
+  max-height: 416px;
+  overflow-x: scroll;
+}
+
 .wrapper {
   /* border: 1px solid red; */
 }
@@ -42,6 +47,9 @@ label {
   line-height: 1.1;
 }
 /* -----margin bottom ----- */
+.topMb {
+  margin-top: 24px;
+}
 .smallMb {
   margin-bottom: 8px;
 }
@@ -58,7 +66,7 @@ label {
   font-size: 26px;
   font-weight: 500;
   line-height: 1.23;
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
 }
 
 .title,
@@ -256,8 +264,7 @@ label {
 /* -----------inputs-----------*/
 
 .input {
-  /* width: 236px; */
-  width: 256px;
+  width: 234px;
 
   border-radius: 6px;
   border: 1px solid var(--secondary-bluish-white);
@@ -322,15 +329,19 @@ label {
     margin-left: auto;
   } */
   .input {
-    /* width: 326px; */
-    width: 346px;
+    width: 372px;
   }
 
   .inputWrapper {
-    width: 366px;
+    width: 392px;
   }
   .error {
     font-size: 14px;
+  }
+
+  .scrollContainer {
+    max-height: none;
+    overflow-x: unset;
   }
 }
 
