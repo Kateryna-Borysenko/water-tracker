@@ -17,7 +17,7 @@ const HomePage = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <div className={s.wrapper}>
       <div className={s.container}>
         <Meta title="Home Page" />
         <Container className="containerHomePage">
@@ -31,7 +31,7 @@ const HomePage = () => {
           </div>
         </Container>
       </div>
-    </>
+    </div>
   );
 };
 

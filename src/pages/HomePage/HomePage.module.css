@@ -34,19 +34,25 @@
 
 @media screen and (min-width: 768px) {
   .container {
-    background-image: url(../../assets/static/image/bg-element-home-screen-M.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
     max-width: 768px;
     padding: 48px 32px 44px 32px;
   }
 
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    .container {
-      background-image: url(../../assets/static/image/bg-element-home-screen-M-2x.png);
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    .wrapper {
+      position: relative;
+      background-image: url(../../assets/static/image/bg-element-home-screen-M.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center bottom;
+    }
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      .wrapper {
+        background-image: url(../../assets/static/image/bg-element-home-screen-M-2x.png);
+      }
     }
   }
 
