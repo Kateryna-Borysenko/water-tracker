@@ -34,7 +34,10 @@ const AddAndEditWaterCard = ({
 
   const handleSubmit = async e => {
     e.preventDefault();
-    if (!water.inputValue) return;
+    if (!water.inputValue) {
+      toast.error('Please enter a valid water volume.');
+      return;
+    }
     const waterVolume = water.inputValue;
 
     if (!isEditable) {
@@ -95,6 +98,7 @@ const AddAndEditWaterCard = ({
   const handleVolumeChange = ({ target }) => {
     setWater({ ...water, inputValue: parseInt(target.value, 10) });
   };
+
   const formatTime = dateTimeStr => {
     const date = dayjs(dateTimeStr);
     return date.format('h:mm A');
@@ -116,7 +120,7 @@ const AddAndEditWaterCard = ({
         <div className={s.glassContainer}>
           <Icons className="glassIconEdit" id={'glass'} />
           <span className={s.glassVolume}>
-            {water.counterValue}
+            {isNaN(water.counterValue) ? 0 : water.counterValue}
             {t('AddAndEditWaterCard.ml')}
           </span>
           <span className={s.timeGlass}>{formatTime(time)}</span>
@@ -138,7 +142,7 @@ const AddAndEditWaterCard = ({
             <Icons className="iconEdit" id={'minus'} fill={'#407bff'} />
           </button>
           <span className={s.waterAmountValue}>
-            {water.counterValue}
+            {isNaN(water.counterValue) ? 0 : water.counterValue}
             {t('AddAndEditWaterCard.ml')}
           </span>
           <button
@@ -186,7 +190,7 @@ const AddAndEditWaterCard = ({
         />
         <div className={s.sreenContainer}>
           <span className={s.waterAmountSreen}>
-            {water.counterValue}
+            {isNaN(water.counterValue) ? 0 : water.counterValue}
             {t('AddAndEditWaterCard.ml')}
           </span>
           <Button
