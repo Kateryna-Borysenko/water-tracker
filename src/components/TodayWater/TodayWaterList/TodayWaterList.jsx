@@ -25,7 +25,7 @@ export const TodayWaterList = () => {
             />
           ))
         ) : (
-          <p>{t('TodayWater.TodayWaterMessage')}</p>
+          <p className={s.noNotes}>{t('TodayWater.TodayWaterMessage')}</p>
         )}
       </ul>
 

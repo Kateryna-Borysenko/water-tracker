@@ -6,18 +6,13 @@ import {
   apiGetWaterPortionToday,
 } from './watersOperations';
 import {
-  handlePendingGet,
+  handlePending,
   handleFulfilledGet,
   handleRejectedGet,
   handleFulfilledAdd,
-  handleRejectedAdd,
-  handlePendingAdd,
-  handlePendingEdit,
   handleFulfilledEdit,
-  handleRejectedEdit,
   handleFulfilledDelete,
-  handlePendingDelete,
-  handleRejectedDelete,
+  handleRejected,
 } from './handleFunctionReduser';
 
 const initialWaterPortions = {
@@ -39,21 +34,21 @@ export const waterPortionsSlice = createSlice({
   extraReducers: builder =>
     builder
       // ============= GET WaterPortion Today ===============
-      .addCase(apiGetWaterPortionToday.pending, handlePendingGet)
+      .addCase(apiGetWaterPortionToday.pending, handlePending)
       .addCase(apiGetWaterPortionToday.fulfilled, handleFulfilledGet)
       .addCase(apiGetWaterPortionToday.rejected, handleRejectedGet)
       // ============= ADD WaterPortion ===============
-      .addCase(apiAddWaterPortion.pending, handlePendingAdd)
+      .addCase(apiAddWaterPortion.pending, handlePending)
       .addCase(apiAddWaterPortion.fulfilled, handleFulfilledAdd)
-      .addCase(apiAddWaterPortion.rejected, handleRejectedAdd)
+      .addCase(apiAddWaterPortion.rejected, handleRejected)
       // ============= EDIT WaterPortion ===============
-      .addCase(apiEditWaterPortion.pending, handlePendingEdit)
+      .addCase(apiEditWaterPortion.pending, handlePending)
       .addCase(apiEditWaterPortion.fulfilled, handleFulfilledEdit)
-      .addCase(apiEditWaterPortion.rejected, handleRejectedEdit)
+      .addCase(apiEditWaterPortion.rejected, handleRejected)
       // ============= DELETE WaterPortion ===============
-      .addCase(apiDeleteWaterPortion.pending, handlePendingDelete)
+      .addCase(apiDeleteWaterPortion.pending, handlePending)
       .addCase(apiDeleteWaterPortion.fulfilled, handleFulfilledDelete)
-      .addCase(apiDeleteWaterPortion.rejected, handleRejectedDelete),
+      .addCase(apiDeleteWaterPortion.rejected, handleRejected),
 });
 
 export const { logoutUserWaterAction } = waterPortionsSlice.actions;

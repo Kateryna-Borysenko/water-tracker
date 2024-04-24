@@ -7,7 +7,7 @@
 }
 
 .title {
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 500;
   line-height: 1.23;
   width: 200px;
@@ -113,7 +113,7 @@
 
 .glassVolume {
   color: var(--primary-sky-blue);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.33;
   margin-left: 12px;
@@ -171,6 +171,7 @@
 
   .title {
     width: auto;
+    font-size: 26px;
   }
 
   .sreenContainer {
@@ -187,9 +188,14 @@
   .infoContainer {
     width: 656px;
   }
+
   .scrollContainer {
     max-height: none;
     overflow-x: unset;
+  }
+
+  .glassVolume {
+    font-size: 18px;
   }
 }
 
