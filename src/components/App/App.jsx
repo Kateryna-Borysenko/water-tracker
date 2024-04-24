@@ -1,24 +1,26 @@
 import { Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { lazy, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
-import WelcomePage from '../../pages/WelcomePage/WelcomePage';
-import SharedLayout from '../common/SharedLayout/SharedLayout';
-import SignupPage from '../../pages/SignupPage/SignupPage';
-import SigninPage from '../../pages/SigninPage/SigninPage';
-import HomePage from '../../pages/HomePage/HomePage';
-import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
-import 'react-toastify/dist/ReactToastify.css';
-import '../../assets/styles/global.module.css';
+import { refreshUser } from '../../redux/auth/authOperations';
+import { useAuth } from '../../hooks/useAuth';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
 import { PrivatRoute } from '../PrivatRoute/PrivatRoute';
-import { useDispatch } from 'react-redux';
-import { useAuth } from '../../hooks/useAuth';
-import { useEffect } from 'react';
-import { refreshUser } from '../../redux/auth/authOperations';
 import Spinner from '../../components/common/Spinner/Spinner';
 import Loader from '../common/Loader/Loader';
-import ForgotPasswordPage from '../../pages/ForgotPasswordPage/ForgotPasswordPage';
 import ForgotPasswordForm from '../forms/ForgotPasswordForm/ForgotPasswordForm';
 import NewPasswordForm from '../forms/NewPasswordForm/NewPasswordForm';
+import SharedLayout from '../common/SharedLayout/SharedLayout';
+const WelcomePage = lazy(() => import('pages/WelcomePage/WelcomePage'));
+const SigninPage = lazy(() => import('pages/SigninPage/SigninPage'));
+const HomePage = lazy(() => import('pages/HomePage/HomePage'));
+const SignupPage = lazy(() => import('pages/SignupPage/SignupPage'));
+const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage'));
+const ForgotPasswordPage = lazy(() =>
+  import('pages/ForgotPasswordPage/ForgotPasswordPage'),
+);
+import 'react-toastify/dist/ReactToastify.css';
+import '../../assets/styles/global.module.css';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -66,9 +68,9 @@ const App = () => {
               </PrivatRoute>
             }
           />
-          <Route path="/new-password" element={<ForgotPasswordPage />}>
-            <Route path="email" element={<ForgotPasswordForm />} />
-            <Route path="password" element={<NewPasswordForm />} />
+          <Route path="/reset-password" element={<ForgotPasswordPage />}>
+            <Route path="" element={<ForgotPasswordForm />} />
+            <Route path=":verificationToken" element={<NewPasswordForm />} />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Route>

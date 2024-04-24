@@ -8,21 +8,17 @@ const userInstance = axios.create({
 
 export const setAuthorizationHeaders = token => {
   userInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
-}; //
-
-//clear token ?
+};
 
 export const apiUpdateUserData = async (userData, token) => {
   setAuthorizationHeaders(token);
   const data = await userInstance.put('/users/update', {
     ...userData,
   });
-  //data = {user:{ username, ...} }
   return data;
 };
 
 export const apiUpdateAvatar = async (file, token) => {
-  console.log('api');
   const formData = new FormData();
   formData.append('avatarURL', file);
 

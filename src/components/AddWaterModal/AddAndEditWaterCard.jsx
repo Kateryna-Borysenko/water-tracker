@@ -23,7 +23,7 @@ const AddAndEditWaterCard = ({
   onClose,
 }) => {
   const [defaultTime, setDefaultTime] = useState(dayjs());
-  const [time, setTime] = useState(() => initialTime);
+  const [time, setTime] = useState(initialTime);
   const [water, setWater] = useState({
     counterValue: isEditable ? waterVolume : 0,
     inputValue: isEditable ? waterVolume : 0,
@@ -37,10 +37,13 @@ const AddAndEditWaterCard = ({
     if (!water.inputValue) return;
     const waterVolume = water.inputValue;
 
-    const date = dayjs(isEditable ? time : defaultTime, 'h:mm A').toISOString();
-
     if (!isEditable) {
-      const isAdded = await dispatch(apiAddWaterPortion({ waterVolume, date }));
+      const isAdded = await dispatch(
+        apiAddWaterPortion({
+          waterVolume,
+          date: dayjs(defaultTime, 'h:mm A').toISOString(),
+        }),
+      );
       if (isAdded.error) return toast.error(`Failed to add amount of water`);
       const isGet = await dispatch(apiGetWaterPortionToday());
       if (isGet.error)
@@ -48,7 +51,11 @@ const AddAndEditWaterCard = ({
       onClose();
     } else {
       const isAdded = await dispatch(
-        apiEditWaterPortion({ waterVolume, date, id }),
+        apiEditWaterPortion({
+          waterVolume,
+          date: dayjs(time).toISOString(),
+          id,
+        }),
       );
       if (isAdded.error) return toast.error(`Failed to update amount of water`);
       const isGet = await dispatch(apiGetWaterPortionToday());

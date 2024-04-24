@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import moment from 'moment';
+import { addMonths, subMonths } from 'date-fns';
 import { STATUSES } from '../../helpers/constants';
 import { apiGetMonthlyUsage } from './calendarOperations';
 import {
@@ -9,7 +9,7 @@ import {
 } from './handleFunctionReducer';
 
 export const initialState = {
-  currentDate: moment().toISOString(),
+  currentDate: new Date().toISOString(),
   isVisible: false,
   selectedDate: null,
   modalData: {
@@ -31,11 +31,11 @@ export const calendarSlice = createSlice({
       state.currentDate = action.payload;
     },
     nextMonth: state => {
-      const newDate = moment(state.currentDate).add(1, 'month');
+      const newDate = addMonths(new Date(state.currentDate), 1);
       state.currentDate = newDate.toISOString();
     },
     prevMonth: state => {
-      const newDate = moment(state.currentDate).subtract(1, 'month');
+      const newDate = subMonths(new Date(state.currentDate), 1);
       state.currentDate = newDate.toISOString();
     },
     openModal: (state, action) => {

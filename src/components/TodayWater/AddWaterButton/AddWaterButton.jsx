@@ -11,7 +11,6 @@ export const AddWaterButton = () => {
   const { t } = useTranslation();
 
   const handleCloseModal = () => {
-    console.log(isOpenModal);
     setIsOpenModal(prevState => !prevState);
   };
 

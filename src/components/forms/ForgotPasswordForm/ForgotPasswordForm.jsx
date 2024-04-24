@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import Title from '../../common/Title/Title';
 import Button from '../../../uikit/Button/Button';
 import { emailFormSchema } from '../../../schemas/emailFormValidationSchema';
-import { passwordResetInstructions } from '../../../redux/auth/authOperations';
+import { verifyResetPasswordEmail } from '../../../redux/auth/authOperations';
 import { getLoading } from '../../../redux/auth/authSelectors';
 import s from './ForgotPasswordForm.module.css';
 
@@ -18,10 +19,11 @@ const ForgotPasswordForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loading = useSelector(getLoading);
+  console.log('🌷  loading:', loading);
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     const { email } = values;
-    await dispatch(passwordResetInstructions({ email }));
+    await dispatch(verifyResetPasswordEmail({ email }));
     navigate('/');
     setSubmitting(false);
     resetForm();
