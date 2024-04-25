@@ -55,11 +55,11 @@ The Water Tracker is a web application that allows users to track their daily wa
 
 ---
 
-<img src="./public/screens/my-daily-norma-managment.jpeg">
+<img src="./public/screens/my-daily-norma-managment.jpeg"  width=700>
 
 ---
 
-<img src="./public/screens/water-modals.png">
+<img src="./public/screens/add-and-edit-water.jpg" width=600>
 
 ---
 
