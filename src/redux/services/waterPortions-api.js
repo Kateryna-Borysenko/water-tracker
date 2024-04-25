@@ -16,6 +16,11 @@ export const clearTokenwaterPortionsInstance = () =>
   (waterPortionsInstance.defaults.headers.common.Authorization = '');
 
 export const getWaterPortionToday = async () => {
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const timeDay = new Date().getDate();
+  waterPortionsInstance.defaults.headers.common['timeZone'] = timeZone;
+  waterPortionsInstance.defaults.headers.common['timeDay'] = timeDay;
+
   const response = await waterPortionsInstance.get(
     WATER_ENDPOINT.WATER_PORTIONS_TODAY,
   );
