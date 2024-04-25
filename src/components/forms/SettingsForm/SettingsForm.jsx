@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import {
   updateAvatar,
   updateUserData,
@@ -26,6 +27,7 @@ const SettingsForm = ({ onClose }) => {
   const user = useSelector(selectUpdateUserData);
   const isLoading = useSelector(selectAvatarLoading);
   const loadingSave = useSelector(getLoading);
+  const { t } = useTranslation();
 
   const {
     values,
