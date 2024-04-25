@@ -1,13 +1,14 @@
 import axios from 'axios';
 import { WATER_ENDPOINT } from '../../helpers/endpoints/waterEndpoint';
-import { timezone } from '../../helpers/endpoints/timeZone';
+import { timezone, timeDay } from '../../helpers/endpoints/timeZone.js';
 const SERVER_BASE_URL = import.meta.env.VITE_SERVER_BASE_URL;
-
-axios.defaults.headers.common['Time-Zone'] = timezone;
 
 const waterPortionsInstance = axios.create({
   baseURL: SERVER_BASE_URL,
 });
+
+waterPortionsInstance.defaults.headers.common['timeZone'] = timezone;
+waterPortionsInstance.defaults.headers.common['timeDay'] = timeDay;
 
 export const setTokenwaterPortionsInstance = token =>
   (waterPortionsInstance.defaults.headers.common.Authorization = `Bearer ${token}`);

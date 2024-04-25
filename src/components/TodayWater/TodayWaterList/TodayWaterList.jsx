@@ -8,15 +8,17 @@ import s from './TodayWaterList.module.css';
 
 export const TodayWaterList = () => {
   const waterItems = useSelector(selectWaterPortionsToday);
-
   const { t } = useTranslation();
+
+  let sortedWaterItems = [...waterItems];
+  sortedWaterItems.sort((a, b) => new Date(a.date) - new Date(b.date));
 
   return (
     <div className={s.listContainer}>
       <h3 className={s.todayTitle}>{t('TodayWater.TodayWaterTitle')}</h3>
       <ul className={s.todayWaterList}>
-        {waterItems.length !== 0 ? (
-          waterItems.map((item, index) => (
+        {sortedWaterItems.length !== 0 ? (
+          sortedWaterItems.map((item, index) => (
             <TodayWaterItem
               key={index}
               waterVolume={item.waterVolume}
