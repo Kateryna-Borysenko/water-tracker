@@ -70,7 +70,7 @@ const UserLogoModal = ({ handleClosePopup }) => {
               secondButton={t('logout.secondButton')}
               className="alignRight"
               onClick={handleLogoutUser}
-              onClickSecondBtn={handleCloseModal}
+              onClickCancelBtn={handleCloseModal}
               disabledYesBtn={loading}
               loading={loading}
             />
