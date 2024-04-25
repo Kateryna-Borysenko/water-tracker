@@ -17,7 +17,7 @@ label {
 
 .scrollContainer {
   max-height: 416px;
-  overflow-x: scroll;
+  overflow-y: scroll;
 }
 
 .smallText {
@@ -235,7 +235,7 @@ label {
 
   .scrollContainer {
     max-height: none;
-    overflow-x: unset;
+    overflow-y: unset;
   }
 }
 
