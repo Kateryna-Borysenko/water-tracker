@@ -26,26 +26,26 @@
 
 ---
 
-## Description
+## Опис застосунку
 
-The Water Tracker is a web application that allows users to track their daily water intake and maintain a sufficient water balance. It becomes an invaluable assistant for people with an active lifestyle, athletes, activists, as well as for people with certain health issues when it is necessary to limit water consumption and strictly adhere to a prescribed drinking regimen by a doctor.
-
----
-
- <img src="./public/screens/auth-form-min.png">
+Трекер води є веб-застосунком, який дозволяє користувачеві стежити за своїм щоденним вживанням води та підтримувати водний баланс на достатньому рівні. Стане безцінним помічником для людей з активним способом життя, спортсменів, активістів, а також для людей з певними проблемами зі здоров'ям, коли необхідно обмежити споживання води, та суворо дотримуватись питного режиму за призначенням лікаря.
 
 ---
 
-## Features
+## <img src="./public/screens/auth-form-min.png">
 
-- **_Bilingualism_** of the application: Ukrainian and English languages
-- user registration, login, verification
-- **_Google authentication_**
-- user data editing: name, email, gender, avatar upload, password update
-- **_calculation of the daily water norm_** depending on weight and physical activity
-- recording consumed water portions throughout the day, their editing, and deletion
-- **_calculation of the percentage of consumed water_** to the daily water norm
-- **_calendar with records of water consumption_** for each day as a percentage of the daily norm
+---
+
+## Функціонал
+
+- **_двомовність_** додатка: українська та англійська мови
+- реєстрація, логінізація, верифікація юзера
+- **_гугл авторизація_**
+- редагування данних юзера: імя, ємейл, стать, загрузка аватара, **_оновлення паролю_**
+- **_розрахунок денної норми_** води в залежності від ваги та фізичної активності
+- запис спожитих порцій води протягом дня, іх редагування та видалення
+- розрахунок **_відсотка спожитої води_** до денної норми води
+- **_календар_** із записами по спожитій воді за кожен день у відсотках до денної норми
 
 ---
 
@@ -63,9 +63,9 @@ The Water Tracker is a web application that allows users to track their daily wa
 
 ---
 
-## Usage
+## Використання
 
-For your convenience, you can use the following email and password to log in:
+Для вашої зручності ви можете скористатись данною поштою та паролем для входу:
 
 ```
 gomaki3592@dxice.com
@@ -74,29 +74,29 @@ password
 
 ---
 
-## Live page
+## Жива сторінка
 
 **_<a href="https://water-tracker-pi.vercel.app/">Water Tracker</a>_**
 
 ---
 
-## Installation
+## Розгортання
 
-To run this project, you need to install <a href="https://nodejs.org/en">Node.js v20.12.2</a>
+Для того щоб запустити цей проект вам необхідно встановити <a href="https://nodejs.org/en">Node.js v20.12.2</a>
 
-#### 1. Clone the project repository
+#### 1. Клонуйте репозиторій проекту
 
 ```
     git clone https://github.com/Kateryna-Borysenko/water-tracker.git
 ```
 
-#### 2. Install dependencies
+#### 2. Встановіть залежності
 
 ```
     npm i
 ```
 
-#### 3. Start the server
+#### 3. Запустіть сервер
 
 ```
     npm run dev
@@ -104,6 +104,6 @@ To run this project, you need to install <a href="https://nodejs.org/en">Node.js
 
 ---
 
-**_Enjoy your time and have a great experience using Water Tracker!_**
+### **_Приємного настрою та гарного досвіду у використанні Water Tracker!_**
 
 ---
