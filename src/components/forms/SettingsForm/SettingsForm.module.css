@@ -1,25 +1,3 @@
-/* border: 1px solid red; */
-
-.container {
-  /* border: 2px solid green; */
-}
-
-.scrollContainer {
-  max-height: 416px;
-  overflow-x: scroll;
-}
-
-.wrapper {
-  /* border: 1px solid red; */
-}
-.leftBox {
-  /* border: 1px solid violet; */
-}
-
-.rightBox {
-  /* border: 1px solid blue; */
-}
-
 label {
   display: block;
 }
@@ -37,7 +15,11 @@ label {
   overflow: hidden;
 }
 
-/* -----text sizes----- */
+.scrollContainer {
+  max-height: 416px;
+  overflow-x: scroll;
+}
+
 .smallText {
   font-size: 16px;
   line-height: 1.25;
@@ -46,7 +28,7 @@ label {
   font-size: 18px;
   line-height: 1.1;
 }
-/* -----margin bottom ----- */
+
 .topMb {
   margin-top: 24px;
 }
@@ -66,7 +48,6 @@ label {
   font-size: 26px;
   font-weight: 500;
   line-height: 1.23;
-  /* margin-bottom: 24px; */
 }
 
 .title,
@@ -78,7 +59,6 @@ label {
   margin-bottom: 8px;
 }
 
-/* ---------AVATAR -----*/
 .avatar {
   display: flex;
   justify-content: center;
@@ -106,12 +86,6 @@ label {
   gap: 8px;
   margin-bottom: 24px;
 }
-
-/* -----------uplod a photo----- */
-/* .fileWrapper {
-  display: flex;
-  align-items: center;
-} */
 
 .fileForm {
   display: flex;
@@ -149,7 +123,6 @@ label {
   transition: var(--transition);
 }
 
-/* -------------gender----- */
 .genderBox {
   margin-bottom: 24px;
   display: flex;
@@ -158,58 +131,10 @@ label {
   gap: 24px;
 }
 
-.passwordInput {
-  /* margin-bottom: 12px; */
-  /* margin-bottom: 18px; */
-}
-
-/* .saveBtn {
-  display: flex;
-  width: 100%;
-  padding: 8px 30px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 10px;
-  background: var(--primary-sky-blue);
-  box-shadow: var(--box-shadow);
-  outline: none;
-  border: transparent;
-  color: var(--primary-white);
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.25;
-  transition: var(--transition);
-} */
-/* 
-.saveBtn:is(:hover, :focus) {
-  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
-}
-.saveBtn:active {
-  box-shadow: none;
-}
-.saveBtn:focus {
-  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
-} */
-
-.form {
-}
-
 .leftBox {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /*  */
-}
-
-.genderWrapper {
-}
-
-.bottomInputWrapper {
-  /* margin-bottom: 0; */
-}
-
-.avatar {
 }
 
 .labelContainer {
@@ -261,20 +186,15 @@ label {
   background-color: var(--primary-sky-blue);
 }
 
-/* -----------inputs-----------*/
-
 .input {
   width: 234px;
-
   border-radius: 6px;
   border: 1px solid var(--secondary-bluish-white);
   padding: 12px 10px;
-
   color: var(--primary-sky-blue);
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
-  /* margin-bottom: 24px; */
 }
 
 .input:is(:hover, :focus) {
@@ -283,23 +203,6 @@ label {
 .input::placeholder {
   color: var(--secondary-blue);
 }
-/* -------------Validation error---- */
-/* .errorValidation {
-  color: var(--toastify-color-error);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.28;
-} */
-
-/* .error {
-  color: var(--secondary-red);
-  font-size: 12px;
-  line-height: 18px;
-  
-  position: absolute;
-  bottom: 1px;
-  left: 0;
-} */
 
 .errorInput {
   color: var(--secondary-red);
@@ -307,27 +210,18 @@ label {
 }
 
 .labelInputErrWrapper {
-  /* position: relative; */
-  /* margin-bottom: 25px; */
   padding-bottom: 5px;
-  /* чи margin? */
 }
-/* ---------eye btn (open, close) ---------*/
 .inputWrapper {
   position: relative;
   padding-bottom: 25px;
 }
 
-/* -----------tablet-----------*/
-
 @media screen and (min-width: 768px) {
   .labelInputErrWrapper {
     padding-bottom: 0;
   }
-  /* .saveBtn {
-    width: 160px;
-    margin-left: auto;
-  } */
+
   .input {
     width: 372px;
   }
@@ -345,12 +239,10 @@ label {
   }
 }
 
-/* -----------desctop-----------*/
-@media screen and (min-width: 1256px) {
+@media screen and (min-width: 1440px) {
   .wrapper {
     display: flex;
     flex-direction: row;
-    /* border: 1px solid grey; */
     gap: 24px;
   }
 
@@ -358,33 +250,11 @@ label {
     align-self: flex-end;
   }
 
-  .genderBox {
-    /* margin-bottom: 52px; */
-  }
-
   .input {
     width: 372px;
   }
-  /* 
-  . {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 18px;
-  } */
+
   .inputWrapper {
     width: 392px;
   }
 }
-
-/* .reset-autofill:-webkit-autofill::first-line,
-.reset-autofill:-webkit-autofill,
-.reset-autofill:-webkit-autofill:hover,
-.reset-autofill:-webkit-autofill:focus,
-.reset-autofill:-webkit-autofill:active {
-  border: 1px solid var(--primary-white);
-  -webkit-text-fill-color: var(--primary-white);
-  -webkit-box-shadow: 0 0 0px 30px transparent inset;
-  transition: background-color 5000s ease-in-out 0s;
-  caret-color: var(--primary-white);
-  font-family: 'Roboto', sans-serif !important;
-} */

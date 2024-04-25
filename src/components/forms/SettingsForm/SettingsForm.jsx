@@ -27,11 +27,6 @@ const SettingsForm = ({ onClose }) => {
   const isLoading = useSelector(selectAvatarLoading);
   const loadingSave = useSelector(getLoading);
 
-  //  isValid,
-  //   dirty,
-  //   setFieldValue,
-  // isSubmitting,
-
   const {
     values,
     errors,
@@ -44,7 +39,7 @@ const SettingsForm = ({ onClose }) => {
   } = useFormik({
     initialValues: {
       gender: user.gender || '',
-      username: user.username || '',
+      username: user.username || user.email.split('@')[0],
       email: user.email,
       password: '',
       newPassword: '',
@@ -97,7 +92,6 @@ const SettingsForm = ({ onClose }) => {
       if (values.newPassword) body.newPassword = values.newPassword;
 
       if (values.email === '') return toast.error('Email can`t be empty');
-      //чи setFieldValue  values.email = user.email
 
       if (Object.keys(body).length === 0) {
         toast.error('Please fill at least one field');
@@ -105,19 +99,12 @@ const SettingsForm = ({ onClose }) => {
         dispatch(updateUserData(body))
           .unwrap()
           .then(() => {
-            //resetForm ?  чи автофіл підставляє
-            // resetForm({
-            //   password,
-            //   newPassword,
-            // });
-            setSubmitting(false); //
-            resetForm(); //
+            setSubmitting(false);
+            resetForm();
             onClose();
           })
           .catch(error => console.error(error));
       }
-      // console.log(isSubmitting, isValid, dirty); //true true true ?
-      //disabled кнопка після 1го запиту
     },
   });
 
