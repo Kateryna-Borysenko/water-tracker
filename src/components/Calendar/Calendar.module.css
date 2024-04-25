@@ -36,6 +36,10 @@
   height: 14px;
 }
 
+.inactive {
+  visibility: hidden;
+}
+
 .tableCalendar {
   height: 439px;
   display: grid;
