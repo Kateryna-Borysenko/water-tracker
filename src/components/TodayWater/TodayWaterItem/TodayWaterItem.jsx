@@ -78,7 +78,7 @@ export const TodayWaterItem = ({ waterVolume, time, id }) => {
             secondButton="Delete"
             className="alignRight"
             onClick={() => handleDeleteItem(id)}
-            onClickSecondBtn={handleCloseModal}
+            onClickCancelBtn={handleCloseModal}
             disabledYesBtn={loadingWater}
             loading={loadingWater}
           />
