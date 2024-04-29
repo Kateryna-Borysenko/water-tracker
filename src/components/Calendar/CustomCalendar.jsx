@@ -9,6 +9,7 @@ import {
   format,
   getYear,
   getMonth,
+  isAfter,
 } from 'date-fns';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { prevMonth, nextMonth } from '../../redux/calendar/calendarSlice';
@@ -76,6 +77,14 @@ const CustomCalendar = ({ onDateSelect }) => {
 
   const checkDate = isLessThisYearMonth();
 
+  const isDateInFuture = date => {
+    return isAfter(date, new Date());
+  };
+
+  const isToday = date => {
+    return format(date, 'dd-MMM-yyyy') === format(new Date(), 'dd-MMM-yyyy');
+  };
+
   return (
     <div className={s.calendarContainer}>
       <div className={s.calendar}>
@@ -95,25 +104,31 @@ const CustomCalendar = ({ onDateSelect }) => {
       </div>
       <div className={s.tableCalendar}>
         {days.map(day => {
+          const isFuture = isDateInFuture(day);
+          const isNow = isToday(day);
+          console.log(isNow);
           const { percent, element } = PercentCellRender(day, waterUsage);
           const percentAmount = Number(percent.slice(0, percent.indexOf('%')));
 
           return (
-            <div
+            <button
               key={format(day, 'yyyy-MM-dd')}
-              className={s.calendarCell}
+              className={`${s.calendarCell} ${isFuture ? s.hiddenCell : ''}`}
               onClick={e => onDateSelect.onInteraction(e, day)}
-              onTouchEnd={e => onDateSelect.onInteraction(e, day)}
             >
               <div
                 className={`${s.calendarDay} ${
-                  percent && percentAmount < 100 ? s.dayLessNorm : ''
-                }`}
+                  isFuture ? s.inactiveDay : s.activeDay
+                } ${
+                  !isFuture && percent && percentAmount < 100
+                    ? s.dayLessNorm
+                    : ''
+                } ${isNow ? s.today : ''}`}
               >
                 {format(day, 'd')}
               </div>
-              <div className={s.dateText}>{element}</div>
-            </div>
+              <div className={s.dateText}>{!isFuture ? element : ''}</div>
+            </button>
           );
         })}
       </div>
