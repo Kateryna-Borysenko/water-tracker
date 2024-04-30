@@ -155,7 +155,7 @@
 
 .scrollContainer {
   max-height: 416px;
-  overflow-x: scroll;
+  overflow-y: scroll;
 }
 
 @media screen and (min-width: 769px) and (max-width: 1439px) {
@@ -191,7 +191,7 @@
 
   .scrollContainer {
     max-height: none;
-    overflow-x: unset;
+    overflow-y: unset;
   }
 
   .glassVolume {
