@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TimePicker } from 'antd';
 import { useTranslation } from 'react-i18next';
+import * as Yup from 'yup';
 import dayjs from 'dayjs';
 import { toast } from 'react-toastify';
 import {
@@ -14,6 +15,14 @@ import Subtitle from '../common/Subtitle/Subtitle';
 import Button from '../../uikit/Button/Button';
 import Icons from '../Icons/Icons';
 import s from './AddAndEditWaterCard.module.css';
+
+const validationSchema = Yup.object().shape({
+  inputValue: Yup.number()
+    .typeError('The value must be a number')
+    .min(1, 'Minimum value: 1')
+    .max(5000, 'Maximum value: 5000')
+    .required('The field is required'),
+});
 
 const AddAndEditWaterCard = ({
   isEditable,
@@ -34,38 +43,49 @@ const AddAndEditWaterCard = ({
 
   const handleSubmit = async e => {
     e.preventDefault();
-    if (!water.inputValue) {
-      toast.error('Please enter a valid water volume.');
-      return;
-    }
-    const waterVolume = water.inputValue;
 
-    if (!isEditable) {
-      const isAdded = await dispatch(
-        apiAddWaterPortion({
-          waterVolume,
-          date: dayjs(defaultTime, 'h:mm A').toISOString(),
-        }),
+    try {
+      await validationSchema.validateSync(
+        { inputValue: water.inputValue },
+        { abortEarly: false },
       );
-      if (isAdded.error) return toast.error(`Failed to add amount of water`);
-      const isGet = await dispatch(apiGetWaterPortionToday());
-      if (isGet.error)
-        return toast.error(`Failed to get of water portions today`);
-      onClose();
-    } else {
-      const isAdded = await dispatch(
-        apiEditWaterPortion({
-          waterVolume,
-          date: dayjs(time).toISOString(),
-          id,
-        }),
-      );
-      if (isAdded.error) return toast.error(`Failed to update amount of water`);
-      const isGet = await dispatch(apiGetWaterPortionToday());
-      if (isGet.error)
-        return toast.error(`Failed to get of water portions today`);
 
-      onClose();
+      if (!water.inputValue) {
+        return;
+      }
+      const waterVolume = water.inputValue;
+
+      if (!isEditable) {
+        const isAdded = await dispatch(
+          apiAddWaterPortion({
+            waterVolume,
+            date: dayjs(defaultTime, 'h:mm A').toISOString(),
+          }),
+        );
+        if (isAdded.error) return toast.error(`Failed to add amount of water`);
+        const isGet = await dispatch(apiGetWaterPortionToday());
+        if (isGet.error)
+          return toast.error(`Failed to get of water portions today`);
+        onClose();
+      } else {
+        const isAdded = await dispatch(
+          apiEditWaterPortion({
+            waterVolume,
+            date: dayjs(time).toISOString(),
+            id,
+          }),
+        );
+        if (isAdded.error)
+          return toast.error(`Failed to update amount of water`);
+        const isGet = await dispatch(apiGetWaterPortionToday());
+        if (isGet.error)
+          return toast.error(`Failed to get of water portions today`);
+
+        onClose();
+      }
+    } catch (error) {
+      const errorMessage = error.errors && error.errors[0];
+      toast.error(errorMessage || 'Validation error');
     }
   };
 
@@ -182,8 +202,6 @@ const AddAndEditWaterCard = ({
             className={s.input}
             name="value"
             type="number"
-            min="1"
-            max="5000"
             value={water.inputValue}
             onBlur={handleBlur}
             onChange={handleVolumeChange}
