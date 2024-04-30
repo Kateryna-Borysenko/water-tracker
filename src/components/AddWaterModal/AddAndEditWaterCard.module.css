@@ -68,13 +68,20 @@
 }
 
 .label {
+  display: block;
   font-size: 18px;
   font-weight: 500;
   line-height: 1.11;
   margin-bottom: 16px;
 }
 
-.input {
+.validationError {
+  color: var(--secondary-red);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.inputTime {
   padding: 12px 10px;
   width: 100%;
   color: var(--primary-sky-blue);
@@ -88,10 +95,15 @@
   margin-bottom: 24px;
 }
 
-.input:focus,
-.input:hover {
+.inputTime:focus,
+.inputTime:hover {
   border-color: var(--primary-sky-blue);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.input {
+  composes: inputTime;
+  margin-bottom: 0;
 }
 
 :global(.ant-picker-clear) {
@@ -109,6 +121,7 @@
   align-items: center;
   gap: 16px;
   width: 100%;
+  margin-top: 24px;
 }
 
 .glassVolume {
