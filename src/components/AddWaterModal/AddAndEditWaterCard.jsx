@@ -37,6 +37,7 @@ const AddAndEditWaterCard = ({
     counterValue: isEditable ? waterVolume : 0,
     inputValue: isEditable ? waterVolume : 0,
   });
+  const [validationErrors, setValidationErrors] = useState({});
   const loadingWater = useSelector(selectWaterLoading);
 
   const dispatch = useDispatch();
@@ -85,7 +86,7 @@ const AddAndEditWaterCard = ({
       }
     } catch (error) {
       const errorMessage = error.errors && error.errors[0];
-      toast.error(errorMessage || 'Validation error');
+      setValidationErrors({ inputValue: errorMessage || 'Validation error' });
     }
   };
 
@@ -149,7 +150,7 @@ const AddAndEditWaterCard = ({
         )}
         <Subtitle title={subtitle} className="addWaterModal" />
         <h4 className={s.text}>{t('AddAndEditWaterCard.amountOfWater')}</h4>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={s.formContainer}>
           <div className={s.btnContainer}>
             <button
               className={s.btn}
@@ -179,7 +180,7 @@ const AddAndEditWaterCard = ({
             {t('AddAndEditWaterCard.recordingTime')}
           </label>
           <TimePicker
-            className={s.input}
+            className={s.inputTime}
             name="time"
             format="h:mm A"
             minuteStep="5"
@@ -195,6 +196,7 @@ const AddAndEditWaterCard = ({
                 : setDefaultTime(dayjs(value).format('h:mm A'))
             }
           />
+
           <label htmlFor="value" className={s.label}>
             {t('AddAndEditWaterCard.enterTheValue')}
           </label>
@@ -206,6 +208,12 @@ const AddAndEditWaterCard = ({
             onBlur={handleBlur}
             onChange={handleVolumeChange}
           />
+          {validationErrors.inputValue && (
+            <div className={s.validationError}>
+              {validationErrors.inputValue}
+            </div>
+          )}
+
           <div className={s.sreenContainer}>
             <span className={s.waterAmountSreen}>
               {isNaN(water.counterValue) ? 0 : water.counterValue}
