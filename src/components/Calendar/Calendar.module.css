@@ -40,6 +40,24 @@
   visibility: hidden;
 }
 
+.hiddenCell {
+  pointer-events: none;
+}
+
+.inactiveDay {
+  color: rgb(178, 178, 178);
+}
+
+.activeDay {
+  color: var(--primary-charcoal-gray);
+}
+
+.today {
+  background-color: rgb(200, 194, 251) !important;
+  color: var(--primary-white);
+  border-radius: 50%;
+}
+
 .tableCalendar {
   height: 439px;
   display: grid;
@@ -52,10 +70,11 @@
   flex-direction: column;
   gap: 4px;
   align-items: center;
+  border: none;
+  background-color: inherit;
 }
 
 .calendarDay {
-  color: var(--primary-charcoal-gray);
   line-height: 1.25em;
   display: flex;
   width: 25px;
