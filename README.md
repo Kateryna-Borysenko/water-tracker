@@ -74,12 +74,6 @@ password
 
 ---
 
-## Live page
-
-**_<a href="https://water-tracker-pi.vercel.app/">Water Tracker</a>_**
-
----
-
 ## Installation
 
 To run this project, you need to install <a href="https://nodejs.org/en">Node.js v20.12.2</a>

@@ -74,12 +74,6 @@ password
 
 ---
 
-## Жива сторінка
-
-**_<a href="https://water-tracker-pi.vercel.app/">Water Tracker</a>_**
-
----
-
 ## Розгортання
 
 Для того щоб запустити цей проект вам необхідно встановити <a href="https://nodejs.org/en">Node.js v20.12.2</a>
